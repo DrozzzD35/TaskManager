@@ -15,28 +15,9 @@ public class Manager<T extends Task> implements TaskManager<T> {
     }
 
 
-    public void crateTask(String name, String description) {
-        Task task = new Task(name, description);
-        addTask(task);
-    }
-
-    public void crateEpic(String name, String description) {
-        Task task = new Epic(name, description);
-        addTask(task);
-    }
-
-//    public void crateSubTask(String name, String description, int idEpic) {
-//        if (!(findTask(idEpic) == null)) {
-//            Task task = new SubTask(name, description, idEpic);
-//            addTask(task);
-//        } else {
-//            System.out.println("Большая задача не найдена");
-//        }
-//    }
-
     public Task findTask(int id) {
         if (!taskMap.isEmpty()) {
-            for (Map.Entry<Integer, Task> entry : taskMap.entrySet()) {
+            for (Map.Entry<Integer, T> entry : taskMap.entrySet()) {
                 if (entry.getKey() == id) {
                     return entry.getValue();
                 } else {
@@ -84,7 +65,7 @@ public class Manager<T extends Task> implements TaskManager<T> {
 //        return null;
 
 
-        if(!taskMap.containsKey(id)){
+        if (!taskMap.containsKey(id)) {
             System.out.println("Задача с таким id не найдена: " + id);
             return null;
         }
@@ -93,13 +74,14 @@ public class Manager<T extends Task> implements TaskManager<T> {
 
     @Override
     public void updateTask(T task) {
+        
 
     }
 
     public void removeTaskById(int id) {
         printTask(id);
         Task task = findTask(id);
-        if (!(task == null)) {
+        if (task != null) {
             taskMap.remove(id);
             System.out.println("Задача удалена");
             System.out.println();
@@ -115,20 +97,24 @@ public class Manager<T extends Task> implements TaskManager<T> {
 
     @Override
     public List<SubTask> getAllSubtasksByEpicId(int epicId) {
-        if (!taskMap.containsKey(epicId)){
+        if (!taskMap.containsKey(epicId)) {
             System.out.println("Большая задача не найдена");
             return new ArrayList<>();
         }
 
-        return ((Epic)taskMap.get(epicId)).getAllChildren();
+        return ((Epic) taskMap.get(epicId)).getAllChildren();
     }
 
 
 
 
-    public Task addTask(Task task) {
-        return taskMap.put(task.id, task);
-    }
+
+
+
+
+
+
+
 
     public void printAllTasks() {
         if (taskMap.isEmpty()) {

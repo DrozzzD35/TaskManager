@@ -4,7 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3b2d2408-c7aa-4b02-a823-dac3b3c98272" name="Changes" comment="Проведён урок&#10;Добавлен интерфейс TaskManager&#10;Реализованы методы интерфейса TaskManager в классе Manager" />
+    <list default="true" id="3b2d2408-c7aa-4b02-a823-dac3b3c98272" name="Changes" comment="Проведён урок&#10;Добавлен интерфейс TaskManager&#10;Реализованы методы интерфейса TaskManager в классе Manager">
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Task.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Task.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/service/Manager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/Manager.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -14,6 +20,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
+        <option value="Enum" />
       </list>
     </option>
   </component>
@@ -28,36 +35,39 @@
 }</component>
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/DrozzzD35/Bookkeeping.git&quot;,
-    &quot;accountId&quot;: &quot;6bba7647-28de-49ea-88bc-e07af6d5cc65&quot;
+    &quot;url&quot;: &quot;https://github.com/DrozzzD35/TaskManager.git&quot;,
+    &quot;accountId&quot;: &quot;546cf2db-10b4-4e24-ae8f-3f95dc2ad06e&quot;
   }
 }</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 3
 }</component>
   <component name="ProjectId" id="2wdsyZ8Ay7VEAOgqvA7KL6jgQ0G" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Main.executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "master",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/DrozzzD35/IdeaProjects/TaskManager",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/DrozzzD35/IdeaProjects/TaskManager&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.DirectoryMappings&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
@@ -96,6 +106,30 @@
       <workItem from="1746498778560" duration="188000" />
       <workItem from="1746499977376" duration="725000" />
       <workItem from="1746502900356" duration="49000" />
+      <workItem from="1746509633197" duration="70000" />
+      <workItem from="1746509717829" duration="155000" />
+      <workItem from="1746614322818" duration="69000" />
+      <workItem from="1746691193984" duration="146000" />
+      <workItem from="1746697422964" duration="18000" />
+      <workItem from="1747229040645" duration="63000" />
+      <workItem from="1747229179507" duration="32000" />
+      <workItem from="1747229310538" duration="9000" />
+      <workItem from="1747446057961" duration="66000" />
+      <workItem from="1747446237282" duration="9000" />
+      <workItem from="1747471067616" duration="20000" />
+      <workItem from="1747471108804" duration="16000" />
+      <workItem from="1747471471799" duration="155000" />
+      <workItem from="1747471640418" duration="10000" />
+      <workItem from="1747471654853" duration="146000" />
+      <workItem from="1747471828544" duration="137000" />
+      <workItem from="1747489713360" duration="75000" />
+      <workItem from="1748502085707" duration="282000" />
+      <workItem from="1748503969734" duration="196000" />
+      <workItem from="1748588612113" duration="932000" />
+      <workItem from="1748589561624" duration="1247000" />
+      <workItem from="1748978922685" duration="155000" />
+      <workItem from="1749568539694" duration="5000" />
+      <workItem from="1749579154803" duration="879000" />
     </task>
     <task id="LOCAL-00001" summary="в классе Epic добавили методы:&#10;addChild()&#10;getAllChildren()&#10;removeSubTask()&#10;Так же добавлена мапа children&#10;&#10;В классе SubTask добавили объект parent и гет к нему">
       <option name="closed" value="true" />
@@ -144,6 +178,9 @@
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
+    <ignored-roots>
+      <path value="$PROJECT_DIR$/.." />
+    </ignored-roots>
     <MESSAGE value="в классе Epic добавили методы:&#10;addChild()&#10;getAllChildren()&#10;removeSubTask()&#10;Так же добавлена мапа children&#10;&#10;В классе SubTask добавили объект parent и гет к нему" />
     <MESSAGE value="Проведён урок&#10;Добавлен интерфейс TaskManager&#10;Реализованы методы интерфейса TaskManager в классе Manager" />
     <option name="LAST_COMMIT_MESSAGE" value="Проведён урок&#10;Добавлен интерфейс TaskManager&#10;Реализованы методы интерфейса TaskManager в классе Manager" />
