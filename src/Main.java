@@ -1,11 +1,12 @@
-import service.Manager;
+import service.TaskManager;
+import service.TaskManagerImpl;
 import model.Task;
 
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-        Manager<T> manager = new Manager<T>();
+        TaskManager<Task> taskManager = new TaskManagerImpl<Task>();
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
@@ -26,7 +27,7 @@ public class Main {
                         System.out.println("Описание задачи: ");
                         String description = scanner.next();
 
-                        manager.crateTask(name, description);
+                        taskManager.crateTask(name, description);
                         System.out.println("Задачи создана успешно");
                         System.out.println();
                     } else if (answer == 2) {
@@ -36,7 +37,7 @@ public class Main {
                         System.out.println("Описание задачи: ");
                         String description = scanner.next();
 
-                        manager.crateEpic(name, description);
+                        taskManager.crateEpic(name, description);
                         System.out.println("Большая задачи создана успешно");
                         System.out.println();
                     }
@@ -67,7 +68,7 @@ public class Main {
                 case 2: {
                     System.out.println("Введите идентификатор задачи для её удаления");
                     int id = scanner.nextInt();
-                    manager.removeTaskById(id);
+                    taskManager.removeTaskById(id);
                     System.out.println();
                     break;
                 }
@@ -77,7 +78,7 @@ public class Main {
                     System.out.println("2. Нет");
                     int answer = scanner.nextInt();
                     if (answer == 1) {
-                        manager.removeAllTasks();
+                        taskManager.removeAllTasks();
 
                     } else {
                         System.out.println("Задачи не удалены");
@@ -89,20 +90,20 @@ public class Main {
                 case 4: {
                     System.out.println("Введите идентификатор задачи для её поиска");
                     int id = scanner.nextInt();
-                    manager.printTask(id);
+                    taskManager.printTask(id);
                     System.out.println();
                     break;
                 }
                 case 5: {
-                    manager.printAllTasks();
+                    taskManager.printAllTasks();
                     break;
                 }
                 case 6: {
 
                     System.out.println("Введите идентификатор задачи: ");
                     int id = scanner.nextInt();
-                    Task task = manager.findTask(id);
-                    manager.printTask(id);
+                    Task task = taskManager.findTask(id);
+                    taskManager.printTask(id);
 
                     System.out.println("1. Изменить имя задачи");
                     System.out.println("2. Изменить описание задачи");
@@ -113,21 +114,21 @@ public class Main {
                     if (answer == 1) {
                         System.out.println("Какое имя вы хотели бы присвоить");
                         String name = scanner.next();
-                        manager.updateName(task, name);
+                        taskManager.updateName(task, name);
                         System.out.println("Имя задачи успешно изменено на " + name);
                         System.out.println();
-                        manager.printTask(id);
+                        taskManager.printTask(id);
                         break;
                     } else if (answer == 2) {
                         System.out.println("Какое описание вы хотели бы присвоить");
                         String description = scanner.next();
-                        manager.updateDescription(task, description);
+                        taskManager.updateDescription(task, description);
                         System.out.println("Описание задачи успешно изменено на " + description);
                         System.out.println();
-                        manager.printTask(id);
+                        taskManager.printTask(id);
                     } else if (answer == 3) {
                         System.out.println("Задача " + task.getName() + " имеет статус " + task.getStatus());
-                        manager.changeStatus(id);
+                        taskManager.changeStatus(id);
                     } else {
                         System.out.println("Введена неверная команда");
                     }
@@ -144,7 +145,7 @@ public class Main {
                     System.out.println("Задачи создана успешно");
                     System.out.println("На какую задачу заменить, укажите идентификатор");
                     int oldTask = scanner.nextInt();
-                    manager.updateTask(oldTask, newTask);
+                    taskManager.updateTask(oldTask, newTask);
                     System.out.println("Задача успешно заменена");
                     System.out.println();
                     break;

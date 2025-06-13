@@ -7,10 +7,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Manager<T extends Task> implements TaskManager<T> {
+public class TaskManagerImpl<T extends Task> implements TaskManager<T> {
     private Map<Integer, T> taskMap;
 
-    public Manager() {
+    public TaskManagerImpl() {
         this.taskMap = new HashMap<>();
     }
 
@@ -73,8 +73,21 @@ public class Manager<T extends Task> implements TaskManager<T> {
     }
 
     @Override
-    public void updateTask(T task) {
-        
+    public void updateTask(T updateTask) {
+        T task = getTaskById(updateTask.getId());
+
+        if (task == null) {
+            return;
+        }
+
+        task.setName(updateTask.getName());
+        task.setDescription(updateTask.getDescription());
+        task.setType(updateTask.getType());
+        task.setStatus(updateTask.getStatus());
+
+        if (task instanceof SubTask) {
+            ((SubTask) task).getParent().updateSubTask((SubTask) task);
+        }
 
     }
 
@@ -106,22 +119,12 @@ public class Manager<T extends Task> implements TaskManager<T> {
     }
 
 
-
-
-
-
-
-
-
-
-
-
     public void printAllTasks() {
         if (taskMap.isEmpty()) {
             System.out.println("В настоящий момент задач нет");
             System.out.println();
         } else {
-            for (Map.Entry<Integer, Task> entry : taskMap.entrySet()) {
+            for (Map.Entry<Integer, T> entry : taskMap.entrySet()) {
                 System.out.println("Задача: " + entry.getValue().getName());
                 System.out.println("Идентификатор: " + entry.getValue().getId());
                 System.out.println("Описание: " + entry.getValue().getDescription());
