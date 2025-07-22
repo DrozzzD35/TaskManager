@@ -4,12 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3b2d2408-c7aa-4b02-a823-dac3b3c98272" name="Changes" comment="Проведён урок &#10;Написан метод updateTask&#10;внесены некоторые корректировки">
+    <list default="true" id="3b2d2408-c7aa-4b02-a823-dac3b3c98272" name="Changes" comment="Написал метод updateStatus в классе Epic&#10;в TaskManagerImpl подметил в комментарии метод который нужно удалить, нужно ли удалять?">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/documents/taskMnager.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/documents/taskMnager.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Epic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Epic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/service/TaskManagerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/TaskManagerImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -145,7 +141,7 @@
       <workItem from="1753194815252" duration="332000" />
       <workItem from="1753195426525" duration="513000" />
       <workItem from="1753200197443" duration="1682000" />
-      <workItem from="1753207581840" duration="1168000" />
+      <workItem from="1753207581840" duration="1726000" />
     </task>
     <task id="LOCAL-00001" summary="в классе Epic добавили методы:&#10;addChild()&#10;getAllChildren()&#10;removeSubTask()&#10;Так же добавлена мапа children&#10;&#10;В классе SubTask добавили объект parent и гет к нему">
       <option name="closed" value="true" />
@@ -195,7 +191,15 @@
       <option name="project" value="LOCAL" />
       <updated>1749849801660</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Написал метод updateStatus в классе Epic&#10;в TaskManagerImpl подметил в комментарии метод который нужно удалить, нужно ли удалять?">
+      <option name="closed" value="true" />
+      <created>1753209256910</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1753209256910</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -208,6 +212,7 @@
     <MESSAGE value="в классе Epic добавили методы:&#10;addChild()&#10;getAllChildren()&#10;removeSubTask()&#10;Так же добавлена мапа children&#10;&#10;В классе SubTask добавили объект parent и гет к нему" />
     <MESSAGE value="Проведён урок&#10;Добавлен интерфейс TaskManager&#10;Реализованы методы интерфейса TaskManager в классе Manager" />
     <MESSAGE value="Проведён урок &#10;Написан метод updateTask&#10;внесены некоторые корректировки" />
-    <option name="LAST_COMMIT_MESSAGE" value="Проведён урок &#10;Написан метод updateTask&#10;внесены некоторые корректировки" />
+    <MESSAGE value="Написал метод updateStatus в классе Epic&#10;в TaskManagerImpl подметил в комментарии метод который нужно удалить, нужно ли удалять?" />
+    <option name="LAST_COMMIT_MESSAGE" value="Написал метод updateStatus в классе Epic&#10;в TaskManagerImpl подметил в комментарии метод который нужно удалить, нужно ли удалять?" />
   </component>
 </project>

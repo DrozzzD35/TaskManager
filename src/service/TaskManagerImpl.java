@@ -14,9 +14,9 @@ public class TaskManagerImpl<T extends Task> implements TaskManager<T> {
         this.taskMap = new HashMap<>();
     }
 
-    /*
-      getTaskById();
-        */
+    /**
+     * getTaskById();
+     */
     public Task findTask(int id) {
         if (!taskMap.isEmpty()) {
             for (Map.Entry<Integer, T> entry : taskMap.entrySet()) {
@@ -56,9 +56,9 @@ public class TaskManagerImpl<T extends Task> implements TaskManager<T> {
 //        return tasks;
     }
 
-    /*
-    findTask();
-    */
+    /**
+     * findTask();
+     */
 
     @Override
     public T getTaskById(int id) {
