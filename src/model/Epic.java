@@ -10,6 +10,8 @@ public class Epic extends Task {
 
     public Epic(String nameEpic, String descriptionEpic) {
         super(nameEpic, descriptionEpic);
+
+        this.status = Status.NEW;
         this.type = Type.EPIC;
         this.children = new HashMap<>();
     }
@@ -41,6 +43,22 @@ public class Epic extends Task {
     }
 
     public void updateStatus(SubTask subTask) {
-       subTask.setStatus(Status.NEW);
+        subTask.setStatus(Status.NEW);
     }
+
+    public void updateEpicStatus(Epic epic) {
+        if (!epic.children.isEmpty()) {
+            epic.setStatus(Status.NEW);
+        }
+
+        for (Map.Entry<Integer, SubTask> entry : epic.children.entrySet()) {
+            if (entry.getValue().getStatus().equals(Status.IN_PROGRESS)) {
+                epic.setStatus(Status.IN_PROGRESS);
+            } else if (!(entry.getValue().getStatus().equals(Status.NEW)
+                    && entry.getValue().getStatus().equals(Status.IN_PROGRESS))) {
+                epic.setStatus(Status.DONE);
+            }
+        }
+    }
+
 }

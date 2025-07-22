@@ -6,6 +6,7 @@ public class SubTask extends Task {
     public SubTask(String name, String description, Epic parent) {
         super(name, description); // new Task(name, description);
 
+        this.status = Status.NEW;
         this.type = Type.SUBTASK;
         this.parent = parent;
 

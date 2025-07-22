@@ -143,7 +143,7 @@ public class TaskManagerImpl<T extends Task> implements TaskManager<T> {
     }
 
     public void printTask(int id) {
-        Task task = findTask(id);
+        Task task = getTaskById(id);
         if (!(task == null)) {
             System.out.println("Задача: " + task.getName());
             System.out.println("Идентификатор: " + task.getId());
@@ -156,49 +156,28 @@ public class TaskManagerImpl<T extends Task> implements TaskManager<T> {
 
     public void changeStatus(int id) {
         ChangeStatus changeStatus = new ChangeStatus();
-        Task task = findTask(id);
+        Task task = getTaskById(id);
         changeStatus.changeStatus(task);
     }
 
 
-    public void updateName(Task task, String name) {
+    public void updateName(T task, String name) {
         task.setName(name);
     }
 
-    public void updateDescription(Task task, String description) {
-        task.description = description;
+    public void updateDescription(T task, String description) {
+        task.setDescription(description);
     }
 
-    public void updateTask(int oldTask, Task newTask) {
-        Task deletTask = findTask(oldTask);
-        int id = deletTask.getId();
-        taskMap.remove(id);
-        taskMap.put(id, newTask);
-    }
 
-    public void printAllEpic() {
-        for (Map.Entry<Integer, Task> entry : taskMap.entrySet()) {
-            if (entry.getValue().type == Type.EPIC) {
-                System.out.println("Задача: " + entry.getValue().getName());
-                System.out.println("Идентификатор: " + entry.getValue().getId());
-                System.out.println("Описание: " + entry.getValue().getDescription());
-                System.out.println("Статус: " + entry.getValue().getStatus());
-                System.out.println("Тип: " + entry.getValue().getType());
-                System.out.println();
-            }
+    public void printListTask(List<T> taskList) {
+        for (T task : taskList) {
+            printTask(task.getId());
         }
+
     }
 
-    public void printAllSubTaskByEpic(int idEpic) {
-        if (!(findTask(idEpic) == null)) {
-            for (Map.Entry<Integer, Task> entry : taskMap.entrySet()) {
-                if (entry.getValue().type == Type.SUBTASK) {
 
-                }
-
-            }
-        }
-    }
 }
 
 
