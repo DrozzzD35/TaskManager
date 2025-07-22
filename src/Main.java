@@ -81,7 +81,7 @@ public class Main {
                         taskManager.removeAllTasks();
 
                     } else {
-                        System.out.println("Задачи не удалены");
+                        return;
                     }
                     System.out.println();
 

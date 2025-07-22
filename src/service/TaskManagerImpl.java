@@ -14,7 +14,9 @@ public class TaskManagerImpl<T extends Task> implements TaskManager<T> {
         this.taskMap = new HashMap<>();
     }
 
-
+    /*
+      getTaskById();
+        */
     public Task findTask(int id) {
         if (!taskMap.isEmpty()) {
             for (Map.Entry<Integer, T> entry : taskMap.entrySet()) {
@@ -54,6 +56,10 @@ public class TaskManagerImpl<T extends Task> implements TaskManager<T> {
 //        return tasks;
     }
 
+    /*
+    findTask();
+    */
+
     @Override
     public T getTaskById(int id) {
 //        for (Map.Entry<Integer, T> entry : taskMap.entrySet()) {
@@ -91,9 +97,10 @@ public class TaskManagerImpl<T extends Task> implements TaskManager<T> {
 
     }
 
+
     public void removeTaskById(int id) {
         printTask(id);
-        Task task = findTask(id);
+        Task task = getTaskById(id);
         if (task != null) {
             taskMap.remove(id);
             System.out.println("Задача удалена");

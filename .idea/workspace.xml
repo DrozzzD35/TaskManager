@@ -4,13 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3b2d2408-c7aa-4b02-a823-dac3b3c98272" name="Changes" comment="Проведён урок&#10;Добавлен интерфейс TaskManager&#10;Реализованы методы интерфейса TaskManager в классе Manager">
-      <change afterPath="$PROJECT_DIR$/src/study.md" afterDir="false" />
+    <list default="true" id="3b2d2408-c7aa-4b02-a823-dac3b3c98272" name="Changes" comment="Проведён урок &#10;Написан метод updateTask&#10;внесены некоторые корректировки">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/documents/taskMnager.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/documents/taskMnager.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/Epic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Epic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Task.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Task.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/service/Manager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/TaskManagerImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/service/TaskManagerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/TaskManagerImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,7 +64,7 @@
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.DirectoryMappings&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -133,7 +132,20 @@
       <workItem from="1749579154803" duration="879000" />
       <workItem from="1749812397454" duration="138000" />
       <workItem from="1749813298547" duration="3433000" />
-      <workItem from="1749848117484" duration="609000" />
+      <workItem from="1749848117484" duration="1515000" />
+      <workItem from="1749872070502" duration="75000" />
+      <workItem from="1749872153205" duration="899000" />
+      <workItem from="1749873068151" duration="1650000" />
+      <workItem from="1749875695552" duration="1057000" />
+      <workItem from="1749876815615" duration="17000" />
+      <workItem from="1750850951103" duration="35000" />
+      <workItem from="1753120068900" duration="308000" />
+      <workItem from="1753188475939" duration="595000" />
+      <workItem from="1753193937496" duration="514000" />
+      <workItem from="1753194815252" duration="332000" />
+      <workItem from="1753195426525" duration="513000" />
+      <workItem from="1753200197443" duration="1682000" />
+      <workItem from="1753207581840" duration="1168000" />
     </task>
     <task id="LOCAL-00001" summary="в классе Epic добавили методы:&#10;addChild()&#10;getAllChildren()&#10;removeSubTask()&#10;Так же добавлена мапа children&#10;&#10;В классе SubTask добавили объект parent и гет к нему">
       <option name="closed" value="true" />
@@ -175,7 +187,15 @@
       <option name="project" value="LOCAL" />
       <updated>1746499992907</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Проведён урок &#10;Написан метод updateTask&#10;внесены некоторые корректировки">
+      <option name="closed" value="true" />
+      <created>1749849801660</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1749849801660</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -187,6 +207,7 @@
     </ignored-roots>
     <MESSAGE value="в классе Epic добавили методы:&#10;addChild()&#10;getAllChildren()&#10;removeSubTask()&#10;Так же добавлена мапа children&#10;&#10;В классе SubTask добавили объект parent и гет к нему" />
     <MESSAGE value="Проведён урок&#10;Добавлен интерфейс TaskManager&#10;Реализованы методы интерфейса TaskManager в классе Manager" />
-    <option name="LAST_COMMIT_MESSAGE" value="Проведён урок&#10;Добавлен интерфейс TaskManager&#10;Реализованы методы интерфейса TaskManager в классе Manager" />
+    <MESSAGE value="Проведён урок &#10;Написан метод updateTask&#10;внесены некоторые корректировки" />
+    <option name="LAST_COMMIT_MESSAGE" value="Проведён урок &#10;Написан метод updateTask&#10;внесены некоторые корректировки" />
   </component>
 </project>

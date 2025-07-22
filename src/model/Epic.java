@@ -36,11 +36,11 @@ public class Epic extends Task {
     public void updateSubTask(SubTask subTask) {
         if (children.containsKey(subTask.getId())) {
             children.put(subTask.getId(), subTask);
-            updateStatus();
+            updateStatus(subTask);
         }
     }
 
-    public void updateStatus() {
-
+    public void updateStatus(SubTask subTask) {
+       subTask.setStatus(Status.NEW);
     }
 }
