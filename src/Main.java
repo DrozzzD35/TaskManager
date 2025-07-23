@@ -1,3 +1,4 @@
+import model.Epic;
 import service.TaskManager;
 import service.TaskManagerImpl;
 import model.Task;
@@ -6,7 +7,7 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-        TaskManager<Task> taskManager = new TaskManagerImpl<Task>();
+        TaskManagerImpl<Task> taskManagerImpl = new TaskManagerImpl<>();
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
@@ -18,57 +19,41 @@ public class Main {
                     System.out.println("1. Создать задачу");
                     System.out.println("2. Создать большую задачу");
                     System.out.println("3. Создать подзадачу");
+
                     int answer = scanner.nextInt();
+                    System.out.println("Название задачи: ");
+                    String name = scanner.next();
+                    System.out.println("Описание задачи: ");
+                    String description = scanner.next();
 
-                    if (answer == 1) {
-                        System.out.println("Название задачи: ");
-                        String name = scanner.next();
+                    switch (answer) {
+                        case 1 -> {
+                            taskManagerImpl.createTask(name, description);
+                            System.out.println("Задачи создана успешно");
+                            System.out.println();
+                        }
+                        case 2 -> {
+                            taskManagerImpl.createEpicTask(name, description);
+                            System.out.println("Большая задачи создана успешно");
+                            System.out.println();
+                        }
+                        case 3 -> {
+                            System.out.println("Введите id Большой задачи к которой хотите отнести подзадачу?");
+                            taskManagerImpl.printListEpic();
 
-                        System.out.println("Описание задачи: ");
-                        String description = scanner.next();
+                            int epicById = scanner.nextInt();
+                            Task epic = taskManagerImpl.getTaskById(epicById);
 
-                        taskManager.crateTask(name, description);
-                        System.out.println("Задачи создана успешно");
-                        System.out.println();
-                    } else if (answer == 2) {
-                        System.out.println("Название задачи: ");
-                        String name = scanner.next();
-
-                        System.out.println("Описание задачи: ");
-                        String description = scanner.next();
-
-                        taskManager.crateEpic(name, description);
-                        System.out.println("Большая задачи создана успешно");
-                        System.out.println();
-                    }
-//                    else if (answer == 3) {
-//                        System.out.println("В какую большую задачу входит подзадача, укажите идентификатор");
-//                        manager.printAllEpic();
-//                        int idEpic = scanner.nextInt();
-//                        if (!(manager.findTask(idEpic) == null)) {
-//                            manager.printTask(idEpic);
-//                            System.out.println("Название задачи: ");
-//                            String name = scanner.next();
-//
-//                            System.out.println("Описание задачи: ");
-//                            String description = scanner.next();
-//
-//                            manager.crateSubTask(name, description, idEpic);
-//                            System.out.println("Подзадачи создана успешно");
-//                            System.out.println();
-//                        } else {
-//                            break;
-
-                    else {
-                        System.out.println("Неверно указана команда");
+                            taskManagerImpl.createSubTaskTask(name, description, (Task)epic);
+                        }
                     }
 
-                    break;
+
                 }
                 case 2: {
                     System.out.println("Введите идентификатор задачи для её удаления");
                     int id = scanner.nextInt();
-                    taskManager.removeTaskById(id);
+                    taskManagerImpl.removeTaskById(id);
                     System.out.println();
                     break;
                 }
@@ -78,7 +63,7 @@ public class Main {
                     System.out.println("2. Нет");
                     int answer = scanner.nextInt();
                     if (answer == 1) {
-                        taskManager.removeAllTasks();
+                        taskManagerImpl.removeAllTasks();
 
                     } else {
                         return;
@@ -90,20 +75,20 @@ public class Main {
                 case 4: {
                     System.out.println("Введите идентификатор задачи для её поиска");
                     int id = scanner.nextInt();
-                    taskManager.printTask(id);
+                    taskManagerImpl.printTask(id);
                     System.out.println();
                     break;
                 }
                 case 5: {
-                    taskManager.printAllTasks();
+                    taskManagerImpl.printAllTasks();
                     break;
                 }
                 case 6: {
 
                     System.out.println("Введите идентификатор задачи: ");
                     int id = scanner.nextInt();
-                    Task task = taskManager.findTask(id);
-                    taskManager.printTask(id);
+                    Task task = taskManagerImpl.findTask(id);
+                    taskManagerImpl.printTask(id);
 
                     System.out.println("1. Изменить имя задачи");
                     System.out.println("2. Изменить описание задачи");
@@ -114,21 +99,21 @@ public class Main {
                     if (answer == 1) {
                         System.out.println("Какое имя вы хотели бы присвоить");
                         String name = scanner.next();
-                        taskManager.updateName(task, name);
+                        taskManagerImpl.updateName(task, name);
                         System.out.println("Имя задачи успешно изменено на " + name);
                         System.out.println();
-                        taskManager.printTask(id);
+                        taskManagerImpl.printTask(id);
                         break;
                     } else if (answer == 2) {
                         System.out.println("Какое описание вы хотели бы присвоить");
                         String description = scanner.next();
-                        taskManager.updateDescription(task, description);
+                        taskManagerImpl.updateDescription(task, description);
                         System.out.println("Описание задачи успешно изменено на " + description);
                         System.out.println();
-                        taskManager.printTask(id);
+                        taskManagerImpl.printTask(id);
                     } else if (answer == 3) {
                         System.out.println("Задача " + task.getName() + " имеет статус " + task.getStatus());
-                        taskManager.changeStatus(id);
+                        taskManagerImpl.changeStatus(id);
                     } else {
                         System.out.println("Введена неверная команда");
                     }
@@ -145,7 +130,7 @@ public class Main {
                     System.out.println("Задачи создана успешно");
                     System.out.println("На какую задачу заменить, укажите идентификатор");
                     int oldTask = scanner.nextInt();
-                    taskManager.updateTask(oldTask, newTask);
+                    taskManagerImpl.updateTask(oldTask, newTask);
                     System.out.println("Задача успешно заменена");
                     System.out.println();
                     break;

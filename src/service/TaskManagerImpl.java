@@ -2,10 +2,7 @@ package service;
 
 import model.*;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class TaskManagerImpl<T extends Task> implements TaskManager<T> {
     private Map<Integer, T> taskMap;
@@ -13,6 +10,37 @@ public class TaskManagerImpl<T extends Task> implements TaskManager<T> {
     public TaskManagerImpl() {
         this.taskMap = new HashMap<>();
     }
+
+    public void createTask(String name, String description) {
+        T task = new Task(name, description);
+        add(task);
+    }
+
+    public void createEpicTask(String name, String description) {
+        new Epic(name, description);
+    }
+
+    public void createSubTaskTask(String name, String description, Epic epicParent) {
+        new SubTask(name, description, epicParent);
+    }
+
+    public ArrayList<Epic> getAllEpic() {
+        for (Map.Entry<Integer, T> entry : taskMap.entrySet()) {
+            if (entry.getValue() instanceof Epic) {
+                return new ArrayList<>((Collection) taskMap.get(Epic.class));
+            }
+        }
+        return null;
+    }
+
+    public void printListEpic() {
+        List<Epic> list = getAllEpic();
+        for (Epic task : list) {
+            System.out.println("Название задачи " + task.getName());
+            System.out.println("Идентификатор " + task.getId());
+        }
+    }
+
 
     /**
      * getTaskById();
@@ -48,12 +76,6 @@ public class TaskManagerImpl<T extends Task> implements TaskManager<T> {
     @Override
     public List<T> getTasks() {
         return new ArrayList<>(taskMap.values());
-
-//        List<T> tasks = new ArrayList<>();
-//        for (Map.Entry<Integer, T> entry : taskMap.entrySet()) {
-//            tasks.add(entry.getValue());
-//        }
-//        return tasks;
     }
 
     /**
@@ -62,15 +84,6 @@ public class TaskManagerImpl<T extends Task> implements TaskManager<T> {
 
     @Override
     public T getTaskById(int id) {
-//        for (Map.Entry<Integer, T> entry : taskMap.entrySet()) {
-//            if (entry.getKey() == id) {
-//                return entry.getValue();
-//            }
-//        }
-//
-//        return null;
-
-
         if (!taskMap.containsKey(id)) {
             System.out.println("Задача с таким id не найдена: " + id);
             return null;
