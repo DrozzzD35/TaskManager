@@ -21,14 +21,7 @@ public class Epic extends Task {
     }
 
     public List<SubTask> getAllChildren() {
-//         return new ArrayList<>(children.values());
-
-        List<SubTask> subTasks = new ArrayList<>();
-        for (Map.Entry<Integer, SubTask> entry : children.entrySet()) {
-            subTasks.add(entry.getValue());
-        }
-        return subTasks;
-
+        return new ArrayList<>(children.values());
     }
 
     public void removeSubTask(int subtaskId) {
@@ -47,15 +40,13 @@ public class Epic extends Task {
     }
 
     public void updateEpicStatus(Epic epic) {
-        if (!epic.children.isEmpty()) {
-            epic.setStatus(Status.NEW);
-        }
+        List<SubTask> subTasksList = new ArrayList<>(epic.children.values());
 
-        for (Map.Entry<Integer, SubTask> entry : epic.children.entrySet()) {
-            if (entry.getValue().getStatus().equals(Status.IN_PROGRESS)) {
+        for (SubTask subTask : subTasksList) {
+            if (subTask.getStatus().equals(Status.IN_PROGRESS)) {
                 epic.setStatus(Status.IN_PROGRESS);
-            } else if (!(entry.getValue().getStatus().equals(Status.NEW)
-                    && entry.getValue().getStatus().equals(Status.IN_PROGRESS))) {
+                return;
+            } else if (!subTask.getStatus().equals(Status.NEW)) {
                 epic.setStatus(Status.DONE);
             }
         }
