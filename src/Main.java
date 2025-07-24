@@ -1,7 +1,7 @@
-import model.Epic;
-import service.TaskManager;
 import service.TaskManagerImpl;
 import model.Task;
+import test.Cat;
+import test.Dog;
 
 import java.util.*;
 
@@ -152,6 +152,8 @@ public class Main {
 
 
     public static void printMenu() {
+
+
         System.out.println("Введите команду (1-6): ");
         System.out.println("1. Создать задачу");
         System.out.println("2. Удалить задачу по идентификатору");

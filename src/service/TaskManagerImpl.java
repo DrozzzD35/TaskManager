@@ -11,57 +11,6 @@ public class TaskManagerImpl<T extends Task> implements TaskManager<T> {
         this.taskMap = new HashMap<>();
     }
 
-    public void createTask(String name, String description) {
-        T task = new Task(name, description);
-        add(task);
-    }
-
-    public void createEpicTask(String name, String description) {
-        new Epic(name, description);
-    }
-
-    public void createSubTaskTask(String name, String description, Epic epicParent) {
-        new SubTask(name, description, epicParent);
-    }
-
-    public ArrayList<Epic> getAllEpic() {
-        for (Map.Entry<Integer, T> entry : taskMap.entrySet()) {
-            if (entry.getValue() instanceof Epic) {
-                return new ArrayList<>((Collection) taskMap.get(Epic.class));
-            }
-        }
-        return null;
-    }
-
-    public void printListEpic() {
-        List<Epic> list = getAllEpic();
-        for (Epic task : list) {
-            System.out.println("Название задачи " + task.getName());
-            System.out.println("Идентификатор " + task.getId());
-        }
-    }
-
-
-    /**
-     * getTaskById();
-     */
-    public Task findTask(int id) {
-        if (!taskMap.isEmpty()) {
-            for (Map.Entry<Integer, T> entry : taskMap.entrySet()) {
-                if (entry.getKey() == id) {
-                    return entry.getValue();
-                } else {
-                    System.out.println("Задача не найдена. Возможно неверно указан идентификатор");
-                    System.out.println();
-                    break;
-                }
-            }
-        } else {
-            System.out.println("В настоящий момент задач нет");
-            System.out.println();
-        }
-        return null;
-    }
 
     @Override
     public void add(T task) {
@@ -78,9 +27,6 @@ public class TaskManagerImpl<T extends Task> implements TaskManager<T> {
         return new ArrayList<>(taskMap.values());
     }
 
-    /**
-     * findTask();
-     */
 
     @Override
     public T getTaskById(int id) {
@@ -110,7 +56,7 @@ public class TaskManagerImpl<T extends Task> implements TaskManager<T> {
 
     }
 
-
+    @Override
     public void removeTaskById(int id) {
         printTask(id);
         Task task = getTaskById(id);
@@ -166,22 +112,6 @@ public class TaskManagerImpl<T extends Task> implements TaskManager<T> {
             System.out.println();
         }
     }
-
-    public void changeStatus(int id) {
-        ChangeStatus changeStatus = new ChangeStatus();
-        Task task = getTaskById(id);
-        changeStatus.changeStatus(task);
-    }
-
-
-    public void updateName(T task, String name) {
-        task.setName(name);
-    }
-
-    public void updateDescription(T task, String description) {
-        task.setDescription(description);
-    }
-
 
     public void printListTask(List<T> taskList) {
         for (T task : taskList) {

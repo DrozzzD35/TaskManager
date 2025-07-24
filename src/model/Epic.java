@@ -12,7 +12,6 @@ public class Epic extends Task {
     public Epic(String nameEpic, String descriptionEpic) {
         super(nameEpic, descriptionEpic);
 
-        this.status = Status.NEW;
         this.type = Type.EPIC;
         this.children = new HashMap<>();
     }
@@ -32,25 +31,52 @@ public class Epic extends Task {
     public void updateSubTask(SubTask subTask) {
         if (children.containsKey(subTask.getId())) {
             children.put(subTask.getId(), subTask);
-            updateStatus(subTask);
+            updateStatus();
         }
     }
 
-    public void updateStatus(SubTask subTask) {
-        subTask.setStatus(Status.NEW);
-    }
+    public void updateStatus() {
+        /*
+        new
+        Done
+         */
 
-    public void updateEpicStatus(Epic epic) {
-        List<SubTask> subTasksList = new ArrayList<>(epic.children.values());
+        boolean isDone = false;
+        boolean isInProgress = false;
+        boolean isNew = false;
 
-        for (SubTask subTask : subTasksList) {
-            if (subTask.getStatus().equals(Status.IN_PROGRESS)) {
-                epic.setStatus(Status.IN_PROGRESS);
-                return;
-            } else if (!subTask.getStatus().equals(Status.NEW)) {
-                epic.setStatus(Status.DONE);
+        for (SubTask subTask : children.values()) {
+            switch (subTask.getStatus()) {
+                case NEW -> {
+                    isNew = true;
+                }
+                case DONE -> {
+                    isDone = true;
+                }
+                case IN_PROGRESS -> {
+                    isInProgress = true;
+                }
             }
         }
+
+        /* f && f
+        !(isAllDone || isAllNew) = !isAllDone && !isAllNew
+        !(isAllDone && isAllNew) = T\F
+
+
+        !isAllDone && !isAllNew = F
+        !(isAllDone && isAllNew) = T\F
+
+        */
+        if (isInProgress || (isNew && isDone)) {
+            setStatus(Status.IN_PROGRESS);
+        } else {
+            setStatus(isNew ? Status.NEW : Status.DONE);
+
+        }
+
+
     }
+
 
 }

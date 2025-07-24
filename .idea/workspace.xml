@@ -18,8 +18,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="Enum" />
+        <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -151,6 +152,8 @@
       <workItem from="1753268635795" duration="3881000" />
       <workItem from="1753281549244" duration="1248000" />
       <workItem from="1753282943399" duration="2203000" />
+      <workItem from="1753290301998" duration="258000" />
+      <workItem from="1753290626252" duration="3551000" />
     </task>
     <task id="LOCAL-00001" summary="в классе Epic добавили методы:&#10;addChild()&#10;getAllChildren()&#10;removeSubTask()&#10;Так же добавлена мапа children&#10;&#10;В классе SubTask добавили объект parent и гет к нему">
       <option name="closed" value="true" />
