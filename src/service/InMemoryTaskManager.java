@@ -4,10 +4,17 @@ import model.*;
 
 import java.util.*;
 
-public class TaskManagerImpl<T extends Task> implements TaskManager<T> {
+public class InMemoryTaskManager<T extends Task> implements TaskManager<T> {
     private Map<Integer, T> taskMap;
+    private List<T> history = new ArrayList<>();
 
-    public TaskManagerImpl() {
+
+    @Override
+    public List<Task> getHistory() {
+        return List.of();
+    }
+
+    public InMemoryTaskManager() {
         this.taskMap = new HashMap<>();
     }
 
@@ -34,22 +41,31 @@ public class TaskManagerImpl<T extends Task> implements TaskManager<T> {
             System.out.println("Задача с таким идентификатором не найдена: " + id);
             return null;
         }
-        return taskMap.get(id);
+        T task = taskMap.get(id);
+        history.add(task);
+        return task;
     }
 
     @Override
-    public void updateTask(T updateTask) {
-        T task = getTaskById(updateTask.getId());
+    public void updateTask(T updateTask, int id) {
+        T task = getTaskById(id);
 
         if (task == null) {
             return;
         }
 
-        task.setName(updateTask.getName());
-        task.setDescription(updateTask.getDescription());
-        task.setType(updateTask.getType());
-        task.setStatus(updateTask.getStatus());
-
+        if (updateTask.getName() != null) {
+            task.setName(updateTask.getName());
+        }
+        if (updateTask.getDescription() != null) {
+            task.setDescription(updateTask.getDescription());
+        }
+        if (updateTask.getType() != null) {
+            task.setType(updateTask.getType());
+        }
+        if (updateTask.getStatus() != null) {
+            task.setStatus(updateTask.getStatus());
+        }
         if (task instanceof SubTask) {
             ((SubTask) task).getParent().updateSubTask((SubTask) task);
         }
@@ -60,12 +76,18 @@ public class TaskManagerImpl<T extends Task> implements TaskManager<T> {
     @Override
     public void removeTaskById(int id) {
         Task task = getTaskById(id);
-        if (task != null) {
-            taskMap.remove(id);
-            System.out.println("Задача удалена");
-            System.out.println();
+        if (task == null) {
             return;
         }
+        if (task instanceof Epic) {
+            List<SubTask> subTasks = ((Epic) task).getAllChildren();
+            for (SubTask subTask : subTasks) {
+                removeTaskById(subTask.getId());
+            }
+        }
+        taskMap.remove(id);
+        System.out.println("Задача удалена");
+        System.out.println();
 
     }
 
