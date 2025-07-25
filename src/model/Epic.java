@@ -39,6 +39,7 @@ public class Epic extends Task {
         /*
         new
         Done
+        new
          */
 
         boolean isDone = false;

@@ -19,7 +19,7 @@ public class TaskManagerImpl<T extends Task> implements TaskManager<T> {
         }
 
         taskMap.put(task.getId(), task);
-        System.out.println(task.getType() + " " + task.getName() + " добавлен.");
+        System.out.println(task.getType() + " " + task.getName() + " добавлена.");
     }
 
     @Override
@@ -31,7 +31,7 @@ public class TaskManagerImpl<T extends Task> implements TaskManager<T> {
     @Override
     public T getTaskById(int id) {
         if (!taskMap.containsKey(id)) {
-            System.out.println("Задача с таким id не найдена: " + id);
+            System.out.println("Задача с таким идентификатором не найдена: " + id);
             return null;
         }
         return taskMap.get(id);
@@ -53,17 +53,18 @@ public class TaskManagerImpl<T extends Task> implements TaskManager<T> {
         if (task instanceof SubTask) {
             ((SubTask) task).getParent().updateSubTask((SubTask) task);
         }
+        System.out.println("Задача обновлена");
 
     }
 
     @Override
     public void removeTaskById(int id) {
-        printTask(id);
         Task task = getTaskById(id);
         if (task != null) {
             taskMap.remove(id);
             System.out.println("Задача удалена");
             System.out.println();
+            return;
         }
 
     }
@@ -90,6 +91,7 @@ public class TaskManagerImpl<T extends Task> implements TaskManager<T> {
             System.out.println("В настоящий момент задач нет");
             System.out.println();
         } else {
+            System.out.println("Список всех задач");
             for (Map.Entry<Integer, T> entry : taskMap.entrySet()) {
                 System.out.println("Задача: " + entry.getValue().getName());
                 System.out.println("Идентификатор: " + entry.getValue().getId());
@@ -113,11 +115,18 @@ public class TaskManagerImpl<T extends Task> implements TaskManager<T> {
         }
     }
 
-    public void printListTask(List<T> taskList) {
-        for (T task : taskList) {
-            printTask(task.getId());
+    public void printEpicTasks() {
+        ArrayList<Epic> epics = new ArrayList<>();
+
+        for (Map.Entry<Integer, T> entry : taskMap.entrySet()) {
+            if (entry.getValue() instanceof Epic) {
+                epics.add((Epic) entry.getValue());
+            }
         }
 
+        for (Epic epic : epics) {
+            printTask(epic.getId());
+        }
     }
 
 
