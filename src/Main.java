@@ -157,7 +157,7 @@ public class Main {
                     break;
 
                 }
-                case 8: {
+                case 7: {
                     return;
                 }
                 default: {
@@ -181,7 +181,7 @@ public class Main {
         System.out.println("4. Найти задачу");
         System.out.println("5. Получение списка всех задач");
         System.out.println("6. Обновить задачу");
-        System.out.println("8. Выход");
+        System.out.println("7. Выход");
         System.out.println();
     }
 
