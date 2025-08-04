@@ -97,6 +97,31 @@ public class Main {
                 }
                 case 6: {
 
+                    System.out.println("Введите идентификатор задачи");
+                    int taskId = scanner.nextInt();
+                    inMemoryTaskManager.printTask(taskId);
+                    System.out.println();
+
+                    System.out.println("Что хотите обновить?");
+                    System.out.println("1. Имя");
+                    System.out.println("2. Описание");
+                    System.out.println("3. Тип");
+                    System.out.println("4. Статус");
+                    int answer = scanner.nextInt();
+                    System.out.println();
+
+                    switch (answer) {
+                        case 1 -> {
+                            System.out.println("Введите имя");
+                            String name = scanner.next();
+                            Task task = new Task(name, null);
+
+                            inMemoryTaskManager.updateTask(task, taskId);
+                        }
+
+
+                    }
+
                     break;
 
                 }

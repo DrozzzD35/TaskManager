@@ -15,4 +15,17 @@ public class SubTask extends Task {
     public Epic getParent() {
         return parent;
     }
+
+
+    @Override
+    public String toString() {
+        return "SubTask{" +
+                "parent=" + parent +
+                ", id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", status=" + status +
+                ", type=" + type +
+                '}';
+    }
 }

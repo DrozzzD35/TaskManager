@@ -4,12 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3b2d2408-c7aa-4b02-a823-dac3b3c98272" name="Changes" comment="Добавил метод printEpicTasks в класс TaskManagerImpl. &#10;Внёс изменения в меню">
-      <change afterPath="$PROJECT_DIR$/src/documents/progect1_stage2.md" afterDir="false" />
+    <list default="true" id="3b2d2408-c7aa-4b02-a823-dac3b3c98272" name="Changes" comment="проведён урок&#10;добавлен List history&#10;поправлен removeTaskById, updateTask.&#10;Скорректировано меню">
+      <change afterPath="$PROJECT_DIR$/src/MyTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/service/TaskManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/TaskManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/service/TaskManagerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/InMemoryTaskManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Epic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Epic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/SubTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/SubTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Task.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Task.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,30 +52,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/DrozzzD35/IdeaProjects/TaskManager&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Main.executor": "Run",
+    "Application.MyTest.executor": "Debug",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/DrozzzD35/IdeaProjects/TaskManager",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\DrozzzD35\IdeaProjects\TaskManager\src\documents" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.MyTest">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="TaskManager" />
@@ -82,8 +84,16 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="MyTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="MyTest" />
+      <module name="TaskManager" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.MyTest" />
         <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
@@ -167,6 +177,17 @@
       <workItem from="1753431216027" duration="20000" />
       <workItem from="1753431284438" duration="37000" />
       <workItem from="1753431330206" duration="3218000" />
+      <workItem from="1753450329540" duration="228000" />
+      <workItem from="1753450840584" duration="109000" />
+      <workItem from="1753454286830" duration="145000" />
+      <workItem from="1753457116633" duration="56000" />
+      <workItem from="1753690198693" duration="27000" />
+      <workItem from="1753714498263" duration="21000" />
+      <workItem from="1753714527357" duration="64000" />
+      <workItem from="1753719435825" duration="20000" />
+      <workItem from="1753869771287" duration="1456000" />
+      <workItem from="1753895084085" duration="27000" />
+      <workItem from="1754323920985" duration="1198000" />
     </task>
     <task id="LOCAL-00001" summary="в классе Epic добавили методы:&#10;addChild()&#10;getAllChildren()&#10;removeSubTask()&#10;Так же добавлена мапа children&#10;&#10;В классе SubTask добавили объект parent и гет к нему">
       <option name="closed" value="true" />
@@ -272,7 +293,15 @@
       <option name="project" value="LOCAL" />
       <updated>1753426976578</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="проведён урок&#10;добавлен List history&#10;поправлен removeTaskById, updateTask.&#10;Скорректировано меню">
+      <option name="closed" value="true" />
+      <created>1753450535100</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1753450535102</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -290,6 +319,7 @@
     <MESSAGE value="переписал метод updateEpicStatus" />
     <MESSAGE value="внесены изменения на уроке" />
     <MESSAGE value="Добавил метод printEpicTasks в класс TaskManagerImpl. &#10;Внёс изменения в меню" />
-    <option name="LAST_COMMIT_MESSAGE" value="Добавил метод printEpicTasks в класс TaskManagerImpl. &#10;Внёс изменения в меню" />
+    <MESSAGE value="проведён урок&#10;добавлен List history&#10;поправлен removeTaskById, updateTask.&#10;Скорректировано меню" />
+    <option name="LAST_COMMIT_MESSAGE" value="проведён урок&#10;добавлен List history&#10;поправлен removeTaskById, updateTask.&#10;Скорректировано меню" />
   </component>
 </project>

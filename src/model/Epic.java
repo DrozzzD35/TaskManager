@@ -79,5 +79,20 @@ public class Epic extends Task {
 
     }
 
+    @Override
+    public void setStatus(Status status) {
+        updateStatus();
+    }
 
+    @Override
+    public String toString() {
+        return "Epic{" +
+                "children=" + children +
+                ", id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", status=" + status +
+                ", type=" + type +
+                '}';
+    }
 }
