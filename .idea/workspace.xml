@@ -4,13 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3b2d2408-c7aa-4b02-a823-dac3b3c98272" name="Changes" comment="проведён урок&#10;добавлен List history&#10;поправлен removeTaskById, updateTask.&#10;Скорректировано меню">
-      <change afterPath="$PROJECT_DIR$/src/MyTest.java" afterDir="false" />
+    <list default="true" id="3b2d2408-c7aa-4b02-a823-dac3b3c98272" name="Changes" comment="На уроке:&#10;Переопределён метод SetStatus в Epic, SubTask&#10;Добавлен метод tiString, так же переопределён в дочерних классах">
+      <change afterPath="$PROJECT_DIR$/src/model/History.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/service/Managers.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Epic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Epic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/SubTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/SubTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MyTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MyTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/Task.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Task.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/service/InMemoryTaskManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/InMemoryTaskManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/service/TaskManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/TaskManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,7 +56,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.Main.executor": "Run",
-    "Application.MyTest.executor": "Debug",
+    "Application.MyTest.executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
@@ -188,6 +189,7 @@
       <workItem from="1753869771287" duration="1456000" />
       <workItem from="1753895084085" duration="27000" />
       <workItem from="1754323920985" duration="1198000" />
+      <workItem from="1754327616310" duration="6202000" />
     </task>
     <task id="LOCAL-00001" summary="в классе Epic добавили методы:&#10;addChild()&#10;getAllChildren()&#10;removeSubTask()&#10;Так же добавлена мапа children&#10;&#10;В классе SubTask добавили объект parent и гет к нему">
       <option name="closed" value="true" />
@@ -301,7 +303,15 @@
       <option name="project" value="LOCAL" />
       <updated>1753450535102</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="На уроке:&#10;Переопределён метод SetStatus в Epic, SubTask&#10;Добавлен метод tiString, так же переопределён в дочерних классах">
+      <option name="closed" value="true" />
+      <created>1754327734919</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1754327734919</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -320,6 +330,7 @@
     <MESSAGE value="внесены изменения на уроке" />
     <MESSAGE value="Добавил метод printEpicTasks в класс TaskManagerImpl. &#10;Внёс изменения в меню" />
     <MESSAGE value="проведён урок&#10;добавлен List history&#10;поправлен removeTaskById, updateTask.&#10;Скорректировано меню" />
-    <option name="LAST_COMMIT_MESSAGE" value="проведён урок&#10;добавлен List history&#10;поправлен removeTaskById, updateTask.&#10;Скорректировано меню" />
+    <MESSAGE value="На уроке:&#10;Переопределён метод SetStatus в Epic, SubTask&#10;Добавлен метод tiString, так же переопределён в дочерних классах" />
+    <option name="LAST_COMMIT_MESSAGE" value="На уроке:&#10;Переопределён метод SetStatus в Epic, SubTask&#10;Добавлен метод tiString, так же переопределён в дочерних классах" />
   </component>
 </project>

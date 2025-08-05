@@ -6,12 +6,12 @@ import java.util.*;
 
 public class InMemoryTaskManager<T extends Task> implements TaskManager<T> {
     private Map<Integer, T> taskMap;
-    private List<T> history = new ArrayList<>();
+    History<T> history = new History<T>(new LinkedList<T>());
 
 
     @Override
-    public List<Task> getHistory() {
-        return List.of();
+    public History<T> getHistory() {
+        return history;
     }
 
     public InMemoryTaskManager() {
@@ -26,7 +26,7 @@ public class InMemoryTaskManager<T extends Task> implements TaskManager<T> {
         }
 
         taskMap.put(task.getId(), task);
-        System.out.println(task.getType() + " " + task.getName() + " добавлена.");
+        System.out.println(task.getType() + " " + task.getName() + ", id = " + task.getId() + " добавлена.");
     }
 
     @Override
