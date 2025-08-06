@@ -1,12 +1,15 @@
 import model.TaskStatus;
 import model.Task;
-import service.Managers;
-import service.TaskManager;
+import service.*;
+
+import java.util.LinkedList;
 
 public class MyTest {
 
     public static void main(String[] args) {
         TaskManager<Task> manager = Managers.getDefault();
+        HistoryManager<Task> historyManager = Managers.getDefaultHistory();
+        TaskManager<Task> inMemoryTaskManager = new InMemoryTaskManager<>(historyManager);
 
         // Создание задачи
         Task task1 = new Task("task1", "task1");
@@ -40,10 +43,11 @@ public class MyTest {
         manager.getTaskById(task2.getId());
         manager.getTaskById(task1.getId());
         manager.getTaskById(task2.getId());
-        System.out.println("Все задачи: ");
-        System.out.println(manager.getTasks());
+//        System.out.println("Все задачи: ");
+//        System.out.println(manager.getTasks());
+
         System.out.println();
-        System.out.println("История " + manager.getHistory());
+        System.out.println("История " + historyManager.getHistory());
 
 
     }

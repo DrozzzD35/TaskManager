@@ -1,14 +1,19 @@
-package model;
+package service;
+
+import model.Task;
 
 import java.util.LinkedList;
 
-public class History<T extends Task> {
+public class InMemoryHistoryManager<T extends Task> implements HistoryManager<T> {
     private LinkedList<T> history;
 
-    public History(LinkedList<T> history) {
-        this.history = history;
+    public InMemoryHistoryManager() {
+        this.history = new LinkedList<>();
     }
 
+
+
+    @Override
     public void add(T task) {
         if (history.size() > 9) {
             history.removeFirst();
@@ -16,6 +21,11 @@ public class History<T extends Task> {
         } else {
             history.add(task);
         }
+    }
+
+    @Override
+    public LinkedList<T> getHistory() {
+        return history;
     }
 
     @Override

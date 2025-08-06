@@ -2,6 +2,8 @@ package service;
 
 import model.Task;
 
+import java.util.LinkedList;
+
 public final class Managers {
 
     private Managers() {
@@ -11,4 +13,10 @@ public final class Managers {
     public static <T extends Task> TaskManager<T> getDefault() {
         return new InMemoryTaskManager<>();
     }
+
+    public static <T extends Task>
+    HistoryManager<T> getDefaultHistory() {
+        return new InMemoryHistoryManager<>();
+    }
+
 }

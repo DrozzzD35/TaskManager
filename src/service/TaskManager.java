@@ -1,6 +1,5 @@
 package service;
 
-import model.History;
 import model.SubTask;
 import model.Task;
 
@@ -22,5 +21,4 @@ public interface TaskManager<T extends Task> {
 
     List<SubTask> getAllSubtasksByEpicId(int epicId);
 
-    History getHistory();
 }
