@@ -6,7 +6,7 @@ public class SubTask extends Task {
     public SubTask(String name, String description, Epic parent) {
         super(name, description); // new Task(name, description);
 
-        this.status = Status.NEW;
+        this.taskStatus = taskStatus.NEW;
         this.type = Type.SUBTASK;
         this.parent = parent;
 
@@ -24,7 +24,7 @@ public class SubTask extends Task {
                 ", id=" + id +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
-                ", status=" + status +
+                ", status=" + taskStatus +
                 ", type=" + type +
                 '}';
     }

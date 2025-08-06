@@ -1,12 +1,7 @@
-import model.Status;
+import model.TaskStatus;
 import model.Task;
-import service.InMemoryTaskManager;
 import service.Managers;
 import service.TaskManager;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 public class MyTest {
 
@@ -21,7 +16,7 @@ public class MyTest {
 
         // Обновление задачи
         Task updateTask1 = new Task("updateTask1", "updateTask1");
-        updateTask1.setStatus(Status.IN_PROGRESS);
+        updateTask1.setStatus(TaskStatus.IN_PROGRESS);
 
         manager.updateTask(updateTask1, task1.getId());
 

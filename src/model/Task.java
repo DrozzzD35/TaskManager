@@ -7,14 +7,14 @@ public class Task {
     protected Integer id;
     protected String name;
     protected String description;
-    protected Status status;
+    protected TaskStatus taskStatus;
     protected Type type;
 
     public Task(String name, String description) {
         this.id = Identity.INSTANCE.generateId();
         this.name = name;
         this.description = description;
-        this.status = Status.NEW;
+        this.taskStatus = taskStatus.NEW;
         this.type = Type.TASK;
     }
 
@@ -42,20 +42,20 @@ public class Task {
         return description;
     }
 
-    public Status getStatus() {
-        return status;
+    public TaskStatus getStatus() {
+        return taskStatus;
     }
 
     public Type getType() {
         return type;
     }
 
-    public void setStatus(Status status) {
-        this.status = status;
+    public void setStatus(TaskStatus taskStatus) {
+        this.taskStatus = taskStatus;
     }
 
     @Override
     public String toString() {
-        return "Task{" + "id=" + id + '\n' + "name=" + name + '\n' + "description=" + description + '\n' + "status=" + status + '\n' + "type=" + type + '}' + '\n';
+        return "Task{" + "id=" + id + '\n' + "name=" + name + '\n' + "description=" + description + '\n' + "status=" + taskStatus + '\n' + "type=" + type + '}' + '\n';
     }
 }

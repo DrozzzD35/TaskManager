@@ -1,6 +1,5 @@
 package model;
 
-import javax.swing.plaf.LabelUI;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -70,9 +69,9 @@ public class Epic extends Task {
 
         */
         if (isInProgress || (isNew && isDone)) {
-            setStatus(Status.IN_PROGRESS);
+            setStatus(taskStatus.IN_PROGRESS);
         } else {
-            setStatus(isNew ? Status.NEW : Status.DONE);
+            setStatus(isNew ? taskStatus.NEW : taskStatus.DONE);
 
         }
 
@@ -80,7 +79,7 @@ public class Epic extends Task {
     }
 
     @Override
-    public void setStatus(Status status) {
+    public void setStatus(TaskStatus taskStatus) {
         updateStatus();
     }
 
@@ -91,7 +90,7 @@ public class Epic extends Task {
                 ", id=" + id +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
-                ", status=" + status +
+                ", status=" + taskStatus +
                 ", type=" + type +
                 '}';
     }
