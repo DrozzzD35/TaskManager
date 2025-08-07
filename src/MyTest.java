@@ -7,9 +7,9 @@ import java.util.LinkedList;
 public class MyTest {
 
     public static void main(String[] args) {
-        TaskManager<Task> manager = Managers.getDefault();
-        HistoryManager<Task> historyManager = Managers.getDefaultHistory();
-        TaskManager<Task> inMemoryTaskManager = new InMemoryTaskManager<>(historyManager);
+        HistoryManager<Task> history = Managers.getDefaultHistory();
+        TaskManager<Task> manager = Managers.getDefault(history);
+
 
         // Создание задачи
         Task task1 = new Task("task1", "task1");
@@ -47,7 +47,7 @@ public class MyTest {
 //        System.out.println(manager.getTasks());
 
         System.out.println();
-        System.out.println("История " + historyManager.getHistory());
+        System.out.println("История " + history.getHistory());
 
 
     }

@@ -10,8 +10,8 @@ public final class Managers {
         throw new UnsupportedOperationException("Утилитарный класс");
     }
 
-    public static <T extends Task> TaskManager<T> getDefault() {
-        return new InMemoryTaskManager<>();
+    public static <T extends Task> TaskManager<T> getDefault(HistoryManager<T> manager) {
+        return new InMemoryTaskManager<>(manager);
     }
 
     public static <T extends Task>
