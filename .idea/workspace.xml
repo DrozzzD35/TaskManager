@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3b2d2408-c7aa-4b02-a823-dac3b3c98272" name="Changes" comment="Маленькие корректировки" />
+    <list default="true" id="3b2d2408-c7aa-4b02-a823-dac3b3c98272" name="Changes" comment="Маленькие корректировки">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -190,6 +192,8 @@
       <workItem from="1754495754033" duration="611000" />
       <workItem from="1754579031712" duration="27000" />
       <workItem from="1754579542235" duration="471000" />
+      <workItem from="1754580450164" duration="198000" />
+      <workItem from="1755087316588" duration="136000" />
     </task>
     <task id="LOCAL-00001" summary="в классе Epic добавили методы:&#10;addChild()&#10;getAllChildren()&#10;removeSubTask()&#10;Так же добавлена мапа children&#10;&#10;В классе SubTask добавили объект parent и гет к нему">
       <option name="closed" value="true" />
@@ -343,7 +347,15 @@
       <option name="project" value="LOCAL" />
       <updated>1754579569979</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="Маленькие корректировки">
+      <option name="closed" value="true" />
+      <created>1754580489258</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1754580489258</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
