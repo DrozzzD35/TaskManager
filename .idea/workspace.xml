@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3b2d2408-c7aa-4b02-a823-dac3b3c98272" name="Changes" comment="Маленькие корректировки">
-      <change afterPath="$PROJECT_DIR$/src/documents/project1_stage3.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="3b2d2408-c7aa-4b02-a823-dac3b3c98272" name="Changes" comment="Проведён урок 16.08.2025&#10;В классе main созданы методы для удобства, чистоты и большего порядка. &#10;Добавлен файл для 3го этапа">
+      <change afterPath="$PROJECT_DIR$/src/dataStorage/FileBackedTasksManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/dataStorage/FileStorage.CSV" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MyTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MyTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,25 +49,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Main.executor": "Run",
-    "Application.MyTest.executor": "Debug",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "master",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/DrozzzD35/IdeaProjects/TaskManager",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "project.propCompiler",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Application.MyTest.executor&quot;: &quot;Debug&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/DrozzzD35/IdeaProjects/TaskManager&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;project.propCompiler&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\DrozzzD35\IdeaProjects\TaskManager\src\documents" />
@@ -199,6 +198,8 @@
       <workItem from="1755087316588" duration="136000" />
       <workItem from="1755334985044" duration="750000" />
       <workItem from="1755339524529" duration="3638000" />
+      <workItem from="1755415116112" duration="1584000" />
+      <workItem from="1755683563615" duration="2175000" />
     </task>
     <task id="LOCAL-00001" summary="в классе Epic добавили методы:&#10;addChild()&#10;getAllChildren()&#10;removeSubTask()&#10;Так же добавлена мапа children&#10;&#10;В классе SubTask добавили объект parent и гет к нему">
       <option name="closed" value="true" />
@@ -360,7 +361,15 @@
       <option name="project" value="LOCAL" />
       <updated>1754580489258</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="Проведён урок 16.08.2025&#10;В классе main созданы методы для удобства, чистоты и большего порядка. &#10;Добавлен файл для 3го этапа">
+      <option name="closed" value="true" />
+      <created>1755415258083</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1755415258083</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -394,6 +403,7 @@
     <MESSAGE value="Добавлен класс History&#10;Реализован List history, так же протестирован" />
     <MESSAGE value="Добавлен и реализован утилитарный класс" />
     <MESSAGE value="Маленькие корректировки" />
-    <option name="LAST_COMMIT_MESSAGE" value="Маленькие корректировки" />
+    <MESSAGE value="Проведён урок 16.08.2025&#10;В классе main созданы методы для удобства, чистоты и большего порядка. &#10;Добавлен файл для 3го этапа" />
+    <option name="LAST_COMMIT_MESSAGE" value="Проведён урок 16.08.2025&#10;В классе main созданы методы для удобства, чистоты и большего порядка. &#10;Добавлен файл для 3го этапа" />
   </component>
 </project>
