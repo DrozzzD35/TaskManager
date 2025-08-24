@@ -4,10 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3b2d2408-c7aa-4b02-a823-dac3b3c98272" name="Changes" comment="Проведён урок 16.08.2025&#10;В классе main созданы методы для удобства, чистоты и большего порядка. &#10;Добавлен файл для 3го этапа">
-      <change afterPath="$PROJECT_DIR$/src/dataStorage/FileBackedTasksManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/dataStorage/FileStorage.CSV" afterDir="false" />
+    <list default="true" id="3b2d2408-c7aa-4b02-a823-dac3b3c98272" name="Changes" comment="создал класс для сохранения">
+      <change afterPath="$PROJECT_DIR$/src/dataBacked/ManagerSaveException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dataStorage/FileBackedTasksManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dataBacked/FileBackedTasksManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dataStorage/FileStorage.CSV" beforeDir="false" afterPath="$PROJECT_DIR$/src/dataBacked/FileBacked.CSV" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Epic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Epic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/service/InMemoryTaskManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/InMemoryTaskManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/service/Managers.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/Managers.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -200,6 +204,10 @@
       <workItem from="1755339524529" duration="3638000" />
       <workItem from="1755415116112" duration="1584000" />
       <workItem from="1755683563615" duration="2175000" />
+      <workItem from="1755801336532" duration="80000" />
+      <workItem from="1755801422961" duration="115000" />
+      <workItem from="1755858262044" duration="2421000" />
+      <workItem from="1755862803115" duration="7948000" />
     </task>
     <task id="LOCAL-00001" summary="в классе Epic добавили методы:&#10;addChild()&#10;getAllChildren()&#10;removeSubTask()&#10;Так же добавлена мапа children&#10;&#10;В классе SubTask добавили объект parent и гет к нему">
       <option name="closed" value="true" />
@@ -369,7 +377,15 @@
       <option name="project" value="LOCAL" />
       <updated>1755415258083</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="создал класс для сохранения">
+      <option name="closed" value="true" />
+      <created>1755801407826</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1755801407826</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -404,6 +420,7 @@
     <MESSAGE value="Добавлен и реализован утилитарный класс" />
     <MESSAGE value="Маленькие корректировки" />
     <MESSAGE value="Проведён урок 16.08.2025&#10;В классе main созданы методы для удобства, чистоты и большего порядка. &#10;Добавлен файл для 3го этапа" />
-    <option name="LAST_COMMIT_MESSAGE" value="Проведён урок 16.08.2025&#10;В классе main созданы методы для удобства, чистоты и большего порядка. &#10;Добавлен файл для 3го этапа" />
+    <MESSAGE value="создал класс для сохранения" />
+    <option name="LAST_COMMIT_MESSAGE" value="создал класс для сохранения" />
   </component>
 </project>
