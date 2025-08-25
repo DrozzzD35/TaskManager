@@ -6,11 +6,11 @@ import java.util.*;
 
 public class InMemoryTaskManager<T extends Task> implements TaskManager<T> {
     private Map<Integer, T> taskMap;
-    private HistoryManager<T> history;
+    protected HistoryManager<T> history;
 
 
-    public InMemoryTaskManager(HistoryManager<T> history) {
-        this.history = history;
+    public InMemoryTaskManager() {
+        this.history = Managers.getDefaultHistory();
         this.taskMap = new HashMap<>();
     }
 

@@ -11,7 +11,7 @@ public class MyTest {
 
     public static void main(String[] args) {
         history = Managers.getDefaultHistory();
-        manager = Managers.getDefault(history);
+        manager = Managers.getDefault();
 
 
         // Создание задачи
