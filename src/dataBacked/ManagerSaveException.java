@@ -1,7 +1,7 @@
 package dataBacked;
 
-public class ManagerSaveException {
-    public ManagerSaveException(String string) {
-        System.out.println(string);
+public class ManagerSaveException extends RuntimeException {
+    public ManagerSaveException(String massge) {
+        super(massge);
     }
 }

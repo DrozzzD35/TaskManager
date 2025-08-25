@@ -6,12 +6,11 @@ import service.TaskManager;
 
 public class MyTest {
 
-    private static HistoryManager<Task> history;
     private static TaskManager<Task> manager;
 
     public static void main(String[] args) {
-        history = Managers.getDefaultHistory();
         manager = Managers.getDefault();
+
 
 
         // Создание задачи
@@ -30,7 +29,7 @@ public class MyTest {
 
 
         System.out.println("===========  История   ===============");
-        System.out.println("История " + history.getHistory());
+        System.out.println("История " + manager. getHistory());
         System.out.println("=========================\n\n");
 
 //        manager.updateTask(updateTask1, task1.getId());

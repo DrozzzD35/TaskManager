@@ -15,6 +15,14 @@ public class Epic extends Task {
         this.children = new HashMap<>();
     }
 
+    public List<Integer> getAllChildrenId() {
+        List<Integer> allChildrenId = new ArrayList<>();
+        for (Map.Entry<Integer, SubTask> entry : children.entrySet()) {
+            allChildrenId.add(entry.getValue().getId());
+        }
+        return allChildrenId;
+    }
+
     public void addChild(SubTask subTask) {
         children.put(subTask.getId(), subTask);
     }
