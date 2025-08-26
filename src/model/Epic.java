@@ -15,6 +15,11 @@ public class Epic extends Task {
         this.children = new HashMap<>();
     }
 
+    public Epic(Integer id, Type type, String name, TaskStatus taskStatus, String description) {
+        super(id, type, name, taskStatus, description);
+    }
+
+
     public List<Integer> getAllChildrenId() {
         List<Integer> allChildrenId = new ArrayList<>();
         for (Map.Entry<Integer, SubTask> entry : children.entrySet()) {

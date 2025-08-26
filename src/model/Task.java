@@ -18,6 +18,14 @@ public class Task {
         this.type = Type.TASK;
     }
 
+    public Task(Integer id, Type type, String name, TaskStatus taskStatus, String description) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.taskStatus = taskStatus;
+        this.type = type;
+    }
+
     public void setDescription(String description) {
         this.description = description;
     }

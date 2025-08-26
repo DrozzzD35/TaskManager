@@ -12,7 +12,7 @@ import java.util.List;
 public class FileBackedTasksManager<T extends Task> extends InMemoryTaskManager<T> {
 
     private final Path filePath;
-    private static final String csvHeaderText = "id, type, name, status, description, epic\n";
+    private static final String csvHeaderText = "id, type, name, status, description, epic_id\n";
 
     public FileBackedTasksManager(Path filePath) {
         this.filePath = filePath;
@@ -62,7 +62,7 @@ public class FileBackedTasksManager<T extends Task> extends InMemoryTaskManager<
             String[] ids = new String[tasksHistory.size()];
 
             for (int i = 0; i < tasksHistory.size(); i++) {
-                ids[i]  = String.valueOf(tasksHistory.get(i).getId());
+                ids[i] = String.valueOf(tasksHistory.get(i).getId());
             }
 
             writer.append(String.join(",", ids));
@@ -76,20 +76,27 @@ public class FileBackedTasksManager<T extends Task> extends InMemoryTaskManager<
     }
 
 
-    public static Task fromString(String line) {
+    public Task fromString(String line) {
         String[] values = line.split(", ");
-        switch (Type.valueOf(values[1])){
+        switch (Type.valueOf(values[1])) {
             case TASK -> {
-                return new Task(values[0],);
+                return new Task(Integer.valueOf(values[0]), Type.valueOf(values[1])
+                        , values[2], TaskStatus.valueOf(values[3]), values[4]);
+            }
+            case EPIC -> {
+                return new Epic(Integer.valueOf(values[0]), Type.valueOf(values[1])
+                        , values[2], TaskStatus.valueOf(values[3]), values[4]);
+            }
+            case SUBTASK -> {
+                InMemoryTaskManager<T> inMemoryTaskManager = new InMemoryTaskManager<>();
+                Epic epic = (Epic) inMemoryTaskManager.getTaskById(Integer.parseInt(values[5]));
+                return new SubTask(Integer.valueOf(values[0]), Type.valueOf(values[1])
+                        , values[2], TaskStatus.valueOf(values[3]), values[4], epic);
             }
             default -> {
                 return null;
             }
         }
-//        Task task = new Task(text[0], text[1]);
-//        task.setType(Type.valueOf(text[2]));
-//        task.setStatus(TaskStatus.valueOf(text[3]));
-
 
     }
 

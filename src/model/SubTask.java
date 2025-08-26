@@ -12,6 +12,12 @@ public class SubTask extends Task {
 
     }
 
+    public SubTask(Integer id, Type type, String name
+            , TaskStatus taskStatus, String description, Epic parent) {
+        super(id, type, name, taskStatus, description);
+        this.parent = parent;
+    }
+
     public Epic getParent() {
         return parent;
     }
