@@ -6,11 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="3b2d2408-c7aa-4b02-a823-dac3b3c98272" name="Changes" comment="На уроке:&#10;В FileBackedTasksManager изменён метод save&#10;В InMemoryTaskManager изменён модификатор с private на protected. Так же отредактирован history в конструкторе, соответственно отредактирован метод getDefault в классе Managers. Добавлен метод getDefaultFile в классе Managers">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MyTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MyTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dataBacked/FileBackedTasksManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/FileBackedTasksManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dataBacked/ManagerSaveException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dataBacked/ManagerSaveException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Epic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Epic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/service/Managers.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/Managers.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/service/FileBackedTasksManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/FileBackedTasksManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -210,6 +206,7 @@
       <workItem from="1756023420697" duration="2710000" />
       <workItem from="1756111935200" duration="4825000" />
       <workItem from="1756126125995" duration="5984000" />
+      <workItem from="1756183062969" duration="5980000" />
     </task>
     <task id="LOCAL-00001" summary="в классе Epic добавили методы:&#10;addChild()&#10;getAllChildren()&#10;removeSubTask()&#10;Так же добавлена мапа children&#10;&#10;В классе SubTask добавили объект parent и гет к нему">
       <option name="closed" value="true" />
