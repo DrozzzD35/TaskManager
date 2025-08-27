@@ -1,9 +1,9 @@
 package model;
 
 public enum Type {
-    TASK("Задача"),
-    EPIC("Большая задача"),
-    SUBTASK("Подзадача");
+    TASK("Task"),
+    EPIC("Epic"),
+    SUBTASK("Subtask");
 
     private String type;
 

@@ -1,9 +1,9 @@
 package model;
 
 public enum TaskStatus {
-    NEW("Новая задача"),
-    IN_PROGRESS("Над задачей ведётся работа"),
-    DONE("Задача завершена");
+    NEW("New"),
+    IN_PROGRESS("In progress"),
+    DONE("Done");
 
     private String status;
 

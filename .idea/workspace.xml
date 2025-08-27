@@ -4,12 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3b2d2408-c7aa-4b02-a823-dac3b3c98272" name="Changes" comment="Классная работа.&#10;Feat: написать логику методов save, toString, fromString.">
+    <list default="true" id="3b2d2408-c7aa-4b02-a823-dac3b3c98272" name="Changes" comment="Классная работа.&#10;Feat: дописать метод fromString.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Epic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Epic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/SubTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/SubTask.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Task.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Task.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MyTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MyTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dataBacked/FileBacked.CSV" beforeDir="false" afterPath="$PROJECT_DIR$/src/dataBacked/FileBacked.CSV" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/TaskStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/TaskStatus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Type.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Type.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/service/FileBackedTasksManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/FileBackedTasksManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/service/InMemoryHistoryManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/InMemoryHistoryManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/service/InMemoryTaskManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/InMemoryTaskManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -209,7 +212,7 @@
       <workItem from="1756023420697" duration="2710000" />
       <workItem from="1756111935200" duration="4825000" />
       <workItem from="1756126125995" duration="5984000" />
-      <workItem from="1756183062969" duration="10300000" />
+      <workItem from="1756183062969" duration="17743000" />
     </task>
     <task id="LOCAL-00001" summary="в классе Epic добавили методы:&#10;addChild()&#10;getAllChildren()&#10;removeSubTask()&#10;Так же добавлена мапа children&#10;&#10;В классе SubTask добавили объект parent и гет к нему">
       <option name="closed" value="true" />
@@ -411,7 +414,15 @@
       <option name="project" value="LOCAL" />
       <updated>1756203957917</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="Классная работа.&#10;Feat: дописать метод fromString.">
+      <option name="closed" value="true" />
+      <created>1756215542822</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1756215542822</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -450,6 +461,7 @@
     <MESSAGE value="в классе InMemoryTaskManager добавил модификатор полю private&#10;&#10;в классе Managers подкорректировал размещение строк для лучшей читаемости&#10;&#10;создал класс ManagerSaveException с реализацией&#10;&#10;создал метод save в классе FileBackedTasksManager, требуется доработка" />
     <MESSAGE value="На уроке:&#10;В FileBackedTasksManager изменён метод save&#10;В InMemoryTaskManager изменён модификатор с private на protected. Так же отредактирован history в конструкторе, соответственно отредактирован метод getDefault в классе Managers. Добавлен метод getDefaultFile в классе Managers" />
     <MESSAGE value="Классная работа.&#10;Feat: написать логику методов save, toString, fromString." />
-    <option name="LAST_COMMIT_MESSAGE" value="Классная работа.&#10;Feat: написать логику методов save, toString, fromString." />
+    <MESSAGE value="Классная работа.&#10;Feat: дописать метод fromString." />
+    <option name="LAST_COMMIT_MESSAGE" value="Классная работа.&#10;Feat: дописать метод fromString." />
   </component>
 </project>

@@ -14,7 +14,6 @@ public class InMemoryTaskManager<T extends Task> implements TaskManager<T> {
         this.taskMap = new HashMap<>();
     }
 
-
     @Override
     public void add(T task) {
         if (task instanceof SubTask) {

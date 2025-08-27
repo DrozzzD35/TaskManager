@@ -19,10 +19,8 @@ public class InMemoryHistoryManager<T extends Task> implements HistoryManager<T>
     public void add(T task) {
         if (history.size() > 9) {
             history.removeFirst();
-            history.add(task);
-        } else {
-            history.add(task);
         }
+        history.add(task);
     }
 
     @Override

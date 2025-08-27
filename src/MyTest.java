@@ -1,17 +1,22 @@
 import model.Task;
 import model.TaskStatus;
-import service.HistoryManager;
 import service.Managers;
 import service.TaskManager;
+
+import java.nio.file.Path;
 
 public class MyTest {
 
     private static TaskManager<Task> manager;
+    private static TaskManager<Task> saveManager;
 
     public static void main(String[] args) {
+        Path path = Path.of("src/dataBacked/FileBacked.CSV");
         manager = Managers.getDefault();
+        saveManager = Managers.getDefaultFile(path);
 
 
+        Task task4 = createSaveTask();
 
         // Создание задачи
         Task task1 = createTask();
@@ -29,7 +34,7 @@ public class MyTest {
 
 
         System.out.println("===========  История   ===============");
-        System.out.println("История " + manager. getHistory());
+        System.out.println("История " + manager);
         System.out.println("=========================\n\n");
 
 //        manager.updateTask(updateTask1, task1.getId());
@@ -62,6 +67,12 @@ public class MyTest {
 //        System.out.println("История " + history.getHistory());
 
 
+    }
+
+    private static Task createSaveTask() {
+        Task task = new Task("saveTask", "saveTask");
+        saveManager.add(task);
+        return task;
     }
 
     private static void addTaskHistory(Task task) {

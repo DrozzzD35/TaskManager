@@ -4,7 +4,6 @@ import dataBacked.ManagerSaveException;
 import model.*;
 
 import java.io.BufferedWriter;
-import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
@@ -118,7 +117,6 @@ public class FileBackedTasksManager<T extends Task> extends InMemoryTaskManager<
                 throw new ManagerSaveException("Ошибка, у SubTask отсутствует Epic " + e);
             }
         }
-        resultBuilder.append("\n");
 
         return resultBuilder.toString();
     }
