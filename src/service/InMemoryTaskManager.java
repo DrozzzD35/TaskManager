@@ -24,6 +24,10 @@ public class InMemoryTaskManager<T extends Task> implements TaskManager<T> {
         System.out.println(task.getType() + " " + task.getName() + ", id = " + task.getId() + " добавлена.");
     }
 
+    public HistoryManager<T> getHistory() {
+        return history;
+    }
+
     @Override
     public List<T> getTasks() {
         return new ArrayList<>(taskMap.values());
