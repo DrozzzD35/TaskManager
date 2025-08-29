@@ -21,4 +21,5 @@ public interface TaskManager<T extends Task> {
 
     List<SubTask> getAllSubtasksByEpicId(int epicId);
 
+    HistoryManager<T> getHistory();
 }

@@ -16,13 +16,15 @@ public class MyTest {
         saveManager = Managers.getDefaultFile(path);
 
 
-        Task task4 = createSaveTask();
-
         // Создание задачи
-        Task task1 = createTask();
-        Task task2 = createTask();
-        Task task3 = createTask();
+        Task task1 = createTask("name10", "description10");
+        Task task2 = createTask("name11", "description11");
+        Task task3 = createTask("name12", "description12");
 
+        // Цикл создания задач
+        taskCreationCycle(23);
+
+        // Обновление задачи
         updateTaskStatus(task1.getId());
 
         System.out.println("===========  Таски в памяти   ===============");
@@ -30,52 +32,30 @@ public class MyTest {
 
         System.out.println("==========================\n\n");
 
-        addTaskHistory(task1);
+        // Добавление задачи в историю
+        addHistory(task1);
+        addHistory(task2);
+        addHistory(task3);
+
+        // Цикл добавления задач в историю
+        addHistoryCycle(12);
 
 
         System.out.println("===========  История   ===============");
-        System.out.println("История " + manager);
+        System.out.println("История " + manager.getHistory());
         System.out.println("=========================\n\n");
 
-//        manager.updateTask(updateTask1, task1.getId());
-//
-//
-//        System.out.println(manager.getTaskById(task1.getId()));
-//        System.out.println(manager.getTasks());
-//        System.out.println();
-
-
-        //Тест истории
-//        Task task2 = new Task("task2", "task2");
-//        manager.add(task2);
-//        manager.add(new Task("t3", "t3"));
-//        manager.add(new Task("t4", "t4"));
-//        manager.getTaskById(task1.getId());
-//        manager.getTaskById(task1.getId());
-//        manager.getTaskById(task1.getId());
-//        manager.getTaskById(task1.getId());
-//        manager.getTaskById(task1.getId());
-//        manager.getTaskById(task1.getId());
-//        manager.getTaskById(task1.getId());
-//        manager.getTaskById(task2.getId());
-//        manager.getTaskById(task1.getId());
-//        manager.getTaskById(task2.getId());
-//        System.out.println("Все задачи: ");
-//        System.out.println(manager.getTasks());
-
-//        System.out.println();
-//        System.out.println("История " + history.getHistory());
-
 
     }
 
-    private static Task createSaveTask() {
-        Task task = new Task("saveTask", "saveTask");
-        saveManager.add(task);
-        return task;
+    private static void taskCreationCycle(int quantity) {
+        for (int i = 0; i <= quantity; i++) {
+            createTask("name" + i, "description" + i);
+
+        }
     }
 
-    private static void addTaskHistory(Task task) {
+    private static void addHistory(Task task) {
         manager.getTaskById(task.getId());
     }
 
@@ -85,10 +65,17 @@ public class MyTest {
         manager.updateTask(updateTask, currentTaskId);
     }
 
-    private static Task createTask() {
-        Task task = new Task("task", "task");
+    private static Task createTask(String name, String description) {
+        Task task = new Task(name, description);
         manager.add(task);
         return task;
+    }
+
+    private static void addHistoryCycle(int quantity) {
+        for (int i = 1; i <= quantity; i++) {
+            manager.getTaskById(i);
+
+        }
     }
 
 }

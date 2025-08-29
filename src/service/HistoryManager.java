@@ -9,4 +9,6 @@ public interface HistoryManager<T extends Task> {
     void add(T task);
 
     List<T> getHistory();
+
+    void remove(T task);
 }

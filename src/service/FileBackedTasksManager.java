@@ -6,10 +6,13 @@ import model.*;
 import java.io.BufferedWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class FileBackedTasksManager<T extends Task> extends InMemoryTaskManager<T> {
 
+    private static InMemoryTaskManager<Task> inMemoryTaskManager = new InMemoryTaskManager<>();
     private final Path filePath;
     private static final String csvHeaderText = "id, type, name, status, description, epic_id\n";
 
@@ -75,7 +78,7 @@ public class FileBackedTasksManager<T extends Task> extends InMemoryTaskManager<
     }
 
 
-    public Task fromString(String line) {
+    public static Task fromString(String line) {
         String[] values = line.split(", ");
         switch (Type.valueOf(values[1])) {
             case TASK -> {
@@ -87,7 +90,6 @@ public class FileBackedTasksManager<T extends Task> extends InMemoryTaskManager<
                         , values[2], TaskStatus.valueOf(values[3]), values[4]);
             }
             case SUBTASK -> {
-                InMemoryTaskManager<T> inMemoryTaskManager = new InMemoryTaskManager<>();
                 Epic epic = (Epic) inMemoryTaskManager.getTaskById(Integer.parseInt(values[5]));
                 return new SubTask(Integer.valueOf(values[0]), Type.valueOf(values[1])
                         , values[2], TaskStatus.valueOf(values[3]), values[4], epic);
@@ -99,6 +101,13 @@ public class FileBackedTasksManager<T extends Task> extends InMemoryTaskManager<
 
     }
 
+//    public static String historyToString(HistoryManager<Task> hm) {
+//    }
+
+    public static List<Integer> historyFromString(String value) {
+        String[] ids = value.split(",");
+        return new ArrayList<>(Integer.parseInt(Arrays.toString(ids)));
+    }
 
     private String toString(Task task) {
         StringBuilder resultBuilder = new StringBuilder();

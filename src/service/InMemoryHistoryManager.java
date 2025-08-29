@@ -32,4 +32,8 @@ public class InMemoryHistoryManager<T extends Task> implements HistoryManager<T>
     public String toString() {
         return "History{" + "history=" + '\n' + history + '}' + '\n';
     }
+
+    public void remove(T task){
+        history.remove(task);
+    }
 }

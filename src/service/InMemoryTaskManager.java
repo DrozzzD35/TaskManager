@@ -48,6 +48,8 @@ public class InMemoryTaskManager<T extends Task> implements TaskManager<T> {
     @Override
     public void updateTask(T updateTask, int id) {
         T task = getTaskById(id);
+        history.remove(task);
+
 
         if (task == null) {
             return;
@@ -105,7 +107,6 @@ public class InMemoryTaskManager<T extends Task> implements TaskManager<T> {
 
         return ((Epic) taskMap.get(epicId)).getAllChildren();
     }
-
 
     public void printAllTasks() {
         if (taskMap.isEmpty()) {
