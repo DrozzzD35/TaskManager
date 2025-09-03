@@ -8,12 +8,12 @@ import java.nio.file.Path;
 public class MyTest {
 
     private static TaskManager<Task> manager;
-    private static TaskManager<Task> saveManager;
+//    private static TaskManager<Task> saveManager;
 
     public static void main(String[] args) {
         Path path = Path.of("src/dataBacked/FileBacked.CSV");
-        manager = Managers.getDefault();
-        saveManager = Managers.getDefaultFile(path);
+        manager = Managers.getDefault(path);
+//        saveManager = Managers.getDefaultFile(path);
 
 
         // Создание задачи

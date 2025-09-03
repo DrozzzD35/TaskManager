@@ -2,6 +2,7 @@ package service;
 
 import model.*;
 
+import java.nio.file.Path;
 import java.util.*;
 
 public class InMemoryTaskManager<T extends Task> implements TaskManager<T> {
@@ -9,9 +10,13 @@ public class InMemoryTaskManager<T extends Task> implements TaskManager<T> {
     protected HistoryManager<T> history;
 
 
-    public InMemoryTaskManager() {
+    public InMemoryTaskManager(Path pathFile) {
+        Path path = (Path) Managers.getDefaultFile(pathFile);
         this.history = Managers.getDefaultHistory();
         this.taskMap = new HashMap<>();
+    }
+
+    public InMemoryTaskManager() {
     }
 
     @Override
