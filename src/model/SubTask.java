@@ -1,32 +1,32 @@
 package model;
 
 public class SubTask extends Task {
-    private Epic parent;
+    private int parentId;
 
-    public SubTask(String name, String description, Epic parent) {
+    public SubTask(String name, String description,int parentId) {
         super(name, description); // new Task(name, description);
 
         this.taskStatus = taskStatus.NEW;
         this.type = Type.SUBTASK;
-        this.parent = parent;
+        this.parentId = parentId;
 
     }
 
     public SubTask(Integer id, Type type, String name
-            , TaskStatus taskStatus, String description, Epic parent) {
+            , TaskStatus taskStatus, String description, int parentId) {
         super(id, type, name, taskStatus, description);
-        this.parent = parent;
+        this.parentId = parentId;
     }
 
-    public Epic getParent() {
-        return parent;
+    public int getParentId() {
+        return parentId;
     }
 
 
     @Override
     public String toString() {
         return "SubTask{" +
-                "parent=" + parent +
+                "parent=" + parentId +
                 ", id=" + id +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +

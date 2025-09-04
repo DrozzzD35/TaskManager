@@ -1,28 +1,32 @@
 package service;
 
-import model.*;
+import model.Epic;
+import model.SubTask;
+import model.Task;
 
-import java.nio.file.Path;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class InMemoryTaskManager<T extends Task> implements TaskManager<T> {
     private Map<Integer, T> taskMap;
     protected HistoryManager<T> history;
 
 
-    public InMemoryTaskManager(Path pathFile) {
-        Path path = (Path) Managers.getDefaultFile(pathFile);
+    public InMemoryTaskManager() {
         this.history = Managers.getDefaultHistory();
         this.taskMap = new HashMap<>();
     }
 
-    public InMemoryTaskManager() {
-    }
 
     @Override
     public void add(T task) {
         if (task instanceof SubTask) {
-            ((SubTask) task).getParent().addChild((SubTask) task);
+            int epicId = ((SubTask) task).getParentId();
+            Epic epic = (Epic) taskMap.get(epicId);
+            epic.addChild((SubTask) task);
+
         }
 
         taskMap.put(task.getId(), task);

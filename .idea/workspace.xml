@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3b2d2408-c7aa-4b02-a823-dac3b3c98272" name="Changes" comment="Домашняя работа.&#10;Feat: добавить метод historyFromString. &#10;В interface HistoryManager добавить метод remove(T task).&#10;В классе InMemoryHistoryManager реализовать метод remove(T task).&#10;Добавить методы цикла создания задачи и добавление её в историю для более удобного тестирования&#10;Fix: исправить историю, чтоб при обновлении задачи она не добавлялась в историю.&#10;История не работает, исправить.&#10;Протестировать историю.">
+    <list default="true" id="3b2d2408-c7aa-4b02-a823-dac3b3c98272" name="Changes" comment="Домашняя работа.&#10;Feat: создать объект FileBackedTasksManager">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MyTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MyTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/SubTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/SubTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/service/FileBackedTasksManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/FileBackedTasksManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/service/InMemoryTaskManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/InMemoryTaskManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/service/Managers.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/Managers.java" afterDir="false" />
     </list>
@@ -210,6 +211,7 @@
       <workItem from="1756126125995" duration="5984000" />
       <workItem from="1756183062969" duration="25882000" />
       <workItem from="1756401320126" duration="8238000" />
+      <workItem from="1756893656746" duration="5309000" />
     </task>
     <task id="LOCAL-00001" summary="в классе Epic добавили методы:&#10;addChild()&#10;getAllChildren()&#10;removeSubTask()&#10;Так же добавлена мапа children&#10;&#10;В классе SubTask добавили объект parent и гет к нему">
       <option name="closed" value="true" />
@@ -443,7 +445,15 @@
       <option name="project" value="LOCAL" />
       <updated>1756474877577</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="Домашняя работа.&#10;Feat: создать объект FileBackedTasksManager">
+      <option name="closed" value="true" />
+      <created>1756894133776</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1756894133776</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -486,6 +496,7 @@
     <MESSAGE value="Классная работа.&#10;Fix: поправить метод add.&#10;Refactor: убрать лишний перенос строки в записи Tasks. Изменить название Enum" />
     <MESSAGE value="Домашняя работа.&#10;Feat: добавлен геттер history" />
     <MESSAGE value="Домашняя работа.&#10;Feat: добавить метод historyFromString. &#10;В interface HistoryManager добавить метод remove(T task).&#10;В классе InMemoryHistoryManager реализовать метод remove(T task).&#10;Добавить методы цикла создания задачи и добавление её в историю для более удобного тестирования&#10;Fix: исправить историю, чтоб при обновлении задачи она не добавлялась в историю.&#10;История не работает, исправить.&#10;Протестировать историю." />
-    <option name="LAST_COMMIT_MESSAGE" value="Домашняя работа.&#10;Feat: добавить метод historyFromString. &#10;В interface HistoryManager добавить метод remove(T task).&#10;В классе InMemoryHistoryManager реализовать метод remove(T task).&#10;Добавить методы цикла создания задачи и добавление её в историю для более удобного тестирования&#10;Fix: исправить историю, чтоб при обновлении задачи она не добавлялась в историю.&#10;История не работает, исправить.&#10;Протестировать историю." />
+    <MESSAGE value="Домашняя работа.&#10;Feat: создать объект FileBackedTasksManager" />
+    <option name="LAST_COMMIT_MESSAGE" value="Домашняя работа.&#10;Feat: создать объект FileBackedTasksManager" />
   </component>
 </project>

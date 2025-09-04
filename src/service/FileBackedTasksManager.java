@@ -12,7 +12,6 @@ import java.util.List;
 
 public class FileBackedTasksManager<T extends Task> extends InMemoryTaskManager<T> {
 
-    private static InMemoryTaskManager<Task> inMemoryTaskManager = new InMemoryTaskManager<>();
     private final Path filePath;
     private static final String csvHeaderText = "id, type, name, status, description, epic_id\n";
 
@@ -90,9 +89,8 @@ public class FileBackedTasksManager<T extends Task> extends InMemoryTaskManager<
                         , values[2], TaskStatus.valueOf(values[3]), values[4]);
             }
             case SUBTASK -> {
-                Epic epic = (Epic) inMemoryTaskManager.getTaskById(Integer.parseInt(values[5]));
                 return new SubTask(Integer.valueOf(values[0]), Type.valueOf(values[1])
-                        , values[2], TaskStatus.valueOf(values[3]), values[4], epic);
+                        , values[2], TaskStatus.valueOf(values[3]), values[4], Integer.valueOf(values[5]) );
             }
             default -> {
                 return null;
@@ -121,7 +119,7 @@ public class FileBackedTasksManager<T extends Task> extends InMemoryTaskManager<
         if (task instanceof SubTask) {
             SubTask subTask = (SubTask) task;
             try {
-                resultBuilder.append(", ").append(subTask.getParent().getId());
+                resultBuilder.append(", ").append(subTask.getParentId());
             } catch (Exception e) {
                 throw new ManagerSaveException("Ошибка, у SubTask отсутствует Epic " + e);
             }
