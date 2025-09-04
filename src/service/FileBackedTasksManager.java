@@ -4,6 +4,7 @@ import dataBacked.ManagerSaveException;
 import model.*;
 
 import java.io.BufferedWriter;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -81,16 +82,13 @@ public class FileBackedTasksManager<T extends Task> extends InMemoryTaskManager<
         String[] values = line.split(", ");
         switch (Type.valueOf(values[1])) {
             case TASK -> {
-                return new Task(Integer.valueOf(values[0]), Type.valueOf(values[1])
-                        , values[2], TaskStatus.valueOf(values[3]), values[4]);
+                return new Task(Integer.valueOf(values[0]), Type.valueOf(values[1]), values[2], TaskStatus.valueOf(values[3]), values[4]);
             }
             case EPIC -> {
-                return new Epic(Integer.valueOf(values[0]), Type.valueOf(values[1])
-                        , values[2], TaskStatus.valueOf(values[3]), values[4]);
+                return new Epic(Integer.valueOf(values[0]), Type.valueOf(values[1]), values[2], TaskStatus.valueOf(values[3]), values[4]);
             }
             case SUBTASK -> {
-                return new SubTask(Integer.valueOf(values[0]), Type.valueOf(values[1])
-                        , values[2], TaskStatus.valueOf(values[3]), values[4], Integer.valueOf(values[5]) );
+                return new SubTask(Integer.valueOf(values[0]), Type.valueOf(values[1]), values[2], TaskStatus.valueOf(values[3]), values[4], Integer.parseInt(values[5]));
             }
             default -> {
                 return null;
@@ -99,22 +97,42 @@ public class FileBackedTasksManager<T extends Task> extends InMemoryTaskManager<
 
     }
 
-//    public static String historyToString(HistoryManager<Task> hm) {
-//    }
-
     public static List<Integer> historyFromString(String value) {
         String[] ids = value.split(",");
         return new ArrayList<>(Integer.parseInt(Arrays.toString(ids)));
     }
 
+    public static FileBackedTasksManager<Task> loadFromFile(Path path) {
+        FileBackedTasksManager<Task> manager = new FileBackedTasksManager<>(path);
+        try {
+            String fileContent = Files.readString(path);
+            String[] lines = fileContent.split("\n");
+            for (int i = 1; i < lines.length; i++) {
+                if (lines[i].isBlank()) {
+                    String historyLine = lines[i + 1];
+                    List<Integer> ids = historyFromString(historyLine);
+                    manager.addTaskByIdsToHistory(ids);
+                    break;
+                } else {
+                    Task task = fromString(lines[i]);
+                    if (task != null) {
+                        manager.add(task);
+                    }
+                }
+            }
+        } catch (IOException e) {
+            // todo FileSaveException
+
+        }
+
+
+        return manager;
+    }
+
+
     private String toString(Task task) {
         StringBuilder resultBuilder = new StringBuilder();
-        resultBuilder
-                .append(task.getId()).append(", ")
-                .append(task.getType()).append(", ")
-                .append(task.getName()).append(", ")
-                .append(task.getStatus()).append(", ")
-                .append(task.getDescription());
+        resultBuilder.append(task.getId()).append(", ").append(task.getType()).append(", ").append(task.getName()).append(", ").append(task.getStatus()).append(", ").append(task.getDescription());
 
         if (task instanceof SubTask) {
             SubTask subTask = (SubTask) task;

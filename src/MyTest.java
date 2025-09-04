@@ -12,7 +12,7 @@ public class MyTest {
 
     public static void main(String[] args) {
         Path path = Path.of("src/dataBacked/FileBacked.CSV");
-        manager = Managers.getDefault(path);
+        manager = Managers.getDefault();
 //        saveManager = Managers.getDefaultFile(path);
 
 
@@ -56,7 +56,7 @@ public class MyTest {
     }
 
     private static void addHistory(Task task) {
-        manager.getTaskById(task.getId());
+        manager.getTaskById(task.getId(), true);
     }
 
     private static void updateTaskStatus(int currentTaskId) {
@@ -73,7 +73,7 @@ public class MyTest {
 
     private static void addHistoryCycle(int quantity) {
         for (int i = 1; i <= quantity; i++) {
-            manager.getTaskById(i);
+            manager.getTaskById(i, true);
 
         }
     }

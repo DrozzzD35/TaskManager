@@ -11,7 +11,7 @@ public interface TaskManager<T extends Task> {
 
     List<T> getTasks();
 
-    T getTaskById(int id);
+    T getTaskById(int id, boolean withHistory);
 
     void updateTask(T task, int id);
 

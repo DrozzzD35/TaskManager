@@ -6,13 +6,13 @@ import java.util.List;
 import java.util.Map;
 
 public class Epic extends Task {
-    private Map<Integer, SubTask> children;
+    private List<Integer> subTasksIds;
 
     public Epic(String nameEpic, String descriptionEpic) {
         super(nameEpic, descriptionEpic);
 
         this.type = Type.EPIC;
-        this.children = new HashMap<>();
+        this.subTasksIds = new ArrayList<>();
     }
 
     public Epic(Integer id, Type type, String name, TaskStatus taskStatus, String description) {
@@ -20,90 +20,22 @@ public class Epic extends Task {
     }
 
 
-    public List<Integer> getAllChildrenId() {
-        List<Integer> allChildrenId = new ArrayList<>();
-        for (Map.Entry<Integer, SubTask> entry : children.entrySet()) {
-            allChildrenId.add(entry.getValue().getId());
-        }
-        return allChildrenId;
+    public List<Integer> getAllChildrenIds() {
+        return subTasksIds;
     }
 
-    public void addChild(SubTask subTask) {
-        children.put(subTask.getId(), subTask);
-    }
-
-    public List<SubTask> getAllChildren() {
-        return new ArrayList<>(children.values());
-    }
-
-    public void removeSubTask(int subtaskId) {
-        children.remove(subtaskId);
-    }
-
-    public void updateSubTask(SubTask subTask) {
-        if (children.containsKey(subTask.getId())) {
-            children.put(subTask.getId(), subTask);
-            updateStatus();
-        }
-    }
-
-    public void updateStatus() {
-        /*
-        new
-        Done
-        new
-         */
-
-        boolean isDone = false;
-        boolean isInProgress = false;
-        boolean isNew = false;
-
-        for (SubTask subTask : children.values()) {
-            switch (subTask.getStatus()) {
-                case NEW -> {
-                    isNew = true;
-                }
-                case DONE -> {
-                    isDone = true;
-                }
-                case IN_PROGRESS -> {
-                    isInProgress = true;
-                }
-            }
-        }
-
-        /* f && f
-        !(isAllDone || isAllNew) = !isAllDone && !isAllNew
-        !(isAllDone && isAllNew) = T\F
-
-
-        !isAllDone && !isAllNew = F
-        !(isAllDone && isAllNew) = T\F
-
-        */
-        if (isInProgress || (isNew && isDone)) {
-            setStatus(taskStatus.IN_PROGRESS);
-        } else {
-            setStatus(isNew ? taskStatus.NEW : taskStatus.DONE);
-
-        }
-
-
-    }
-
-    @Override
-    public void setStatus(TaskStatus taskStatus) {
-        updateStatus();
+    public void addChild(Integer subTaskId) {
+        subTasksIds.add(subTaskId);
     }
 
     @Override
     public String toString() {
         return "Epic{" +
-                "children=" + children +
+                "subTasksIds=" + subTasksIds +
                 ", id=" + id +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
-                ", status=" + taskStatus +
+                ", taskStatus=" + taskStatus +
                 ", type=" + type +
                 '}';
     }

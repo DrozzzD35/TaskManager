@@ -22,15 +22,14 @@ public class SubTask extends Task {
         return parentId;
     }
 
-
     @Override
     public String toString() {
         return "SubTask{" +
-                "parent=" + parentId +
+                "parentId=" + parentId +
                 ", id=" + id +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
-                ", status=" + taskStatus +
+                ", taskStatus=" + taskStatus +
                 ", type=" + type +
                 '}';
     }

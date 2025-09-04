@@ -9,6 +9,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static model.TaskStatus.*;
+
 public class InMemoryTaskManager<T extends Task> implements TaskManager<T> {
     private Map<Integer, T> taskMap;
     protected HistoryManager<T> history;
@@ -25,7 +27,7 @@ public class InMemoryTaskManager<T extends Task> implements TaskManager<T> {
         if (task instanceof SubTask) {
             int epicId = ((SubTask) task).getParentId();
             Epic epic = (Epic) taskMap.get(epicId);
-            epic.addChild((SubTask) task);
+            epic.addChild(task.getId());
 
         }
 
@@ -44,20 +46,23 @@ public class InMemoryTaskManager<T extends Task> implements TaskManager<T> {
 
 
     @Override
-    public T getTaskById(int id) {
+    public T getTaskById(int id, boolean withHistory) {
+
         if (!taskMap.containsKey(id)) {
             System.out.println("Задача с таким идентификатором не найдена: " + id);
             return null;
         }
         T task = taskMap.get(id);
-        history.add(task);
+
+        if (withHistory) {
+            history.add(task);
+        }
         return task;
     }
 
     @Override
     public void updateTask(T updateTask, int id) {
-        T task = getTaskById(id);
-        history.remove(task);
+        T task = getTaskById(id, false);
 
 
         if (task == null) {
@@ -77,23 +82,25 @@ public class InMemoryTaskManager<T extends Task> implements TaskManager<T> {
             task.setStatus(updateTask.getStatus());
         }
         if (task instanceof SubTask) {
-            ((SubTask) task).getParent().updateSubTask((SubTask) task);
+            updateEpicStatus(id);
         }
+
         System.out.println("Задача обновлена");
 
     }
 
     @Override
     public void removeTaskById(int id) {
-        Task task = getTaskById(id);
+        Task task = getTaskById(id, false);
         if (task == null) {
             return;
         }
         if (task instanceof Epic) {
-            List<SubTask> subTasks = ((Epic) task).getAllChildren();
-            for (SubTask subTask : subTasks) {
-                removeTaskById(subTask.getId());
+            List<Integer> subTasksIds = ((Epic) task).getAllChildrenIds();
+            for (Integer subTaskId : subTasksIds) {
+                removeTaskById(subTaskId);
             }
+
         }
         taskMap.remove(id);
         System.out.println("Задача удалена");
@@ -113,8 +120,22 @@ public class InMemoryTaskManager<T extends Task> implements TaskManager<T> {
             System.out.println("Большая задача не найдена");
             return new ArrayList<>();
         }
+        Epic epic = (Epic) getTaskById(epicId, false);
+        List<Integer> subTasksIds = epic.getAllChildrenIds();
+        List<SubTask> subTasks = new ArrayList<>();
+        for (Integer subTaskId : subTasksIds) {
+            subTasks.add((SubTask) getTaskById(subTaskId, false));
+        }
 
-        return ((Epic) taskMap.get(epicId)).getAllChildren();
+
+        return subTasks;
+    }
+
+    public void addTaskByIdsToHistory(List<Integer> ids){
+        for (Integer id:ids){
+            T task = getTaskById(id, false);
+            history.add(task);
+        }
     }
 
     public void printAllTasks() {
@@ -135,7 +156,7 @@ public class InMemoryTaskManager<T extends Task> implements TaskManager<T> {
     }
 
     public void printTask(int id) {
-        Task task = getTaskById(id);
+        Task task = getTaskById(id, false);
         if (!(task == null)) {
             System.out.println("Задача: " + task.getName());
             System.out.println("Идентификатор: " + task.getId());
@@ -160,6 +181,58 @@ public class InMemoryTaskManager<T extends Task> implements TaskManager<T> {
         }
     }
 
+
+    public void updateEpicStatus(Integer epicId) {
+        /*
+        new
+        Done
+        new
+         */
+
+        boolean isDone = false;
+        boolean isInProgress = false;
+        boolean isNew = false;
+
+        Epic epic = (Epic) getTaskById(epicId, false);
+        List<Integer> children = epic.getAllChildrenIds();
+        List<SubTask> subTasks = new ArrayList<>();
+
+        for (Integer child : children) {
+            subTasks.add((SubTask) getTaskById(child, false));
+        }
+
+        for (SubTask subTask : subTasks) {
+            switch (subTask.getStatus()) {
+                case NEW -> {
+                    isNew = true;
+                }
+                case DONE -> {
+                    isDone = true;
+                }
+                case IN_PROGRESS -> {
+                    isInProgress = true;
+                }
+            }
+        }
+
+        /* f && f
+        !(isAllDone || isAllNew) = !isAllDone && !isAllNew
+        !(isAllDone && isAllNew) = T\F
+
+
+        !isAllDone && !isAllNew = F
+        !(isAllDone && isAllNew) = T\F
+
+        */
+        if (isInProgress || (isNew && isDone)) {
+            epic.setStatus(IN_PROGRESS);
+        } else {
+            epic.setStatus(isNew ? NEW : DONE);
+
+        }
+
+
+    }
 
 }
 
