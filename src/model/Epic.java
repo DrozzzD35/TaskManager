@@ -1,9 +1,7 @@
 package model;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class Epic extends Task {
     private List<Integer> subTasksIds;
@@ -30,13 +28,13 @@ public class Epic extends Task {
 
     @Override
     public String toString() {
-        return "Epic{" +
-                "subTasksIds=" + subTasksIds +
-                ", id=" + id +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", taskStatus=" + taskStatus +
-                ", type=" + type +
-                '}';
+        return '\n' + "Epic{" +
+                "subTasksIds=" + subTasksIds + '\n'
+                + "id=" + id + '\n'
+                + "name='" + name + '\'' + '\n'
+                + "description='" + description + '\'' + '\n'
+                + "taskStatus=" + taskStatus + '\n'
+                + "type=" + type
+                + '}' + '\n';
     }
 }

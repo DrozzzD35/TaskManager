@@ -1,5 +1,6 @@
 package service;
 
+import dataBacked.FileSaveException;
 import dataBacked.ManagerSaveException;
 import model.*;
 
@@ -23,25 +24,36 @@ public class FileBackedTasksManager<T extends Task> extends InMemoryTaskManager<
     @Override
     public void add(T task) {
         super.add(task);
+        System.out.println(task.getType() + " " + task.getName() + ", id = " + task.getId() + " добавлена.");
         save();
     }
 
     @Override
     public void updateTask(T updateTask, int id) {
         super.updateTask(updateTask, id);
+        System.out.println("Задача обновлена");
         save();
     }
 
     @Override
     public void removeTaskById(int id) {
         super.removeTaskById(id);
+        System.out.println("Задача удалена");
+        System.out.println();
         save();
     }
 
     @Override
     public void removeAllTasks() {
         super.removeAllTasks();
+        System.out.println("Все задачи удалены");
         save();
+    }
+
+    @Override
+    public T getTaskById(int id, boolean withHistory) {
+        save();
+        return super.getTaskById(id, withHistory);
     }
 
     public void save() {
@@ -60,14 +72,16 @@ public class FileBackedTasksManager<T extends Task> extends InMemoryTaskManager<
             writer.append("\n");
 
 
-            List<T> tasksHistory = history.getHistory();
-            String[] ids = new String[tasksHistory.size()];
+            writer.append(historyToString());
 
-            for (int i = 0; i < tasksHistory.size(); i++) {
-                ids[i] = String.valueOf(tasksHistory.get(i).getId());
-            }
-
-            writer.append(String.join(",", ids));
+//            List<T> tasksHistory = history.getHistory();
+//            String[] ids = new String[tasksHistory.size()];
+//
+//            for (int i = 0; i < tasksHistory.size(); i++) {
+//                ids[i] = String.valueOf(tasksHistory.get(i).getId());
+//            }
+//
+//            writer.append(String.join(",", ids));
 
         } catch (Exception e) {
             throw new ManagerSaveException("Ошибка при сохранение файла " + e);
@@ -97,6 +111,18 @@ public class FileBackedTasksManager<T extends Task> extends InMemoryTaskManager<
 
     }
 
+    public String historyToString() {
+        List<T> tasksHistory = history.getHistory();
+        String[] ids = new String[tasksHistory.size()];
+
+        for (int i = 0; i < tasksHistory.size(); i++) {
+            ids[i] = String.valueOf(tasksHistory.get(i).getId());
+        }
+
+//        writer.append(String.join(",", ids));
+        return String.join(",", ids);
+    }
+
     public static List<Integer> historyFromString(String value) {
         String[] ids = value.split(",");
         return new ArrayList<>(Integer.parseInt(Arrays.toString(ids)));
@@ -122,9 +148,9 @@ public class FileBackedTasksManager<T extends Task> extends InMemoryTaskManager<
             }
         } catch (IOException e) {
             // todo FileSaveException
+            throw new FileSaveException("Ошибка при  сохранение файла " + e);
 
         }
-
 
         return manager;
     }

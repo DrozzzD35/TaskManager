@@ -4,15 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3b2d2408-c7aa-4b02-a823-dac3b3c98272" name="Changes" comment="Домашняя работа.&#10;Feat: создать объект FileBackedTasksManager">
+    <list default="true" id="3b2d2408-c7aa-4b02-a823-dac3b3c98272" name="Changes" comment="Классная работа.&#10;Feat: в классе Epic изменить переменную Map&lt;Integer, SubTask&gt; children на List&lt;Integer&gt; subTasksIds. Соответственно изменить все методы использующие переменную.&#10;Написать метод loadFromFile в классе FileBackedTasksManager.&#10;Создать исключение кастомное FileSaveException.&#10;Fix: при обновлении таска он заноситься в историю, исключить, таски при обновлении не должны попадать в историю">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/MyTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MyTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dataBacked/ManagerSaveException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dataBacked/ManagerSaveException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dataBacked/FileBacked.CSV" beforeDir="false" afterPath="$PROJECT_DIR$/src/dataBacked/FileBacked.CSV" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dataBacked/FileSaveException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dataBacked/FileSaveException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/Epic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Epic.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/SubTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/SubTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Task.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Task.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/service/FileBackedTasksManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/FileBackedTasksManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/service/InMemoryHistoryManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/InMemoryHistoryManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/service/InMemoryTaskManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/InMemoryTaskManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/service/TaskManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/TaskManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,6 +28,7 @@
         <option value="Enum" />
         <option value="Interface" />
         <option value="Class" />
+        <option value="Exception" />
       </list>
     </option>
   </component>
@@ -216,7 +220,8 @@
       <workItem from="1756401320126" duration="8238000" />
       <workItem from="1756893656746" duration="6239000" />
       <workItem from="1756975338874" duration="7778000" />
-      <workItem from="1757011880260" duration="1311000" />
+      <workItem from="1757011880260" duration="13782000" />
+      <workItem from="1757315268774" duration="313000" />
     </task>
     <task id="LOCAL-00001" summary="в классе Epic добавили методы:&#10;addChild()&#10;getAllChildren()&#10;removeSubTask()&#10;Так же добавлена мапа children&#10;&#10;В классе SubTask добавили объект parent и гет к нему">
       <option name="closed" value="true" />
@@ -466,7 +471,15 @@
       <option name="project" value="LOCAL" />
       <updated>1756972342322</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="Классная работа.&#10;Feat: в классе Epic изменить переменную Map&lt;Integer, SubTask&gt; children на List&lt;Integer&gt; subTasksIds. Соответственно изменить все методы использующие переменную.&#10;Написать метод loadFromFile в классе FileBackedTasksManager.&#10;Создать исключение кастомное FileSaveException.&#10;Fix: при обновлении таска он заноситься в историю, исключить, таски при обновлении не должны попадать в историю">
+      <option name="closed" value="true" />
+      <created>1757015423144</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1757015423144</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -510,6 +523,7 @@
     <MESSAGE value="Домашняя работа.&#10;Feat: добавлен геттер history" />
     <MESSAGE value="Домашняя работа.&#10;Feat: добавить метод historyFromString. &#10;В interface HistoryManager добавить метод remove(T task).&#10;В классе InMemoryHistoryManager реализовать метод remove(T task).&#10;Добавить методы цикла создания задачи и добавление её в историю для более удобного тестирования&#10;Fix: исправить историю, чтоб при обновлении задачи она не добавлялась в историю.&#10;История не работает, исправить.&#10;Протестировать историю." />
     <MESSAGE value="Домашняя работа.&#10;Feat: создать объект FileBackedTasksManager" />
-    <option name="LAST_COMMIT_MESSAGE" value="Домашняя работа.&#10;Feat: создать объект FileBackedTasksManager" />
+    <MESSAGE value="Классная работа.&#10;Feat: в классе Epic изменить переменную Map&lt;Integer, SubTask&gt; children на List&lt;Integer&gt; subTasksIds. Соответственно изменить все методы использующие переменную.&#10;Написать метод loadFromFile в классе FileBackedTasksManager.&#10;Создать исключение кастомное FileSaveException.&#10;Fix: при обновлении таска он заноситься в историю, исключить, таски при обновлении не должны попадать в историю" />
+    <option name="LAST_COMMIT_MESSAGE" value="Классная работа.&#10;Feat: в классе Epic изменить переменную Map&lt;Integer, SubTask&gt; children на List&lt;Integer&gt; subTasksIds. Соответственно изменить все методы использующие переменную.&#10;Написать метод loadFromFile в классе FileBackedTasksManager.&#10;Создать исключение кастомное FileSaveException.&#10;Fix: при обновлении таска он заноситься в историю, исключить, таски при обновлении не должны попадать в историю" />
   </component>
 </project>

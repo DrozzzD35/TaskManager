@@ -32,7 +32,7 @@ public class InMemoryTaskManager<T extends Task> implements TaskManager<T> {
         }
 
         taskMap.put(task.getId(), task);
-        System.out.println(task.getType() + " " + task.getName() + ", id = " + task.getId() + " добавлена.");
+//        System.out.println(task.getType() + " " + task.getName() + ", id = " + task.getId() + " добавлена.");
     }
 
     public HistoryManager<T> getHistory() {
@@ -85,7 +85,6 @@ public class InMemoryTaskManager<T extends Task> implements TaskManager<T> {
             updateEpicStatus(id);
         }
 
-        System.out.println("Задача обновлена");
 
     }
 
@@ -103,7 +102,6 @@ public class InMemoryTaskManager<T extends Task> implements TaskManager<T> {
 
         }
         taskMap.remove(id);
-        System.out.println("Задача удалена");
         System.out.println();
 
     }
@@ -111,7 +109,6 @@ public class InMemoryTaskManager<T extends Task> implements TaskManager<T> {
     @Override
     public void removeAllTasks() {
         taskMap.clear();
-        System.out.println("Все задачи удалены");
     }
 
     @Override
@@ -131,8 +128,8 @@ public class InMemoryTaskManager<T extends Task> implements TaskManager<T> {
         return subTasks;
     }
 
-    public void addTaskByIdsToHistory(List<Integer> ids){
-        for (Integer id:ids){
+    public void addTaskByIdsToHistory(List<Integer> ids) {
+        for (Integer id : ids) {
             T task = getTaskById(id, false);
             history.add(task);
         }
@@ -166,21 +163,6 @@ public class InMemoryTaskManager<T extends Task> implements TaskManager<T> {
             System.out.println();
         }
     }
-
-    public void printEpicTasks() {
-        ArrayList<Epic> epics = new ArrayList<>();
-
-        for (Map.Entry<Integer, T> entry : taskMap.entrySet()) {
-            if (entry.getValue() instanceof Epic) {
-                epics.add((Epic) entry.getValue());
-            }
-        }
-
-        for (Epic epic : epics) {
-            printTask(epic.getId());
-        }
-    }
-
 
     public void updateEpicStatus(Integer epicId) {
         /*

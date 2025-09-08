@@ -3,7 +3,7 @@ package model;
 public class SubTask extends Task {
     private int parentId;
 
-    public SubTask(String name, String description,int parentId) {
+    public SubTask(String name, String description, int parentId) {
         super(name, description); // new Task(name, description);
 
         this.taskStatus = taskStatus.NEW;
@@ -24,13 +24,13 @@ public class SubTask extends Task {
 
     @Override
     public String toString() {
-        return "SubTask{" +
-                "parentId=" + parentId +
-                ", id=" + id +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", taskStatus=" + taskStatus +
-                ", type=" + type +
-                '}';
+        return '\n' + "SubTask{" +
+                "parentId=" + parentId + '\n'
+                + "id=" + id + '\n'
+                + "name='" + name + '\'' + '\n'
+                + "description='" + description + '\'' + '\n'
+                + "taskStatus=" + taskStatus + '\n'
+                + "type=" + type +
+                '}' + '\n';
     }
 }

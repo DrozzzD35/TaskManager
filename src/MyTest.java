@@ -1,3 +1,5 @@
+import model.Epic;
+import model.SubTask;
 import model.Task;
 import model.TaskStatus;
 import service.Managers;
@@ -8,21 +10,26 @@ import java.nio.file.Path;
 public class MyTest {
 
     private static TaskManager<Task> manager;
-//    private static TaskManager<Task> saveManager;
+    private static TaskManager<Task> saveManager;
 
     public static void main(String[] args) {
         Path path = Path.of("src/dataBacked/FileBacked.CSV");
         manager = Managers.getDefault();
-//        saveManager = Managers.getDefaultFile(path);
+        saveManager = Managers.getDefaultFile(path);
 
 
         // Создание задачи
         Task task1 = createTask("name10", "description10");
-        Task task2 = createTask("name11", "description11");
-        Task task3 = createTask("name12", "description12");
+        Epic task2 = createEpic("epic11", "epic11");
+        SubTask task3 = createSubTask("subTask12", "subTask12", 2);
+        Epic task4 = createEpic("epic13", "epic13");
+        SubTask task5 = createSubTask("subTask14", "subTask14", 4);
+        Epic task6 = createEpic("epic15", "epic15");
+        SubTask task7 = createSubTask("subTask16", "subTask16", 6);
+
 
         // Цикл создания задач
-        taskCreationCycle(23);
+        taskCreationCycle(0);
 
         // Обновление задачи
         updateTaskStatus(task1.getId());
@@ -38,7 +45,7 @@ public class MyTest {
         addHistory(task3);
 
         // Цикл добавления задач в историю
-        addHistoryCycle(12);
+        addHistoryCycle(2);
 
 
         System.out.println("===========  История   ===============");
@@ -49,7 +56,7 @@ public class MyTest {
     }
 
     private static void taskCreationCycle(int quantity) {
-        for (int i = 0; i <= quantity; i++) {
+        for (int i = 1; i <= quantity; i++) {
             createTask("name" + i, "description" + i);
 
         }
@@ -63,10 +70,26 @@ public class MyTest {
         Task updateTask = new Task("updateTask", "updateTask");
         updateTask.setStatus(TaskStatus.IN_PROGRESS);
         manager.updateTask(updateTask, currentTaskId);
+        saveManager.updateTask(updateTask, currentTaskId);
+    }
+
+    private static SubTask createSubTask(String name, String description, int epicId) {
+        SubTask subTask = new SubTask(name, description, epicId);
+        manager.add(subTask);
+        saveManager.add(subTask);
+        return subTask;
+    }
+
+    private static Epic createEpic(String name, String description) {
+        Epic epic = new Epic(name, description);
+        manager.add(epic);
+        saveManager.add(epic);
+        return epic;
     }
 
     private static Task createTask(String name, String description) {
         Task task = new Task(name, description);
+        saveManager.add(task);
         manager.add(task);
         return task;
     }

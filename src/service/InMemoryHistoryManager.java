@@ -11,10 +11,6 @@ public class InMemoryHistoryManager<T extends Task> implements HistoryManager<T>
         this.history = new LinkedList<>();
     }
 
-    public InMemoryHistoryManager(LinkedList<T> history) {
-        this.history = history;
-    }
-
     @Override
     public void add(T task) {
         if (history.size() > 9) {
