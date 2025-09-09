@@ -52,8 +52,9 @@ public class FileBackedTasksManager<T extends Task> extends InMemoryTaskManager<
 
     @Override
     public T getTaskById(int id, boolean withHistory) {
+        T task = super.getTaskById(id, withHistory);
         save();
-        return super.getTaskById(id, withHistory);
+        return task;
     }
 
     public void save() {
@@ -71,24 +72,26 @@ public class FileBackedTasksManager<T extends Task> extends InMemoryTaskManager<
 
             writer.append("\n");
 
+            String ids = historyToString();
 
-            writer.append(historyToString());
-
-//            List<T> tasksHistory = history.getHistory();
-//            String[] ids = new String[tasksHistory.size()];
-//
-//            for (int i = 0; i < tasksHistory.size(); i++) {
-//                ids[i] = String.valueOf(tasksHistory.get(i).getId());
-//            }
-//
-//            writer.append(String.join(",", ids));
-
+            writer.append(String.join(",", ids));
         } catch (Exception e) {
             throw new ManagerSaveException("Ошибка при сохранение файла " + e);
         }
 
         System.out.println("CSV файл успешно создан " + filePath);
 
+    }
+
+    private String historyToString() {
+        List<T> tasksHistory = history.getHistory();
+        String[] ids = new String[tasksHistory.size()];
+
+        for (int i = 0; i < tasksHistory.size(); i++) {
+            ids[i] = String.valueOf(tasksHistory.get(i).getId());
+        }
+
+        return  String.join(",", ids);
     }
 
 
@@ -109,18 +112,6 @@ public class FileBackedTasksManager<T extends Task> extends InMemoryTaskManager<
             }
         }
 
-    }
-
-    public String historyToString() {
-        List<T> tasksHistory = history.getHistory();
-        String[] ids = new String[tasksHistory.size()];
-
-        for (int i = 0; i < tasksHistory.size(); i++) {
-            ids[i] = String.valueOf(tasksHistory.get(i).getId());
-        }
-
-//        writer.append(String.join(",", ids));
-        return String.join(",", ids);
     }
 
     public static List<Integer> historyFromString(String value) {

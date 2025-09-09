@@ -18,39 +18,46 @@ public class MyTest {
         saveManager = Managers.getDefaultFile(path);
 
 
-        // Создание задачи
         Task task1 = createTask("name10", "description10");
-        Epic task2 = createEpic("epic11", "epic11");
-        SubTask task3 = createSubTask("subTask12", "subTask12", 2);
-        Epic task4 = createEpic("epic13", "epic13");
-        SubTask task5 = createSubTask("subTask14", "subTask14", 4);
-        Epic task6 = createEpic("epic15", "epic15");
-        SubTask task7 = createSubTask("subTask16", "subTask16", 6);
+        saveManager.getTaskById(task1.getId(),true);
+
+        System.out.println(saveManager.getTasks());
 
 
-        // Цикл создания задач
-        taskCreationCycle(0);
-
-        // Обновление задачи
-        updateTaskStatus(task1.getId());
-
-        System.out.println("===========  Таски в памяти   ===============");
-        System.out.println(manager.getTasks());
-
-        System.out.println("==========================\n\n");
-
-        // Добавление задачи в историю
-        addHistory(task1);
-        addHistory(task2);
-        addHistory(task3);
-
-        // Цикл добавления задач в историю
-        addHistoryCycle(2);
-
-
-        System.out.println("===========  История   ===============");
-        System.out.println("История " + manager.getHistory());
-        System.out.println("=========================\n\n");
+//
+//        // Создание задачи
+//        Task task1 = createTask("name10", "description10");
+//        Epic task2 = createEpic("epic11", "epic11");
+//        SubTask task3 = createSubTask("subTask12", "subTask12", 2);
+//        Epic task4 = createEpic("epic13", "epic13");
+//        SubTask task5 = createSubTask("subTask14", "subTask14", 4);
+//        Epic task6 = createEpic("epic15", "epic15");
+//        SubTask task7 = createSubTask("subTask16", "subTask16", 6);
+//
+//
+//        // Цикл создания задач
+//        taskCreationCycle(0);
+//
+//        // Обновление задачи
+//        updateTaskStatus(task1.getId());
+//
+//        System.out.println("===========  Таски в памяти   ===============");
+//        System.out.println(manager.getTasks());
+//
+//        System.out.println("==========================\n\n");
+//
+//        // Добавление задачи в историю
+//        addHistory(task1);
+//        addHistory(task2);
+//        addHistory(task3);
+//
+//        // Цикл добавления задач в историю
+//        addHistoryCycle(2);
+//
+//
+//        System.out.println("===========  История   ===============");
+//        System.out.println("История " + manager.getHistory());
+//        System.out.println("=========================\n\n");
 
 
     }
