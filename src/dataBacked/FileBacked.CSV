@@ -1,4 +1,8 @@
 id, type, name, status, description, epic_id
-1, Task, name10, New, description10
+2, Epic, epic11, New, epic11
+3, Subtask, subTask12, New, subTask12, 2
+4, Epic, epic13, New, epic13
+5, Subtask, subTask14, New, subTask14, 4
+6, Epic, epic15, New, epic15
+7, Subtask, subTask16, New, subTask16, 6
 
-1

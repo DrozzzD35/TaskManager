@@ -32,7 +32,7 @@ public class InMemoryTaskManager<T extends Task> implements TaskManager<T> {
         }
 
         taskMap.put(task.getId(), task);
-//        System.out.println(task.getType() + " " + task.getName() + ", id = " + task.getId() + " добавлена.");
+        System.out.println(task.getType() + " " + task.getName() + ", id = " + task.getId() + " добавлена.");
     }
 
     public HistoryManager<T> getHistory() {
@@ -84,6 +84,8 @@ public class InMemoryTaskManager<T extends Task> implements TaskManager<T> {
         if (task instanceof SubTask) {
             updateEpicStatus(id);
         }
+        System.out.println("Задача обновлена");
+        System.out.println();
 
 
     }
@@ -102,6 +104,7 @@ public class InMemoryTaskManager<T extends Task> implements TaskManager<T> {
 
         }
         taskMap.remove(id);
+        System.out.println("Задача удалена");
         System.out.println();
 
     }
@@ -109,6 +112,7 @@ public class InMemoryTaskManager<T extends Task> implements TaskManager<T> {
     @Override
     public void removeAllTasks() {
         taskMap.clear();
+        System.out.println("Все задачи удалены");
     }
 
     @Override

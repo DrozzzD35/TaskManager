@@ -24,29 +24,24 @@ public class FileBackedTasksManager<T extends Task> extends InMemoryTaskManager<
     @Override
     public void add(T task) {
         super.add(task);
-        System.out.println(task.getType() + " " + task.getName() + ", id = " + task.getId() + " добавлена.");
         save();
     }
 
     @Override
     public void updateTask(T updateTask, int id) {
         super.updateTask(updateTask, id);
-        System.out.println("Задача обновлена");
         save();
     }
 
     @Override
     public void removeTaskById(int id) {
         super.removeTaskById(id);
-        System.out.println("Задача удалена");
-        System.out.println();
         save();
     }
 
     @Override
     public void removeAllTasks() {
         super.removeAllTasks();
-        System.out.println("Все задачи удалены");
         save();
     }
 
@@ -91,7 +86,7 @@ public class FileBackedTasksManager<T extends Task> extends InMemoryTaskManager<
             ids[i] = String.valueOf(tasksHistory.get(i).getId());
         }
 
-        return  String.join(",", ids);
+        return String.join(",", ids);
     }
 
 
