@@ -29,7 +29,7 @@ public class InMemoryHistoryManager<T extends Task> implements HistoryManager<T>
         return "History{" + "history=" + '\n' + history + '}' + '\n';
     }
 
-    public void remove(T task){
+    public void remove(T task) {
         history.remove(task);
     }
 }
