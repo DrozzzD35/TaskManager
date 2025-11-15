@@ -75,7 +75,6 @@ public class MyTest {
     private static void updateTaskStatus(int currentTaskId) {
         Task updateTask = new Task("updateTask", "updateTask");
         updateTask.setStatus(TaskStatus.IN_PROGRESS);
-        manager.updateTask(updateTask, currentTaskId);
         saveManager.updateTask(updateTask, currentTaskId);
     }
 

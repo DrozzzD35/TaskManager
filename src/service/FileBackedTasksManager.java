@@ -110,6 +110,7 @@ public class FileBackedTasksManager<T extends Task> extends InMemoryTaskManager<
     }
 
     public static List<Integer> historyFromString(String value) {
+        //TODO Arrays.toString Превратит строку в "[1,23,56]". Символы "[]" ломают код?
         String[] ids = value.split(",");
         return new ArrayList<>(Integer.parseInt(Arrays.toString(ids)));
     }
@@ -133,7 +134,6 @@ public class FileBackedTasksManager<T extends Task> extends InMemoryTaskManager<
                 }
             }
         } catch (IOException e) {
-            // todo FileSaveException
             throw new FileSaveException("Ошибка при  сохранение файла " + e);
 
         }
@@ -144,14 +144,17 @@ public class FileBackedTasksManager<T extends Task> extends InMemoryTaskManager<
 
     private String toString(Task task) {
         StringBuilder resultBuilder = new StringBuilder();
-        resultBuilder.append(task.getId()).append(", ").append(task.getType()).append(", ").append(task.getName()).append(", ").append(task.getStatus()).append(", ").append(task.getDescription());
+        resultBuilder.append(task.getId()).append(", ").append(task.getType())
+                .append(", ").append(task.getName())
+                .append(", ").append(task.getStatus())
+                .append(", ").append(task.getDescription());
 
         if (task instanceof SubTask) {
             SubTask subTask = (SubTask) task;
             try {
                 resultBuilder.append(", ").append(subTask.getParentId());
             } catch (Exception e) {
-                throw new ManagerSaveException("Ошибка, у SubTask отсутствует Epic " + e);
+                throw new ManagerSaveException("Ошибка, у SubTask отсутствует Epic " + e.getMessage());
             }
         }
 

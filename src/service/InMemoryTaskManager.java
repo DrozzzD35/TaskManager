@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+//TODO необходимо ли вытащить идентификатор из конструктора Task, Epic, SubTask, чтоб не присваивался где не нужно
 
 import static model.TaskStatus.*;
 
