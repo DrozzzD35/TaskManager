@@ -4,10 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3b2d2408-c7aa-4b02-a823-dac3b3c98272" name="Changes" comment="Без изменений">
+    <list default="true" id="3b2d2408-c7aa-4b02-a823-dac3b3c98272" name="Changes" comment="Добавить TODO для разбора в будущем">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/MyTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MyTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/ChangeStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/ChangeStatus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dataBacked/FileBacked.CSV" beforeDir="false" afterPath="$PROJECT_DIR$/src/dataBacked/FileBacked.CSV" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Epic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Epic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/service/FileBackedTasksManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/FileBackedTasksManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -228,6 +230,9 @@
       <workItem from="1759779151491" duration="2177000" />
       <workItem from="1763073625737" duration="611000" />
       <workItem from="1763124011265" duration="1204000" />
+      <workItem from="1763171519807" duration="17945000" />
+      <workItem from="1763268897877" duration="464000" />
+      <workItem from="1763320490736" duration="7023000" />
     </task>
     <task id="LOCAL-00001" summary="в классе Epic добавили методы:&#10;addChild()&#10;getAllChildren()&#10;removeSubTask()&#10;Так же добавлена мапа children&#10;&#10;В классе SubTask добавили объект parent и гет к нему">
       <option name="closed" value="true" />
@@ -509,7 +514,15 @@
       <option name="project" value="LOCAL" />
       <updated>1758472320104</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="Добавить TODO для разбора в будущем">
+      <option name="closed" value="true" />
+      <created>1763232171585</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1763232171585</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -530,7 +543,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/.." />
     </ignored-roots>
-    <MESSAGE value="Проведён урок &#10;Написан метод updateTask&#10;внесены некоторые корректировки" />
     <MESSAGE value="Написал метод updateStatus в классе Epic&#10;в TaskManagerImpl подметил в комментарии метод который нужно удалить, нужно ли удалять?" />
     <MESSAGE value="добавил статусы в конструкторы эпика и сабтаска" />
     <MESSAGE value="переписал метод updateEpicStatus" />
@@ -555,7 +567,8 @@
     <MESSAGE value="Домашняя работа.&#10;Feat: реализовать метод historyToString в классе FileBackedTasksManager. &#10;В классе InMemoryHistoryManager удалить неиспользуемый конструктор.&#10;Протестировать создание задач, эпиков и подзадач&#10;Fix: в классах Task, Epic и SubTask подкорректировать метод tiString" />
     <MESSAGE value="Классная работа.&#10;Feat: реализовать запись истории" />
     <MESSAGE value="Без изменений" />
-    <option name="LAST_COMMIT_MESSAGE" value="Без изменений" />
+    <MESSAGE value="Добавить TODO для разбора в будущем" />
+    <option name="LAST_COMMIT_MESSAGE" value="Добавить TODO для разбора в будущем" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

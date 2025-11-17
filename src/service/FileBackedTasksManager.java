@@ -53,7 +53,6 @@ public class FileBackedTasksManager<T extends Task> extends InMemoryTaskManager<
     }
 
     public void save() {
-
         try (BufferedWriter writer = Files.newBufferedWriter(filePath)) {
             writer.append(csvHeaderText);
 
@@ -111,11 +110,24 @@ public class FileBackedTasksManager<T extends Task> extends InMemoryTaskManager<
 
     public static List<Integer> historyFromString(String value) {
         //TODO Arrays.toString Превратит строку в "[1,23,56]". Символы "[]" ломают код?
+        //Не забыть оценить новый код исправляющий:
+//        Exception in thread "main" java.lang.NumberFormatException: For input string: "[1, 2, 3]"
+
         String[] ids = value.split(",");
-        return new ArrayList<>(Integer.parseInt(Arrays.toString(ids)));
+        List<Integer> idsHistory = new ArrayList<>();
+        for (String id : ids) {
+            if (id.equals("[") || id.equals("]")) {
+                continue;
+            } else {
+                idsHistory.add(Integer.valueOf(id));
+            }
+        }
+        return idsHistory;
+//        return new ArrayList<>(Integer.parseInt(Arrays.toString(ids)));
     }
 
     public static FileBackedTasksManager<Task> loadFromFile(Path path) {
+        //TODO а здесь не фабричный ли метод должен быть?
         FileBackedTasksManager<Task> manager = new FileBackedTasksManager<>(path);
         try {
             String fileContent = Files.readString(path);
@@ -144,9 +156,9 @@ public class FileBackedTasksManager<T extends Task> extends InMemoryTaskManager<
 
     private String toString(Task task) {
         StringBuilder resultBuilder = new StringBuilder();
-        resultBuilder.append(task.getId()).append(", ").append(task.getType())
+        resultBuilder.append(task.getId()).append(", ").append(task.getType().name())
                 .append(", ").append(task.getName())
-                .append(", ").append(task.getStatus())
+                .append(", ").append(task.getStatus().name())
                 .append(", ").append(task.getDescription());
 
         if (task instanceof SubTask) {
