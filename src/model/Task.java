@@ -3,6 +3,8 @@ package model;
 
 import utils.Identity;
 
+import java.util.Objects;
+
 public class Task {
     protected Integer id;
     protected String name;
@@ -64,10 +66,23 @@ public class Task {
 
     @Override
     public String toString() {
-        return '\n' + "Task{" + "id=" + id + '\n'
-                + "name=" + name
-                + '\n' + "description=" + description
-                + '\n' + "status=" + taskStatus
-                + '\n' + "type=" + type + '}' + '\n';
+        return '\n' + "Task{" + "id=" + id + '\n' + "name=" + name + '\n' + "description=" + description + '\n' + "status=" + taskStatus + '\n' + "type=" + type + '}' + '\n';
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (!(obj instanceof Task task)) return false;
+
+        return Objects.equals(id, task.id) &&
+                Objects.equals(name, task.name) &&
+                Objects.equals(description, task.description) &&
+                Objects.equals(taskStatus, task.taskStatus) &&
+                Objects.equals(type, task.type);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, description, taskStatus, type);
     }
 }

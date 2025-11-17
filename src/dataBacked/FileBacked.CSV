@@ -7,4 +7,3 @@ id, type, name, status, description, epic_id
 6, EPIC, epic15, NEW, epic15
 7, SUBTASK, subTask16, NEW, subTask16, 6
 
-1,2

@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Objects;
+
 public class SubTask extends Task {
     private int parentId;
 
@@ -32,5 +34,19 @@ public class SubTask extends Task {
                 + "taskStatus=" + taskStatus + '\n'
                 + "type=" + type +
                 '}' + '\n';
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (!(obj instanceof SubTask subTask)) return false;
+        if (!super.equals(subTask)) return false;
+
+        return Objects.equals(parentId, subTask.getParentId());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), parentId);
     }
 }

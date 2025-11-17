@@ -48,7 +48,7 @@ public class FileBackedTasksManager<T extends Task> extends InMemoryTaskManager<
     @Override
     public T getTaskById(int id, boolean withHistory) {
         T task = super.getTaskById(id, withHistory);
-        save();
+//        save();
         return task;
     }
 
@@ -74,16 +74,23 @@ public class FileBackedTasksManager<T extends Task> extends InMemoryTaskManager<
         }
 
         System.out.println("CSV файл успешно создан " + filePath);
+        System.out.println();
 
     }
 
     private String historyToString() {
         List<T> tasksHistory = history.getHistory();
+
+        System.out.println("Размер списка history: " + tasksHistory.size());
+
         String[] ids = new String[tasksHistory.size()];
 
         for (int i = 0; i < tasksHistory.size(); i++) {
             ids[i] = String.valueOf(tasksHistory.get(i).getId());
         }
+
+        System.out.println("Сохранённая история: " + String.join(",", ids));
+
 
         return String.join(",", ids);
     }

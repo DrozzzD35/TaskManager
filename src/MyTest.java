@@ -44,6 +44,7 @@ public class MyTest {
         System.out.println("==========================\n\n");
 
         // Добавление задачи в историю
+        System.out.println("==================== Добавление задачи в историю ==================== ");
         addHistory(task1);
         addHistory(task2);
         addHistory(task3);
@@ -54,10 +55,11 @@ public class MyTest {
 
         System.out.println("===========  История   ===============");
         System.out.println("История " + saveManager.getHistory());
-        System.out.println("=========================\n\n");
+        System.out.println("=========================\n");
 
+        ((FileBackedTasksManager<?>) saveManager).save();
         System.out.println("===========  Загрузка из файла   ===============");
-        FileBackedTasksManager restored = FileBackedTasksManager.loadFromFile(path);
+        FileBackedTasksManager<Task> restored = FileBackedTasksManager.loadFromFile(path);
 
         System.out.println("history ok? " +
                 restored.getHistory().equals(saveManager.getHistory()));

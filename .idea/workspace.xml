@@ -4,11 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3b2d2408-c7aa-4b02-a823-dac3b3c98272" name="Changes" comment="Добавить TODO для разбора в будущем">
+    <list default="true" id="3b2d2408-c7aa-4b02-a823-dac3b3c98272" name="Changes" comment="Тестовый запуск:&#10; - Тест метода loadFromFile в классе FileBackedTasksManager.java&#10;- Epic.java добавление в конструктор инициализации списка subTasksIds&#10;- FileBackedTasksManager.java метод historyFromString не корректно записывает идентификаторы, переписать метод.&#10;Метод toString не корректно записывает Enum, пофиксить&#10;- MyTest.java убрать manager, все вызовы методов через saveManager.&#10;Тестируем FileBackedTasksManager.loadFromFile">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/MyTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MyTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/dataBacked/FileBacked.CSV" beforeDir="false" afterPath="$PROJECT_DIR$/src/dataBacked/FileBacked.CSV" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/Epic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Epic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/SubTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/SubTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Task.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Task.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/service/FileBackedTasksManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/FileBackedTasksManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -232,7 +234,7 @@
       <workItem from="1763124011265" duration="1204000" />
       <workItem from="1763171519807" duration="17945000" />
       <workItem from="1763268897877" duration="464000" />
-      <workItem from="1763320490736" duration="7023000" />
+      <workItem from="1763320490736" duration="17081000" />
     </task>
     <task id="LOCAL-00001" summary="в классе Epic добавили методы:&#10;addChild()&#10;getAllChildren()&#10;removeSubTask()&#10;Так же добавлена мапа children&#10;&#10;В классе SubTask добавили объект parent и гет к нему">
       <option name="closed" value="true" />
@@ -522,7 +524,15 @@
       <option name="project" value="LOCAL" />
       <updated>1763232171585</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="Тестовый запуск:&#10; - Тест метода loadFromFile в классе FileBackedTasksManager.java&#10;- Epic.java добавление в конструктор инициализации списка subTasksIds&#10;- FileBackedTasksManager.java метод historyFromString не корректно записывает идентификаторы, переписать метод.&#10;Метод toString не корректно записывает Enum, пофиксить&#10;- MyTest.java убрать manager, все вызовы методов через saveManager.&#10;Тестируем FileBackedTasksManager.loadFromFile">
+      <option name="closed" value="true" />
+      <created>1763348316970</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1763348316970</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -543,7 +553,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/.." />
     </ignored-roots>
-    <MESSAGE value="Написал метод updateStatus в классе Epic&#10;в TaskManagerImpl подметил в комментарии метод который нужно удалить, нужно ли удалять?" />
     <MESSAGE value="добавил статусы в конструкторы эпика и сабтаска" />
     <MESSAGE value="переписал метод updateEpicStatus" />
     <MESSAGE value="внесены изменения на уроке" />
@@ -568,7 +577,8 @@
     <MESSAGE value="Классная работа.&#10;Feat: реализовать запись истории" />
     <MESSAGE value="Без изменений" />
     <MESSAGE value="Добавить TODO для разбора в будущем" />
-    <option name="LAST_COMMIT_MESSAGE" value="Добавить TODO для разбора в будущем" />
+    <MESSAGE value="Тестовый запуск:&#10; - Тест метода loadFromFile в классе FileBackedTasksManager.java&#10;- Epic.java добавление в конструктор инициализации списка subTasksIds&#10;- FileBackedTasksManager.java метод historyFromString не корректно записывает идентификаторы, переписать метод.&#10;Метод toString не корректно записывает Enum, пофиксить&#10;- MyTest.java убрать manager, все вызовы методов через saveManager.&#10;Тестируем FileBackedTasksManager.loadFromFile" />
+    <option name="LAST_COMMIT_MESSAGE" value="Тестовый запуск:&#10; - Тест метода loadFromFile в классе FileBackedTasksManager.java&#10;- Epic.java добавление в конструктор инициализации списка subTasksIds&#10;- FileBackedTasksManager.java метод historyFromString не корректно записывает идентификаторы, переписать метод.&#10;Метод toString не корректно записывает Enum, пофиксить&#10;- MyTest.java убрать manager, все вызовы методов через saveManager.&#10;Тестируем FileBackedTasksManager.loadFromFile" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
