@@ -27,7 +27,7 @@ public class HttpTaskServer {
         this.tasksManager = tasksManager;
         this.server = HttpServer.create(new InetSocketAddress(port), 0);
 
-        server.createContext("/tasks/task/", new TaskHandler<>(tasksManager));
+        server.createContext("/tasks/task/", new TaskManagerHandler<>(tasksManager));
     }
 
     public void start() {
