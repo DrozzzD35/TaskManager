@@ -4,14 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3b2d2408-c7aa-4b02-a823-dac3b3c98272" name="Changes" comment="Тестовый запуск:&#10; - Тест метода loadFromFile в классе FileBackedTasksManager.java&#10;- Epic.java добавление в конструктор инициализации списка subTasksIds&#10;- FileBackedTasksManager.java метод historyFromString не корректно записывает идентификаторы, переписать метод.&#10;Метод toString не корректно записывает Enum, пофиксить&#10;- MyTest.java убрать manager, все вызовы методов через saveManager.&#10;Тестируем FileBackedTasksManager.loadFromFile">
+    <list default="true" id="3b2d2408-c7aa-4b02-a823-dac3b3c98272" name="Changes" comment="История restored и saveManager не равны, справить:&#10;- Epic.java, Task.java, SubTask.java переопределить методы equals и hashCode&#10;- Протестировать метод save вручную, временно закомментировать в методе getTaskById">
+      <change afterPath="$PROJECT_DIR$/src/server/HttpTaskServer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/server/TaskHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MyTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MyTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dataBacked/FileBacked.CSV" beforeDir="false" afterPath="$PROJECT_DIR$/src/dataBacked/FileBacked.CSV" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Epic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Epic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/SubTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/SubTask.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Task.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Task.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/service/FileBackedTasksManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/FileBackedTasksManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TaskManager.iml" beforeDir="false" afterPath="$PROJECT_DIR$/TaskManager.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/ChangeStatus.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,8 +21,8 @@
       <list>
         <option value="Enum" />
         <option value="Interface" />
-        <option value="Class" />
         <option value="Exception" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -54,25 +52,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;Application.MyTest.executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/DrozzzD35/IdeaProjects/TaskManager/src/documents&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Main.executor": "Run",
+    "Application.MyTest.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/DrozzzD35/IdeaProjects/TaskManager/src/documents",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\DrozzzD35\IdeaProjects\TaskManager\src\documents" />
@@ -234,7 +235,7 @@
       <workItem from="1763124011265" duration="1204000" />
       <workItem from="1763171519807" duration="17945000" />
       <workItem from="1763268897877" duration="464000" />
-      <workItem from="1763320490736" duration="17081000" />
+      <workItem from="1763320490736" duration="31971000" />
     </task>
     <task id="LOCAL-00001" summary="в классе Epic добавили методы:&#10;addChild()&#10;getAllChildren()&#10;removeSubTask()&#10;Так же добавлена мапа children&#10;&#10;В классе SubTask добавили объект parent и гет к нему">
       <option name="closed" value="true" />
@@ -532,7 +533,15 @@
       <option name="project" value="LOCAL" />
       <updated>1763348316970</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="История restored и saveManager не равны, справить:&#10;- Epic.java, Task.java, SubTask.java переопределить методы equals и hashCode&#10;- Протестировать метод save вручную, временно закомментировать в методе getTaskById">
+      <option name="closed" value="true" />
+      <created>1763377027152</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1763377027152</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -553,7 +562,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/.." />
     </ignored-roots>
-    <MESSAGE value="добавил статусы в конструкторы эпика и сабтаска" />
     <MESSAGE value="переписал метод updateEpicStatus" />
     <MESSAGE value="внесены изменения на уроке" />
     <MESSAGE value="Добавил метод printEpicTasks в класс TaskManagerImpl. &#10;Внёс изменения в меню" />
@@ -578,7 +586,8 @@
     <MESSAGE value="Без изменений" />
     <MESSAGE value="Добавить TODO для разбора в будущем" />
     <MESSAGE value="Тестовый запуск:&#10; - Тест метода loadFromFile в классе FileBackedTasksManager.java&#10;- Epic.java добавление в конструктор инициализации списка subTasksIds&#10;- FileBackedTasksManager.java метод historyFromString не корректно записывает идентификаторы, переписать метод.&#10;Метод toString не корректно записывает Enum, пофиксить&#10;- MyTest.java убрать manager, все вызовы методов через saveManager.&#10;Тестируем FileBackedTasksManager.loadFromFile" />
-    <option name="LAST_COMMIT_MESSAGE" value="Тестовый запуск:&#10; - Тест метода loadFromFile в классе FileBackedTasksManager.java&#10;- Epic.java добавление в конструктор инициализации списка subTasksIds&#10;- FileBackedTasksManager.java метод historyFromString не корректно записывает идентификаторы, переписать метод.&#10;Метод toString не корректно записывает Enum, пофиксить&#10;- MyTest.java убрать manager, все вызовы методов через saveManager.&#10;Тестируем FileBackedTasksManager.loadFromFile" />
+    <MESSAGE value="История restored и saveManager не равны, справить:&#10;- Epic.java, Task.java, SubTask.java переопределить методы equals и hashCode&#10;- Протестировать метод save вручную, временно закомментировать в методе getTaskById" />
+    <option name="LAST_COMMIT_MESSAGE" value="История restored и saveManager не равны, справить:&#10;- Epic.java, Task.java, SubTask.java переопределить методы equals и hashCode&#10;- Протестировать метод save вручную, временно закомментировать в методе getTaskById" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
