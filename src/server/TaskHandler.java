@@ -13,12 +13,12 @@ import java.io.OutputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 
-public class TaskManagerHandler<T extends Task> implements HttpHandler {
+public class TaskHandler<T extends Task> implements HttpHandler {
     private final TaskManager<T> taskManager;
     private static final Gson gson = new Gson();
 
 
-    public TaskManagerHandler(TaskManager<T> tasksManager) {
+    public TaskHandler(TaskManager<T> tasksManager) {
         this.taskManager = tasksManager;
     }
 
@@ -66,10 +66,10 @@ public class TaskManagerHandler<T extends Task> implements HttpHandler {
             }
             case "POST" -> {
                 InputStream is = exchange.getRequestBody();
-                String jsonString = new String(is.readAllBytes(), StandardCharsets.UTF_8);
+                String stringJson = new String(is.readAllBytes(), StandardCharsets.UTF_8);
 
                 try {
-                    Task taskJson = gson.fromJson(jsonString, Task.class);
+                    Task taskJson = gson.fromJson(stringJson, Task.class);
 
                     if (taskJson.getId() != null && taskJson.getId() != 0) {
                         taskManager.updateTask((T) taskJson, taskJson.getId());
