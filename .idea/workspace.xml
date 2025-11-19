@@ -4,15 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3b2d2408-c7aa-4b02-a823-dac3b3c98272" name="Changes" comment="TaskManagerHandler.java(ранее TaskHandler) завершить">
-      <change afterPath="$PROJECT_DIR$/src/server/EpicHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/server/GeneralTaskHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/server/HistoryHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/server/SubTaskHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/HttpTaskServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/HttpTaskServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/TaskManagerHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/TaskHandler.java" afterDir="false" />
-    </list>
+    <list default="true" id="3b2d2408-c7aa-4b02-a823-dac3b3c98272" name="Changes" comment="- Создать обработчики Epic, Subtask, GeneralTask, History.&#10;- Добавить их в HttpTaskServer.java&#10;- Написать EpicHandler" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -245,7 +237,7 @@
       <workItem from="1763171519807" duration="17945000" />
       <workItem from="1763268897877" duration="464000" />
       <workItem from="1763320490736" duration="39731000" />
-      <workItem from="1763527179852" duration="3019000" />
+      <workItem from="1763527179852" duration="3529000" />
     </task>
     <task id="LOCAL-00001" summary="в классе Epic добавили методы:&#10;addChild()&#10;getAllChildren()&#10;removeSubTask()&#10;Так же добавлена мапа children&#10;&#10;В классе SubTask добавили объект parent и гет к нему">
       <option name="closed" value="true" />
@@ -567,7 +559,15 @@
       <option name="project" value="LOCAL" />
       <updated>1763467741900</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="- Создать обработчики Epic, Subtask, GeneralTask, History.&#10;- Добавить их в HttpTaskServer.java&#10;- Написать EpicHandler">
+      <option name="closed" value="true" />
+      <created>1763530718135</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1763530718135</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -588,7 +588,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/.." />
     </ignored-roots>
-    <MESSAGE value="Добавил метод printEpicTasks в класс TaskManagerImpl. &#10;Внёс изменения в меню" />
     <MESSAGE value="проведён урок&#10;добавлен List history&#10;поправлен removeTaskById, updateTask.&#10;Скорректировано меню" />
     <MESSAGE value="На уроке:&#10;Переопределён метод SetStatus в Epic, SubTask&#10;Добавлен метод tiString, так же переопределён в дочерних классах" />
     <MESSAGE value="Добавлен класс History&#10;Реализован List history, так же протестирован" />
@@ -613,7 +612,8 @@
     <MESSAGE value="История restored и saveManager не равны, справить:&#10;- Epic.java, Task.java, SubTask.java переопределить методы equals и hashCode&#10;- Протестировать метод save вручную, временно закомментировать в методе getTaskById" />
     <MESSAGE value="- ChangeStatus.java удалить - лишний класс&#10;- HttpTaskServer.java написать и реализовать класс&#10;- TaskHandler.java написать и реализовать класс" />
     <MESSAGE value="TaskManagerHandler.java(ранее TaskHandler) завершить" />
-    <option name="LAST_COMMIT_MESSAGE" value="TaskManagerHandler.java(ранее TaskHandler) завершить" />
+    <MESSAGE value="- Создать обработчики Epic, Subtask, GeneralTask, History.&#10;- Добавить их в HttpTaskServer.java&#10;- Написать EpicHandler" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Создать обработчики Epic, Subtask, GeneralTask, History.&#10;- Добавить их в HttpTaskServer.java&#10;- Написать EpicHandler" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
