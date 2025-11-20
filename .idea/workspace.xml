@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3b2d2408-c7aa-4b02-a823-dac3b3c98272" name="Changes" comment="gson-2.13.1.jar добавлен">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/EpicHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/EpicHandler.java" afterDir="false" />
-    </list>
+    <list default="true" id="3b2d2408-c7aa-4b02-a823-dac3b3c98272" name="Changes" comment="- EpicHandler.java реализована обработка метода POST и DELETE" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -243,6 +240,7 @@
       <workItem from="1763527179852" duration="5409000" />
       <workItem from="1763630369569" duration="16000" />
       <workItem from="1763630395211" duration="75000" />
+      <workItem from="1763631071906" duration="239000" />
     </task>
     <task id="LOCAL-00001" summary="в классе Epic добавили методы:&#10;addChild()&#10;getAllChildren()&#10;removeSubTask()&#10;Так же добавлена мапа children&#10;&#10;В классе SubTask добавили объект parent и гет к нему">
       <option name="closed" value="true" />
@@ -580,7 +578,15 @@
       <option name="project" value="LOCAL" />
       <updated>1763530841690</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="- EpicHandler.java реализована обработка метода POST и DELETE">
+      <option name="closed" value="true" />
+      <created>1763631136785</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1763631136785</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -601,7 +607,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/.." />
     </ignored-roots>
-    <MESSAGE value="На уроке:&#10;Переопределён метод SetStatus в Epic, SubTask&#10;Добавлен метод tiString, так же переопределён в дочерних классах" />
     <MESSAGE value="Добавлен класс History&#10;Реализован List history, так же протестирован" />
     <MESSAGE value="Добавлен и реализован утилитарный класс" />
     <MESSAGE value="Маленькие корректировки" />
@@ -626,7 +631,8 @@
     <MESSAGE value="TaskManagerHandler.java(ранее TaskHandler) завершить" />
     <MESSAGE value="- Создать обработчики Epic, Subtask, GeneralTask, History.&#10;- Добавить их в HttpTaskServer.java&#10;- Написать EpicHandler" />
     <MESSAGE value="gson-2.13.1.jar добавлен" />
-    <option name="LAST_COMMIT_MESSAGE" value="gson-2.13.1.jar добавлен" />
+    <MESSAGE value="- EpicHandler.java реализована обработка метода POST и DELETE" />
+    <option name="LAST_COMMIT_MESSAGE" value="- EpicHandler.java реализована обработка метода POST и DELETE" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
