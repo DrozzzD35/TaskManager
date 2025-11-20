@@ -1,6 +1,7 @@
 package server;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import model.Epic;
@@ -50,18 +51,34 @@ public class EpicHandler<T extends Task> implements HttpHandler {
                 InputStream os = exchange.getRequestBody();
                 String stringJson = new String(os.readAllBytes(), StandardCharsets.UTF_8);
 
-                Epic epic = gson.fromJson(stringJson, Epic.class);
+                try {
+                    Epic epic = gson.fromJson(stringJson, Epic.class);
 
-                if (epic.getId() != 0 | epic.getId() != null) {
-                    taskManager.updateTask((T) epic, epic.getId());
-                    T updateEpic = taskManager.getTaskById(epic.getId(), false);
-                    response = gson.toJson(updateEpic);
-                    statusCode = 200;
+                    if (epic.getId() != 0 | epic.getId() != null) {
+                        taskManager.updateTask((T) epic, epic.getId());
+                        T updateEpic = taskManager.getTaskById(epic.getId(), false);
+                        response = gson.toJson(updateEpic);
+                        statusCode = 200;
+                    } else {
+                        taskManager.add((T) epic);
+                        response = gson.toJson(epic);
+                        statusCode = 201;
+                    }
+
+                } catch (ClassCastException e) {
+                    response = gson.toJson("Ошибка привидения типа. Ожидаемый типа Task");
+                    statusCode = 400;
+                } catch (IllegalArgumentException | JsonSyntaxException e){
+                    response = gson.toJson("Неверно указаны данные " + e.getMessage());
+                    statusCode = 400;
                 }
-
 
             }
             case "DELETE" -> {
+                String[] part = stringQuery.split("=");
+                int id = Integer.parseInt(part[part.length-1]);
+
+                taskManager.removeTaskById(id);
 
             }
             default -> {
