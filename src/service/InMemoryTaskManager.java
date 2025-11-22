@@ -117,7 +117,7 @@ public class InMemoryTaskManager<T extends Task> implements TaskManager<T> {
     }
 
     @Override
-    public List<SubTask> getAllSubtasksByEpicId(int epicId) {
+    public List<SubTask> getSubtasksByEpicId(int epicId) {
         if (!taskMap.containsKey(epicId)) {
             System.out.println("Большая задача не найдена");
             return new ArrayList<>();
@@ -221,6 +221,17 @@ public class InMemoryTaskManager<T extends Task> implements TaskManager<T> {
 
     }
 
+    @Override
+    public List<Epic> getEpics() {
+        List<Epic> epics = new ArrayList<>();
+        for (Map.Entry<Integer, T> entry: taskMap.entrySet()){
+            if (entry.getValue() instanceof Epic){
+                epics.add((Epic) entry.getValue());
+            }
+        }
+
+        return epics;
+    }
 }
 
 

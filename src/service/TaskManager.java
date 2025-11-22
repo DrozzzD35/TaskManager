@@ -1,5 +1,6 @@
 package service;
 
+import model.Epic;
 import model.SubTask;
 import model.Task;
 
@@ -19,7 +20,10 @@ public interface TaskManager<T extends Task> {
 
     void removeAllTasks();
 
-    List<SubTask> getAllSubtasksByEpicId(int epicId);
+    List<SubTask> getSubtasksByEpicId(int epicId);
 
     HistoryManager<T> getHistory();
+
+    List<Epic> getEpics();
+
 }

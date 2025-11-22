@@ -35,7 +35,7 @@ public class TaskHandler<T extends Task> implements HttpHandler {
                 try {
                     if (queryString != null) {
                         String[] string = queryString.split("=");
-                        int id = Integer.parseInt(string[string.length - 1]);
+                        int id = Integer.parseInt(string[1]);
                         Task task = taskManager.getTaskById(id, false);
 
                         if (task != null) {
@@ -78,8 +78,9 @@ public class TaskHandler<T extends Task> implements HttpHandler {
                         response = gson.toJson(updateTask);
                         statusCode = 200;
                     } else {
-                        taskManager.add((T) taskJson);
-                        response = gson.toJson(taskJson);
+                        Task task = new Task(taskJson.getName(), taskJson.getDescription());
+                        taskManager.add((T) task);
+                        response = gson.toJson(task);
                         statusCode = 201;
                     }
 
@@ -98,18 +99,24 @@ public class TaskHandler<T extends Task> implements HttpHandler {
                 try {
                     if (queryString != null) {
                         String[] strings = queryString.split("=");
-                        int id = Integer.parseInt(strings[strings.length - 1]);
-                        taskManager.removeTaskById(id);
-                        statusCode = 204;
+                        int id = Integer.parseInt(strings[1]);
+                        Task task = taskManager.getTaskById(id, false);
+
+                        if (task != null) {
+                            taskManager.removeTaskById(id);
+                            response = gson.toJson("Задача с идентификатором " + id + " удалена.");
+                            statusCode = 200;
+                        }
 
                     } else {
                         taskManager.removeAllTasks();
-                        statusCode = 204;
+                        response = gson.toJson("Задачи удалены ");
+                        statusCode = 200;
                     }
 
                 } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
                     response = gson.toJson("Не удалось распознать идентификатор " + e.getMessage());
-                    statusCode = 404;
+                    statusCode = 400;
                 }
 
             }
@@ -121,17 +128,13 @@ public class TaskHandler<T extends Task> implements HttpHandler {
         }
 
         exchange.getResponseHeaders().
-
                 add("Content-type", "application/json; Charset=UTF-8");
-
         byte[] bytes = response.getBytes(StandardCharsets.UTF_8);
         exchange.sendResponseHeaders(statusCode, bytes.length);
 
-        try (
-                OutputStream os = exchange.getResponseBody()) {
+        try (OutputStream os = exchange.getResponseBody()) {
             os.write(bytes);
-        } catch (
-                IOException e) {
+        } catch (IOException e) {
             System.out.println("Не удалось отправить ответ " + e.getMessage());
         }
 

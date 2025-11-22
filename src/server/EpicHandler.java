@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.charset.StandardCharsets;
+//TODO стоит ли проверять по типу прежде чем удалять\отправлять
 
 public class EpicHandler<T extends Task> implements HttpHandler {
     private TaskManager<T> taskManager;
@@ -24,8 +25,8 @@ public class EpicHandler<T extends Task> implements HttpHandler {
     @Override
     public void handle(HttpExchange exchange) throws IOException {
         String method = exchange.getRequestMethod();
-        int statusCode = 0;
-        String response = "";
+        int statusCode;
+        String response;
         String stringQuery = exchange.getRequestURI().getQuery();
 
         switch (method) {
@@ -33,13 +34,13 @@ public class EpicHandler<T extends Task> implements HttpHandler {
                 try {
                     if (stringQuery != null) {
                         String[] parts = stringQuery.split("=");
-                        int id = Integer.parseInt(parts[parts.length - 1]);
+                        int id = Integer.parseInt(parts[1]);
 
                         response = gson.toJson(taskManager.getTaskById(id, false));
                         statusCode = 200;
                     } else {
-                        response = gson.toJson("Идентификатор не распознан");
-                        statusCode = 400;
+                        response = gson.toJson(taskManager.getEpics());
+                        statusCode = 200;
                     }
                 } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
                     response = gson.toJson("Ошибка чтения URL");
@@ -52,14 +53,16 @@ public class EpicHandler<T extends Task> implements HttpHandler {
                 String stringJson = new String(os.readAllBytes(), StandardCharsets.UTF_8);
 
                 try {
-                    Epic epic = gson.fromJson(stringJson, Epic.class);
+                    Epic epicJson = gson.fromJson(stringJson, Epic.class);
 
-                    if (epic.getId() != 0 | epic.getId() != null) {
-                        taskManager.updateTask((T) epic, epic.getId());
-                        T updateEpic = taskManager.getTaskById(epic.getId(), false);
+                    if (epicJson.getId() != null && epicJson.getId() != 0) {
+                        taskManager.updateTask((T) epicJson, epicJson.getId());
+                        T updateEpic = taskManager.getTaskById(epicJson.getId(), false);
                         response = gson.toJson(updateEpic);
                         statusCode = 200;
+
                     } else {
+                        Epic epic = new Epic(epicJson.getName(), epicJson.getDescription());
                         taskManager.add((T) epic);
                         response = gson.toJson(epic);
                         statusCode = 201;
@@ -68,25 +71,50 @@ public class EpicHandler<T extends Task> implements HttpHandler {
                 } catch (ClassCastException e) {
                     response = gson.toJson("Ошибка привидения типа. Ожидаемый типа Task");
                     statusCode = 400;
-                } catch (IllegalArgumentException | JsonSyntaxException e){
+                } catch (IllegalArgumentException | JsonSyntaxException e) {
                     response = gson.toJson("Неверно указаны данные " + e.getMessage());
                     statusCode = 400;
                 }
 
             }
             case "DELETE" -> {
-                String[] part = stringQuery.split("=");
-                int id = Integer.parseInt(part[part.length-1]);
+                try {
+                    if (stringQuery != null) {
+                        String[] part = stringQuery.split("=");
+                        int id = Integer.parseInt(part[1]);
+                        Epic task = (Epic) taskManager.getTaskById(id, false);
 
-                taskManager.removeTaskById(id);
+                        if (task == null) {
+                            response = gson.toJson("Задача не найдена");
+                            statusCode = 404;
+                            break;
+                        }
 
+                        if (task instanceof Epic) {
+                            taskManager.removeTaskById(id);
+                            response = gson.toJson("Задача с идентификатором " + id + " удалена.");
+                            statusCode = 201;
+                        } else {
+                            response = gson.toJson("Неверный тип задачи. Ожидается Epic");
+                            statusCode = 404;
+                        }
+                    } else {
+                        response = gson.toJson("Неверно указаны данные");
+                        statusCode = 400;
+                    }
+                } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
+                    response = gson.toJson("Ошибка чтения URL");
+                    statusCode = 400;
+                }
             }
             default -> {
-
+                response = gson.toJson("Не удалось распознать запрос");
+                statusCode = 501;
             }
         }
 
-        exchange.getResponseHeaders().add("Content-type", "application/json; Charset=UTF-8");
+        exchange.getResponseHeaders()
+                .add("Content-type", "application/json; Charset=UTF-8");
         byte[] bytes = response.getBytes(StandardCharsets.UTF_8);
         exchange.sendResponseHeaders(statusCode, bytes.length);
 

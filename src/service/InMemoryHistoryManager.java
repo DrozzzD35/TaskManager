@@ -32,4 +32,5 @@ public class InMemoryHistoryManager<T extends Task> implements HistoryManager<T>
     public void remove(T task) {
         history.remove(task);
     }
+
 }

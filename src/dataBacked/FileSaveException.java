@@ -2,6 +2,6 @@ package dataBacked;
 
 public class FileSaveException extends RuntimeException {
     public FileSaveException(String message) {
-        super(message);
+        super("Ошибка при сохранении данных. " + message);
     }
 }

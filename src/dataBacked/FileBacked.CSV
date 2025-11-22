@@ -1,9 +1,3 @@
 id, type, name, status, description, epic_id
-1, TASK, updateTask, IN_PROGRESS, updateTask
-2, EPIC, epic11, NEW, epic11
-3, SUBTASK, subTask12, NEW, subTask12, 2
-4, EPIC, epic13, NEW, epic13
-5, SUBTASK, subTask14, NEW, subTask14, 4
-6, EPIC, epic15, NEW, epic15
-7, SUBTASK, subTask16, NEW, subTask16, 6
+1, TASK, Мой первый Таск, NEW, Тест через Postman
 

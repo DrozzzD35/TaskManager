@@ -9,7 +9,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class FileBackedTasksManager<T extends Task> extends InMemoryTaskManager<T> {
@@ -70,7 +69,7 @@ public class FileBackedTasksManager<T extends Task> extends InMemoryTaskManager<
 
             writer.append(String.join(",", ids));
         } catch (Exception e) {
-            throw new ManagerSaveException("Ошибка при сохранение файла " + e);
+            throw new ManagerSaveException(e.getMessage());
         }
 
         System.out.println("CSV файл успешно создан " + filePath);
@@ -153,8 +152,7 @@ public class FileBackedTasksManager<T extends Task> extends InMemoryTaskManager<
                 }
             }
         } catch (IOException e) {
-            throw new FileSaveException("Ошибка при  сохранение файла " + e);
-
+            throw new FileSaveException(e.getMessage());
         }
 
         return manager;
@@ -173,7 +171,7 @@ public class FileBackedTasksManager<T extends Task> extends InMemoryTaskManager<
             try {
                 resultBuilder.append(", ").append(subTask.getParentId());
             } catch (Exception e) {
-                throw new ManagerSaveException("Ошибка, у SubTask отсутствует Epic " + e.getMessage());
+                throw new ManagerSaveException("у SubTask отсутствует Epic " + e.getMessage());
             }
         }
 

@@ -18,8 +18,7 @@ public class HttpTaskServer {
         Path path = Path.of("src/dataBacked/FileBacked.CSV");
         FileBackedTasksManager<Task> fileBackedTasksManager =
                 (FileBackedTasksManager<Task>) Managers.getDefaultFile(path);
-        HttpTaskServer taskServer = new HttpTaskServer(fileBackedTasksManager);
-        taskServer.start();
+        new HttpTaskServer(fileBackedTasksManager);
     }
 
     public HttpTaskServer(TaskManager<Task> taskManager) throws IOException {
