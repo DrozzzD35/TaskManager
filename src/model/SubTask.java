@@ -6,7 +6,7 @@ public class SubTask extends Task {
     private int parentId;
 
     public SubTask(String name, String description, int parentId) {
-        super(name, description); // new Task(name, description);
+        super(name, description);
 
         this.taskStatus = taskStatus.NEW;
         this.type = Type.SUBTASK;

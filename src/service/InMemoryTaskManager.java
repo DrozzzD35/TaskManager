@@ -111,7 +111,7 @@ public class InMemoryTaskManager<T extends Task> implements TaskManager<T> {
     }
 
     @Override
-    public void removeAllTasks() {
+    public void removeTasks() {
         taskMap.clear();
         System.out.println("Все задачи удалены");
     }
@@ -224,13 +224,26 @@ public class InMemoryTaskManager<T extends Task> implements TaskManager<T> {
     @Override
     public List<Epic> getEpics() {
         List<Epic> epics = new ArrayList<>();
-        for (Map.Entry<Integer, T> entry: taskMap.entrySet()){
-            if (entry.getValue() instanceof Epic){
+        for (Map.Entry<Integer, T> entry : taskMap.entrySet()) {
+            if (entry.getValue() instanceof Epic) {
                 epics.add((Epic) entry.getValue());
             }
         }
 
         return epics;
+    }
+
+    @Override
+    public List<SubTask> getSubTasks() {
+        List<SubTask> subTasks = new ArrayList<>();
+
+        for (Map.Entry<Integer, T> entry : taskMap.entrySet()) {
+            if (entry.getValue() instanceof SubTask) {
+                subTasks.add((SubTask) entry.getValue());
+            }
+        }
+
+        return subTasks;
     }
 }
 

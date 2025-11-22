@@ -39,8 +39,8 @@ public class FileBackedTasksManager<T extends Task> extends InMemoryTaskManager<
     }
 
     @Override
-    public void removeAllTasks() {
-        super.removeAllTasks();
+    public void removeTasks() {
+        super.removeTasks();
         save();
     }
 

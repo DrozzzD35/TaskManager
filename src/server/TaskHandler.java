@@ -27,7 +27,7 @@ public class TaskHandler<T extends Task> implements HttpHandler {
         String method = exchange.getRequestMethod().toUpperCase();
         String queryString = exchange.getRequestURI().getQuery();
 
-        int statusCode = 0;
+        int statusCode = -1;
         String response = "";
 
         switch (method) {
@@ -109,7 +109,7 @@ public class TaskHandler<T extends Task> implements HttpHandler {
                         }
 
                     } else {
-                        taskManager.removeAllTasks();
+                        taskManager.removeTasks();
                         response = gson.toJson("Задачи удалены ");
                         statusCode = 200;
                     }

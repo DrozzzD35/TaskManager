@@ -18,12 +18,14 @@ public interface TaskManager<T extends Task> {
 
     void removeTaskById(int id);
 
-    void removeAllTasks();
+    void removeTasks();
 
     List<SubTask> getSubtasksByEpicId(int epicId);
 
     HistoryManager<T> getHistory();
 
     List<Epic> getEpics();
+
+    List<SubTask> getSubTasks();
 
 }

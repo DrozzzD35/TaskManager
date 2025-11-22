@@ -82,7 +82,7 @@ public class EpicHandler<T extends Task> implements HttpHandler {
                     if (stringQuery != null) {
                         String[] part = stringQuery.split("=");
                         int id = Integer.parseInt(part[1]);
-                        Epic task = (Epic) taskManager.getTaskById(id, false);
+                        T task = taskManager.getTaskById(id, false);
 
                         if (task == null) {
                             response = gson.toJson("Задача не найдена");

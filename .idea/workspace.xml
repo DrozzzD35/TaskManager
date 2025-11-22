@@ -4,16 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3b2d2408-c7aa-4b02-a823-dac3b3c98272" name="Changes" comment="- EpicHandler.java реализована обработка метода POST и DELETE">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dataBacked/FileBacked.CSV" beforeDir="false" afterPath="$PROJECT_DIR$/src/dataBacked/FileBacked.CSV" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dataBacked/FileSaveException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dataBacked/FileSaveException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dataBacked/ManagerSaveException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dataBacked/ManagerSaveException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/EpicHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/EpicHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/HttpTaskServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/HttpTaskServer.java" afterDir="false" />
+    <list default="true" id="3b2d2408-c7aa-4b02-a823-dac3b3c98272" name="Changes" comment="Маленькие правки, фиксы:&#10;- EpicHandler.java написать метод DELETE &#10;- InMemoryTaskManager.java написать метод getEpics&#10;- TaskHandler.java исправить метод DELETE">
+      <change beforePath="$PROJECT_DIR$/src/server/SubTaskHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/SubTaskHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/server/TaskHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/TaskHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/service/FileBackedTasksManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/FileBackedTasksManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/service/InMemoryHistoryManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/InMemoryHistoryManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/service/InMemoryTaskManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/InMemoryTaskManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/service/TaskManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/TaskManager.java" afterDir="false" />
     </list>
@@ -270,7 +263,7 @@
       <workItem from="1763631071906" duration="239000" />
       <workItem from="1763631367315" duration="31000" />
       <workItem from="1763636554628" duration="4960000" />
-      <workItem from="1763778033614" duration="2922000" />
+      <workItem from="1763778033614" duration="7599000" />
     </task>
     <task id="LOCAL-00001" summary="в классе Epic добавили методы:&#10;addChild()&#10;getAllChildren()&#10;removeSubTask()&#10;Так же добавлена мапа children&#10;&#10;В классе SubTask добавили объект parent и гет к нему">
       <option name="closed" value="true" />
@@ -624,7 +617,15 @@
       <option name="project" value="LOCAL" />
       <updated>1763631372668</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="Маленькие правки, фиксы:&#10;- EpicHandler.java написать метод DELETE &#10;- InMemoryTaskManager.java написать метод getEpics&#10;- TaskHandler.java исправить метод DELETE">
+      <option name="closed" value="true" />
+      <created>1763782459094</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1763782459094</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -645,7 +646,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/.." />
     </ignored-roots>
-    <MESSAGE value="Добавлен класс History&#10;Реализован List history, так же протестирован" />
     <MESSAGE value="Добавлен и реализован утилитарный класс" />
     <MESSAGE value="Маленькие корректировки" />
     <MESSAGE value="Проведён урок 16.08.2025&#10;В классе main созданы методы для удобства, чистоты и большего порядка. &#10;Добавлен файл для 3го этапа" />
@@ -670,7 +670,8 @@
     <MESSAGE value="- Создать обработчики Epic, Subtask, GeneralTask, History.&#10;- Добавить их в HttpTaskServer.java&#10;- Написать EpicHandler" />
     <MESSAGE value="gson-2.13.1.jar добавлен" />
     <MESSAGE value="- EpicHandler.java реализована обработка метода POST и DELETE" />
-    <option name="LAST_COMMIT_MESSAGE" value="- EpicHandler.java реализована обработка метода POST и DELETE" />
+    <MESSAGE value="Маленькие правки, фиксы:&#10;- EpicHandler.java написать метод DELETE &#10;- InMemoryTaskManager.java написать метод getEpics&#10;- TaskHandler.java исправить метод DELETE" />
+    <option name="LAST_COMMIT_MESSAGE" value="Маленькие правки, фиксы:&#10;- EpicHandler.java написать метод DELETE &#10;- InMemoryTaskManager.java написать метод getEpics&#10;- TaskHandler.java исправить метод DELETE" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
