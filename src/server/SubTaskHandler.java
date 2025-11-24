@@ -36,12 +36,11 @@ public class SubTaskHandler<T extends Task> implements HttpHandler {
                         T task = getTask(id);
                         validateSubTaskType(task);
                         response = gson.toJson(task);
-                        statusCode = 200;
 
                     } else {
                         response = gson.toJson(taskManager.getSubTasks());
-                        statusCode = 200;
                     }
+                    statusCode = 200;
 
                 }
                 case "POST" -> {
@@ -62,7 +61,6 @@ public class SubTaskHandler<T extends Task> implements HttpHandler {
 
                 }
                 case "DELETE" -> {
-
                     if (stringQuery != null) {
                         int id = parseIdFromQuery(stringQuery);
                         T task = getTask(id);
@@ -70,13 +68,11 @@ public class SubTaskHandler<T extends Task> implements HttpHandler {
                         taskManager.removeTaskById(id);
                         response = gson.toJson("Задача с идентификатором "
                                 + id + " удалена.");
-                        statusCode = 200;
-
                     } else {
                         taskManager.removeSubTasks();
                         response = gson.toJson("Все SubTasks удалены");
-                        statusCode = 200;
                     }
+                    statusCode = 200;
 
                 }
                 default -> {
@@ -93,9 +89,14 @@ public class SubTaskHandler<T extends Task> implements HttpHandler {
             response = gson.toJson("Ошибка чтения данных");
             statusCode = 400;
 
-        } catch (ClassCastException e) {
-            response = gson.toJson("Ошибка привидения типа. Ожидается тип SubTask " + e.getMessage());
+        } catch (InCorrectClassException e) {
+            response = gson.toJson(e.getMessage());
             statusCode = 400;
+
+        } catch (NotFoundException e) {
+            response = gson.toJson(e.getMessage());
+            statusCode = 404;
+
         }
 
         sendResponse(exchange, statusCode, response);

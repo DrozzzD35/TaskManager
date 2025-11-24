@@ -24,9 +24,9 @@ public class EpicHandler<T extends Task> implements HttpHandler {
     @Override
     public void handle(HttpExchange exchange) throws IOException {
         String method = exchange.getRequestMethod();
+        String stringQuery = exchange.getRequestURI().getQuery();
         int statusCode;
         String response;
-        String stringQuery = exchange.getRequestURI().getQuery();
 
         try {
             switch (method) {
@@ -36,11 +36,10 @@ public class EpicHandler<T extends Task> implements HttpHandler {
                         T epic = getTask(id);
                         validateEpicType(epic);
                         response = gson.toJson(epic);
-                        statusCode = 200;
                     } else {
                         response = gson.toJson(taskManager.getEpics());
-                        statusCode = 200;
                     }
+                    statusCode = 200;
                 }
                 case "POST" -> {
                     InputStream os = exchange.getRequestBody();
@@ -67,12 +66,12 @@ public class EpicHandler<T extends Task> implements HttpHandler {
                         validateEpicType(task);
                         taskManager.removeTaskById(id);
                         response = gson.toJson("Задача с идентификатором " + id + " удалена.");
-                        statusCode = 201;
                     } else {
                         taskManager.removeEpics();
                         response = gson.toJson("Все задачи типа Epic были удалены");
-                        statusCode = 400;
                     }
+                    statusCode = 200;
+
                 }
                 default -> {
                     response = gson.toJson("Не удалось распознать запрос");
@@ -87,6 +86,12 @@ public class EpicHandler<T extends Task> implements HttpHandler {
         } catch (IllegalArgumentException | JsonSyntaxException e) {
             response = gson.toJson("Неверно указаны данные " + e.getMessage());
             statusCode = 400;
+        } catch (InCorrectClassException e) {
+            response = gson.toJson(e.getMessage());
+            statusCode = 400;
+        } catch (NotFoundException e) {
+            response = gson.toJson(e.getMessage());
+            statusCode = 404;
         }
 
         SubTaskHandler.sendResponse(exchange, statusCode, response);
@@ -95,12 +100,11 @@ public class EpicHandler<T extends Task> implements HttpHandler {
 
     private static int parseIdFromQuery(String stringQuery) {
         String[] part = stringQuery.split("=");
-        int id = Integer.parseInt(part[1]);
-        return id;
+        return Integer.parseInt(part[1]);
     }
 
     private void validateEpicType(T task) {
-        if (task instanceof Epic) {
+        if (!(task instanceof Epic)) {
             throw new InCorrectClassException("Неверный тип задачи. Ожидаемый тип Epic");
         }
     }
