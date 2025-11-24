@@ -86,6 +86,59 @@ public class InMemoryTaskManager<T extends Task> implements TaskManager<T> {
     }
 
     @Override
+    public void updateEpicStatus(Integer epicId) {
+        /*
+        new
+        Done
+        new
+         */
+
+        boolean isDone = false;
+        boolean isInProgress = false;
+        boolean isNew = false;
+
+        Epic epic = (Epic) getTaskById(epicId, false);
+        List<Integer> children = epic.getAllChildrenIds();
+        List<SubTask> subTasks = new ArrayList<>();
+
+        for (Integer child : children) {
+            subTasks.add((SubTask) getTaskById(child, false));
+        }
+
+        for (SubTask subTask : subTasks) {
+            switch (subTask.getStatus()) {
+                case NEW -> {
+                    isNew = true;
+                }
+                case DONE -> {
+                    isDone = true;
+                }
+                case IN_PROGRESS -> {
+                    isInProgress = true;
+                }
+            }
+        }
+
+        /* f && f
+        !(isAllDone || isAllNew) = !isAllDone && !isAllNew
+        !(isAllDone && isAllNew) = T\F
+
+
+        !isAllDone && !isAllNew = F
+        !(isAllDone && isAllNew) = T\F
+
+        */
+        if (isInProgress || (isNew && isDone)) {
+            epic.setStatus(IN_PROGRESS);
+        } else {
+            epic.setStatus(isNew ? NEW : DONE);
+
+        }
+
+
+    }
+
+    @Override
     public void removeTaskById(int id) {
         Task task = getTaskById(id, false);
         if (task == null) {
@@ -112,46 +165,32 @@ public class InMemoryTaskManager<T extends Task> implements TaskManager<T> {
 
     @Override
     public void removeTasks() {
-        Iterator<Map.Entry<Integer, T>> iterator = taskMap.entrySet().iterator();
-
-        while (iterator.hasNext()) {
-            Map.Entry<Integer, T> entry = iterator.next();
-
-            if (!(entry.getValue() instanceof Epic) && !(entry.getValue() instanceof SubTask)) {
-                iterator.remove();
-            }
-        }
+        taskMap.entrySet().removeIf(integerTEntry
+                -> integerTEntry.getValue() != null
+                && !(integerTEntry.getValue() instanceof Epic)
+                && !(integerTEntry.getValue() instanceof SubTask));
     }
 
     @Override
     public void removeEpics() {
         removeSubTasks();
 
-        Iterator<Map.Entry<Integer, T>> iterator = taskMap.entrySet().iterator();
-
-        while (iterator.hasNext()) {
-            Map.Entry<Integer, T> entry = iterator.next();
-
-            if (entry.getValue() instanceof Epic) {
-                iterator.remove();
-            }
-
-        }
+        taskMap.entrySet().removeIf(integerTEntry
+                -> integerTEntry.getValue() != null
+                && integerTEntry.getValue() instanceof Epic);
     }
 
     @Override
     public void removeSubTasks() {
-        Iterator<Map.Entry<Integer, T>> iterator = taskMap.entrySet().iterator();
+        taskMap.entrySet().removeIf(integerTEntry
+                -> integerTEntry.getValue() != null
+                && integerTEntry.getValue() instanceof SubTask);
 
-        while (iterator.hasNext()) {
-            Map.Entry<Integer, T> entry = iterator.next();
-
-            if (entry.getValue() instanceof Epic){
-                ((Epic) entry.getValue()).removeAllChildren();
-            }
-
-            if (entry.getValue() instanceof SubTask) {
-                iterator.remove();
+        for (T task : taskMap.values()) {
+            if (task != null) {
+                if (task instanceof Epic) {
+                    ((Epic) task).removeAllChildren();
+                }
             }
         }
     }
@@ -180,6 +219,10 @@ public class InMemoryTaskManager<T extends Task> implements TaskManager<T> {
             if (entry.getValue() instanceof Epic) {
                 epics.add((Epic) entry.getValue());
             }
+        }
+
+        if (epics.isEmpty()) {
+            return null;
         }
 
         return epics;
@@ -232,58 +275,6 @@ public class InMemoryTaskManager<T extends Task> implements TaskManager<T> {
             System.out.println("Тип: " + task.getType());
             System.out.println();
         }
-    }
-
-    public void updateEpicStatus(Integer epicId) {
-        /*
-        new
-        Done
-        new
-         */
-
-        boolean isDone = false;
-        boolean isInProgress = false;
-        boolean isNew = false;
-
-        Epic epic = (Epic) getTaskById(epicId, false);
-        List<Integer> children = epic.getAllChildrenIds();
-        List<SubTask> subTasks = new ArrayList<>();
-
-        for (Integer child : children) {
-            subTasks.add((SubTask) getTaskById(child, false));
-        }
-
-        for (SubTask subTask : subTasks) {
-            switch (subTask.getStatus()) {
-                case NEW -> {
-                    isNew = true;
-                }
-                case DONE -> {
-                    isDone = true;
-                }
-                case IN_PROGRESS -> {
-                    isInProgress = true;
-                }
-            }
-        }
-
-        /* f && f
-        !(isAllDone || isAllNew) = !isAllDone && !isAllNew
-        !(isAllDone && isAllNew) = T\F
-
-
-        !isAllDone && !isAllNew = F
-        !(isAllDone && isAllNew) = T\F
-
-        */
-        if (isInProgress || (isNew && isDone)) {
-            epic.setStatus(IN_PROGRESS);
-        } else {
-            epic.setStatus(isNew ? NEW : DONE);
-
-        }
-
-
     }
 }
 
