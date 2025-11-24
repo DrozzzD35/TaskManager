@@ -16,6 +16,8 @@ public interface TaskManager<T extends Task> {
 
     void updateTask(T task, int id);
 
+    void updateEpicStatus(Integer epicId);
+
     void removeTaskById(int id);
 
     void removeAllTasks();
@@ -33,7 +35,6 @@ public interface TaskManager<T extends Task> {
     List<Epic> getEpics();
 
     List<SubTask> getSubTasks();
-
 
 
 }

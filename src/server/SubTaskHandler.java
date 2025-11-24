@@ -36,6 +36,13 @@ public class SubTaskHandler<T extends Task> implements HttpHandler {
                         int id = Integer.parseInt(partQuery[1]);
                         T subTask = taskManager.getTaskById(id, false);
 
+                        if (subTask == null) {
+                            response = gson.toJson("Задачи с идентификатором "
+                                    + id + " не существует");
+                            statusCode = 404;
+                            break;
+                        }
+
                         if (subTask instanceof SubTask) {
                             response = gson.toJson(subTask);
                             statusCode = 200;
@@ -47,6 +54,7 @@ public class SubTaskHandler<T extends Task> implements HttpHandler {
                         response = gson.toJson(taskManager.getSubTasks());
                         statusCode = 200;
                     }
+
                 } catch (ArrayIndexOutOfBoundsException | NumberFormatException e) {
                     response = gson.toJson("Ошибка чтения URL " + e.getMessage());
                     statusCode = 400;
@@ -89,6 +97,13 @@ public class SubTaskHandler<T extends Task> implements HttpHandler {
                         int id = Integer.parseInt(part[1]);
                         T task = taskManager.getTaskById(id, false);
 
+                        if (task == null) {
+                            response = gson.toJson("Задачи с идентификатором "
+                                    + id + " не существует");
+                            statusCode = 404;
+                            break;
+                        }
+
                         if (task instanceof SubTask) {
                             taskManager.removeTaskById(id);
                             response = gson.toJson("Задача с идентификатором "
@@ -99,9 +114,11 @@ public class SubTaskHandler<T extends Task> implements HttpHandler {
                             statusCode = 404;
                         }
                     } else {
-                        response = gson.toJson("Не распознан идентификатор");
-                        statusCode = 404;
+                        taskManager.removeSubTasks();
+                        response = gson.toJson("Все SubTasks удалены");
+                        statusCode = 200;
                     }
+
                 } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
                     response = gson.toJson("Ошибка чтения URL");
                     statusCode = 404;

@@ -35,9 +35,22 @@ public class EpicHandler<T extends Task> implements HttpHandler {
                     if (stringQuery != null) {
                         String[] parts = stringQuery.split("=");
                         int id = Integer.parseInt(parts[1]);
+                        T epic =  taskManager.getTaskById(id, false);
 
-                        response = gson.toJson(taskManager.getTaskById(id, false));
-                        statusCode = 200;
+                        if (epic == null) {
+                            response = gson.toJson("Задачи с идентификатором "
+                                    + id + " не существует");
+                            statusCode = 404;
+                            break;
+                        }
+
+                        if (epic instanceof  Epic) {
+                            response = gson.toJson(epic);
+                            statusCode = 200;
+                        } else {
+                            response = gson.toJson("Задача не имеет тип Epic. Требуется тип Epic");
+                            statusCode = 404;
+                        }
                     } else {
                         response = gson.toJson(taskManager.getEpics());
                         statusCode = 200;
