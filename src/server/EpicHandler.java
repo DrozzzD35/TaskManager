@@ -10,7 +10,6 @@ import service.TaskManager;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.nio.charset.StandardCharsets;
 //TODO стоит ли проверять по типу прежде чем удалять\отправлять
 
@@ -35,7 +34,7 @@ public class EpicHandler<T extends Task> implements HttpHandler {
                     if (stringQuery != null) {
                         String[] parts = stringQuery.split("=");
                         int id = Integer.parseInt(parts[1]);
-                        T epic =  taskManager.getTaskById(id, false);
+                        T epic = taskManager.getTaskById(id, false);
 
                         if (epic == null) {
                             response = gson.toJson("Задачи с идентификатором "
@@ -44,7 +43,7 @@ public class EpicHandler<T extends Task> implements HttpHandler {
                             break;
                         }
 
-                        if (epic instanceof  Epic) {
+                        if (epic instanceof Epic) {
                             response = gson.toJson(epic);
                             statusCode = 200;
                         } else {
@@ -98,7 +97,8 @@ public class EpicHandler<T extends Task> implements HttpHandler {
                         T task = taskManager.getTaskById(id, false);
 
                         if (task == null) {
-                            response = gson.toJson("Задача не найдена");
+                            response = gson.toJson("Задачи с идентификатором "
+                                    + id + " не существует");
                             statusCode = 404;
                             break;
                         }
@@ -112,9 +112,11 @@ public class EpicHandler<T extends Task> implements HttpHandler {
                             statusCode = 404;
                         }
                     } else {
-                        response = gson.toJson("Неверно указаны данные");
+                        taskManager.removeEpics();
+                        response = gson.toJson("Все задачи типа Epic были удалены");
                         statusCode = 400;
                     }
+
                 } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
                     response = gson.toJson("Ошибка чтения URL");
                     statusCode = 400;
@@ -126,16 +128,7 @@ public class EpicHandler<T extends Task> implements HttpHandler {
             }
         }
 
-        exchange.getResponseHeaders()
-                .add("Content-type", "application/json; Charset=UTF-8");
-        byte[] bytes = response.getBytes(StandardCharsets.UTF_8);
-        exchange.sendResponseHeaders(statusCode, bytes.length);
-
-        try (OutputStream os = exchange.getResponseBody()) {
-            os.write(bytes);
-        } catch (IOException e) {
-            System.out.println("Ошибка при отправке данных");
-        }
+        SubTaskHandler.sendResponse(exchange, statusCode, response);
 
     }
 }

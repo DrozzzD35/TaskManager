@@ -14,8 +14,8 @@ import java.io.OutputStream;
 import java.nio.charset.StandardCharsets;
 
 public class SubTaskHandler<T extends Task> implements HttpHandler {
-    private TaskManager<T> taskManager;
-    Gson gson = new Gson();
+    private final TaskManager<T> taskManager;
+    private final Gson gson = new Gson();
 
     public SubTaskHandler(TaskManager<T> taskManager) {
         this.taskManager = taskManager;
@@ -25,47 +25,28 @@ public class SubTaskHandler<T extends Task> implements HttpHandler {
     public void handle(HttpExchange exchange) throws IOException {
         String method = exchange.getRequestMethod();
         String stringQuery = exchange.getRequestURI().getQuery();
-        int statusCode = -1;
-        String response = "";
+        int statusCode;
+        String response;
 
-        switch (method) {
-            case "GET" -> {
-                try {
+        try {
+            switch (method) {
+                case "GET" -> {
                     if (stringQuery != null) {
-                        String[] partQuery = stringQuery.split("=");
-                        int id = Integer.parseInt(partQuery[1]);
-                        T subTask = taskManager.getTaskById(id, false);
+                        int id = parseIdFromQuery(stringQuery);
+                        T task = getTask(id);
+                        validateSubTaskType(task);
+                        response = gson.toJson(task);
+                        statusCode = 200;
 
-                        if (subTask == null) {
-                            response = gson.toJson("Задачи с идентификатором "
-                                    + id + " не существует");
-                            statusCode = 404;
-                            break;
-                        }
-
-                        if (subTask instanceof SubTask) {
-                            response = gson.toJson(subTask);
-                            statusCode = 200;
-                        } else {
-                            response = gson.toJson("Полученная задача не является SubTask");
-                            statusCode = 404;
-                        }
                     } else {
                         response = gson.toJson(taskManager.getSubTasks());
                         statusCode = 200;
                     }
 
-                } catch (ArrayIndexOutOfBoundsException | NumberFormatException e) {
-                    response = gson.toJson("Ошибка чтения URL " + e.getMessage());
-                    statusCode = 400;
                 }
-
-            }
-            case "POST" -> {
-                InputStream os = exchange.getRequestBody();
-                String stringJson = new String(os.readAllBytes(), StandardCharsets.UTF_8);
-
-                try {
+                case "POST" -> {
+                    InputStream os = exchange.getRequestBody();
+                    String stringJson = new String(os.readAllBytes(), StandardCharsets.UTF_8);
                     SubTask subTaskJson = gson.fromJson(stringJson, SubTask.class);
 
                     if (subTaskJson.getId() != null && subTaskJson.getId() != 0) {
@@ -79,59 +60,49 @@ public class SubTaskHandler<T extends Task> implements HttpHandler {
                         statusCode = 201;
                     }
 
-                } catch (JsonSyntaxException | IllegalArgumentException e) {
-                    response = gson.toJson("Ошибка чтения данных");
-                    statusCode = 400;
-
-                } catch (ClassCastException e) {
-                    response = gson.toJson("Ошибка привидения типа. Ожидается тип SubTask " + e.getMessage());
-                    statusCode = 400;
                 }
-            }
+                case "DELETE" -> {
 
-            case "DELETE" -> {
-
-                try {
                     if (stringQuery != null) {
-                        String[] part = stringQuery.split("=");
-                        int id = Integer.parseInt(part[1]);
-                        T task = taskManager.getTaskById(id, false);
+                        int id = parseIdFromQuery(stringQuery);
+                        T task = getTask(id);
+                        validateSubTaskType(task);
+                        taskManager.removeTaskById(id);
+                        response = gson.toJson("Задача с идентификатором "
+                                + id + " удалена.");
+                        statusCode = 200;
 
-                        if (task == null) {
-                            response = gson.toJson("Задачи с идентификатором "
-                                    + id + " не существует");
-                            statusCode = 404;
-                            break;
-                        }
-
-                        if (task instanceof SubTask) {
-                            taskManager.removeTaskById(id);
-                            response = gson.toJson("Задача с идентификатором "
-                                    + id + " удалена.");
-                            statusCode = 200;
-                        } else {
-                            response = gson.toJson("Найденная задача не является SubTask. Ожидается SubTask");
-                            statusCode = 404;
-                        }
                     } else {
                         taskManager.removeSubTasks();
                         response = gson.toJson("Все SubTasks удалены");
                         statusCode = 200;
                     }
 
-                } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
-                    response = gson.toJson("Ошибка чтения URL");
-                    statusCode = 404;
                 }
-
+                default -> {
+                    response = gson.toJson("Запрос не может быть обработан. Допущена ошибка");
+                    statusCode = 501;
+                }
             }
 
-            default -> {
-                response = gson.toJson("Запрос не может быть обработан. Допущена ошибка");
-                statusCode = 501;
-            }
+        } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
+            response = gson.toJson("Ошибка чтения URL");
+            statusCode = 404;
 
+        } catch (IllegalArgumentException | JsonSyntaxException e) {
+            response = gson.toJson("Ошибка чтения данных");
+            statusCode = 400;
+
+        } catch (ClassCastException e) {
+            response = gson.toJson("Ошибка привидения типа. Ожидается тип SubTask " + e.getMessage());
+            statusCode = 400;
         }
+
+        sendResponse(exchange, statusCode, response);
+    }
+
+    //TODO Вынести метод sendResponse в общий класс
+    static void sendResponse(HttpExchange exchange, int statusCode, String response) throws IOException {
         exchange.getResponseHeaders()
                 .add("Content-type", "application/json; Charset=UTF-8");
         byte[] bytes = response.getBytes(StandardCharsets.UTF_8);
@@ -142,7 +113,26 @@ public class SubTaskHandler<T extends Task> implements HttpHandler {
         } catch (IOException e) {
             System.out.println("Ошибка при отправке данных");
         }
-
-
     }
+
+    private int parseIdFromQuery(String stringQuery) {
+        String[] part = stringQuery.split("=");
+        return Integer.parseInt(part[1]);
+    }
+
+    private T getTask(int id) {
+        T task = taskManager.getTaskById(id, false);
+
+        if (task == null) {
+            throw new NotFoundException(id);
+        }
+        return task;
+    }
+
+    private void validateSubTaskType(T task) {
+        if (!(task instanceof SubTask)) {
+            throw new InCorrectClassException("Тип задачи не корректный. Ожидаемый тип SubTask");
+        }
+    }
+
 }
