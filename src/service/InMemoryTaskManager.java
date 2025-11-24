@@ -4,11 +4,7 @@ import model.Epic;
 import model.SubTask;
 import model.Task;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-//TODO необходимо ли вытащить идентификатор из конструктора Task, Epic, SubTask, чтоб не присваивался где не нужно
+import java.util.*;
 
 import static model.TaskStatus.*;
 
@@ -16,12 +12,10 @@ public class InMemoryTaskManager<T extends Task> implements TaskManager<T> {
     private Map<Integer, T> taskMap;
     protected HistoryManager<T> history;
 
-
     public InMemoryTaskManager() {
         this.history = Managers.getDefaultHistory();
         this.taskMap = new HashMap<>();
     }
-
 
     @Override
     public void add(T task) {
@@ -111,9 +105,55 @@ public class InMemoryTaskManager<T extends Task> implements TaskManager<T> {
     }
 
     @Override
-    public void removeTasks() {
+    public void removeAllTasks() {
         taskMap.clear();
         System.out.println("Все задачи удалены");
+    }
+
+    @Override
+    public void removeTasks() {
+        Iterator<Map.Entry<Integer, T>> iterator = taskMap.entrySet().iterator();
+
+        while (iterator.hasNext()) {
+            Map.Entry<Integer, T> entry = iterator.next();
+
+            if (!(entry.getValue() instanceof Epic) && !(entry.getValue() instanceof SubTask)) {
+                iterator.remove();
+            }
+        }
+    }
+
+    @Override
+    public void removeEpics() {
+        removeSubTasks();
+
+        Iterator<Map.Entry<Integer, T>> iterator = taskMap.entrySet().iterator();
+
+        while (iterator.hasNext()) {
+            Map.Entry<Integer, T> entry = iterator.next();
+
+            if (entry.getValue() instanceof Epic) {
+                iterator.remove();
+            }
+
+        }
+    }
+
+    @Override
+    public void removeSubTasks() {
+        Iterator<Map.Entry<Integer, T>> iterator = taskMap.entrySet().iterator();
+
+        while (iterator.hasNext()) {
+            Map.Entry<Integer, T> entry = iterator.next();
+
+            if (entry.getValue() instanceof Epic){
+                ((Epic) entry.getValue()).removeAllChildren();
+            }
+
+            if (entry.getValue() instanceof SubTask) {
+                iterator.remove();
+            }
+        }
     }
 
     @Override
@@ -129,6 +169,31 @@ public class InMemoryTaskManager<T extends Task> implements TaskManager<T> {
             subTasks.add((SubTask) getTaskById(subTaskId, false));
         }
 
+
+        return subTasks;
+    }
+
+    @Override
+    public List<Epic> getEpics() {
+        List<Epic> epics = new ArrayList<>();
+        for (Map.Entry<Integer, T> entry : taskMap.entrySet()) {
+            if (entry.getValue() instanceof Epic) {
+                epics.add((Epic) entry.getValue());
+            }
+        }
+
+        return epics;
+    }
+
+    @Override
+    public List<SubTask> getSubTasks() {
+        List<SubTask> subTasks = new ArrayList<>();
+
+        for (Map.Entry<Integer, T> entry : taskMap.entrySet()) {
+            if (entry.getValue() instanceof SubTask) {
+                subTasks.add((SubTask) entry.getValue());
+            }
+        }
 
         return subTasks;
     }
@@ -219,31 +284,6 @@ public class InMemoryTaskManager<T extends Task> implements TaskManager<T> {
         }
 
 
-    }
-
-    @Override
-    public List<Epic> getEpics() {
-        List<Epic> epics = new ArrayList<>();
-        for (Map.Entry<Integer, T> entry : taskMap.entrySet()) {
-            if (entry.getValue() instanceof Epic) {
-                epics.add((Epic) entry.getValue());
-            }
-        }
-
-        return epics;
-    }
-
-    @Override
-    public List<SubTask> getSubTasks() {
-        List<SubTask> subTasks = new ArrayList<>();
-
-        for (Map.Entry<Integer, T> entry : taskMap.entrySet()) {
-            if (entry.getValue() instanceof SubTask) {
-                subTasks.add((SubTask) entry.getValue());
-            }
-        }
-
-        return subTasks;
     }
 }
 

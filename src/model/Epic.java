@@ -20,6 +20,9 @@ public class Epic extends Task {
 
     }
 
+    public void removeAllChildren(){
+        subTasksIds.clear();
+    }
 
     public List<Integer> getAllChildrenIds() {
         return subTasksIds;

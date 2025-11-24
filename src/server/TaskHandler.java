@@ -109,7 +109,7 @@ public class TaskHandler<T extends Task> implements HttpHandler {
                         }
 
                     } else {
-                        taskManager.removeTasks();
+                        taskManager.removeAllTasks();
                         response = gson.toJson("Задачи удалены ");
                         statusCode = 200;
                     }

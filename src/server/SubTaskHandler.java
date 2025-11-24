@@ -34,8 +34,15 @@ public class SubTaskHandler<T extends Task> implements HttpHandler {
                     if (stringQuery != null) {
                         String[] partQuery = stringQuery.split("=");
                         int id = Integer.parseInt(partQuery[1]);
-                        response = gson.toJson(taskManager.getTaskById(id, false));
-                        statusCode = 200;
+                        T subTask = taskManager.getTaskById(id, false);
+
+                        if (subTask instanceof SubTask) {
+                            response = gson.toJson(subTask);
+                            statusCode = 200;
+                        } else {
+                            response = gson.toJson("Полученная задача не является SubTask");
+                            statusCode = 404;
+                        }
                     } else {
                         response = gson.toJson(taskManager.getSubTasks());
                         statusCode = 200;
@@ -60,7 +67,7 @@ public class SubTaskHandler<T extends Task> implements HttpHandler {
                     } else {
                         SubTask subTask = new SubTask(subTaskJson.getName(), subTaskJson.getDescription(), subTaskJson.getParentId());
                         taskManager.add((T) subTask);
-                        response = gson.toJson(stringJson);
+                        response = gson.toJson(subTask);
                         statusCode = 201;
                     }
 
@@ -69,7 +76,7 @@ public class SubTaskHandler<T extends Task> implements HttpHandler {
                     statusCode = 400;
 
                 } catch (ClassCastException e) {
-                    response = gson.toJson("Ошибка привидения типа. Требуется тип SubTask " + e.getMessage());
+                    response = gson.toJson("Ошибка привидения типа. Ожидается тип SubTask " + e.getMessage());
                     statusCode = 400;
                 }
             }
@@ -80,24 +87,31 @@ public class SubTaskHandler<T extends Task> implements HttpHandler {
                     if (stringQuery != null) {
                         String[] part = stringQuery.split("=");
                         int id = Integer.parseInt(part[1]);
-                        taskManager.removeTaskById(id);
-                        response = gson.toJson("Задача с идентификатором "
-                                + id + " удалена.");
-                        statusCode = 200;
+                        T task = taskManager.getTaskById(id, false);
+
+                        if (task instanceof SubTask) {
+                            taskManager.removeTaskById(id);
+                            response = gson.toJson("Задача с идентификатором "
+                                    + id + " удалена.");
+                            statusCode = 200;
+                        } else {
+                            response = gson.toJson("Найденная задача не является SubTask. Ожидается SubTask");
+                            statusCode = 404;
+                        }
                     } else {
                         response = gson.toJson("Не распознан идентификатор");
                         statusCode = 404;
                     }
                 } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
-                    response = gson.toJson("Ошибка чтения URL. Не распознан идентификатор");
+                    response = gson.toJson("Ошибка чтения URL");
                     statusCode = 404;
                 }
 
             }
 
             default -> {
+                response = gson.toJson("Запрос не может быть обработан. Допущена ошибка");
                 statusCode = 501;
-                response = "";
             }
 
         }
