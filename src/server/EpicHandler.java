@@ -112,7 +112,7 @@ public class EpicHandler<T extends Task> implements HttpHandler {
     private T getTask(int id) {
         T task = taskManager.getTaskById(id, false);
         if (task == null) {
-            throw new NotFoundException(id);
+            throw new NotFoundException("Задача не существует");
         }
         return task;
     }

@@ -4,9 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3b2d2408-c7aa-4b02-a823-dac3b3c98272" name="Changes" comment="- EpicHandler убрать повторяемость кода, создать методы sendResponse(в будущем его перенести), getTask, validateSubTaskType, parseIdFromQuery.&#10;Try catch сделать общим для удаления повторяемости кода">
+    <list default="true" id="3b2d2408-c7aa-4b02-a823-dac3b3c98272" name="Changes" comment="- EpicHandler.java и SubTaskHandler.java добавить catch для InCorrectClassException и NotFoundException.&#10;Убрать лишний statusCode, вынести во внешнюю строку, удалить излишки кода">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/server/EpicHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/EpicHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/NotFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/NotFoundException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/SubTaskHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/SubTaskHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/TaskHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/TaskHandler.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -262,15 +265,7 @@
       <workItem from="1763631071906" duration="239000" />
       <workItem from="1763631367315" duration="31000" />
       <workItem from="1763636554628" duration="4960000" />
-      <workItem from="1763778033614" duration="33473000" />
-    </task>
-    <task id="LOCAL-00003" summary="Проведён урок&#10;Добавлен интерфейс TaskManager&#10;Реализованы методы интерфейса TaskManager в классе Manager">
-      <option name="closed" value="true" />
-      <created>1746473020905</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1746473020905</updated>
+      <workItem from="1763778033614" duration="36864000" />
     </task>
     <task id="LOCAL-00004" summary="Проведён урок&#10;Добавлен интерфейс TaskManager&#10;Реализованы методы интерфейса TaskManager в классе Manager">
       <option name="closed" value="true" />
@@ -656,7 +651,15 @@
       <option name="project" value="LOCAL" />
       <updated>1763989998885</updated>
     </task>
-    <option name="localTasksCounter" value="52" />
+    <task id="LOCAL-00052" summary="- EpicHandler.java и SubTaskHandler.java добавить catch для InCorrectClassException и NotFoundException.&#10;Убрать лишний statusCode, вынести во внешнюю строку, удалить излишки кода">
+      <option name="closed" value="true" />
+      <created>1763992170782</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1763992170782</updated>
+    </task>
+    <option name="localTasksCounter" value="53" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -677,7 +680,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/.." />
     </ignored-roots>
-    <MESSAGE value="Классная работа.&#10;Feat: написать логику методов save, toString, fromString." />
     <MESSAGE value="Классная работа.&#10;Feat: дописать метод fromString." />
     <MESSAGE value="Классная работа.&#10;Fix: поправить метод add.&#10;Refactor: убрать лишний перенос строки в записи Tasks. Изменить название Enum" />
     <MESSAGE value="Домашняя работа.&#10;Feat: добавлен геттер history" />
@@ -702,7 +704,8 @@
     <MESSAGE value="- EpicHandler.java добавить в метод &quot;GET&quot; проверку таска на null и на тип Epic&#10;- SubTaskHandler.java добавить в метод &quot;GET&quot; и &quot;DELETE&quot; проверку таска на null и на тип SubTask.&#10;Добавить удаление всех задач - taskManager.removeSubTasks()&#10;- TaskManager.java добавить метод updateEpicStatus(Integer epicId)" />
     <MESSAGE value="- EpicHandler.java вынести в отдельный метод отправку ответа клиенту, использовать кастомный метод sendResponse. &#10;Использовать метод removeEpics.&#10;Внести проверку на наличие задачи&#10;- Создать кастомные исключения для обработки ошибок InCorrectClassException.java и NotFoundException.java&#10;- Убрать повторяемость кода, создать методы sendResponse(в будущем его перенести), getTask, validateSubTaskType, parseIdFromQuery.&#10;Try catch сделать общим для удаления повторяемости кода" />
     <MESSAGE value="- EpicHandler убрать повторяемость кода, создать методы sendResponse(в будущем его перенести), getTask, validateSubTaskType, parseIdFromQuery.&#10;Try catch сделать общим для удаления повторяемости кода" />
-    <option name="LAST_COMMIT_MESSAGE" value="- EpicHandler убрать повторяемость кода, создать методы sendResponse(в будущем его перенести), getTask, validateSubTaskType, parseIdFromQuery.&#10;Try catch сделать общим для удаления повторяемости кода" />
+    <MESSAGE value="- EpicHandler.java и SubTaskHandler.java добавить catch для InCorrectClassException и NotFoundException.&#10;Убрать лишний statusCode, вынести во внешнюю строку, удалить излишки кода" />
+    <option name="LAST_COMMIT_MESSAGE" value="- EpicHandler.java и SubTaskHandler.java добавить catch для InCorrectClassException и NotFoundException.&#10;Убрать лишний statusCode, вынести во внешнюю строку, удалить излишки кода" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
