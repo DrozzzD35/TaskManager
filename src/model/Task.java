@@ -69,6 +69,7 @@ public class Task {
         return '\n' + "Task{" + "id=" + id + '\n' + "name=" + name + '\n' + "description=" + description + '\n' + "status=" + taskStatus + '\n' + "type=" + type + '}' + '\n';
     }
 
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;

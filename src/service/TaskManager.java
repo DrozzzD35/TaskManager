@@ -10,7 +10,7 @@ public interface TaskManager<T extends Task> {
 
     void add(T task);
 
-    List<T> getTasks();
+    List<T> getAllTasks();
 
     T getTaskById(int id, boolean withHistory);
 
@@ -36,5 +36,6 @@ public interface TaskManager<T extends Task> {
 
     List<SubTask> getSubTasks();
 
+    List<Task> getTasks();
 
 }

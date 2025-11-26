@@ -11,11 +11,12 @@ import service.TaskManager;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
+import java.util.List;
 //TODO стоит ли проверять по типу прежде чем удалять\отправлять
 
 public class EpicHandler<T extends Task> implements HttpHandler {
-    private TaskManager<T> taskManager;
-    private Gson gson = new Gson();
+    private final TaskManager<T> taskManager;
+    private final Gson gson = new Gson();
 
     public EpicHandler(TaskManager<T> taskManager) {
         this.taskManager = taskManager;
@@ -37,6 +38,7 @@ public class EpicHandler<T extends Task> implements HttpHandler {
                         validateEpicType(epic);
                         response = gson.toJson(epic);
                     } else {
+                        chekListOfEpics();
                         response = gson.toJson(taskManager.getEpics());
                     }
                     statusCode = 200;
@@ -116,5 +118,12 @@ public class EpicHandler<T extends Task> implements HttpHandler {
         }
         return task;
     }
+
+    private void chekListOfEpics() {
+        if (taskManager.getEpics().isEmpty()) {
+            throw new NotFoundException("Список Epics пуст");
+        }
+    }
+
 
 }

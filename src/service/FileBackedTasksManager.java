@@ -8,7 +8,7 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class FileBackedTasksManager<T extends Task> extends InMemoryTaskManager<T> {
@@ -55,7 +55,7 @@ public class FileBackedTasksManager<T extends Task> extends InMemoryTaskManager<
         try (BufferedWriter writer = Files.newBufferedWriter(filePath)) {
             writer.append(csvHeaderText);
 
-            for (T task : getTasks()) {
+            for (T task : getAllTasks()) {
                 try {
                     writer.append(toString(task)).append("\n");
                 } catch (ManagerSaveException e) {
@@ -115,20 +115,27 @@ public class FileBackedTasksManager<T extends Task> extends InMemoryTaskManager<
     }
 
     public static List<Integer> historyFromString(String value) {
-        //TODO Arrays.toString Превратит строку в "[1,23,56]". Символы "[]" ломают код?
+        //TODO Arrays.toString Превратит строку в "[1,23,56]". Символы "[]" ломают код
         //Не забыть оценить новый код исправляющий:
 //        Exception in thread "main" java.lang.NumberFormatException: For input string: "[1, 2, 3]"
 
         String[] ids = value.split(",");
-        List<Integer> idsHistory = new ArrayList<>();
-        for (String id : ids) {
-            if (id.equals("[") || id.equals("]")) {
-                continue;
-            } else {
-                idsHistory.add(Integer.valueOf(id));
-            }
-        }
-        return idsHistory;
+        return Arrays.stream(ids)
+                .map(s -> s.replace("[", "")
+                        .replace("]", "")
+                        .trim())
+                .filter(s -> !s.isEmpty())
+                .map(Integer::valueOf).toList();
+
+//        List<Integer> idsHistory = new ArrayList<>();
+//        for (String id : ids) {
+//            if (id.equals("[") || id.equals("]")) {
+//                continue;
+//            } else {
+//                idsHistory.add(Integer.valueOf(id));
+//            }
+//        }
+//        return idsHistory;
 //        return new ArrayList<>(Integer.parseInt(Arrays.toString(ids)));
     }
 

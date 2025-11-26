@@ -4,12 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3b2d2408-c7aa-4b02-a823-dac3b3c98272" name="Changes" comment="- EpicHandler.java и SubTaskHandler.java добавить catch для InCorrectClassException и NotFoundException.&#10;Убрать лишний statusCode, вынести во внешнюю строку, удалить излишки кода">
+    <list default="true" id="3b2d2408-c7aa-4b02-a823-dac3b3c98272" name="Changes" comment="- EpicHandler.java, SubTaskHandler.java и TaskHandler.java переписать метод getTasks, переименовать его в chekListOfTasks&#10;- FileBackedTasksManager.java переписать метод historyFromString, применить Stream API&#10;- HistoryHandler.java написать класс&#10;- InMemoryTaskManager.java. В методе removeTasks, внести проверку типа задачи вместо отсеивания епиков с сабтасками.&#10;Написать метод getTasks. Переписать методы getEpics/SubTasks с применением Stream&#10;- TaskManager.java в интерфейс добавить метод getTasks">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MyTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MyTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Task.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Task.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/server/EpicHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/EpicHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/NotFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/NotFoundException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/GeneralTaskHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/GeneralTaskHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/HistoryHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/HistoryHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/server/SubTaskHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/SubTaskHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/server/TaskHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/TaskHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/service/FileBackedTasksManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/FileBackedTasksManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/service/InMemoryTaskManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/InMemoryTaskManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/service/TaskManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/TaskManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,30 +58,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.HttpTaskServer.executor": "Run",
-    "Application.Main.executor": "Run",
-    "Application.MyTest.executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "extract.method.default.visibility": "private",
-    "git-widget-placeholder": "master",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/DrozzzD35/IdeaProjects/TaskManager/src/documents",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "preferences.lookFeel",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.HttpTaskServer.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Application.MyTest.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;extract.method.default.visibility&quot;: &quot;private&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/DrozzzD35/IdeaProjects/TaskManager/src/documents&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="GeneralTaskHandler" />
@@ -265,15 +271,11 @@
       <workItem from="1763631071906" duration="239000" />
       <workItem from="1763631367315" duration="31000" />
       <workItem from="1763636554628" duration="4960000" />
-      <workItem from="1763778033614" duration="36864000" />
-    </task>
-    <task id="LOCAL-00004" summary="Проведён урок&#10;Добавлен интерфейс TaskManager&#10;Реализованы методы интерфейса TaskManager в классе Manager">
-      <option name="closed" value="true" />
-      <created>1746498832232</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1746498832232</updated>
+      <workItem from="1763778033614" duration="38374000" />
+      <workItem from="1764065944411" duration="14000" />
+      <workItem from="1764066837951" duration="88000" />
+      <workItem from="1764082972698" duration="476000" />
+      <workItem from="1764139926527" duration="11107000" />
     </task>
     <task id="LOCAL-00005" summary="Проведён урок&#10;Добавлен интерфейс TaskManager&#10;Реализованы методы интерфейса TaskManager в классе Manager">
       <option name="closed" value="true" />
@@ -659,7 +661,15 @@
       <option name="project" value="LOCAL" />
       <updated>1763992170782</updated>
     </task>
-    <option name="localTasksCounter" value="53" />
+    <task id="LOCAL-00053" summary="- EpicHandler.java и SubTaskHandler.java добавить описание для NotFoundException&#10;- Сделать NotFoundException.java более универсальным, убрать текст, текст будет внесён в параметр конструктора&#10;- TaskHandler.java вынести try catch, избавиться от повторяемости кода.&#10;Создать методы getListOfTasks, getTask, parseIdFromQuery, validateTaskType и реализовать их">
+      <option name="closed" value="true" />
+      <created>1764000524197</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1764000524197</updated>
+    </task>
+    <option name="localTasksCounter" value="54" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -680,8 +690,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/.." />
     </ignored-roots>
-    <MESSAGE value="Классная работа.&#10;Feat: дописать метод fromString." />
-    <MESSAGE value="Классная работа.&#10;Fix: поправить метод add.&#10;Refactor: убрать лишний перенос строки в записи Tasks. Изменить название Enum" />
     <MESSAGE value="Домашняя работа.&#10;Feat: добавлен геттер history" />
     <MESSAGE value="Домашняя работа.&#10;Feat: добавить метод historyFromString. &#10;В interface HistoryManager добавить метод remove(T task).&#10;В классе InMemoryHistoryManager реализовать метод remove(T task).&#10;Добавить методы цикла создания задачи и добавление её в историю для более удобного тестирования&#10;Fix: исправить историю, чтоб при обновлении задачи она не добавлялась в историю.&#10;История не работает, исправить.&#10;Протестировать историю." />
     <MESSAGE value="Домашняя работа.&#10;Feat: создать объект FileBackedTasksManager" />
@@ -705,7 +713,9 @@
     <MESSAGE value="- EpicHandler.java вынести в отдельный метод отправку ответа клиенту, использовать кастомный метод sendResponse. &#10;Использовать метод removeEpics.&#10;Внести проверку на наличие задачи&#10;- Создать кастомные исключения для обработки ошибок InCorrectClassException.java и NotFoundException.java&#10;- Убрать повторяемость кода, создать методы sendResponse(в будущем его перенести), getTask, validateSubTaskType, parseIdFromQuery.&#10;Try catch сделать общим для удаления повторяемости кода" />
     <MESSAGE value="- EpicHandler убрать повторяемость кода, создать методы sendResponse(в будущем его перенести), getTask, validateSubTaskType, parseIdFromQuery.&#10;Try catch сделать общим для удаления повторяемости кода" />
     <MESSAGE value="- EpicHandler.java и SubTaskHandler.java добавить catch для InCorrectClassException и NotFoundException.&#10;Убрать лишний statusCode, вынести во внешнюю строку, удалить излишки кода" />
-    <option name="LAST_COMMIT_MESSAGE" value="- EpicHandler.java и SubTaskHandler.java добавить catch для InCorrectClassException и NotFoundException.&#10;Убрать лишний statusCode, вынести во внешнюю строку, удалить излишки кода" />
+    <MESSAGE value="- EpicHandler.java и SubTaskHandler.java добавить описание для NotFoundException&#10;- Сделать NotFoundException.java более универсальным, убрать текст, текст будет внесён в параметр конструктора&#10;- TaskHandler.java вынести try catch, избавиться от повторяемости кода.&#10;Создать методы getListOfTasks, getTask, parseIdFromQuery, validateTaskType и реализовать их" />
+    <MESSAGE value="- EpicHandler.java, SubTaskHandler.java и TaskHandler.java переписать метод getTasks, переименовать его в chekListOfTasks&#10;- FileBackedTasksManager.java переписать метод historyFromString, применить Stream API&#10;- HistoryHandler.java написать класс&#10;- InMemoryTaskManager.java. В методе removeTasks, внести проверку типа задачи вместо отсеивания епиков с сабтасками.&#10;Написать метод getTasks. Переписать методы getEpics/SubTasks с применением Stream&#10;- TaskManager.java в интерфейс добавить метод getTasks" />
+    <option name="LAST_COMMIT_MESSAGE" value="- EpicHandler.java, SubTaskHandler.java и TaskHandler.java переписать метод getTasks, переименовать его в chekListOfTasks&#10;- FileBackedTasksManager.java переписать метод historyFromString, применить Stream API&#10;- HistoryHandler.java написать класс&#10;- InMemoryTaskManager.java. В методе removeTasks, внести проверку типа задачи вместо отсеивания епиков с сабтасками.&#10;Написать метод getTasks. Переписать методы getEpics/SubTasks с применением Stream&#10;- TaskManager.java в интерфейс добавить метод getTasks" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

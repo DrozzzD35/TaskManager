@@ -3,8 +3,12 @@ package service;
 import model.Epic;
 import model.SubTask;
 import model.Task;
+import model.Type;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import static model.TaskStatus.*;
 
@@ -33,12 +37,6 @@ public class InMemoryTaskManager<T extends Task> implements TaskManager<T> {
     public HistoryManager<T> getHistory() {
         return history;
     }
-
-    @Override
-    public List<T> getTasks() {
-        return new ArrayList<>(taskMap.values());
-    }
-
 
     @Override
     public T getTaskById(int id, boolean withHistory) {
@@ -167,8 +165,7 @@ public class InMemoryTaskManager<T extends Task> implements TaskManager<T> {
     public void removeTasks() {
         taskMap.entrySet().removeIf(integerTEntry
                 -> integerTEntry.getValue() != null
-                && !(integerTEntry.getValue() instanceof Epic)
-                && !(integerTEntry.getValue() instanceof SubTask));
+                && integerTEntry.getValue().getType() == Type.TASK);
     }
 
     @Override
@@ -213,32 +210,30 @@ public class InMemoryTaskManager<T extends Task> implements TaskManager<T> {
     }
 
     @Override
+    public List<T> getAllTasks() {
+        return new ArrayList<>(taskMap.values());
+    }
+
+    //TODO GetTask/Epic/SubTask применён stream, требуется проверка
+    @Override
+    public List<Task> getTasks() {
+        return taskMap.values().stream()
+                .filter(t -> t.getType() == Type.TASK)
+                .map(t -> (Task) t).toList();
+    }
+
+    @Override
     public List<Epic> getEpics() {
-        List<Epic> epics = new ArrayList<>();
-        for (Map.Entry<Integer, T> entry : taskMap.entrySet()) {
-            if (entry.getValue() instanceof Epic) {
-                epics.add((Epic) entry.getValue());
-            }
-        }
-
-        if (epics.isEmpty()) {
-            return null;
-        }
-
-        return epics;
+        return taskMap.values().stream()
+                .filter(Epic.class::isInstance)
+                .map(t -> (Epic) t).toList();
     }
 
     @Override
     public List<SubTask> getSubTasks() {
-        List<SubTask> subTasks = new ArrayList<>();
-
-        for (Map.Entry<Integer, T> entry : taskMap.entrySet()) {
-            if (entry.getValue() instanceof SubTask) {
-                subTasks.add((SubTask) entry.getValue());
-            }
-        }
-
-        return subTasks;
+        return taskMap.values().stream()
+                .filter(SubTask.class::isInstance)
+                .map(t -> (SubTask) t).toList();
     }
 
     public void addTaskByIdsToHistory(List<Integer> ids) {
@@ -265,7 +260,7 @@ public class InMemoryTaskManager<T extends Task> implements TaskManager<T> {
         }
     }
 
-    public void printTask(int id) {
+    public void printTaskById(int id) {
         Task task = getTaskById(id, false);
         if (!(task == null)) {
             System.out.println("Задача: " + task.getName());

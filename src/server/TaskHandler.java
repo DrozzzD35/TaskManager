@@ -12,7 +12,6 @@ import service.TaskManager;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 
@@ -41,8 +40,8 @@ public class TaskHandler<T extends Task> implements HttpHandler {
                         Task task = getTask(id);
                         response = gson.toJson(task);
                     } else {
-                        List<T> tasks = getListOfTasks();
-                        response = gson.toJson(tasks);
+                        chekListOfTasks();
+                        response = gson.toJson(taskManager.getTasks());
                     }
                     statusCode = 200;
                 }
@@ -51,7 +50,7 @@ public class TaskHandler<T extends Task> implements HttpHandler {
                     String stringJson = new String(is.readAllBytes(), StandardCharsets.UTF_8);
                     Task taskJson = gson.fromJson(stringJson, Task.class);
 
-                    if (taskJson.getType() != Type.TASK){
+                    if (taskJson.getType() != Type.TASK) {
                         throw new InCorrectClassException("Неверный тип задачи. Ожидаемый тип Task");
                     }
                     if (taskJson.getId() != null && taskJson.getId() != 0) {
@@ -110,12 +109,10 @@ public class TaskHandler<T extends Task> implements HttpHandler {
 
     }
 
-    public List<T> getListOfTasks() {
-        List<T> tasks = taskManager.getTasks();
-        if (tasks == null) {
-            throw new NotFoundException("Список задач пуст");
+    public void chekListOfTasks() {
+        if (taskManager.getTasks().isEmpty()) {
+            throw new NotFoundException("Списка Tasks пуст");
         }
-        return tasks;
     }
 
     private T getTask(int id) {

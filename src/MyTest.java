@@ -40,7 +40,7 @@ public class MyTest {
         updateTaskStatus(task1.getId());
 
         System.out.println("===========  Таски в памяти   ===============");
-        System.out.println(saveManager.getTasks());
+        System.out.println(saveManager.getAllTasks());
         System.out.println("==========================\n\n");
 
         // Добавление задачи в историю

@@ -38,6 +38,7 @@ public class SubTaskHandler<T extends Task> implements HttpHandler {
                         response = gson.toJson(task);
 
                     } else {
+                        chekListOfSubTasks();
                         response = gson.toJson(taskManager.getSubTasks());
                     }
                     statusCode = 200;
@@ -123,7 +124,6 @@ public class SubTaskHandler<T extends Task> implements HttpHandler {
 
     private T getTask(int id) {
         T task = taskManager.getTaskById(id, false);
-
         if (task == null) {
             throw new NotFoundException("Задача не существует");
         }
@@ -133,6 +133,12 @@ public class SubTaskHandler<T extends Task> implements HttpHandler {
     private void validateSubTaskType(T task) {
         if (!(task instanceof SubTask)) {
             throw new InCorrectClassException("Тип задачи не корректный. Ожидаемый тип SubTask");
+        }
+    }
+
+    private void chekListOfSubTasks(){
+        if (taskManager.getSubTasks().isEmpty()){
+            throw new NotFoundException("Список SubTasks пуст");
         }
     }
 

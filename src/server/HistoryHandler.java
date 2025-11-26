@@ -1,14 +1,18 @@
 package server;
 
+import com.google.gson.Gson;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import model.Task;
+import service.HistoryManager;
 import service.TaskManager;
 
 import java.io.IOException;
+import java.util.List;
 
 public class HistoryHandler<T extends Task> implements HttpHandler {
-    private TaskManager<T> taskManager;
+    private final TaskManager<T> taskManager;
+    private final Gson gson = new Gson();
 
     public HistoryHandler(TaskManager<T> taskManager) {
         this.taskManager = taskManager;
@@ -16,6 +20,33 @@ public class HistoryHandler<T extends Task> implements HttpHandler {
 
     @Override
     public void handle(HttpExchange exchange) throws IOException {
+        String method = exchange.getRequestMethod();
+        String response;
+        int statusCode;
+
+        try {
+            if (method.equals("GET")) {
+                HistoryManager<T> historyManager = taskManager.getHistory();
+                List<T> historyList = historyManager.getHistory();
+
+                if (historyList.isEmpty()) {
+                    response = gson.toJson("Списка истории пуст");
+                    statusCode = 404;
+                } else {
+                    response = gson.toJson(historyList);
+                    statusCode = 200;
+                }
+
+            } else {
+                response = gson.toJson("Не удалось распознать запрос");
+                statusCode = 501;
+            }
+        }catch (Exception e){
+            response = gson.toJson("Возникла ошибка сервера");
+            statusCode = 500;
+        }
+
+        SubTaskHandler.sendResponse(exchange, statusCode, response);
 
     }
 }
