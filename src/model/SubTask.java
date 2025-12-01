@@ -3,12 +3,12 @@ package model;
 import java.util.Objects;
 
 public class SubTask extends Task {
-    private int parentId;
+    private final int parentId;
 
     public SubTask(String name, String description, int parentId) {
         super(name, description);
 
-        this.taskStatus = taskStatus.NEW;
+        this.taskStatus = TaskStatus.NEW;
         this.type = Type.SUBTASK;
         this.parentId = parentId;
 

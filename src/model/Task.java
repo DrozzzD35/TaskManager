@@ -16,9 +16,13 @@ public class Task {
         this.id = Identity.INSTANCE.generateId();
         this.name = name;
         this.description = description;
-        this.taskStatus = taskStatus.NEW;
+        this.taskStatus = TaskStatus.NEW;
         this.type = Type.TASK;
     }
+
+//    public static Task Task(){
+//        return new Task()
+//    }
 
     public Task(Integer id, Type type, String name, TaskStatus taskStatus, String description) {
         this.id = id;

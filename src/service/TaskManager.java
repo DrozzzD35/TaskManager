@@ -3,6 +3,7 @@ package service;
 import model.Epic;
 import model.SubTask;
 import model.Task;
+import model.Type;
 
 import java.util.List;
 
@@ -22,20 +23,20 @@ public interface TaskManager<T extends Task> {
 
     void removeAllTasks();
 
-    void removeTasks();
+    void removeTasks(Type type);
 
-    void removeEpics();
-
-    void removeSubTasks();
+//    void removeEpics();
+//
+//    void removeSubTasks();
 
     List<SubTask> getSubtasksByEpicId(int epicId);
 
     HistoryManager<T> getHistory();
 
-    List<Epic> getEpics();
+//    List<Epic> getEpics();
+//
+//    List<SubTask> getSubTasks();
 
-    List<SubTask> getSubTasks();
-
-    List<Task> getTasks();
+    List<T> getTasks(Type type);
 
 }

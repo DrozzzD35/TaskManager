@@ -6,14 +6,14 @@
   <component name="ChangeListManager">
     <list default="true" id="3b2d2408-c7aa-4b02-a823-dac3b3c98272" name="Changes" comment="- EpicHandler.java, SubTaskHandler.java и TaskHandler.java переписать метод getTasks, переименовать его в chekListOfTasks&#10;- FileBackedTasksManager.java переписать метод historyFromString, применить Stream API&#10;- HistoryHandler.java написать класс&#10;- InMemoryTaskManager.java. В методе removeTasks, внести проверку типа задачи вместо отсеивания епиков с сабтасками.&#10;Написать метод getTasks. Переписать методы getEpics/SubTasks с применением Stream&#10;- TaskManager.java в интерфейс добавить метод getTasks">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MyTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MyTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Epic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Epic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/SubTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/SubTask.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/Task.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Task.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/TaskStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/TaskStatus.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/server/EpicHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/EpicHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/server/GeneralTaskHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/GeneralTaskHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/HistoryHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/HistoryHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/server/SubTaskHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/SubTaskHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/server/TaskHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/TaskHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/service/FileBackedTasksManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/FileBackedTasksManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/service/InMemoryTaskManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/InMemoryTaskManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/service/TaskManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/TaskManager.java" afterDir="false" />
     </list>
@@ -60,7 +60,7 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
-    &quot;Application.HttpTaskServer.executor&quot;: &quot;Run&quot;,
+    &quot;Application.HttpTaskServer.executor&quot;: &quot;Debug&quot;,
     &quot;Application.Main.executor&quot;: &quot;Run&quot;,
     &quot;Application.MyTest.executor&quot;: &quot;Run&quot;,
     &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
@@ -275,15 +275,9 @@
       <workItem from="1764065944411" duration="14000" />
       <workItem from="1764066837951" duration="88000" />
       <workItem from="1764082972698" duration="476000" />
-      <workItem from="1764139926527" duration="11107000" />
-    </task>
-    <task id="LOCAL-00005" summary="Проведён урок&#10;Добавлен интерфейс TaskManager&#10;Реализованы методы интерфейса TaskManager в классе Manager">
-      <option name="closed" value="true" />
-      <created>1746499992907</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1746499992907</updated>
+      <workItem from="1764139926527" duration="11124000" />
+      <workItem from="1764153099445" duration="788000" />
+      <workItem from="1764591613158" duration="6298000" />
     </task>
     <task id="LOCAL-00006" summary="Проведён урок &#10;Написан метод updateTask&#10;внесены некоторые корректировки">
       <option name="closed" value="true" />
@@ -669,7 +663,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764000524197</updated>
     </task>
-    <option name="localTasksCounter" value="54" />
+    <task id="LOCAL-00054" summary="- EpicHandler.java, SubTaskHandler.java и TaskHandler.java переписать метод getTasks, переименовать его в chekListOfTasks&#10;- FileBackedTasksManager.java переписать метод historyFromString, применить Stream API&#10;- HistoryHandler.java написать класс&#10;- InMemoryTaskManager.java. В методе removeTasks, внести проверку типа задачи вместо отсеивания епиков с сабтасками.&#10;Написать метод getTasks. Переписать методы getEpics/SubTasks с применением Stream&#10;- TaskManager.java в интерфейс добавить метод getTasks">
+      <option name="closed" value="true" />
+      <created>1764151104584</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1764151104585</updated>
+    </task>
+    <option name="localTasksCounter" value="55" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

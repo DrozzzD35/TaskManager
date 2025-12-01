@@ -6,6 +6,7 @@ import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import model.Epic;
 import model.Task;
+import model.Type;
 import service.TaskManager;
 
 import java.io.IOException;
@@ -39,7 +40,7 @@ public class EpicHandler<T extends Task> implements HttpHandler {
                         response = gson.toJson(epic);
                     } else {
                         chekListOfEpics();
-                        response = gson.toJson(taskManager.getEpics());
+                        response = gson.toJson(taskManager.getTasks(Type.EPIC));
                     }
                     statusCode = 200;
                 }
@@ -69,7 +70,7 @@ public class EpicHandler<T extends Task> implements HttpHandler {
                         taskManager.removeTaskById(id);
                         response = gson.toJson("Задача с идентификатором " + id + " удалена.");
                     } else {
-                        taskManager.removeEpics();
+                        taskManager.removeTasks(Type.EPIC);
                         response = gson.toJson("Все задачи типа Epic были удалены");
                     }
                     statusCode = 200;
@@ -120,7 +121,7 @@ public class EpicHandler<T extends Task> implements HttpHandler {
     }
 
     private void chekListOfEpics() {
-        if (taskManager.getEpics().isEmpty()) {
+        if (taskManager.getTasks(Type.EPIC).isEmpty()) {
             throw new NotFoundException("Список Epics пуст");
         }
     }

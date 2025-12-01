@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class Epic extends Task {
-    private List<Integer> subTasksIds;
+    private final List<Integer> subTasksIds;
 
     public Epic(String nameEpic, String descriptionEpic) {
         super(nameEpic, descriptionEpic);

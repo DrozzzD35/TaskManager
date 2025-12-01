@@ -6,6 +6,7 @@ import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import model.SubTask;
 import model.Task;
+import model.Type;
 import service.TaskManager;
 
 import java.io.IOException;
@@ -39,7 +40,7 @@ public class SubTaskHandler<T extends Task> implements HttpHandler {
 
                     } else {
                         chekListOfSubTasks();
-                        response = gson.toJson(taskManager.getSubTasks());
+                        response = gson.toJson(taskManager.getTasks(Type.SUBTASK));
                     }
                     statusCode = 200;
 
@@ -70,7 +71,7 @@ public class SubTaskHandler<T extends Task> implements HttpHandler {
                         response = gson.toJson("Задача с идентификатором "
                                 + id + " удалена.");
                     } else {
-                        taskManager.removeSubTasks();
+                        taskManager.removeTasks(Type.SUBTASK);
                         response = gson.toJson("Все SubTasks удалены");
                     }
                     statusCode = 200;
@@ -137,7 +138,7 @@ public class SubTaskHandler<T extends Task> implements HttpHandler {
     }
 
     private void chekListOfSubTasks(){
-        if (taskManager.getSubTasks().isEmpty()){
+        if (taskManager.getTasks(Type.SUBTASK).isEmpty()){
             throw new NotFoundException("Список SubTasks пуст");
         }
     }

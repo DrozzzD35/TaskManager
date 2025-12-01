@@ -41,7 +41,7 @@ public class TaskHandler<T extends Task> implements HttpHandler {
                         response = gson.toJson(task);
                     } else {
                         chekListOfTasks();
-                        response = gson.toJson(taskManager.getTasks());
+                        response = gson.toJson(taskManager.getTasks(Type.TASK));
                     }
                     statusCode = 200;
                 }
@@ -53,6 +53,7 @@ public class TaskHandler<T extends Task> implements HttpHandler {
                     if (taskJson.getType() != Type.TASK) {
                         throw new InCorrectClassException("Неверный тип задачи. Ожидаемый тип Task");
                     }
+
                     if (taskJson.getId() != null && taskJson.getId() != 0) {
                         taskManager.updateTask((T) taskJson, taskJson.getId());
                         Task updateTask = getTask(taskJson.getId());
@@ -76,7 +77,7 @@ public class TaskHandler<T extends Task> implements HttpHandler {
                         response = gson.toJson("Задача с идентификатором " + id + " удалена.");
 
                     } else {
-                        taskManager.removeTasks();
+                        taskManager.removeTasks(Type.TASK);
                         response = gson.toJson("Задачи удалены ");
                     }
                     statusCode = 200;
@@ -110,7 +111,7 @@ public class TaskHandler<T extends Task> implements HttpHandler {
     }
 
     public void chekListOfTasks() {
-        if (taskManager.getTasks().isEmpty()) {
+        if (taskManager.getTasks(Type.TASK).isEmpty()) {
             throw new NotFoundException("Списка Tasks пуст");
         }
     }
