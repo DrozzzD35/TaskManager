@@ -7,7 +7,7 @@ import java.net.http.HttpResponse;
 
 public class HttpClient<T extends Task> {
     private final java.net.http.HttpClient client;
-    private final String uri = "http://localhost:8080/"
+    private final String uri = "http://localhost:8080/";
 
     public HttpClient(java.net.http.HttpClient client) {
         this.client = client;

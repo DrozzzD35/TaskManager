@@ -4,18 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3b2d2408-c7aa-4b02-a823-dac3b3c98272" name="Changes" comment="- EpicHandler.java, SubTaskHandler.java и TaskHandler.java переписать метод getTasks, переименовать его в chekListOfTasks&#10;- FileBackedTasksManager.java переписать метод historyFromString, применить Stream API&#10;- HistoryHandler.java написать класс&#10;- InMemoryTaskManager.java. В методе removeTasks, внести проверку типа задачи вместо отсеивания епиков с сабтасками.&#10;Написать метод getTasks. Переписать методы getEpics/SubTasks с применением Stream&#10;- TaskManager.java в интерфейс добавить метод getTasks">
+    <list default="true" id="3b2d2408-c7aa-4b02-a823-dac3b3c98272" name="Changes" comment="- GeneralTaskHandler.java написать класс&#10;- HttpClient.java начать создавать класс&#10;- InMemoryTaskManager.java изменить метод updateEpicStatus. Так же сделать методы removeTasks и getTasks универсальными, соответственно удалить метод GetEpic/SubTask и removeEpic/SubTask&#10;- Во всех обработчиках заменить методы на removeTasks/getTasks">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Epic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Epic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/SubTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/SubTask.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Task.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Task.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/TaskStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/TaskStatus.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/EpicHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/EpicHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/GeneralTaskHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/GeneralTaskHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/SubTaskHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/SubTaskHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/TaskHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/TaskHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/service/InMemoryTaskManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/InMemoryTaskManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/service/TaskManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/TaskManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Client/HttpClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Client/HttpClient.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,8 +18,8 @@
       <list>
         <option value="Enum" />
         <option value="Interface" />
-        <option value="Class" />
         <option value="Exception" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -278,14 +269,9 @@
       <workItem from="1764139926527" duration="11124000" />
       <workItem from="1764153099445" duration="788000" />
       <workItem from="1764591613158" duration="6298000" />
-    </task>
-    <task id="LOCAL-00006" summary="Проведён урок &#10;Написан метод updateTask&#10;внесены некоторые корректировки">
-      <option name="closed" value="true" />
-      <created>1749849801660</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1749849801660</updated>
+      <workItem from="1764597959125" duration="3248000" />
+      <workItem from="1764683585061" duration="1027000" />
+      <workItem from="1764703810228" duration="168000" />
     </task>
     <task id="LOCAL-00007" summary="Написал метод updateStatus в классе Epic&#10;в TaskManagerImpl подметил в комментарии метод который нужно удалить, нужно ли удалять?">
       <option name="closed" value="true" />
@@ -671,7 +657,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764151104585</updated>
     </task>
-    <option name="localTasksCounter" value="55" />
+    <task id="LOCAL-00055" summary="- GeneralTaskHandler.java написать класс&#10;- HttpClient.java начать создавать класс&#10;- InMemoryTaskManager.java изменить метод updateEpicStatus. Так же сделать методы removeTasks и getTasks универсальными, соответственно удалить метод GetEpic/SubTask и removeEpic/SubTask&#10;- Во всех обработчиках заменить методы на removeTasks/getTasks">
+      <option name="closed" value="true" />
+      <created>1764601615117</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1764601615117</updated>
+    </task>
+    <option name="localTasksCounter" value="56" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -692,7 +686,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/.." />
     </ignored-roots>
-    <MESSAGE value="Домашняя работа.&#10;Feat: добавлен геттер history" />
     <MESSAGE value="Домашняя работа.&#10;Feat: добавить метод historyFromString. &#10;В interface HistoryManager добавить метод remove(T task).&#10;В классе InMemoryHistoryManager реализовать метод remove(T task).&#10;Добавить методы цикла создания задачи и добавление её в историю для более удобного тестирования&#10;Fix: исправить историю, чтоб при обновлении задачи она не добавлялась в историю.&#10;История не работает, исправить.&#10;Протестировать историю." />
     <MESSAGE value="Домашняя работа.&#10;Feat: создать объект FileBackedTasksManager" />
     <MESSAGE value="Классная работа.&#10;Feat: в классе Epic изменить переменную Map&lt;Integer, SubTask&gt; children на List&lt;Integer&gt; subTasksIds. Соответственно изменить все методы использующие переменную.&#10;Написать метод loadFromFile в классе FileBackedTasksManager.&#10;Создать исключение кастомное FileSaveException.&#10;Fix: при обновлении таска он заноситься в историю, исключить, таски при обновлении не должны попадать в историю" />
@@ -717,7 +710,8 @@
     <MESSAGE value="- EpicHandler.java и SubTaskHandler.java добавить catch для InCorrectClassException и NotFoundException.&#10;Убрать лишний statusCode, вынести во внешнюю строку, удалить излишки кода" />
     <MESSAGE value="- EpicHandler.java и SubTaskHandler.java добавить описание для NotFoundException&#10;- Сделать NotFoundException.java более универсальным, убрать текст, текст будет внесён в параметр конструктора&#10;- TaskHandler.java вынести try catch, избавиться от повторяемости кода.&#10;Создать методы getListOfTasks, getTask, parseIdFromQuery, validateTaskType и реализовать их" />
     <MESSAGE value="- EpicHandler.java, SubTaskHandler.java и TaskHandler.java переписать метод getTasks, переименовать его в chekListOfTasks&#10;- FileBackedTasksManager.java переписать метод historyFromString, применить Stream API&#10;- HistoryHandler.java написать класс&#10;- InMemoryTaskManager.java. В методе removeTasks, внести проверку типа задачи вместо отсеивания епиков с сабтасками.&#10;Написать метод getTasks. Переписать методы getEpics/SubTasks с применением Stream&#10;- TaskManager.java в интерфейс добавить метод getTasks" />
-    <option name="LAST_COMMIT_MESSAGE" value="- EpicHandler.java, SubTaskHandler.java и TaskHandler.java переписать метод getTasks, переименовать его в chekListOfTasks&#10;- FileBackedTasksManager.java переписать метод historyFromString, применить Stream API&#10;- HistoryHandler.java написать класс&#10;- InMemoryTaskManager.java. В методе removeTasks, внести проверку типа задачи вместо отсеивания епиков с сабтасками.&#10;Написать метод getTasks. Переписать методы getEpics/SubTasks с применением Stream&#10;- TaskManager.java в интерфейс добавить метод getTasks" />
+    <MESSAGE value="- GeneralTaskHandler.java написать класс&#10;- HttpClient.java начать создавать класс&#10;- InMemoryTaskManager.java изменить метод updateEpicStatus. Так же сделать методы removeTasks и getTasks универсальными, соответственно удалить метод GetEpic/SubTask и removeEpic/SubTask&#10;- Во всех обработчиках заменить методы на removeTasks/getTasks" />
+    <option name="LAST_COMMIT_MESSAGE" value="- GeneralTaskHandler.java написать класс&#10;- HttpClient.java начать создавать класс&#10;- InMemoryTaskManager.java изменить метод updateEpicStatus. Так же сделать методы removeTasks и getTasks универсальными, соответственно удалить метод GetEpic/SubTask и removeEpic/SubTask&#10;- Во всех обработчиках заменить методы на removeTasks/getTasks" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
