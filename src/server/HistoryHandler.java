@@ -10,12 +10,10 @@ import service.TaskManager;
 import java.io.IOException;
 import java.util.List;
 
-public class HistoryHandler<T extends Task> implements HttpHandler {
-    private final TaskManager<T> taskManager;
-    private final Gson gson = new Gson();
+public class HistoryHandler<T extends Task> extends BaseHandler<T> {
 
     public HistoryHandler(TaskManager<T> taskManager) {
-        this.taskManager = taskManager;
+        super(taskManager);
     }
 
     @Override
@@ -46,7 +44,7 @@ public class HistoryHandler<T extends Task> implements HttpHandler {
             statusCode = 500;
         }
 
-        SubTaskHandler.sendResponse(exchange, statusCode, response);
+        sendResponse(exchange, statusCode, response);
 
     }
 }

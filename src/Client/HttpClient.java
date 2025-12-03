@@ -15,8 +15,6 @@ public class HttpClient<T extends Task> {
 
 //    public HttpResponse<T> createTask(String name, String description){
 //        HttpRequest request = HttpRequest.newBuilder()
-//
-//
 //    }
 
 }

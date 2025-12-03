@@ -59,7 +59,7 @@ public class MyTest {
 
         ((FileBackedTasksManager<?>) saveManager).save();
         System.out.println("===========  Загрузка из файла   ===============");
-        FileBackedTasksManager<Task> restored = FileBackedTasksManager.loadFromFile(path);
+        TaskManager<Task> restored = FileBackedTasksManager.loadFromFile(path);
 
         System.out.println("history ok? " +
                 restored.getHistory().equals(saveManager.getHistory()));

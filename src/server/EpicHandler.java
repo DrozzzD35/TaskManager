@@ -13,14 +13,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
-//TODO стоит ли проверять по типу прежде чем удалять\отправлять
+//TODO PUT - обновление
 
-public class EpicHandler<T extends Task> implements HttpHandler {
-    private final TaskManager<T> taskManager;
-    private final Gson gson = new Gson();
+public class EpicHandler<T extends Task> extends BaseHandler<T> {
 
     public EpicHandler(TaskManager<T> taskManager) {
-        this.taskManager = taskManager;
+        super(taskManager);
     }
 
     @Override
@@ -97,27 +95,14 @@ public class EpicHandler<T extends Task> implements HttpHandler {
             statusCode = 404;
         }
 
-        SubTaskHandler.sendResponse(exchange, statusCode, response);
+        sendResponse(exchange, statusCode, response);
 
-    }
-
-    private static int parseIdFromQuery(String stringQuery) {
-        String[] part = stringQuery.split("=");
-        return Integer.parseInt(part[1]);
     }
 
     private void validateEpicType(T task) {
         if (!(task instanceof Epic)) {
             throw new InCorrectClassException("Неверный тип задачи. Ожидаемый тип Epic");
         }
-    }
-
-    private T getTask(int id) {
-        T task = taskManager.getTaskById(id, false);
-        if (task == null) {
-            throw new NotFoundException("Задача не существует");
-        }
-        return task;
     }
 
     private void chekListOfEpics() {

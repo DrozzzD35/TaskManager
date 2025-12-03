@@ -1,9 +1,7 @@
 package server;
 
-import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import com.sun.net.httpserver.HttpExchange;
-import com.sun.net.httpserver.HttpHandler;
 import model.SubTask;
 import model.Task;
 import model.Type;
@@ -11,15 +9,12 @@ import service.TaskManager;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.nio.charset.StandardCharsets;
 
-public class SubTaskHandler<T extends Task> implements HttpHandler {
-    private final TaskManager<T> taskManager;
-    private final Gson gson = new Gson();
+public class SubTaskHandler<T extends Task> extends BaseHandler<T> {
 
     public SubTaskHandler(TaskManager<T> taskManager) {
-        this.taskManager = taskManager;
+    super(taskManager);
     }
 
     @Override
@@ -102,33 +97,6 @@ public class SubTaskHandler<T extends Task> implements HttpHandler {
         }
 
         sendResponse(exchange, statusCode, response);
-    }
-
-    //TODO Вынести метод sendResponse в общий класс
-    static void sendResponse(HttpExchange exchange, int statusCode, String response) throws IOException {
-        exchange.getResponseHeaders()
-                .add("Content-type", "application/json; Charset=UTF-8");
-        byte[] bytes = response.getBytes(StandardCharsets.UTF_8);
-        exchange.sendResponseHeaders(statusCode, bytes.length);
-
-        try (OutputStream os = exchange.getResponseBody()) {
-            os.write(bytes);
-        } catch (IOException e) {
-            System.out.println("Ошибка при отправке данных");
-        }
-    }
-
-    private int parseIdFromQuery(String stringQuery) {
-        String[] part = stringQuery.split("=");
-        return Integer.parseInt(part[1]);
-    }
-
-    private T getTask(int id) {
-        T task = taskManager.getTaskById(id, false);
-        if (task == null) {
-            throw new NotFoundException("Задача не существует");
-        }
-        return task;
     }
 
     private void validateSubTaskType(T task) {

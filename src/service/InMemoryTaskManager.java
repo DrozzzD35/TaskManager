@@ -85,44 +85,37 @@ public class InMemoryTaskManager<T extends Task> implements TaskManager<T> {
 
     @Override
     public void updateEpicStatus(Integer epicId) {
-        //TODO что если SubTasks не существует. Внёс поправки
-
         boolean isDone = false;
         boolean isInProgress = false;
         boolean isNew = false;
 
         Epic epic = (Epic) getTaskById(epicId, false);
 
-        if (epic.getAllChildrenIds().isEmpty()) {
-            epic.setStatus(NEW);
+        List<Integer> children = epic.getAllChildrenIds();
+        List<SubTask> subTasks = new ArrayList<>();
 
-        } else {
-            List<Integer> children = epic.getAllChildrenIds();
-            List<SubTask> subTasks = new ArrayList<>();
+        for (Integer child : children) {
+            subTasks.add((SubTask) getTaskById(child, false));
+        }
 
-            for (Integer child : children) {
-                subTasks.add((SubTask) getTaskById(child, false));
-            }
-
-            for (SubTask subTask : subTasks) {
-                switch (subTask.getStatus()) {
-                    case NEW -> {
-                        isNew = true;
-                    }
-                    case DONE -> {
-                        isDone = true;
-                    }
-                    case IN_PROGRESS -> {
-                        isInProgress = true;
-                    }
+        for (SubTask subTask : subTasks) {
+            switch (subTask.getStatus()) {
+                case NEW -> {
+                    isNew = true;
+                }
+                case DONE -> {
+                    isDone = true;
+                }
+                case IN_PROGRESS -> {
+                    isInProgress = true;
                 }
             }
+        }
 
-            if (isInProgress || (isNew && isDone)) {
-                epic.setStatus(IN_PROGRESS);
-            } else {
-                epic.setStatus(isNew ? NEW : DONE);
-            }
+        if (isInProgress || (isNew && isDone)) {
+            epic.setStatus(IN_PROGRESS);
+        } else {
+            epic.setStatus(isNew || children.isEmpty() ? NEW : DONE);
         }
 
     }
@@ -152,53 +145,31 @@ public class InMemoryTaskManager<T extends Task> implements TaskManager<T> {
         System.out.println("Все задачи удалены");
     }
 
-    //TODO Объединил метод removeTasks
     @Override
     public void removeTasks(Type type) {
-        if (type == Type.SUBTASK) {
-            for (T task : taskMap.values()) {
-                if (task instanceof Epic) {
-                    ((Epic) task).removeAllChildren();
-                    updateEpicStatus(task.getId());
+        switch (type){
+            case SUBTASK -> {
+                for (T task : taskMap.values()) {
+                    if (task instanceof Epic) {
+                        ((Epic) task).removeAllChildren();
+                        updateEpicStatus(task.getId());
+                    }
                 }
             }
+            case EPIC -> {
+                taskMap.entrySet().removeIf(integerTEntry
+                        -> (integerTEntry.getValue() instanceof Epic
+                        || integerTEntry.getValue() instanceof SubTask));
+
+            }
+            case TASK -> {
+                taskMap.entrySet().removeIf(integerTEntry
+                        -> integerTEntry.getValue().getType() == type);
+            }
+            default -> System.out.println("неизвестный тип");
         }
 
-        if (type == Type.EPIC) {
-            taskMap.entrySet().removeIf(integerTEntry
-                    -> integerTEntry.getValue() != null
-                    && (integerTEntry.getValue() instanceof Epic
-                    || integerTEntry.getValue() instanceof SubTask));
-        } else {
-            taskMap.entrySet().removeIf(integerTEntry
-                    -> integerTEntry.getValue() != null
-                    && integerTEntry.getValue().getType() == type);
-        }
     }
-//
-//    @Override
-//    public void removeEpics() {
-//        removeSubTasks();
-//
-//        taskMap.entrySet().removeIf(integerTEntry
-//                -> integerTEntry.getValue() != null
-//                && integerTEntry.getValue() instanceof Epic);
-//    }
-//
-//    @Override
-//    public void removeSubTasks() {
-//        taskMap.entrySet().removeIf(integerTEntry
-//                -> integerTEntry.getValue() != null
-//                && integerTEntry.getValue() instanceof SubTask);
-//
-//        for (T task : taskMap.values()) {
-//            if (task != null) {
-//                if (task instanceof Epic) {
-//                    ((Epic) task).removeAllChildren();
-//                }
-//            }
-//        }
-//    }
 
     @Override
     public List<SubTask> getSubtasksByEpicId(int epicId) {
@@ -213,7 +184,6 @@ public class InMemoryTaskManager<T extends Task> implements TaskManager<T> {
             subTasks.add((SubTask) getTaskById(subTaskId, false));
         }
 
-
         return subTasks;
     }
 
@@ -222,8 +192,6 @@ public class InMemoryTaskManager<T extends Task> implements TaskManager<T> {
         return new ArrayList<>(taskMap.values());
     }
 
-    //TODO GetTask/Epic/SubTask применён stream, требуется проверка
-    //Сделал getTasks универсальным
     @Override
     public List<T> getTasks(Type type) {
         return taskMap.values().stream()
@@ -231,21 +199,7 @@ public class InMemoryTaskManager<T extends Task> implements TaskManager<T> {
                 .toList();
     }
 
-//    @Override
-//    public List<Epic> getEpics() {
-//        return taskMap.values().stream()
-//                .filter(Epic.class::isInstance)
-//                .map(t -> (Epic) t).toList();
-//    }
-
-//    @Override
-//    public List<SubTask> getSubTasks() {
-//        return taskMap.values().stream()
-//                .filter(SubTask.class::isInstance)
-//                .map(t -> (SubTask) t).toList();
-//    }
-
-    public void addTaskByIdsToHistory(List<Integer> ids) {
+    public void addTaskByIdsToHistory(Integer[] ids) {
         for (Integer id : ids) {
             T task = getTaskById(id, false);
             history.add(task);

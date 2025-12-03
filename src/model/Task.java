@@ -20,10 +20,6 @@ public class Task {
         this.type = Type.TASK;
     }
 
-//    public static Task Task(){
-//        return new Task()
-//    }
-
     public Task(Integer id, Type type, String name, TaskStatus taskStatus, String description) {
         this.id = id;
         this.name = name;
@@ -72,7 +68,6 @@ public class Task {
     public String toString() {
         return '\n' + "Task{" + "id=" + id + '\n' + "name=" + name + '\n' + "description=" + description + '\n' + "status=" + taskStatus + '\n' + "type=" + type + '}' + '\n';
     }
-
 
     @Override
     public boolean equals(Object obj) {

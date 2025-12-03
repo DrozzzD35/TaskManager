@@ -1,9 +1,7 @@
 package server;
 
-import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import com.sun.net.httpserver.HttpExchange;
-import com.sun.net.httpserver.HttpHandler;
 import model.Epic;
 import model.SubTask;
 import model.Task;
@@ -13,15 +11,11 @@ import service.TaskManager;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
-import java.util.List;
 
-public class TaskHandler<T extends Task> implements HttpHandler {
-    private final TaskManager<T> taskManager;
-    private static final Gson gson = new Gson();
-
+public class TaskHandler<T extends Task> extends BaseHandler<T> {
 
     public TaskHandler(TaskManager<T> tasksManager) {
-        this.taskManager = tasksManager;
+        super(tasksManager);
     }
 
     @Override
@@ -29,8 +23,8 @@ public class TaskHandler<T extends Task> implements HttpHandler {
         String method = exchange.getRequestMethod().toUpperCase();
         String queryString = exchange.getRequestURI().getQuery();
 
-        int statusCode = -1;
-        String response = "";
+        int statusCode;
+        String response;
 
         try {
             switch (method) {
@@ -106,7 +100,7 @@ public class TaskHandler<T extends Task> implements HttpHandler {
 
         }
 
-        SubTaskHandler.sendResponse(exchange, statusCode, response);
+      sendResponse(exchange, statusCode, response);
 
     }
 
@@ -116,18 +110,6 @@ public class TaskHandler<T extends Task> implements HttpHandler {
         }
     }
 
-    private T getTask(int id) {
-        T task = taskManager.getTaskById(id, false);
-        if (task == null) {
-            throw new NotFoundException("Задача не существует");
-        }
-        return task;
-    }
-
-    private static int parseIdFromQuery(String queryString) {
-        String[] string = queryString.split("=");
-        return Integer.parseInt(string[1]);
-    }
 
     private void validateTaskType(T task) {
         if (task instanceof Epic || task instanceof SubTask) {

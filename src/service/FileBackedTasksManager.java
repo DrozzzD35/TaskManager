@@ -47,7 +47,7 @@ public class FileBackedTasksManager<T extends Task> extends InMemoryTaskManager<
     @Override
     public T getTaskById(int id, boolean withHistory) {
         T task = super.getTaskById(id, withHistory);
-//        save();
+        save();
         return task;
     }
 
@@ -114,41 +114,20 @@ public class FileBackedTasksManager<T extends Task> extends InMemoryTaskManager<
 
     }
 
-    public static List<Integer> historyFromString(String value) {
-        //TODO Arrays.toString Превратит строку в "[1,23,56]". Символы "[]" ломают код
-        //Не забыть оценить новый код исправляющий:
-//        Exception in thread "main" java.lang.NumberFormatException: For input string: "[1, 2, 3]"
 
-        String[] ids = value.split(",");
-        return Arrays.stream(ids)
-                .map(s -> s.replace("[", "")
-                        .replace("]", "")
-                        .trim())
-                .filter(s -> !s.isEmpty())
-                .map(Integer::valueOf).toList();
-
-//        List<Integer> idsHistory = new ArrayList<>();
-//        for (String id : ids) {
-//            if (id.equals("[") || id.equals("]")) {
-//                continue;
-//            } else {
-//                idsHistory.add(Integer.valueOf(id));
-//            }
-//        }
-//        return idsHistory;
-//        return new ArrayList<>(Integer.parseInt(Arrays.toString(ids)));
-    }
-
-    public static FileBackedTasksManager<Task> loadFromFile(Path path) {
-        //TODO а здесь не фабричный ли метод должен быть?
-        FileBackedTasksManager<Task> manager = new FileBackedTasksManager<>(path);
+    public static TaskManager<Task> loadFromFile(Path path) {
+        TaskManager<Task> manager = new FileBackedTasksManager<>(path);
         try {
             String fileContent = Files.readString(path);
             String[] lines = fileContent.split("\n");
             for (int i = 1; i < lines.length; i++) {
                 if (lines[i].isBlank()) {
                     String historyLine = lines[i + 1];
-                    List<Integer> ids = historyFromString(historyLine);
+
+                    Integer[] ids =Arrays.stream(historyLine.split(","))
+                            .map(Integer::valueOf)
+                            .toArray(Integer[]::new);
+
                     manager.addTaskByIdsToHistory(ids);
                     break;
                 } else {
@@ -164,7 +143,6 @@ public class FileBackedTasksManager<T extends Task> extends InMemoryTaskManager<
 
         return manager;
     }
-
 
     private String toString(Task task) {
         StringBuilder resultBuilder = new StringBuilder();

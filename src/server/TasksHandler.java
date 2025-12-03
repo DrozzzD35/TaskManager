@@ -8,12 +8,10 @@ import service.TaskManager;
 
 import java.io.IOException;
 
-public class GeneralTaskHandler<T extends Task> implements HttpHandler {
-    private final TaskManager<T> taskManager;
-    private final Gson gson = new Gson();
+public class TasksHandler<T extends Task> extends BaseHandler<T> {
 
-    public GeneralTaskHandler(TaskManager<T> tasksManager) {
-        this.taskManager = tasksManager;
+    public TasksHandler(TaskManager<T> tasksManager) {
+        super(tasksManager);
     }
 
     @Override
@@ -23,7 +21,6 @@ public class GeneralTaskHandler<T extends Task> implements HttpHandler {
         int statusCode;
 
         try {
-
 
             if (method.equals("GET")) {
                 response = gson.toJson(taskManager.getAllTasks());
@@ -42,7 +39,7 @@ public class GeneralTaskHandler<T extends Task> implements HttpHandler {
         }
 
 
-        SubTaskHandler.sendResponse(exchange, statusCode, response);
+        sendResponse(exchange, statusCode, response);
 
     }
 
