@@ -27,7 +27,6 @@ public class InMemoryTaskManager<T extends Task> implements TaskManager<T> {
             int epicId = ((SubTask) task).getParentId();
             Epic epic = (Epic) taskMap.get(epicId);
             epic.addChild(task.getId());
-
         }
 
         taskMap.put(task.getId(), task);
@@ -147,7 +146,7 @@ public class InMemoryTaskManager<T extends Task> implements TaskManager<T> {
 
     @Override
     public void removeTasks(Type type) {
-        switch (type){
+        switch (type) {
             case SUBTASK -> {
                 for (T task : taskMap.values()) {
                     if (task instanceof Epic) {

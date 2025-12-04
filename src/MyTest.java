@@ -16,17 +16,10 @@ public class MyTest {
         Path path = Path.of("src/dataBacked/FileBacked.CSV");
         saveManager = Managers.getDefaultFile(path);
 
-
-//        Task task8 = createTask("name10", "description10");
-//        saveManager.getTaskById(task8.getId(), true);
-//
-//        System.out.println(saveManager.getTasks());
-
-
         // Создание задачи
         Task task1 = createTask("name10", "description10");
         Epic task2 = createEpic("epic11", "epic11");
-        SubTask task3 = createSubTask("subTask12", "subTask12", 2);
+        SubTask task3 = createSubTask("subTask12", "subTask12", 20);
         Epic task4 = createEpic("epic13", "epic13");
         SubTask task5 = createSubTask("subTask14", "subTask14", 4);
         Epic task6 = createEpic("epic15", "epic15");
@@ -64,9 +57,7 @@ public class MyTest {
         System.out.println("history ok? " +
                 restored.getHistory().equals(saveManager.getHistory()));
 
-
     }
-
 
     private static void taskCreationCycle(int quantity) {
         for (int i = 1; i <= quantity; i++) {
