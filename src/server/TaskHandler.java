@@ -39,27 +39,30 @@ public class TaskHandler<T extends Task> extends BaseHandler<T> {
                     }
                     statusCode = 200;
                 }
+                case "PUT" -> {
+                    InputStream is = exchange.getRequestBody();
+                    String taskString = new String(is.readAllBytes(), StandardCharsets.UTF_8);
+                    Task json = gson.fromJson(taskString, Task.class);
+
+                    int id = parseIdFromQuery(queryString);
+                    T oldTask = taskManager.getTaskById(id, false);
+                    validateTaskType(oldTask);
+                    taskManager.updateTask((T) json, id);
+
+                    response = gson.toJson(oldTask);
+                    statusCode = 200;
+
+                }
                 case "POST" -> {
                     InputStream is = exchange.getRequestBody();
-                    String stringJson = new String(is.readAllBytes(), StandardCharsets.UTF_8);
-                    Task taskJson = gson.fromJson(stringJson, Task.class);
+                    String taskString = new String(is.readAllBytes(), StandardCharsets.UTF_8);
+                    Task json = gson.fromJson(taskString, Task.class);
+                    Task task = new Task(json.getName(), json.getDescription());
+                    taskManager.add((T) task);
 
-                    if (taskJson.getType() != Type.TASK) {
-                        throw new InCorrectClassException("Неверный тип задачи. Ожидаемый тип Task");
-                    }
+                    response = gson.toJson(task);
+                    statusCode = 201;
 
-                    if (taskJson.getId() != null && taskJson.getId() != 0) {
-                        taskManager.updateTask((T) taskJson, taskJson.getId());
-                        Task updateTask = getTask(taskJson.getId());
-
-                        response = gson.toJson(updateTask);
-                        statusCode = 200;
-                    } else {
-                        Task task = new Task(taskJson.getName(), taskJson.getDescription());
-                        taskManager.add((T) task);
-                        response = gson.toJson(task);
-                        statusCode = 201;
-                    }
                 }
                 case "DELETE" -> {
                     if (queryString != null) {
@@ -100,7 +103,7 @@ public class TaskHandler<T extends Task> extends BaseHandler<T> {
 
         }
 
-      sendResponse(exchange, statusCode, response);
+        sendResponse(exchange, statusCode, response);
 
     }
 
@@ -112,7 +115,7 @@ public class TaskHandler<T extends Task> extends BaseHandler<T> {
 
 
     private void validateTaskType(T task) {
-        if (task instanceof Epic || task instanceof SubTask) {
+        if (task.getType() != Type.TASK) {
             throw new InCorrectClassException("Неверный тип задачи. Ожидаемый тип Task");
         }
     }

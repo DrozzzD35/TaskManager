@@ -14,7 +14,7 @@ import java.nio.charset.StandardCharsets;
 public class SubTaskHandler<T extends Task> extends BaseHandler<T> {
 
     public SubTaskHandler(TaskManager<T> taskManager) {
-    super(taskManager);
+        super(taskManager);
     }
 
     @Override
@@ -40,21 +40,29 @@ public class SubTaskHandler<T extends Task> extends BaseHandler<T> {
                     statusCode = 200;
 
                 }
-                case "POST" -> {
-                    InputStream os = exchange.getRequestBody();
-                    String stringJson = new String(os.readAllBytes(), StandardCharsets.UTF_8);
-                    SubTask subTaskJson = gson.fromJson(stringJson, SubTask.class);
+                case "PUT" -> {
+                    InputStream is = exchange.getRequestBody();
+                    String taskString = new String(is.readAllBytes(), StandardCharsets.UTF_8);
+                    SubTask json = gson.fromJson(taskString, SubTask.class);
 
-                    if (subTaskJson.getId() != null && subTaskJson.getId() != 0) {
-                        taskManager.updateTask((T) subTaskJson, subTaskJson.getId());
-                        response = gson.toJson(taskManager.getTaskById(subTaskJson.getId(), false));
-                        statusCode = 200;
-                    } else {
-                        SubTask subTask = new SubTask(subTaskJson.getName(), subTaskJson.getDescription(), subTaskJson.getParentId());
-                        taskManager.add((T) subTask);
-                        response = gson.toJson(subTask);
-                        statusCode = 201;
-                    }
+                    int id = parseIdFromQuery(stringQuery);
+                    T oldSubTask = taskManager.getTaskById(id, false);
+                    validateSubTaskType(oldSubTask);
+                    taskManager.updateTask((T) json, id);
+
+                    response = gson.toJson(oldSubTask);
+                    statusCode = 200;
+                }
+
+                case "POST" -> {
+                    InputStream is = exchange.getRequestBody();
+                    String subTaskString = new String(is.readAllBytes(), StandardCharsets.UTF_8);
+                    SubTask json = gson.fromJson(subTaskString, SubTask.class);
+                    SubTask subTask = new SubTask(json.getName(), json.getDescription(), json.getParentId());
+                    taskManager.add((T) subTask);
+
+                    response = gson.toJson(subTask);
+                    statusCode = 201;
 
                 }
                 case "DELETE" -> {
@@ -105,8 +113,8 @@ public class SubTaskHandler<T extends Task> extends BaseHandler<T> {
         }
     }
 
-    private void chekListOfSubTasks(){
-        if (taskManager.getTasks(Type.SUBTASK).isEmpty()){
+    private void chekListOfSubTasks() {
+        if (taskManager.getTasks(Type.SUBTASK).isEmpty()) {
             throw new NotFoundException("Список SubTasks пуст");
         }
     }

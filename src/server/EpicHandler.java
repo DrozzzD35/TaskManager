@@ -5,6 +5,7 @@ import com.google.gson.JsonSyntaxException;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import model.Epic;
+import model.SubTask;
 import model.Task;
 import model.Type;
 import service.TaskManager;
@@ -42,23 +43,29 @@ public class EpicHandler<T extends Task> extends BaseHandler<T> {
                     }
                     statusCode = 200;
                 }
+                case "PUT" -> {
+                    InputStream is = exchange.getRequestBody();
+                    String taskString = new String(is.readAllBytes(), StandardCharsets.UTF_8);
+                    Epic json = gson.fromJson(taskString, Epic.class);
+                    int id = parseIdFromQuery(stringQuery);
+                    T oldTask = taskManager.getTaskById(id, false);
+                    validateEpicType(oldTask);
+                    taskManager.updateTask((T) json, id);
+
+                    response = gson.toJson(oldTask);
+                    statusCode = 200;
+
+                }
                 case "POST" -> {
                     InputStream os = exchange.getRequestBody();
                     String stringJson = new String(os.readAllBytes(), StandardCharsets.UTF_8);
                     Epic epicJson = gson.fromJson(stringJson, Epic.class);
+                    Epic epic = new Epic(epicJson.getName(), epicJson.getDescription());
+                    taskManager.add((T) epic);
 
-                    if (epicJson.getId() != null && epicJson.getId() != 0) {
-                        taskManager.updateTask((T) epicJson, epicJson.getId());
-                        T updateEpic = taskManager.getTaskById(epicJson.getId(), false);
-                        response = gson.toJson(updateEpic);
-                        statusCode = 200;
+                    response = gson.toJson(epic);
+                    statusCode = 201;
 
-                    } else {
-                        Epic epic = new Epic(epicJson.getName(), epicJson.getDescription());
-                        taskManager.add((T) epic);
-                        response = gson.toJson(epic);
-                        statusCode = 201;
-                    }
                 }
                 case "DELETE" -> {
                     if (stringQuery != null) {
