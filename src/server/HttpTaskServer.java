@@ -17,11 +17,11 @@ public class HttpTaskServer {
         int port = 8080;
         this.server = HttpServer.create(new InetSocketAddress(port), 0);
 
-        server.createContext("/tasks/task/", new TaskHandler<>(taskManager));
-        server.createContext("/tasks/epic/", new EpicHandler<>(taskManager));
-        server.createContext("/tasks/subTask/", new SubTaskHandler<>(taskManager));
+        server.createContext("/tasks/task", new TaskHandler<>(taskManager));
+        server.createContext("/tasks/epic", new EpicHandler<>(taskManager));
+        server.createContext("/tasks/subTask", new SubTaskHandler<>(taskManager));
         server.createContext("/tasks/history", new HistoryHandler<>(taskManager));
-        server.createContext("/tasks/", new TasksHandler<>(taskManager));
+        server.createContext("/tasks", new TasksHandler<>(taskManager));
 
     }
 
