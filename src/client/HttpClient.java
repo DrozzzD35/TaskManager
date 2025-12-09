@@ -14,6 +14,7 @@ import java.util.Map;
 
 public class HttpClient<T extends Task> {
     private final java.net.http.HttpClient client;
+    private final Gson gson = new Gson();
     private final String url = "http://localhost:8080/";
     private final String urlTask = "tasks/task";
     private final String urlEpic = "tasks/epic";
@@ -22,8 +23,8 @@ public class HttpClient<T extends Task> {
     private final String urlTasks = "tasks";
     private final String urlId = "?id=";
     private String fullUrl;
-    private Map<String, String> task = new HashMap<>();
-    private final Gson gson = new Gson();
+    private Map<String, String> task;
+    private String json;
 
     public HttpClient(java.net.http.HttpClient client) {
         this.client = client;
@@ -43,7 +44,7 @@ public class HttpClient<T extends Task> {
     }
 
     public HttpResponse<String> getTasks(Type type) throws IOException, InterruptedException {
-        getFullUrlTasks(type);
+        fullUrl = getFullUrlTasks(type);
 
         HttpRequest request = HttpRequest.newBuilder()
                 .GET()
@@ -56,10 +57,10 @@ public class HttpClient<T extends Task> {
     }
 
     public HttpResponse<String> updateTask(Type type, int id, String name, String description) throws IOException, InterruptedException {
-        getFullUrlTaskById(type, id);
+        fullUrl = getFullUrlTaskById(type, id);
 
         Map<String, String> task = new HashMap<>();
-        String json = getJson(task, name, description);
+        json = getJson(task, name, description);
 
         HttpRequest request = HttpRequest.newBuilder()
                 .PUT(HttpRequest.BodyPublishers.ofString(json))
@@ -72,11 +73,28 @@ public class HttpClient<T extends Task> {
     }
 
     public HttpResponse<String> createTask(Type type, String name, String description) throws IOException, InterruptedException {
-        Map<String, String> task = new HashMap<>();
-        String json = getJson(task, name, description);
+        task = new HashMap<>();
+        json = getJson(task, name, description);
+        fullUrl = getFullUrlTasks(type);
 
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(url + urlTask))
+                .uri(URI.create(fullUrl))
+                .POST(HttpRequest.BodyPublishers.ofString(json))
+                .header("Content-Type"
+                        , "application/json; Charset=UTF-8")
+                .build();
+
+        return client.send(request, HttpResponse.BodyHandlers.ofString());
+    }
+
+    public HttpResponse<String> createSubTask(Type type, String name, String description, int parentId) throws IOException, InterruptedException {
+        task = new HashMap<>();
+        task.put("parentId", String.valueOf(parentId));
+        json = getJson(task, name, description);
+        fullUrl = getFullUrlTasks(type);
+
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(fullUrl))
                 .POST(HttpRequest.BodyPublishers.ofString(json))
                 .header("Content-Type"
                         , "application/json; Charset=UTF-8")
@@ -120,18 +138,10 @@ public class HttpClient<T extends Task> {
 
     private String getFullUrlTaskById(Type type, int id) {
         switch (type) {
-            case TASK -> {
-                fullUrl = url + urlTask + urlId + id;
-            }
-            case EPIC -> {
-                fullUrl = url + urlEpic + urlId + id;
-            }
-            case SUBTASK -> {
-                fullUrl = url + urlSubTask + urlId + id;
-            }
-            default -> {
-                throw new InCorrectClassException("Неизвестный тип задачи");
-            }
+            case TASK -> fullUrl = url + urlTask + urlId + id;
+            case EPIC -> fullUrl = url + urlEpic + urlId + id;
+            case SUBTASK -> fullUrl = url + urlSubTask + urlId + id;
+            default -> throw new InCorrectClassException("Неизвестный тип задачи");
         }
 
         return fullUrl;
@@ -139,18 +149,11 @@ public class HttpClient<T extends Task> {
 
     private String getFullUrlTasks(Type type) {
         switch (type) {
-            case TASK -> {
-                fullUrl = url + urlTask + urlId;
-            }
-            case EPIC -> {
-                fullUrl = url + urlEpic + urlId;
-            }
-            case SUBTASK -> {
-                fullUrl = url + urlSubTask + urlId;
-            }
-            default -> {
-                throw new InCorrectClassException("Неизвестный тип задачи");
-            }
+            case TASK -> fullUrl = url + urlTask;
+            case EPIC -> fullUrl = url + urlEpic;
+            case SUBTASK -> fullUrl = url + urlSubTask;
+            case null -> fullUrl = url + urlTasks;
+            default -> throw new InCorrectClassException("Неизвестный тип задачи");
         }
 
         return fullUrl;

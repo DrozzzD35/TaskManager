@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3b2d2408-c7aa-4b02-a823-dac3b3c98272" name="Changes" comment="fix(InMemoryTaskManager.java): при создании СабТаска можно указать идентификатор несуществующего Эпика. Исправить">
+    <list default="true" id="3b2d2408-c7aa-4b02-a823-dac3b3c98272" name="Changes" comment="test(MyTest.java): проверить запись истории. Внести пометку для дальнейшего изучения">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MyTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MyTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/HttpClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/HttpClient.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -273,15 +273,7 @@
       <workItem from="1764683585061" duration="1027000" />
       <workItem from="1764703810228" duration="168000" />
       <workItem from="1764781799796" duration="24822000" />
-      <workItem from="1765245933681" duration="2433000" />
-    </task>
-    <task id="LOCAL-00018" summary="Маленькие корректировки">
-      <option name="closed" value="true" />
-      <created>1754442548673</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1754442548673</updated>
+      <workItem from="1765245933681" duration="5294000" />
     </task>
     <task id="LOCAL-00019" summary="Маленькие корректировки">
       <option name="closed" value="true" />
@@ -667,7 +659,15 @@
       <option name="project" value="LOCAL" />
       <updated>1765248025815</updated>
     </task>
-    <option name="localTasksCounter" value="67" />
+    <task id="LOCAL-00067" summary="test(MyTest.java): проверить запись истории. Внести пометку для дальнейшего изучения">
+      <option name="closed" value="true" />
+      <created>1765248643093</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1765248643093</updated>
+    </task>
+    <option name="localTasksCounter" value="68" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -688,7 +688,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/.." />
     </ignored-roots>
-    <MESSAGE value="TaskManagerHandler.java(ранее TaskHandler) завершить" />
     <MESSAGE value="- Создать обработчики Epic, Subtask, GeneralTask, History.&#10;- Добавить их в HttpTaskServer.java&#10;- Написать EpicHandler" />
     <MESSAGE value="gson-2.13.1.jar добавлен" />
     <MESSAGE value="- EpicHandler.java реализована обработка метода POST и DELETE" />
@@ -713,7 +712,8 @@
     <MESSAGE value="feat(HttpClient.java): Добавить внешние переменные. &#10;Добавить методы исключающие повторность кода.&#10;Объединить методы для избежания дублирования" />
     <MESSAGE value="test(HttpClient.java, FileBacked.CSV): провести тест. Удалить не нужный код" />
     <MESSAGE value="fix(InMemoryTaskManager.java): при создании СабТаска можно указать идентификатор несуществующего Эпика. Исправить" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix(InMemoryTaskManager.java): при создании СабТаска можно указать идентификатор несуществующего Эпика. Исправить" />
+    <MESSAGE value="test(MyTest.java): проверить запись истории. Внести пометку для дальнейшего изучения" />
+    <option name="LAST_COMMIT_MESSAGE" value="test(MyTest.java): проверить запись истории. Внести пометку для дальнейшего изучения" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
