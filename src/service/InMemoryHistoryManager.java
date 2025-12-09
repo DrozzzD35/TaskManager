@@ -5,7 +5,7 @@ import model.Task;
 import java.util.LinkedList;
 
 public class InMemoryHistoryManager<T extends Task> implements HistoryManager<T> {
-    private LinkedList<T> history;
+    private final LinkedList<T> history;
 
     public InMemoryHistoryManager() {
         this.history = new LinkedList<>();
@@ -29,8 +29,14 @@ public class InMemoryHistoryManager<T extends Task> implements HistoryManager<T>
         return "History{" + "history=" + '\n' + history + '}' + '\n';
     }
 
-    public void remove(T task) {
+    @Override
+    public void removeTask(T task) {
         history.remove(task);
+    }
+
+    @Override
+    public void removeHistory() {
+        history.clear();
     }
 
 }

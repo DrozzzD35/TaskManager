@@ -19,10 +19,10 @@ public class HistoryHandler<T extends Task> extends BaseHandler<T> {
         String method = exchange.getRequestMethod();
         String response;
         int statusCode;
+        HistoryManager<T> historyManager = taskManager.getHistory();
 
         try {
             if (method.equals("GET")) {
-                HistoryManager<T> historyManager = taskManager.getHistory();
                 List<T> historyList = historyManager.getHistory();
 
                 if (historyList.isEmpty()) {
@@ -32,6 +32,11 @@ public class HistoryHandler<T extends Task> extends BaseHandler<T> {
                     response = gson.toJson(historyList);
                     statusCode = 200;
                 }
+
+            } else if (method.equals("DELETE")) {
+                historyManager.removeHistory();
+                response = gson.toJson("История полностью удалена");
+                statusCode = 200;
 
             } else {
                 response = gson.toJson("Не удалось распознать запрос");
