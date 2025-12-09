@@ -32,6 +32,7 @@ public class MyTest {
         // Обновление задачи
         updateTaskStatus(task1.getId());
 
+        // Вывод всех задач в консоль
         System.out.println("===========  Таски в памяти   ===============");
         System.out.println(saveManager.getAllTasks());
         System.out.println("==========================\n\n");
@@ -46,14 +47,17 @@ public class MyTest {
         addHistoryCycle(0);
 
 
+        // Просмотр истории
         System.out.println("===========  История   ===============");
         System.out.println("История " + saveManager.getHistory());
         System.out.println("=========================\n");
 
+        // Привидение типа, иначе метод save() недоступен
         ((FileBackedTasksManager<?>) saveManager).save();
         System.out.println("===========  Загрузка из файла   ===============");
         TaskManager<Task> restored = FileBackedTasksManager.loadFromFile(path);
 
+        // Проверка на идентичность истории в памяти и в файле
         System.out.println("history ok? " +
                 restored.getHistory().equals(saveManager.getHistory()));
 

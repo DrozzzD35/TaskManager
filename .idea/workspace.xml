@@ -4,12 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3b2d2408-c7aa-4b02-a823-dac3b3c98272" name="Changes" comment="feat(HttpClient.java): добавить методы, добавить внешние переменные">
+    <list default="true" id="3b2d2408-c7aa-4b02-a823-dac3b3c98272" name="Changes" comment="test(HttpClient.java, FileBacked.CSV): провести тест. Удалить не нужный код">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/MyTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MyTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/client/HttpClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/HttpClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dataBacked/FileBacked.CSV" beforeDir="false" afterPath="$PROJECT_DIR$/src/dataBacked/FileBacked.CSV" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Epic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Epic.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/service/InMemoryTaskManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/InMemoryTaskManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -276,31 +273,8 @@
       <workItem from="1764597959125" duration="3248000" />
       <workItem from="1764683585061" duration="1027000" />
       <workItem from="1764703810228" duration="168000" />
-      <workItem from="1764781799796" duration="23659000" />
-    </task>
-    <task id="LOCAL-00014" summary="проведён урок&#10;добавлен List history&#10;поправлен removeTaskById, updateTask.&#10;Скорректировано меню">
-      <option name="closed" value="true" />
-      <created>1753450535100</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1753450535102</updated>
-    </task>
-    <task id="LOCAL-00015" summary="На уроке:&#10;Переопределён метод SetStatus в Epic, SubTask&#10;Добавлен метод tiString, так же переопределён в дочерних классах">
-      <option name="closed" value="true" />
-      <created>1754327734919</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1754327734919</updated>
-    </task>
-    <task id="LOCAL-00016" summary="Добавлен класс History&#10;Реализован List history, так же протестирован">
-      <option name="closed" value="true" />
-      <created>1754388246693</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1754388246693</updated>
+      <workItem from="1764781799796" duration="24822000" />
+      <workItem from="1765245933681" duration="1666000" />
     </task>
     <task id="LOCAL-00017" summary="Добавлен и реализован утилитарный класс">
       <option name="closed" value="true" />
@@ -670,7 +644,31 @@
       <option name="project" value="LOCAL" />
       <updated>1764857854743</updated>
     </task>
-    <option name="localTasksCounter" value="63" />
+    <task id="LOCAL-00063" summary="refactor(Epic.java): изменить имя переменных">
+      <option name="closed" value="true" />
+      <created>1764873316609</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1764873316609</updated>
+    </task>
+    <task id="LOCAL-00064" summary="feat(HttpClient.java): Добавить внешние переменные. &#10;Добавить методы исключающие повторность кода.&#10;Объединить методы для избежания дублирования">
+      <option name="closed" value="true" />
+      <created>1764873487767</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1764873487767</updated>
+    </task>
+    <task id="LOCAL-00065" summary="test(HttpClient.java, FileBacked.CSV): провести тест. Удалить не нужный код">
+      <option name="closed" value="true" />
+      <created>1764873720152</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1764873720152</updated>
+    </task>
+    <option name="localTasksCounter" value="66" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -691,9 +689,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/.." />
     </ignored-roots>
-    <MESSAGE value="Добавить TODO для разбора в будущем" />
-    <MESSAGE value="Тестовый запуск:&#10; - Тест метода loadFromFile в классе FileBackedTasksManager.java&#10;- Epic.java добавление в конструктор инициализации списка subTasksIds&#10;- FileBackedTasksManager.java метод historyFromString не корректно записывает идентификаторы, переписать метод.&#10;Метод toString не корректно записывает Enum, пофиксить&#10;- MyTest.java убрать manager, все вызовы методов через saveManager.&#10;Тестируем FileBackedTasksManager.loadFromFile" />
-    <MESSAGE value="История restored и saveManager не равны, справить:&#10;- Epic.java, Task.java, SubTask.java переопределить методы equals и hashCode&#10;- Протестировать метод save вручную, временно закомментировать в методе getTaskById" />
     <MESSAGE value="- ChangeStatus.java удалить - лишний класс&#10;- HttpTaskServer.java написать и реализовать класс&#10;- TaskHandler.java написать и реализовать класс" />
     <MESSAGE value="TaskManagerHandler.java(ранее TaskHandler) завершить" />
     <MESSAGE value="- Создать обработчики Epic, Subtask, GeneralTask, History.&#10;- Добавить их в HttpTaskServer.java&#10;- Написать EpicHandler" />
@@ -716,7 +711,10 @@
     <MESSAGE value="feat(HttpClient.java): добавление методов" />
     <MESSAGE value="refactor(EpicHandler.java): удалить не используемый оператор импорта" />
     <MESSAGE value="feat(HttpClient.java): добавить методы, добавить внешние переменные" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat(HttpClient.java): добавить методы, добавить внешние переменные" />
+    <MESSAGE value="refactor(Epic.java): изменить имя переменных" />
+    <MESSAGE value="feat(HttpClient.java): Добавить внешние переменные. &#10;Добавить методы исключающие повторность кода.&#10;Объединить методы для избежания дублирования" />
+    <MESSAGE value="test(HttpClient.java, FileBacked.CSV): провести тест. Удалить не нужный код" />
+    <option name="LAST_COMMIT_MESSAGE" value="test(HttpClient.java, FileBacked.CSV): провести тест. Удалить не нужный код" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

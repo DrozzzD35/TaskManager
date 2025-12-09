@@ -23,10 +23,18 @@ public class InMemoryTaskManager<T extends Task> implements TaskManager<T> {
 
     @Override
     public void add(T task) {
-        if (task instanceof SubTask) {
-            int epicId = ((SubTask) task).getParentId();
-            Epic epic = (Epic) taskMap.get(epicId);
-            epic.addChild(task.getId());
+        //TODO утерян идентификатор при неудачной попытке создать сабтаск,
+        // если попытаться присвоить сабтаск к несуществующему эпику.
+        // Может перенести генерацию идентификатора в этот метод add()
+        try {
+            if (task instanceof SubTask) {
+                int epicId = ((SubTask) task).getParentId();
+                Epic epic = (Epic) taskMap.get(epicId);
+                epic.addChild(task.getId());
+            }
+        } catch (NullPointerException e) {
+            System.out.println("По указанному идентификатору задачи Epic не существует. Задача SubTask будет удалена");
+            return;
         }
 
         taskMap.put(task.getId(), task);
