@@ -19,7 +19,7 @@ public class MyTest {
         // Создание задачи
         Task task1 = createTask("name10", "description10");
         Epic task2 = createEpic("epic11", "epic11");
-        SubTask task3 = createSubTask("subTask12", "subTask12", 20);
+        SubTask task3 = createSubTask("subTask12", "subTask12", 2);
         Epic task4 = createEpic("epic13", "epic13");
         SubTask task5 = createSubTask("subTask14", "subTask14", 4);
         Epic task6 = createEpic("epic15", "epic15");
@@ -58,6 +58,7 @@ public class MyTest {
         TaskManager<Task> restored = FileBackedTasksManager.loadFromFile(path);
 
         // Проверка на идентичность истории в памяти и в файле
+        //TODO почему в истории 1,2,3,1,2? Последний идентификатор не записывается а программа пишет что они идентичны - true
         System.out.println("history ok? " +
                 restored.getHistory().equals(saveManager.getHistory()));
 
