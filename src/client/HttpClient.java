@@ -19,16 +19,17 @@ public class HttpClient<T extends Task> {
     private final String urlTask = "tasks/task";
     private final String urlEpic = "tasks/epic";
     private final String urlSubTask = "tasks/subtask";
+    private final String urlHistory = "tasks/history";
     private String fullUrl;
     private Map<String, String> task;
     private String json;
+
 
     public HttpClient(java.net.http.HttpClient client) {
         this.client = client;
     }
 
     public HttpResponse<String> getHistory() throws IOException, InterruptedException {
-        String urlHistory = "tasks/history";
         fullUrl = url + urlHistory;
 
         HttpRequest request = HttpRequest.newBuilder()
@@ -139,6 +140,18 @@ public class HttpClient<T extends Task> {
         return client.send(request, HttpResponse.BodyHandlers.ofString());
     }
 
+    public HttpResponse<String> removeHistory() throws IOException, InterruptedException {
+        fullUrl = url + urlHistory;
+
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(fullUrl))
+                .DELETE()
+                .header("Content-Type"
+                        , "application/json; Charset=UTF-8")
+                .build();
+
+        return client.send(request, HttpResponse.BodyHandlers.ofString());
+    }
 
     private String getJson(Map<String, String> task, String name, String description) {
         task.put("name", name);
