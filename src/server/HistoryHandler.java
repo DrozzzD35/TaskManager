@@ -1,8 +1,6 @@
 package server;
 
-import com.google.gson.Gson;
 import com.sun.net.httpserver.HttpExchange;
-import com.sun.net.httpserver.HttpHandler;
 import model.Task;
 import service.HistoryManager;
 import service.TaskManager;
@@ -39,7 +37,7 @@ public class HistoryHandler<T extends Task> extends BaseHandler<T> {
                 response = gson.toJson("Не удалось распознать запрос");
                 statusCode = 501;
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             response = gson.toJson("Возникла ошибка сервера");
             statusCode = 500;
         }

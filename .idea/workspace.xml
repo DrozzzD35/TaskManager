@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3b2d2408-c7aa-4b02-a823-dac3b3c98272" name="Changes" comment="test(MyTest.java): проверить запись истории. Внести пометку для дальнейшего изучения">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="3b2d2408-c7aa-4b02-a823-dac3b3c98272" name="Changes" comment="feat(HttpClient.java): написать метод createSubTask. &#10;&#10;refactor(HttpClient.java); методы getFullUrlTasks и getFullUrlTaskById сократить, сделать более читаемым код.">
       <change beforePath="$PROJECT_DIR$/src/client/HttpClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/HttpClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/BaseHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/BaseHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/HistoryHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/HistoryHandler.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -273,15 +274,7 @@
       <workItem from="1764683585061" duration="1027000" />
       <workItem from="1764703810228" duration="168000" />
       <workItem from="1764781799796" duration="24822000" />
-      <workItem from="1765245933681" duration="5294000" />
-    </task>
-    <task id="LOCAL-00019" summary="Маленькие корректировки">
-      <option name="closed" value="true" />
-      <created>1754579569979</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1754579569979</updated>
+      <workItem from="1765245933681" duration="6597000" />
     </task>
     <task id="LOCAL-00020" summary="Маленькие корректировки">
       <option name="closed" value="true" />
@@ -667,7 +660,15 @@
       <option name="project" value="LOCAL" />
       <updated>1765248643093</updated>
     </task>
-    <option name="localTasksCounter" value="68" />
+    <task id="LOCAL-00068" summary="feat(HttpClient.java): написать метод createSubTask. &#10;&#10;refactor(HttpClient.java); методы getFullUrlTasks и getFullUrlTaskById сократить, сделать более читаемым код.">
+      <option name="closed" value="true" />
+      <created>1765253586104</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1765253586104</updated>
+    </task>
+    <option name="localTasksCounter" value="69" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -688,7 +689,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/.." />
     </ignored-roots>
-    <MESSAGE value="- Создать обработчики Epic, Subtask, GeneralTask, History.&#10;- Добавить их в HttpTaskServer.java&#10;- Написать EpicHandler" />
     <MESSAGE value="gson-2.13.1.jar добавлен" />
     <MESSAGE value="- EpicHandler.java реализована обработка метода POST и DELETE" />
     <MESSAGE value="Маленькие правки, фиксы:&#10;- EpicHandler.java написать метод DELETE &#10;- InMemoryTaskManager.java написать метод getEpics&#10;- TaskHandler.java исправить метод DELETE" />
@@ -713,7 +713,8 @@
     <MESSAGE value="test(HttpClient.java, FileBacked.CSV): провести тест. Удалить не нужный код" />
     <MESSAGE value="fix(InMemoryTaskManager.java): при создании СабТаска можно указать идентификатор несуществующего Эпика. Исправить" />
     <MESSAGE value="test(MyTest.java): проверить запись истории. Внести пометку для дальнейшего изучения" />
-    <option name="LAST_COMMIT_MESSAGE" value="test(MyTest.java): проверить запись истории. Внести пометку для дальнейшего изучения" />
+    <MESSAGE value="feat(HttpClient.java): написать метод createSubTask. &#10;&#10;refactor(HttpClient.java); методы getFullUrlTasks и getFullUrlTaskById сократить, сделать более читаемым код." />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(HttpClient.java): написать метод createSubTask. &#10;&#10;refactor(HttpClient.java); методы getFullUrlTasks и getFullUrlTaskById сократить, сделать более читаемым код." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

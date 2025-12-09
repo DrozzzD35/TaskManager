@@ -12,22 +12,33 @@ import java.net.http.HttpResponse;
 import java.util.HashMap;
 import java.util.Map;
 
-public class HttpClient<T extends Task> {
+public class HttpClient {
     private final java.net.http.HttpClient client;
     private final Gson gson = new Gson();
     private final String url = "http://localhost:8080/";
     private final String urlTask = "tasks/task";
     private final String urlEpic = "tasks/epic";
     private final String urlSubTask = "tasks/subtask";
-    private final String urlHistory = "tasks/history";
-    private final String urlTasks = "tasks";
-    private final String urlId = "?id=";
     private String fullUrl;
     private Map<String, String> task;
     private String json;
 
     public HttpClient(java.net.http.HttpClient client) {
         this.client = client;
+    }
+
+    public HttpResponse<String> getHistory() throws IOException, InterruptedException {
+        String urlHistory = "tasks/history";
+        fullUrl = url + urlHistory;
+
+        HttpRequest request = HttpRequest.newBuilder()
+                .GET()
+                .uri(URI.create(fullUrl))
+                .header("Content-Type"
+                        , "application/json; Charset=UTF-8")
+                .build();
+
+        return client.send(request, HttpResponse.BodyHandlers.ofString());
     }
 
     public HttpResponse<String> getTaskById(int id, Type type) throws IOException, InterruptedException {
@@ -137,6 +148,7 @@ public class HttpClient<T extends Task> {
     }
 
     private String getFullUrlTaskById(Type type, int id) {
+        String urlId = "?id=";
         switch (type) {
             case TASK -> fullUrl = url + urlTask + urlId + id;
             case EPIC -> fullUrl = url + urlEpic + urlId + id;
@@ -148,6 +160,7 @@ public class HttpClient<T extends Task> {
     }
 
     private String getFullUrlTasks(Type type) {
+        String urlTasks = "tasks";
         switch (type) {
             case TASK -> fullUrl = url + urlTask;
             case EPIC -> fullUrl = url + urlEpic;
