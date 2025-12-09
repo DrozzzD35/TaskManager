@@ -4,14 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3b2d2408-c7aa-4b02-a823-dac3b3c98272" name="Changes" comment="feat(HttpClient.java): добавить метод removeHistory">
+    <list default="true" id="3b2d2408-c7aa-4b02-a823-dac3b3c98272" name="Changes" comment="refactor(InMemoryTaskManager.java): внести пометку в метод add()">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MyTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MyTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dataBacked/FileBacked.CSV" beforeDir="false" afterPath="$PROJECT_DIR$/src/dataBacked/FileBacked.CSV" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/EpicHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/EpicHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/SubTaskHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/SubTaskHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/TaskHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/TaskHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/service/InMemoryTaskManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/InMemoryTaskManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/HttpClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/HttpClient.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -278,31 +273,7 @@
       <workItem from="1764683585061" duration="1027000" />
       <workItem from="1764703810228" duration="168000" />
       <workItem from="1764781799796" duration="24822000" />
-      <workItem from="1765245933681" duration="12719000" />
-    </task>
-    <task id="LOCAL-00024" summary="На уроке:&#10;В FileBackedTasksManager изменён метод save&#10;В InMemoryTaskManager изменён модификатор с private на protected. Так же отредактирован history в конструкторе, соответственно отредактирован метод getDefault в классе Managers. Добавлен метод getDefaultFile в классе Managers">
-      <option name="closed" value="true" />
-      <created>1756112435793</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1756112435793</updated>
-    </task>
-    <task id="LOCAL-00025" summary="Классная работа.&#10;Feat: написать логику методов save, toString, fromString.">
-      <option name="closed" value="true" />
-      <created>1756203957917</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1756203957917</updated>
-    </task>
-    <task id="LOCAL-00026" summary="Классная работа.&#10;Feat: дописать метод fromString.">
-      <option name="closed" value="true" />
-      <created>1756215542822</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1756215542822</updated>
+      <workItem from="1765245933681" duration="14158000" />
     </task>
     <task id="LOCAL-00027" summary="Классная работа.&#10;Fix: поправить метод add.&#10;Refactor: убрать лишний перенос строки в записи Tasks. Изменить название Enum">
       <option name="closed" value="true" />
@@ -672,7 +643,31 @@
       <option name="project" value="LOCAL" />
       <updated>1765300500896</updated>
     </task>
-    <option name="localTasksCounter" value="73" />
+    <task id="LOCAL-00073" summary="fix(EpicHandler.java, SubTaskHandler.java, TaskHandler.java): поправить логику обработки метода &quot;PUT&quot;">
+      <option name="closed" value="true" />
+      <created>1765302705032</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1765302705032</updated>
+    </task>
+    <task id="LOCAL-00074" summary="test(MyTest.java): провести тесты">
+      <option name="closed" value="true" />
+      <created>1765302781332</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1765302781332</updated>
+    </task>
+    <task id="LOCAL-00075" summary="refactor(InMemoryTaskManager.java): внести пометку в метод add()">
+      <option name="closed" value="true" />
+      <created>1765302827560</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1765302827560</updated>
+    </task>
+    <option name="localTasksCounter" value="76" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -693,9 +688,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/.." />
     </ignored-roots>
-    <MESSAGE value="- Epic.java добавить метод removeAllChildren()&#10;- FileBackedTasksManager.java и TaskHandler.java метод removeTasks переименовать в removeAllTasks&#10;- Написать методы removeEpics, removeSubTasks, removeTasks&#10;- SubTaskHandler.java внести проверку типа задач в методы &quot;GET&quot;, &quot;DELETE&quot;&#10;- TaskManager.java добавить методы removeTasks(), removeEpics(), removeSubTasks(). Метод removeTasks переименовать в removeAllTasks" />
-    <MESSAGE value="- InMemoryTaskManager.java метод updateEpicStatus добавить в интерфейс.&#10;Переписать методы removeTasks, removeEpics, removeSubtasks на более лаконичный и читаемый вариант. Так же добавить проверки на null." />
-    <MESSAGE value="- EpicHandler.java добавить в метод &quot;GET&quot; проверку таска на null и на тип Epic&#10;- SubTaskHandler.java добавить в метод &quot;GET&quot; и &quot;DELETE&quot; проверку таска на null и на тип SubTask.&#10;Добавить удаление всех задач - taskManager.removeSubTasks()&#10;- TaskManager.java добавить метод updateEpicStatus(Integer epicId)" />
     <MESSAGE value="- EpicHandler.java вынести в отдельный метод отправку ответа клиенту, использовать кастомный метод sendResponse. &#10;Использовать метод removeEpics.&#10;Внести проверку на наличие задачи&#10;- Создать кастомные исключения для обработки ошибок InCorrectClassException.java и NotFoundException.java&#10;- Убрать повторяемость кода, создать методы sendResponse(в будущем его перенести), getTask, validateSubTaskType, parseIdFromQuery.&#10;Try catch сделать общим для удаления повторяемости кода" />
     <MESSAGE value="- EpicHandler убрать повторяемость кода, создать методы sendResponse(в будущем его перенести), getTask, validateSubTaskType, parseIdFromQuery.&#10;Try catch сделать общим для удаления повторяемости кода" />
     <MESSAGE value="- EpicHandler.java и SubTaskHandler.java добавить catch для InCorrectClassException и NotFoundException.&#10;Убрать лишний statusCode, вынести во внешнюю строку, удалить излишки кода" />
@@ -718,7 +710,10 @@
     <MESSAGE value="feat(HistoryHandler.java): добавить обработку метода &quot;DELETE&quot;&#10;&#10;feat(HistoryManager.java, InMemoryHistoryManager.java): добавить метод removeHistory" />
     <MESSAGE value="fix(HttpClient.java): переписать метод updateTask, теперь он принимает лишь обновлённую задачу и идентификатор" />
     <MESSAGE value="feat(HttpClient.java): добавить метод removeHistory" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat(HttpClient.java): добавить метод removeHistory" />
+    <MESSAGE value="fix(EpicHandler.java, SubTaskHandler.java, TaskHandler.java): поправить логику обработки метода &quot;PUT&quot;" />
+    <MESSAGE value="test(MyTest.java): провести тесты" />
+    <MESSAGE value="refactor(InMemoryTaskManager.java): внести пометку в метод add()" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor(InMemoryTaskManager.java): внести пометку в метод add()" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
