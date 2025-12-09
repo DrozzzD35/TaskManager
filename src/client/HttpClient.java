@@ -12,7 +12,7 @@ import java.net.http.HttpResponse;
 import java.util.HashMap;
 import java.util.Map;
 
-public class HttpClient {
+public class HttpClient<T extends Task> {
     private final java.net.http.HttpClient client;
     private final Gson gson = new Gson();
     private final String url = "http://localhost:8080/";
@@ -67,11 +67,10 @@ public class HttpClient {
         return client.send(request, HttpResponse.BodyHandlers.ofString());
     }
 
-    public HttpResponse<String> updateTask(Type type, int id, String name, String description) throws IOException, InterruptedException {
+    public HttpResponse<String> updateTask(int id, T updatedTask) throws IOException, InterruptedException {
+        Type type = updatedTask.getType();
         fullUrl = getFullUrlTaskById(type, id);
-
-        Map<String, String> task = new HashMap<>();
-        json = getJson(task, name, description);
+        json = gson.toJson(updatedTask);
 
         HttpRequest request = HttpRequest.newBuilder()
                 .PUT(HttpRequest.BodyPublishers.ofString(json))
