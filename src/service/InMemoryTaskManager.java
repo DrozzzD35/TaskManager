@@ -23,9 +23,9 @@ public class InMemoryTaskManager<T extends Task> implements TaskManager<T> {
 
     @Override
     public void add(T task) {
-        //TODO утерян идентификатор при неудачной попытке создать сабтаск,
+        //TODO утечка идентификатора при неудачной попытке создать сабтаск,
         // если попытаться присвоить сабтаск к несуществующему эпику.
-        // Может перенести генерацию идентификатора в этот метод add()
+        // Может перенести генерацию идентификатора в этот метод add()?
         try {
             if (task instanceof SubTask) {
                 int epicId = ((SubTask) task).getParentId();
