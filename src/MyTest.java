@@ -27,7 +27,7 @@ public class MyTest {
 
 
         // Цикл создания задач
-        taskCreationCycle(0);
+        taskCreationCycle(300);
 
         // Обновление задачи
         updateTaskStatus(task1.getId());
@@ -44,7 +44,7 @@ public class MyTest {
         addHistory(task3);
 
         // Цикл добавления задач в историю
-        addHistoryCycle(0);
+        addHistoryCycle(3020);
 
 
         // Просмотр истории
@@ -102,7 +102,6 @@ public class MyTest {
     private static void addHistoryCycle(int quantity) {
         for (int i = 1; i <= quantity; i++) {
             saveManager.getTaskById(i, true);
-
         }
     }
 
