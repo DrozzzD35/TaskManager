@@ -47,8 +47,10 @@ public class EpicHandler<T extends Task> extends BaseHandler<T> {
                     T oldTask = taskManager.getTaskById(id, false);
                     validateEpicType(oldTask);
                     taskManager.updateTask((T) json, id);
+                    //TODO Возник спор с ИИ нужно ли заново искать задачу или можно отправить gson.toJson(oldTask)
+                    T updatedTask = taskManager.getTaskById(id,false);
 
-                    response = gson.toJson(oldTask);
+                    response = gson.toJson(updatedTask);
                     statusCode = 200;
 
                 }

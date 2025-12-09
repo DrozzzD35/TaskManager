@@ -49,8 +49,9 @@ public class SubTaskHandler<T extends Task> extends BaseHandler<T> {
                     T oldSubTask = taskManager.getTaskById(id, false);
                     validateSubTaskType(oldSubTask);
                     taskManager.updateTask((T) json, id);
+                    T updatedTask = taskManager.getTaskById(id, false);
 
-                    response = gson.toJson(oldSubTask);
+                    response = gson.toJson(updatedTask);
                     statusCode = 200;
                 }
 
