@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3b2d2408-c7aa-4b02-a823-dac3b3c98272" name="Changes" comment="refactor(InMemoryTaskManager.java): внести пометку в метод add()">
+    <list default="true" id="3b2d2408-c7aa-4b02-a823-dac3b3c98272" name="Changes" comment="feat(HttpClient.java): В в методах createSubTask и createTask убрать повторяющийся код, вынести в отдельный метод&#10;&#10;refactor(HttpClient.java): перенести переменные из поля класса в методы, сделать их локальными.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/client/HttpClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/HttpClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MyTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MyTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dataBacked/FileBacked.CSV" beforeDir="false" afterPath="$PROJECT_DIR$/src/dataBacked/FileBacked.CSV" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/EpicHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/EpicHandler.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,7 +55,7 @@
   &quot;keyToString&quot;: {
     &quot;Application.HttpTaskServer.executor&quot;: &quot;Debug&quot;,
     &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;Application.MyTest.executor&quot;: &quot;Run&quot;,
+    &quot;Application.MyTest.executor&quot;: &quot;Debug&quot;,
     &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
@@ -273,15 +275,8 @@
       <workItem from="1764683585061" duration="1027000" />
       <workItem from="1764703810228" duration="168000" />
       <workItem from="1764781799796" duration="24822000" />
-      <workItem from="1765245933681" duration="14158000" />
-    </task>
-    <task id="LOCAL-00027" summary="Классная работа.&#10;Fix: поправить метод add.&#10;Refactor: убрать лишний перенос строки в записи Tasks. Изменить название Enum">
-      <option name="closed" value="true" />
-      <created>1756268870874</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1756268870874</updated>
+      <workItem from="1765245933681" duration="16447000" />
+      <workItem from="1765348009792" duration="21000" />
     </task>
     <task id="LOCAL-00028" summary="Домашняя работа.&#10;Feat: добавлен геттер history">
       <option name="closed" value="true" />
@@ -667,7 +662,15 @@
       <option name="project" value="LOCAL" />
       <updated>1765302827560</updated>
     </task>
-    <option name="localTasksCounter" value="76" />
+    <task id="LOCAL-00076" summary="feat(HttpClient.java): В в методах createSubTask и createTask убрать повторяющийся код, вынести в отдельный метод&#10;&#10;refactor(HttpClient.java): перенести переменные из поля класса в методы, сделать их локальными.">
+      <option name="closed" value="true" />
+      <created>1765303857531</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1765303857531</updated>
+    </task>
+    <option name="localTasksCounter" value="77" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -688,7 +691,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/.." />
     </ignored-roots>
-    <MESSAGE value="- EpicHandler.java вынести в отдельный метод отправку ответа клиенту, использовать кастомный метод sendResponse. &#10;Использовать метод removeEpics.&#10;Внести проверку на наличие задачи&#10;- Создать кастомные исключения для обработки ошибок InCorrectClassException.java и NotFoundException.java&#10;- Убрать повторяемость кода, создать методы sendResponse(в будущем его перенести), getTask, validateSubTaskType, parseIdFromQuery.&#10;Try catch сделать общим для удаления повторяемости кода" />
     <MESSAGE value="- EpicHandler убрать повторяемость кода, создать методы sendResponse(в будущем его перенести), getTask, validateSubTaskType, parseIdFromQuery.&#10;Try catch сделать общим для удаления повторяемости кода" />
     <MESSAGE value="- EpicHandler.java и SubTaskHandler.java добавить catch для InCorrectClassException и NotFoundException.&#10;Убрать лишний statusCode, вынести во внешнюю строку, удалить излишки кода" />
     <MESSAGE value="- EpicHandler.java и SubTaskHandler.java добавить описание для NotFoundException&#10;- Сделать NotFoundException.java более универсальным, убрать текст, текст будет внесён в параметр конструктора&#10;- TaskHandler.java вынести try catch, избавиться от повторяемости кода.&#10;Создать методы getListOfTasks, getTask, parseIdFromQuery, validateTaskType и реализовать их" />
@@ -713,7 +715,25 @@
     <MESSAGE value="fix(EpicHandler.java, SubTaskHandler.java, TaskHandler.java): поправить логику обработки метода &quot;PUT&quot;" />
     <MESSAGE value="test(MyTest.java): провести тесты" />
     <MESSAGE value="refactor(InMemoryTaskManager.java): внести пометку в метод add()" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor(InMemoryTaskManager.java): внести пометку в метод add()" />
+    <MESSAGE value="feat(HttpClient.java): В в методах createSubTask и createTask убрать повторяющийся код, вынести в отдельный метод&#10;&#10;refactor(HttpClient.java): перенести переменные из поля класса в методы, сделать их локальными." />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(HttpClient.java): В в методах createSubTask и createTask убрать повторяющийся код, вынести в отдельный метод&#10;&#10;refactor(HttpClient.java): перенести переменные из поля класса в методы, сделать их локальными." />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/MyTest.java</url>
+          <line>61</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="restored.getHistory()" />
+        <watch expression="saveManager.getHistory()" />
+      </configuration>
+    </watches-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

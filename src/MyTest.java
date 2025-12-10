@@ -19,7 +19,7 @@ public class MyTest {
         // Создание задачи
         Task task1 = createTask("name10", "description10");
         Epic task2 = createEpic("epic11", "epic11");
-        SubTask task3 = createSubTask("subTask12", "subTask12", 2);
+        SubTask task3 = createSubTask("subTask12", "subTask12", 1);
         Epic task4 = createEpic("epic13", "epic13");
         SubTask task5 = createSubTask("subTask14", "subTask14", 4);
         Epic task6 = createEpic("epic15", "epic15");
@@ -27,7 +27,7 @@ public class MyTest {
 
 
         // Цикл создания задач
-        taskCreationCycle(300);
+        taskCreationCycle(0);
 
         // Обновление задачи
         updateTaskStatus(task1.getId());
@@ -44,7 +44,7 @@ public class MyTest {
         addHistory(task3);
 
         // Цикл добавления задач в историю
-        addHistoryCycle(3020);
+        addHistoryCycle(0);
 
 
         // Просмотр истории
@@ -88,6 +88,7 @@ public class MyTest {
     }
 
     private static SubTask createSubTask(String name, String description, int epicId) {
+        //TODO внедрить проверку на наличие Эпика
         SubTask subTask = new SubTask(name, description, epicId);
         saveManager.add(subTask);
         return subTask;

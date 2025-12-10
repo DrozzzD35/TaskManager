@@ -10,7 +10,6 @@ import service.TaskManager;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
-//TODO PUT - обновление
 
 public class EpicHandler<T extends Task> extends BaseHandler<T> {
 
@@ -44,10 +43,7 @@ public class EpicHandler<T extends Task> extends BaseHandler<T> {
                     String taskString = new String(is.readAllBytes(), StandardCharsets.UTF_8);
                     Epic json = gson.fromJson(taskString, Epic.class);
                     int id = parseIdFromQuery(stringQuery);
-                    T oldTask = taskManager.getTaskById(id, false);
-                    validateEpicType(oldTask);
-                    taskManager.updateTask((T) json, id);
-                    //TODO Возник спор с ИИ нужно ли заново искать задачу или можно отправить gson.toJson(oldTask)
+                    taskManager.updateTask((T) json,id);
                     T updatedTask = taskManager.getTaskById(id,false);
 
                     response = gson.toJson(updatedTask);
