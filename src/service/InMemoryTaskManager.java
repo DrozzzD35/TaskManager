@@ -23,13 +23,10 @@ public class InMemoryTaskManager<T extends Task> implements TaskManager<T> {
 
     @Override
     public void add(T task) {
-        //TODO утечка идентификатора при неудачной попытке создать сабтаск,
-        // если попытаться присвоить сабтаск к несуществующему эпику.
-        // Может перенести генерацию идентификатора в этот метод add()?
         try {
             if (task instanceof SubTask) {
                 int epicId = ((SubTask) task).getParentId();
-                Epic epic = (Epic) taskMap.get(epicId);
+                Epic epic = (Epic) getTaskById(epicId, false);
                 epic.addChild(task.getId());
             }
         } catch (NullPointerException e) {
@@ -38,7 +35,8 @@ public class InMemoryTaskManager<T extends Task> implements TaskManager<T> {
         }
 
         taskMap.put(task.getId(), task);
-        System.out.println(task.getType() + " " + task.getName() + ", id = " + task.getId() + " добавлена.");
+        System.out.println(task.getType() + " " + task.getName()
+                + ", id = " + task.getId() + " добавлена.");
     }
 
     public HistoryManager<T> getHistory() {

@@ -19,18 +19,20 @@ public class MyTest {
         // Создание задачи
         Task task1 = createTask("name10", "description10");
         Epic task2 = createEpic("epic11", "epic11");
-        SubTask task3 = createSubTask("subTask12", "subTask12", 1);
-        Epic task4 = createEpic("epic13", "epic13");
-        SubTask task5 = createSubTask("subTask14", "subTask14", 4);
-        Epic task6 = createEpic("epic15", "epic15");
-        SubTask task7 = createSubTask("subTask16", "subTask16", 6);
+        SubTask task3 = createSubTask("subTask12", "subTask12", 2);
+        createEpic("epic13", "epic13");
+        createSubTask("subTask14", "subTask14", 44);
+        createEpic("epic15", "epic15");
+        createSubTask("subTask16", "subTask16", 6);
 
 
         // Цикл создания задач
-        taskCreationCycle(0);
+//        taskCreationCycle(20);
 
         // Обновление задачи
+        System.out.println("===========  Обновление задачи   ===============");
         updateTaskStatus(task1.getId());
+        System.out.println("==========================\n\n");
 
         // Вывод всех задач в консоль
         System.out.println("===========  Таски в памяти   ===============");
@@ -44,8 +46,7 @@ public class MyTest {
         addHistory(task3);
 
         // Цикл добавления задач в историю
-        addHistoryCycle(0);
-
+//        addHistoryCycle(21);
 
         // Просмотр истории
         System.out.println("===========  История   ===============");
@@ -58,9 +59,7 @@ public class MyTest {
         TaskManager<Task> restored = FileBackedTasksManager.loadFromFile(path);
 
         // Проверка на идентичность истории в памяти и в файле
-        //TODO почему в истории 1,2,3,1,2? Последний идентификатор не записывается а программа пишет что они идентичны - true
-        System.out.println("history ok? " +
-                restored.getHistory().equals(saveManager.getHistory()));
+        System.out.println("history ok? " + restored.getHistory().equals(saveManager.getHistory()));
 
     }
 
@@ -72,6 +71,9 @@ public class MyTest {
     }
 
     private static void addHistory(Task task) {
+        if (task == null) {
+            return;
+        }
         saveManager.getTaskById(task.getId(), true);
     }
 
@@ -88,7 +90,11 @@ public class MyTest {
     }
 
     private static SubTask createSubTask(String name, String description, int epicId) {
-        //TODO внедрить проверку на наличие Эпика
+        if (!(saveManager.getTaskById(epicId, false) instanceof Epic)) {
+            System.out.println(("Невозможно создать SubTask, Epic по ID:" + epicId + " не существует\n"));
+            return null;
+        }
+
         SubTask subTask = new SubTask(name, description, epicId);
         saveManager.add(subTask);
         return subTask;
