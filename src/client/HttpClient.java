@@ -3,6 +3,7 @@ package client;
 import com.google.gson.Gson;
 import model.Task;
 import model.Type;
+import server.Config;
 import server.InCorrectClassException;
 
 import java.io.IOException;
@@ -15,22 +16,20 @@ import java.util.Map;
 public class HttpClient<T extends Task> {
     private final java.net.http.HttpClient client;
     private final Gson gson = new Gson();
-    private final String url = "http://localhost:8080/";
-    private final String urlTask = "tasks/task";
-    private final String urlEpic = "tasks/epic";
-    private final String urlSubTask = "tasks/subtask";
-    private final String urlHistory = "tasks/history";
+    Config config = new Config();
+    private final String urlTask = config.getUrl() + config.getTasks() + config.getTask();
+    private final String urlEpic = config.getUrl() + config.getTasks() + config.getEpic();
+    private final String urlSubTask = config.getUrl() + config.getTasks() + config.getSubTask();
+    private final String urlHistory = config.getUrl() + config.getTasks() + config.getHistory();
 
     public HttpClient(java.net.http.HttpClient client) {
         this.client = client;
     }
 
     public HttpResponse<String> getHistory() throws IOException, InterruptedException {
-        String fullUrl = url + urlHistory;
-
         HttpRequest request = HttpRequest.newBuilder()
                 .GET()
-                .uri(URI.create(fullUrl))
+                .uri(URI.create(urlHistory))
                 .header("Content-Type"
                         , "application/json; Charset=UTF-8")
                 .build();
@@ -39,7 +38,7 @@ public class HttpClient<T extends Task> {
     }
 
     public HttpResponse<String> getTaskById(int id, Type type) throws IOException, InterruptedException {
-        String fullUrl = getFullUrlTaskById(type, id);
+        String fullUrl = getUrlTaskById(type, id);
 
         HttpRequest request = HttpRequest.newBuilder()
                 .GET()
@@ -52,7 +51,7 @@ public class HttpClient<T extends Task> {
     }
 
     public HttpResponse<String> getTasks(Type type) throws IOException, InterruptedException {
-        String fullUrl = getFullUrlTasks(type);
+        String fullUrl = getUrlTasks(type);
 
         HttpRequest request = HttpRequest.newBuilder()
                 .GET()
@@ -66,7 +65,7 @@ public class HttpClient<T extends Task> {
 
     public HttpResponse<String> updateTask(int id, T updatedTask) throws IOException, InterruptedException {
         Type type = updatedTask.getType();
-        String fullUrl = getFullUrlTaskById(type, id);
+        String fullUrl = getUrlTaskById(type, id);
         String json = gson.toJson(updatedTask);
 
         HttpRequest request = HttpRequest.newBuilder()
@@ -91,7 +90,7 @@ public class HttpClient<T extends Task> {
     }
 
     public HttpResponse<String> removeTask(int id, Type type) throws IOException, InterruptedException {
-        String fullUrl = getFullUrlTaskById(type, id);
+        String fullUrl = getUrlTaskById(type, id);
 
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(fullUrl))
@@ -104,7 +103,7 @@ public class HttpClient<T extends Task> {
     }
 
     public HttpResponse<String> removeTasks(Type type) throws IOException, InterruptedException {
-        String fullUrl = getFullUrlTasks(type);
+        String fullUrl = getUrlTasks(type);
 
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(fullUrl))
@@ -117,10 +116,8 @@ public class HttpClient<T extends Task> {
     }
 
     public HttpResponse<String> removeHistory() throws IOException, InterruptedException {
-        String fullUrl = url + urlHistory;
-
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(fullUrl))
+                .uri(URI.create(urlHistory))
                 .DELETE()
                 .header("Content-Type"
                         , "application/json; Charset=UTF-8")
@@ -131,7 +128,7 @@ public class HttpClient<T extends Task> {
 
     private HttpResponse<String> getResponse(Type type, String name, String description, Map<String, String> task) throws IOException, InterruptedException {
         String json = getJson(task, name, description);
-        String fullUrl = getFullUrlTasks(type);
+        String fullUrl = getUrlTasks(type);
 
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(fullUrl))
@@ -149,31 +146,30 @@ public class HttpClient<T extends Task> {
         return gson.toJson(task);
     }
 
-    private String getFullUrlTaskById(Type type, int id) {
+    private String getUrlTaskById(Type type, int id) {
         String urlId = "?id=";
-        String fullUrl;
+        String url;
         switch (type) {
-            case TASK -> fullUrl = url + urlTask + urlId + id;
-            case EPIC -> fullUrl = url + urlEpic + urlId + id;
-            case SUBTASK -> fullUrl = url + urlSubTask + urlId + id;
+            case TASK -> url = urlTask + urlId + id;
+            case EPIC -> url = urlEpic + urlId + id;
+            case SUBTASK -> url = urlSubTask + urlId + id;
             default -> throw new InCorrectClassException("Неизвестный тип задачи");
         }
 
-        return fullUrl;
+        return url;
     }
 
-    private String getFullUrlTasks(Type type) {
-        String urlTasks = "tasks";
-        String fullUrl;
+    private String getUrlTasks(Type type) {
+        String url;
         switch (type) {
-            case TASK -> fullUrl = url + urlTask;
-            case EPIC -> fullUrl = url + urlEpic;
-            case SUBTASK -> fullUrl = url + urlSubTask;
-            case null -> fullUrl = url + urlTasks;
+            case TASK -> url = urlTask;
+            case EPIC -> url = urlEpic;
+            case SUBTASK -> url = urlSubTask;
+            case null -> url = config.getTasks();
             default -> throw new InCorrectClassException("Неизвестный тип задачи");
         }
 
-        return fullUrl;
+        return url;
     }
 
 
