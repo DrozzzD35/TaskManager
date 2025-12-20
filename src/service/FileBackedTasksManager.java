@@ -24,6 +24,7 @@ public class FileBackedTasksManager<T extends Task> extends InMemoryTaskManager<
     public void add(T task) {
         super.add(task);
         save();
+        System.out.println("CSV файл успешно создан " + filePath + "\n");
     }
 
     @Override
@@ -68,28 +69,21 @@ public class FileBackedTasksManager<T extends Task> extends InMemoryTaskManager<
             String ids = historyToString();
 
             writer.append(String.join(",", ids));
+
         } catch (Exception e) {
             throw new ManagerSaveException(e.getMessage());
         }
 
-        System.out.println("CSV файл успешно создан " + filePath);
-        System.out.println();
 
     }
 
     private String historyToString() {
         List<T> tasksHistory = history.getHistory();
-
-        System.out.println("Размер списка history: " + tasksHistory.size());
-
         String[] ids = new String[tasksHistory.size()];
 
         for (int i = 0; i < tasksHistory.size(); i++) {
             ids[i] = String.valueOf(tasksHistory.get(i).getId());
         }
-
-        System.out.println("Сохранённая история: " + String.join(",", ids));
-
 
         return String.join(",", ids);
     }
@@ -124,7 +118,7 @@ public class FileBackedTasksManager<T extends Task> extends InMemoryTaskManager<
                 if (lines[i].isBlank()) {
                     String historyLine = lines[i + 1];
 
-                    Integer[] ids =Arrays.stream(historyLine.split(","))
+                    Integer[] ids = Arrays.stream(historyLine.split(","))
                             .map(Integer::valueOf)
                             .toArray(Integer[]::new);
 
@@ -151,8 +145,7 @@ public class FileBackedTasksManager<T extends Task> extends InMemoryTaskManager<
                 .append(", ").append(task.getStatus().name())
                 .append(", ").append(task.getDescription());
 
-        if (task instanceof SubTask) {
-            SubTask subTask = (SubTask) task;
+        if (task instanceof SubTask subTask) {
             try {
                 resultBuilder.append(", ").append(subTask.getParentId());
             } catch (Exception e) {
