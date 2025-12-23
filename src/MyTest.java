@@ -9,6 +9,7 @@ import service.TaskManager;
 import java.nio.file.Path;
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class MyTest {
 
@@ -45,7 +46,6 @@ public class MyTest {
         addHistory(task3);
 
 
-
         // Просмотр истории
         System.out.println("===========  История   ===============");
         System.out.println("История " + saveManager.getHistory());
@@ -74,19 +74,26 @@ public class MyTest {
         saveManager.updateTask(updateTask, currentTaskId);
     }
 
-    private static Task createTask(String name, String description, Duration duration, LocalDateTime startTime) {
-        Task task = new Task(name, description, duration, startTime);
+    private static Task createTask(String name, String description, int minutes, String date) {
+        DateTimeFormatter startTime = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm");
+
+        Task task = new Task(name, description
+                , Duration.ofMinutes(minutes)
+                , LocalDateTime.parse(date, startTime));
         saveManager.add(task);
         return task;
     }
 
-    private static SubTask createSubTask(String name, String description, int epicId, Duration duration, LocalDateTime localDateTime) {
+    private static SubTask createSubTask(String name, String description, int epicId, int minutes, String date) {
         if (!(saveManager.getTaskById(epicId, false) instanceof Epic)) {
-            System.out.println(("Невозможно создать SubTask, Epic по ID:" + epicId + " не существует\n"));
+            System.out.println(("Невозможно создать SubTask, Epic с ID:" + epicId + " не существует"));
             return null;
         }
+        DateTimeFormatter startTime = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm");
 
-        SubTask subTask = new SubTask(name, description, epicId, duration, localDateTime);
+        SubTask subTask = new SubTask(name, description, epicId
+                , Duration.ofMinutes(minutes)
+                , LocalDateTime.parse(date, startTime));
         saveManager.add(subTask);
         return subTask;
     }

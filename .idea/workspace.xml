@@ -4,16 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3b2d2408-c7aa-4b02-a823-dac3b3c98272" name="Changes" comment="feat: внедрить Config, исправить url">
-      <change afterPath="$PROJECT_DIR$/src/service/ValidationException.java" afterDir="false" />
+    <list default="true" id="3b2d2408-c7aa-4b02-a823-dac3b3c98272" name="Changes" comment="feat: создать исключение">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TaskManager.iml" beforeDir="false" afterPath="$PROJECT_DIR$/TaskManager.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/MyTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MyTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dataBacked/FileBacked.CSV" beforeDir="false" afterPath="$PROJECT_DIR$/src/dataBacked/FileBacked.CSV" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Epic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Epic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/SubTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/SubTask.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Task.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Task.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/Config.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/Config.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/service/InMemoryTaskManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/InMemoryTaskManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -303,47 +296,7 @@
       <workItem from="1765633608844" duration="1698000" />
       <workItem from="1766023975539" duration="12433000" />
       <workItem from="1766382733751" duration="7629000" />
-      <workItem from="1766483985320" duration="5243000" />
-    </task>
-    <task id="LOCAL-00036" summary="Добавить TODO для разбора в будущем">
-      <option name="closed" value="true" />
-      <created>1763232171585</created>
-      <option name="number" value="00036" />
-      <option name="presentableId" value="LOCAL-00036" />
-      <option name="project" value="LOCAL" />
-      <updated>1763232171585</updated>
-    </task>
-    <task id="LOCAL-00037" summary="Тестовый запуск:&#10; - Тест метода loadFromFile в классе FileBackedTasksManager.java&#10;- Epic.java добавление в конструктор инициализации списка subTasksIds&#10;- FileBackedTasksManager.java метод historyFromString не корректно записывает идентификаторы, переписать метод.&#10;Метод toString не корректно записывает Enum, пофиксить&#10;- MyTest.java убрать manager, все вызовы методов через saveManager.&#10;Тестируем FileBackedTasksManager.loadFromFile">
-      <option name="closed" value="true" />
-      <created>1763348316970</created>
-      <option name="number" value="00037" />
-      <option name="presentableId" value="LOCAL-00037" />
-      <option name="project" value="LOCAL" />
-      <updated>1763348316970</updated>
-    </task>
-    <task id="LOCAL-00038" summary="История restored и saveManager не равны, справить:&#10;- Epic.java, Task.java, SubTask.java переопределить методы equals и hashCode&#10;- Протестировать метод save вручную, временно закомментировать в методе getTaskById">
-      <option name="closed" value="true" />
-      <created>1763377027152</created>
-      <option name="number" value="00038" />
-      <option name="presentableId" value="LOCAL-00038" />
-      <option name="project" value="LOCAL" />
-      <updated>1763377027152</updated>
-    </task>
-    <task id="LOCAL-00039" summary="- ChangeStatus.java удалить - лишний класс&#10;- HttpTaskServer.java написать и реализовать класс&#10;- TaskHandler.java написать и реализовать класс">
-      <option name="closed" value="true" />
-      <created>1763462026352</created>
-      <option name="number" value="00039" />
-      <option name="presentableId" value="LOCAL-00039" />
-      <option name="project" value="LOCAL" />
-      <updated>1763462026352</updated>
-    </task>
-    <task id="LOCAL-00040" summary="TaskManagerHandler.java(ранее TaskHandler) завершить">
-      <option name="closed" value="true" />
-      <created>1763467741900</created>
-      <option name="number" value="00040" />
-      <option name="presentableId" value="LOCAL-00040" />
-      <option name="project" value="LOCAL" />
-      <updated>1763467741900</updated>
+      <workItem from="1766483985320" duration="12119000" />
     </task>
     <task id="LOCAL-00041" summary="- Создать обработчики Epic, Subtask, GeneralTask, History.&#10;- Добавить их в HttpTaskServer.java&#10;- Написать EpicHandler">
       <option name="closed" value="true" />
@@ -697,7 +650,47 @@
       <option name="project" value="LOCAL" />
       <updated>1766236463670</updated>
     </task>
-    <option name="localTasksCounter" value="85" />
+    <task id="LOCAL-00085" summary="fix: исправить исключение">
+      <option name="closed" value="true" />
+      <created>1766497184918</created>
+      <option name="number" value="00085" />
+      <option name="presentableId" value="LOCAL-00085" />
+      <option name="project" value="LOCAL" />
+      <updated>1766497184918</updated>
+    </task>
+    <task id="LOCAL-00086" summary="feat: переопределить методы getEndTime и setEndTime">
+      <option name="closed" value="true" />
+      <created>1766497226369</created>
+      <option name="number" value="00086" />
+      <option name="presentableId" value="LOCAL-00086" />
+      <option name="project" value="LOCAL" />
+      <updated>1766497226369</updated>
+    </task>
+    <task id="LOCAL-00087" summary="feat: написать список отсортированных задач&#10;&#10;refactor: сделать код более читаемым в методе removeTasks">
+      <option name="closed" value="true" />
+      <created>1766497395478</created>
+      <option name="number" value="00087" />
+      <option name="presentableId" value="LOCAL-00087" />
+      <option name="project" value="LOCAL" />
+      <updated>1766497395479</updated>
+    </task>
+    <task id="LOCAL-00088" summary="feat: внести переменные duration и startTime">
+      <option name="closed" value="true" />
+      <created>1766497455727</created>
+      <option name="number" value="00088" />
+      <option name="presentableId" value="LOCAL-00088" />
+      <option name="project" value="LOCAL" />
+      <updated>1766497455727</updated>
+    </task>
+    <task id="LOCAL-00089" summary="feat: создать исключение">
+      <option name="closed" value="true" />
+      <created>1766497479542</created>
+      <option name="number" value="00089" />
+      <option name="presentableId" value="LOCAL-00089" />
+      <option name="project" value="LOCAL" />
+      <updated>1766497479542</updated>
+    </task>
+    <option name="localTasksCounter" value="90" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -718,11 +711,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/.." />
     </ignored-roots>
-    <MESSAGE value="feat(HttpClient.java): добавление методов" />
-    <MESSAGE value="refactor(EpicHandler.java): удалить не используемый оператор импорта" />
-    <MESSAGE value="feat(HttpClient.java): добавить методы, добавить внешние переменные" />
-    <MESSAGE value="refactor(Epic.java): изменить имя переменных" />
-    <MESSAGE value="feat(HttpClient.java): Добавить внешние переменные. &#10;Добавить методы исключающие повторность кода.&#10;Объединить методы для избежания дублирования" />
     <MESSAGE value="test(HttpClient.java, FileBacked.CSV): провести тест. Удалить не нужный код" />
     <MESSAGE value="fix(InMemoryTaskManager.java): при создании СабТаска можно указать идентификатор несуществующего Эпика. Исправить" />
     <MESSAGE value="test(MyTest.java): проверить запись истории. Внести пометку для дальнейшего изучения" />
@@ -743,7 +731,12 @@
     <MESSAGE value="feat: внедрить Config.java" />
     <MESSAGE value="refactor: поправить отступы строк" />
     <MESSAGE value="feat: внедрить Config, исправить url" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: внедрить Config, исправить url" />
+    <MESSAGE value="fix: исправить исключение" />
+    <MESSAGE value="feat: переопределить методы getEndTime и setEndTime" />
+    <MESSAGE value="feat: написать список отсортированных задач&#10;&#10;refactor: сделать код более читаемым в методе removeTasks" />
+    <MESSAGE value="feat: внести переменные duration и startTime" />
+    <MESSAGE value="feat: создать исключение" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: создать исключение" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
