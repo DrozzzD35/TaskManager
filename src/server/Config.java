@@ -16,9 +16,12 @@ public class Config {
     public Config() {
         Properties properties = new Properties();
 
-        try {
-            InputStream is =
-                    getClass().getClassLoader().getResourceAsStream("application.properties");
+        try (InputStream is =
+                     getClass().getClassLoader().getResourceAsStream("application.properties")) {
+            if (is == null) {
+                throw new NotFoundException("Файл application.properties не найден");
+            }
+
             properties.load(is);
 
             port = Integer.parseInt(properties.getProperty("server.port"));
@@ -30,9 +33,10 @@ public class Config {
             history = properties.getProperty("server.history");
 
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Ошибка при чтении конфига" + e);
+        } catch (NullPointerException e) {
+            throw new NotFoundException("Указан некорректный формат порта" + e);
         }
-
     }
 
 
