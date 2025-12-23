@@ -20,13 +20,13 @@ public class MyTest {
         saveManager = Managers.getDefaultFile(path);
 
         // Создание задачи
-        Task task1 = createTask("name1", "description1");
+        Task task1 = createTask("name1", "description1", 40, "01.10.2020 00:00");
         Epic task2 = createEpic("epic2", "epic2");
-        SubTask task3 = createSubTask("subTask3", "subTask3", 2);
+        SubTask task3 = createSubTask("subTask3", "subTask3", 2, 40, "01.10.2020 01:00");
         createEpic("epic4", "epic4");
-        createSubTask("subTask5", "subTask5", 4);
+        createSubTask("subTask5", "subTask5", 4, 40, "01.10.2020 02:00");
         createEpic("epic6", "epic6");
-        createSubTask("subTask7", "subTask7", 6);
+        createSubTask("subTask7", "subTask7", 6, 40, "01.10.2020 03:00");
 
 
         // Обновление задачи
