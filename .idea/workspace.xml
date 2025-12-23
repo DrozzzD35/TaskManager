@@ -4,11 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3b2d2408-c7aa-4b02-a823-dac3b3c98272" name="Changes" comment="refactor: удалить лишний код">
+    <list default="true" id="3b2d2408-c7aa-4b02-a823-dac3b3c98272" name="Changes" comment="feat: внедрить Config, исправить url">
+      <change afterPath="$PROJECT_DIR$/src/service/ValidationException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TaskManager.iml" beforeDir="false" afterPath="$PROJECT_DIR$/TaskManager.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/MyTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MyTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/dataBacked/FileBacked.CSV" beforeDir="false" afterPath="$PROJECT_DIR$/src/dataBacked/FileBacked.CSV" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/service/FileBackedTasksManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/FileBackedTasksManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Epic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Epic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/SubTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/SubTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Task.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Task.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/Config.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/Config.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/service/InMemoryTaskManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/InMemoryTaskManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -21,8 +26,8 @@
       <list>
         <option value="Enum" />
         <option value="Interface" />
-        <option value="Exception" />
         <option value="Class" />
+        <option value="Exception" />
       </list>
     </option>
   </component>
@@ -52,30 +57,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.HttpTaskServer.executor": "Debug",
-    "Application.Main.executor": "Run",
-    "Application.MyTest.executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "extract.method.default.visibility": "private",
-    "git-widget-placeholder": "master",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/DrozzzD35/IdeaProjects/TaskManager/src/documents",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "preferences.lookFeel",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Application.executor&quot;: &quot;Run&quot;,
+    &quot;Application.HttpTaskServer.executor&quot;: &quot;Debug&quot;,
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Application.MyTest.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;extract.method.default.visibility&quot;: &quot;private&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/DrozzzD35/IdeaProjects/TaskManager/src/documents&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="GeneralTaskHandler" />
@@ -87,7 +93,20 @@
       <recent name="C:\Users\DrozzzD35\IdeaProjects\TaskManager\src\documents" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.MyTest">
+  <component name="RunManager" selected="Application.Application">
+    <configuration name="Application" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="server.Application" />
+      <module name="TaskManager" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="server.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="HttpTaskServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="server.HttpTaskServer" />
       <module name="TaskManager" />
@@ -120,6 +139,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Application" />
         <item itemvalue="Application.MyTest" />
         <item itemvalue="Application.HttpTaskServer" />
         <item itemvalue="HTTP Request.scratch | GET request to example server" />
@@ -281,63 +301,9 @@
       <workItem from="1765388012831" duration="81000" />
       <workItem from="1765577458113" duration="1003000" />
       <workItem from="1765633608844" duration="1698000" />
-      <workItem from="1766023975539" duration="8540000" />
-    </task>
-    <task id="LOCAL-00029" summary="Домашняя работа.&#10;Feat: добавить метод historyFromString. &#10;В interface HistoryManager добавить метод remove(T task).&#10;В классе InMemoryHistoryManager реализовать метод remove(T task).&#10;Добавить методы цикла создания задачи и добавление её в историю для более удобного тестирования&#10;Fix: исправить историю, чтоб при обновлении задачи она не добавлялась в историю.&#10;История не работает, исправить.&#10;Протестировать историю.">
-      <option name="closed" value="true" />
-      <created>1756474877577</created>
-      <option name="number" value="00029" />
-      <option name="presentableId" value="LOCAL-00029" />
-      <option name="project" value="LOCAL" />
-      <updated>1756474877577</updated>
-    </task>
-    <task id="LOCAL-00030" summary="Домашняя работа.&#10;Feat: создать объект FileBackedTasksManager">
-      <option name="closed" value="true" />
-      <created>1756894133776</created>
-      <option name="number" value="00030" />
-      <option name="presentableId" value="LOCAL-00030" />
-      <option name="project" value="LOCAL" />
-      <updated>1756894133776</updated>
-    </task>
-    <task id="LOCAL-00031" summary="Домашняя работа.&#10;Feat: создать объект FileBackedTasksManager">
-      <option name="closed" value="true" />
-      <created>1756972342322</created>
-      <option name="number" value="00031" />
-      <option name="presentableId" value="LOCAL-00031" />
-      <option name="project" value="LOCAL" />
-      <updated>1756972342322</updated>
-    </task>
-    <task id="LOCAL-00032" summary="Классная работа.&#10;Feat: в классе Epic изменить переменную Map&lt;Integer, SubTask&gt; children на List&lt;Integer&gt; subTasksIds. Соответственно изменить все методы использующие переменную.&#10;Написать метод loadFromFile в классе FileBackedTasksManager.&#10;Создать исключение кастомное FileSaveException.&#10;Fix: при обновлении таска он заноситься в историю, исключить, таски при обновлении не должны попадать в историю">
-      <option name="closed" value="true" />
-      <created>1757015423144</created>
-      <option name="number" value="00032" />
-      <option name="presentableId" value="LOCAL-00032" />
-      <option name="project" value="LOCAL" />
-      <updated>1757015423144</updated>
-    </task>
-    <task id="LOCAL-00033" summary="Домашняя работа.&#10;Feat: реализовать метод historyToString в классе FileBackedTasksManager. &#10;В классе InMemoryHistoryManager удалить неиспользуемый конструктор.&#10;Протестировать создание задач, эпиков и подзадач&#10;Fix: в классах Task, Epic и SubTask подкорректировать метод tiString">
-      <option name="closed" value="true" />
-      <created>1757316132738</created>
-      <option name="number" value="00033" />
-      <option name="presentableId" value="LOCAL-00033" />
-      <option name="project" value="LOCAL" />
-      <updated>1757316132738</updated>
-    </task>
-    <task id="LOCAL-00034" summary="Классная работа.&#10;Feat: реализовать запись истории">
-      <option name="closed" value="true" />
-      <created>1757423979002</created>
-      <option name="number" value="00034" />
-      <option name="presentableId" value="LOCAL-00034" />
-      <option name="project" value="LOCAL" />
-      <updated>1757423979003</updated>
-    </task>
-    <task id="LOCAL-00035" summary="Без изменений">
-      <option name="closed" value="true" />
-      <created>1758472320104</created>
-      <option name="number" value="00035" />
-      <option name="presentableId" value="LOCAL-00035" />
-      <option name="project" value="LOCAL" />
-      <updated>1758472320104</updated>
+      <workItem from="1766023975539" duration="12433000" />
+      <workItem from="1766382733751" duration="7629000" />
+      <workItem from="1766483985320" duration="5243000" />
     </task>
     <task id="LOCAL-00036" summary="Добавить TODO для разбора в будущем">
       <option name="closed" value="true" />
@@ -675,7 +641,63 @@
       <option name="project" value="LOCAL" />
       <updated>1765388091756</updated>
     </task>
-    <option name="localTasksCounter" value="78" />
+    <task id="LOCAL-00078" summary="refactor: запись о сохранение файла вносится только при создании задачи">
+      <option name="closed" value="true" />
+      <created>1766231992640</created>
+      <option name="number" value="00078" />
+      <option name="presentableId" value="LOCAL-00078" />
+      <option name="project" value="LOCAL" />
+      <updated>1766231992641</updated>
+    </task>
+    <task id="LOCAL-00079" summary="fix: если Epic не найден при создании SubTask, создание прерывается">
+      <option name="closed" value="true" />
+      <created>1766232134707</created>
+      <option name="number" value="00079" />
+      <option name="presentableId" value="LOCAL-00079" />
+      <option name="project" value="LOCAL" />
+      <updated>1766232134707</updated>
+    </task>
+    <task id="LOCAL-00080" summary="feat: создать application.properties">
+      <option name="closed" value="true" />
+      <created>1766235773783</created>
+      <option name="number" value="00080" />
+      <option name="presentableId" value="LOCAL-00080" />
+      <option name="project" value="LOCAL" />
+      <updated>1766235773783</updated>
+    </task>
+    <task id="LOCAL-00081" summary="feat: создать Config.java">
+      <option name="closed" value="true" />
+      <created>1766235787275</created>
+      <option name="number" value="00081" />
+      <option name="presentableId" value="LOCAL-00081" />
+      <option name="project" value="LOCAL" />
+      <updated>1766235787275</updated>
+    </task>
+    <task id="LOCAL-00082" summary="feat: внедрить Config.java">
+      <option name="closed" value="true" />
+      <created>1766235811123</created>
+      <option name="number" value="00082" />
+      <option name="presentableId" value="LOCAL-00082" />
+      <option name="project" value="LOCAL" />
+      <updated>1766235811123</updated>
+    </task>
+    <task id="LOCAL-00083" summary="refactor: поправить отступы строк">
+      <option name="closed" value="true" />
+      <created>1766235844894</created>
+      <option name="number" value="00083" />
+      <option name="presentableId" value="LOCAL-00083" />
+      <option name="project" value="LOCAL" />
+      <updated>1766235844894</updated>
+    </task>
+    <task id="LOCAL-00084" summary="feat: внедрить Config, исправить url">
+      <option name="closed" value="true" />
+      <created>1766236463670</created>
+      <option name="number" value="00084" />
+      <option name="presentableId" value="LOCAL-00084" />
+      <option name="project" value="LOCAL" />
+      <updated>1766236463670</updated>
+    </task>
+    <option name="localTasksCounter" value="85" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -696,13 +718,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/.." />
     </ignored-roots>
-    <MESSAGE value="- EpicHandler.java и SubTaskHandler.java добавить catch для InCorrectClassException и NotFoundException.&#10;Убрать лишний statusCode, вынести во внешнюю строку, удалить излишки кода" />
-    <MESSAGE value="- EpicHandler.java и SubTaskHandler.java добавить описание для NotFoundException&#10;- Сделать NotFoundException.java более универсальным, убрать текст, текст будет внесён в параметр конструктора&#10;- TaskHandler.java вынести try catch, избавиться от повторяемости кода.&#10;Создать методы getListOfTasks, getTask, parseIdFromQuery, validateTaskType и реализовать их" />
-    <MESSAGE value="- EpicHandler.java, SubTaskHandler.java и TaskHandler.java переписать метод getTasks, переименовать его в chekListOfTasks&#10;- FileBackedTasksManager.java переписать метод historyFromString, применить Stream API&#10;- HistoryHandler.java написать класс&#10;- InMemoryTaskManager.java. В методе removeTasks, внести проверку типа задачи вместо отсеивания епиков с сабтасками.&#10;Написать метод getTasks. Переписать методы getEpics/SubTasks с применением Stream&#10;- TaskManager.java в интерфейс добавить метод getTasks" />
-    <MESSAGE value="- GeneralTaskHandler.java написать класс&#10;- HttpClient.java начать создавать класс&#10;- InMemoryTaskManager.java изменить метод updateEpicStatus. Так же сделать методы removeTasks и getTasks универсальными, соответственно удалить метод GetEpic/SubTask и removeEpic/SubTask&#10;- Во всех обработчиках заменить методы на removeTasks/getTasks" />
-    <MESSAGE value="- Application.java написать класс&#10;- BaseHandler.java написать абстрактный класс вынести из классов обработчиков часто повторяющиеся методы&#10;- EpicHandler.java, SubTaskHandler.java, TaskHandler.java перенести методы в BaseHandler.java. Переписать конструктор&#10;- FileBackedTasksManager.java убрать метод historyFromString, его логику написать в методе loadFromFile()&#10;- HistoryHandler.java переписать конструктор&#10;- HttpTaskServer.java вынести метод main в Application.java&#10;- InMemoryTaskManager.java поправить метод updateEpicStatus (если epic.getAllChildrenIds().isEmpty()). Метод removeTasks(Type type) переписать, вместо if внедрить switch&#10;- Managers.java переписать&#10;- Task.java убрать лишний конструктор&#10;- TaskManager.java в методе addTaskByIdsToHistory изменить тип передаваемого параметра на Integer[]" />
-    <MESSAGE value="feat(EpicHandler, SubTaskHandler, TaskHandler):&#10;Добавление логики PUT на сервер&#10;&#10;refactor(EpicHandler, SubTaskHandler, TaskHandler):&#10;Переименование переменных" />
-    <MESSAGE value="refactor(HttpTaskServer):&#10;Удаление слэша в URL" />
     <MESSAGE value="feat(HttpClient.java): добавление методов" />
     <MESSAGE value="refactor(EpicHandler.java): удалить не используемый оператор импорта" />
     <MESSAGE value="feat(HttpClient.java): добавить методы, добавить внешние переменные" />
@@ -721,7 +736,14 @@
     <MESSAGE value="refactor(InMemoryTaskManager.java): внести пометку в метод add()" />
     <MESSAGE value="feat(HttpClient.java): В в методах createSubTask и createTask убрать повторяющийся код, вынести в отдельный метод&#10;&#10;refactor(HttpClient.java): перенести переменные из поля класса в методы, сделать их локальными." />
     <MESSAGE value="refactor: удалить лишний код" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor: удалить лишний код" />
+    <MESSAGE value="refactor: запись о сохранение файла вносится только при создании задачи" />
+    <MESSAGE value="fix: если Epic не найден при создании SubTask, создание прерывается" />
+    <MESSAGE value="feat: создать application.properties" />
+    <MESSAGE value="feat: создать Config.java" />
+    <MESSAGE value="feat: внедрить Config.java" />
+    <MESSAGE value="refactor: поправить отступы строк" />
+    <MESSAGE value="feat: внедрить Config, исправить url" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: внедрить Config, исправить url" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>

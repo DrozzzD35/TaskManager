@@ -1,12 +1,14 @@
 package model;
 
+import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class SubTask extends Task {
     private final int parentId;
 
-    public SubTask(String name, String description, int parentId) {
-        super(name, description);
+    public SubTask(String name, String description, int parentId, Duration duration, LocalDateTime startTime) {
+        super(name, description, duration, startTime);
 
         this.taskStatus = TaskStatus.NEW;
         this.type = Type.SUBTASK;
@@ -32,8 +34,9 @@ public class SubTask extends Task {
                 + "name='" + name + '\'' + '\n'
                 + "description='" + description + '\'' + '\n'
                 + "taskStatus=" + taskStatus + '\n'
-                + "type=" + type +
-                '}' + '\n';
+                + "type=" + type + '\n'
+                + "duration=" + duration + '\n'
+                + "startTime=" + startTime + '}' + '\n';
     }
 
     @Override

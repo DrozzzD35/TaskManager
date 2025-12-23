@@ -3,6 +3,8 @@ package model;
 
 import utils.Identity;
 
+import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class Task {
@@ -11,21 +13,31 @@ public class Task {
     protected String description;
     protected TaskStatus taskStatus;
     protected Type type;
+    protected Duration duration;
+    protected LocalDateTime startTime;
 
-    public Task(String name, String description) {
+    public Task(String name, String description, Duration duration, LocalDateTime startTime) {
         this.id = Identity.INSTANCE.generateId();
         this.name = name;
         this.description = description;
+        this.startTime = startTime;
+        this.duration = duration;
         this.taskStatus = TaskStatus.NEW;
         this.type = Type.TASK;
     }
 
     public Task(Integer id, Type type, String name, TaskStatus taskStatus, String description) {
+        //TODO внедрить поля duration и startTime
         this.id = id;
         this.name = name;
         this.description = description;
         this.taskStatus = taskStatus;
         this.type = type;
+    }
+
+    public Task(String name, String description) {
+        this.name=name;
+        this.description=description;
     }
 
     public void setDescription(String description) {
@@ -42,6 +54,27 @@ public class Task {
 
     public Integer getId() {
         return id;
+    }
+
+    public LocalDateTime getEndTime() {
+        if (startTime == null) return null;
+        return startTime.plus(duration);
+    }
+
+    public Duration getDuration() {
+        return duration;
+    }
+
+    public void setDuration(Duration duration) {
+        this.duration = duration;
+    }
+
+    public LocalDateTime getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(LocalDateTime startTime) {
+        this.startTime = startTime;
     }
 
     public String getName() {
@@ -66,7 +99,11 @@ public class Task {
 
     @Override
     public String toString() {
-        return '\n' + "Task{" + "id=" + id + '\n' + "name=" + name + '\n' + "description=" + description + '\n' + "status=" + taskStatus + '\n' + "type=" + type + '}' + '\n';
+        return '\n' + "Task{" + "id=" + id + '\n'
+                + "name=" + name + '\n' + "description=" + description + '\n'
+                + "status=" + taskStatus + '\n' + "type=" + type + '\n'
+                + "duration=" + duration + '\n'
+                + "startTime=" + startTime + '}' + '\n';
     }
 
     @Override
@@ -78,11 +115,13 @@ public class Task {
                 Objects.equals(name, task.name) &&
                 Objects.equals(description, task.description) &&
                 Objects.equals(taskStatus, task.taskStatus) &&
-                Objects.equals(type, task.type);
+                Objects.equals(type, task.type) &&
+                Objects.equals(duration, task.duration) &&
+                Objects.equals(startTime, task.startTime);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, description, taskStatus, type);
+        return Objects.hash(id, name, description, taskStatus, type, duration, startTime);
     }
 }

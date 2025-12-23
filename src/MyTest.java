@@ -7,6 +7,8 @@ import service.Managers;
 import service.TaskManager;
 
 import java.nio.file.Path;
+import java.time.Duration;
+import java.time.LocalDateTime;
 
 public class MyTest {
 
@@ -17,17 +19,14 @@ public class MyTest {
         saveManager = Managers.getDefaultFile(path);
 
         // Создание задачи
-        Task task1 = createTask("name10", "description10");
-        Epic task2 = createEpic("epic11", "epic11");
-        SubTask task3 = createSubTask("subTask12", "subTask12", 2);
-        createEpic("epic13", "epic13");
-        createSubTask("subTask14", "subTask14", 44);
-        createEpic("epic15", "epic15");
-        createSubTask("subTask16", "subTask16", 6);
+        Task task1 = createTask("name1", "description1");
+        Epic task2 = createEpic("epic2", "epic2");
+        SubTask task3 = createSubTask("subTask3", "subTask3", 2);
+        createEpic("epic4", "epic4");
+        createSubTask("subTask5", "subTask5", 4);
+        createEpic("epic6", "epic6");
+        createSubTask("subTask7", "subTask7", 6);
 
-
-        // Цикл создания задач
-//        taskCreationCycle(20);
 
         // Обновление задачи
         System.out.println("===========  Обновление задачи   ===============");
@@ -45,8 +44,7 @@ public class MyTest {
         addHistory(task2);
         addHistory(task3);
 
-        // Цикл добавления задач в историю
-//        addHistoryCycle(21);
+
 
         // Просмотр истории
         System.out.println("===========  История   ===============");
@@ -63,13 +61,6 @@ public class MyTest {
 
     }
 
-    private static void taskCreationCycle(int quantity) {
-        for (int i = 1; i <= quantity; i++) {
-            createTask("name" + i, "description" + i);
-
-        }
-    }
-
     private static void addHistory(Task task) {
         if (task == null) {
             return;
@@ -83,19 +74,19 @@ public class MyTest {
         saveManager.updateTask(updateTask, currentTaskId);
     }
 
-    private static Task createTask(String name, String description) {
-        Task task = new Task(name, description);
+    private static Task createTask(String name, String description, Duration duration, LocalDateTime startTime) {
+        Task task = new Task(name, description, duration, startTime);
         saveManager.add(task);
         return task;
     }
 
-    private static SubTask createSubTask(String name, String description, int epicId) {
+    private static SubTask createSubTask(String name, String description, int epicId, Duration duration, LocalDateTime localDateTime) {
         if (!(saveManager.getTaskById(epicId, false) instanceof Epic)) {
             System.out.println(("Невозможно создать SubTask, Epic по ID:" + epicId + " не существует\n"));
             return null;
         }
 
-        SubTask subTask = new SubTask(name, description, epicId);
+        SubTask subTask = new SubTask(name, description, epicId, duration, localDateTime);
         saveManager.add(subTask);
         return subTask;
     }
