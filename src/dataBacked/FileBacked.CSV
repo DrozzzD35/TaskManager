@@ -1,11 +1,12 @@
 id, type, name, status, description, startTime, duration, epic_id
 1, TASK, updateTask, IN_PROGRESS, updateTask, 01.10.2020 00:00, 0
-2, EPIC, epic2, NEW, epic2, 01.10.2020 01:00, 35
+2, EPIC, epic2, NEW, epic2, 01.10.2020 01:00, 135
 3, SUBTASK, subTask3, NEW, subTask3, 01.10.2020 01:00, 35, 2
 4, EPIC, epic4, NEW, epic4, 01.10.2020 02:00, 20
 5, SUBTASK, subTask5, NEW, subTask5, 01.10.2020 02:00, 20, 4
 6, EPIC, epic6, NEW, epic6, 01.10.2020 03:00, 100
 7, SUBTASK, subTask7, NEW, subTask7, 01.10.2020 03:00, 100, 6
 8, TASK, name8, NEW, description8, 02.10.2020 00:00, 50
+9, SUBTASK, subTask9, NEW, subTask9, 02.10.2020 01:00, 100, 2
 
-1,2,3
+1,2,3,1,2,3

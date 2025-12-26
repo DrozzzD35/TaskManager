@@ -28,6 +28,7 @@ public class MyTest {
         createEpic("epic6", "epic6");
         createSubTask("subTask7", "subTask7", "01.10.2020 03:00", 100, 6);
         createTask("name8", "description8", 50, "02.10.2020 00:00");
+        createSubTask("subTask9", "subTask9", "02.10.2020 01:00", 100, 2);
 
 
         // Обновление задачи

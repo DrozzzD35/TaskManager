@@ -4,18 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3b2d2408-c7aa-4b02-a823-dac3b3c98272" name="Changes" comment="feat: внести время создания задачи и продолжительность">
+    <list default="true" id="3b2d2408-c7aa-4b02-a823-dac3b3c98272" name="Changes" comment="feat: добавить новые поля">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/MyTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MyTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/client/HttpClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/HttpClient.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/dataBacked/FileBacked.CSV" beforeDir="false" afterPath="$PROJECT_DIR$/src/dataBacked/FileBacked.CSV" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Epic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Epic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/SubTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/SubTask.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/Task.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Task.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/BaseHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/BaseHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/Config.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/Config.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/SubTaskHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/SubTaskHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/TaskHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/TaskHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/service/FileBackedTasksManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/FileBackedTasksManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/service/InMemoryTaskManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/InMemoryTaskManager.java" afterDir="false" />
     </list>
@@ -308,71 +301,7 @@
       <workItem from="1766382733751" duration="7629000" />
       <workItem from="1766483985320" duration="17295000" />
       <workItem from="1766529679945" duration="15228000" />
-      <workItem from="1766747700286" duration="379000" />
-    </task>
-    <task id="LOCAL-00044" summary="- EpicHandler.java реализована обработка метода POST и DELETE">
-      <option name="closed" value="true" />
-      <created>1763631372668</created>
-      <option name="number" value="00044" />
-      <option name="presentableId" value="LOCAL-00044" />
-      <option name="project" value="LOCAL" />
-      <updated>1763631372668</updated>
-    </task>
-    <task id="LOCAL-00045" summary="Маленькие правки, фиксы:&#10;- EpicHandler.java написать метод DELETE &#10;- InMemoryTaskManager.java написать метод getEpics&#10;- TaskHandler.java исправить метод DELETE">
-      <option name="closed" value="true" />
-      <created>1763782459094</created>
-      <option name="number" value="00045" />
-      <option name="presentableId" value="LOCAL-00045" />
-      <option name="project" value="LOCAL" />
-      <updated>1763782459094</updated>
-    </task>
-    <task id="LOCAL-00046" summary="- написать SubTaskHandler.java&#10;- переименовать removeAllTasks в removeTasks&#10;- TaskManager.java добавить метод getSubTasks">
-      <option name="closed" value="true" />
-      <created>1763794193152</created>
-      <option name="number" value="00046" />
-      <option name="presentableId" value="LOCAL-00046" />
-      <option name="project" value="LOCAL" />
-      <updated>1763794193152</updated>
-    </task>
-    <task id="LOCAL-00047" summary="- Epic.java добавить метод removeAllChildren()&#10;- FileBackedTasksManager.java и TaskHandler.java метод removeTasks переименовать в removeAllTasks&#10;- Написать методы removeEpics, removeSubTasks, removeTasks&#10;- SubTaskHandler.java внести проверку типа задач в методы &quot;GET&quot;, &quot;DELETE&quot;&#10;- TaskManager.java добавить методы removeTasks(), removeEpics(), removeSubTasks(). Метод removeTasks переименовать в removeAllTasks">
-      <option name="closed" value="true" />
-      <created>1763960725593</created>
-      <option name="number" value="00047" />
-      <option name="presentableId" value="LOCAL-00047" />
-      <option name="project" value="LOCAL" />
-      <updated>1763960725593</updated>
-    </task>
-    <task id="LOCAL-00048" summary="- InMemoryTaskManager.java метод updateEpicStatus добавить в интерфейс.&#10;Переписать методы removeTasks, removeEpics, removeSubtasks на более лаконичный и читаемый вариант. Так же добавить проверки на null.">
-      <option name="closed" value="true" />
-      <created>1763967682614</created>
-      <option name="number" value="00048" />
-      <option name="presentableId" value="LOCAL-00048" />
-      <option name="project" value="LOCAL" />
-      <updated>1763967682614</updated>
-    </task>
-    <task id="LOCAL-00049" summary="- EpicHandler.java добавить в метод &quot;GET&quot; проверку таска на null и на тип Epic&#10;- SubTaskHandler.java добавить в метод &quot;GET&quot; и &quot;DELETE&quot; проверку таска на null и на тип SubTask.&#10;Добавить удаление всех задач - taskManager.removeSubTasks()&#10;- TaskManager.java добавить метод updateEpicStatus(Integer epicId)">
-      <option name="closed" value="true" />
-      <created>1763982497956</created>
-      <option name="number" value="00049" />
-      <option name="presentableId" value="LOCAL-00049" />
-      <option name="project" value="LOCAL" />
-      <updated>1763982497956</updated>
-    </task>
-    <task id="LOCAL-00050" summary="- EpicHandler.java вынести в отдельный метод отправку ответа клиенту, использовать кастомный метод sendResponse. &#10;Использовать метод removeEpics.&#10;Внести проверку на наличие задачи&#10;- Создать кастомные исключения для обработки ошибок InCorrectClassException.java и NotFoundException.java&#10;- Убрать повторяемость кода, создать методы sendResponse(в будущем его перенести), getTask, validateSubTaskType, parseIdFromQuery.&#10;Try catch сделать общим для удаления повторяемости кода">
-      <option name="closed" value="true" />
-      <created>1763988657263</created>
-      <option name="number" value="00050" />
-      <option name="presentableId" value="LOCAL-00050" />
-      <option name="project" value="LOCAL" />
-      <updated>1763988657263</updated>
-    </task>
-    <task id="LOCAL-00051" summary="- EpicHandler убрать повторяемость кода, создать методы sendResponse(в будущем его перенести), getTask, validateSubTaskType, parseIdFromQuery.&#10;Try catch сделать общим для удаления повторяемости кода">
-      <option name="closed" value="true" />
-      <created>1763989998885</created>
-      <option name="number" value="00051" />
-      <option name="presentableId" value="LOCAL-00051" />
-      <option name="project" value="LOCAL" />
-      <updated>1763989998885</updated>
+      <workItem from="1766747700286" duration="3041000" />
     </task>
     <task id="LOCAL-00052" summary="- EpicHandler.java и SubTaskHandler.java добавить catch для InCorrectClassException и NotFoundException.&#10;Убрать лишний statusCode, вынести во внешнюю строку, удалить излишки кода">
       <option name="closed" value="true" />
@@ -702,7 +631,71 @@
       <option name="project" value="LOCAL" />
       <updated>1766510579735</updated>
     </task>
-    <option name="localTasksCounter" value="93" />
+    <task id="LOCAL-00093" summary="fix: добавлено спецслово final полям класса">
+      <option name="closed" value="true" />
+      <created>1766748231425</created>
+      <option name="number" value="00093" />
+      <option name="presentableId" value="LOCAL-00093" />
+      <option name="project" value="LOCAL" />
+      <updated>1766748231425</updated>
+    </task>
+    <task id="LOCAL-00094" summary="feat: добавить в конструктор новые поля. Добавить в toString новые поля">
+      <option name="closed" value="true" />
+      <created>1766748308013</created>
+      <option name="number" value="00094" />
+      <option name="presentableId" value="LOCAL-00094" />
+      <option name="project" value="LOCAL" />
+      <updated>1766748308013</updated>
+    </task>
+    <task id="LOCAL-00095" summary="feat: внедрить в систему загрузки\сохранения новые поля">
+      <option name="closed" value="true" />
+      <created>1766748385870</created>
+      <option name="number" value="00095" />
+      <option name="presentableId" value="LOCAL-00095" />
+      <option name="project" value="LOCAL" />
+      <updated>1766748385870</updated>
+    </task>
+    <task id="LOCAL-00096" summary="feat: добавить новые поля">
+      <option name="closed" value="true" />
+      <created>1766748414154</created>
+      <option name="number" value="00096" />
+      <option name="presentableId" value="LOCAL-00096" />
+      <option name="project" value="LOCAL" />
+      <updated>1766748414154</updated>
+    </task>
+    <task id="LOCAL-00097" summary="feat: дополнить метод проверки пересечения времени задач">
+      <option name="closed" value="true" />
+      <created>1766748509766</created>
+      <option name="number" value="00097" />
+      <option name="presentableId" value="LOCAL-00097" />
+      <option name="project" value="LOCAL" />
+      <updated>1766748509766</updated>
+    </task>
+    <task id="LOCAL-00098" summary="feat: добавить новые поля">
+      <option name="closed" value="true" />
+      <created>1766748537474</created>
+      <option name="number" value="00098" />
+      <option name="presentableId" value="LOCAL-00098" />
+      <option name="project" value="LOCAL" />
+      <updated>1766748537474</updated>
+    </task>
+    <task id="LOCAL-00099" summary="feat: добавить новые поля в конструктор и в метод toString">
+      <option name="closed" value="true" />
+      <created>1766748578633</created>
+      <option name="number" value="00099" />
+      <option name="presentableId" value="LOCAL-00099" />
+      <option name="project" value="LOCAL" />
+      <updated>1766748578633</updated>
+    </task>
+    <task id="LOCAL-00100" summary="feat: добавить новые поля">
+      <option name="closed" value="true" />
+      <created>1766748608954</created>
+      <option name="number" value="00100" />
+      <option name="presentableId" value="LOCAL-00100" />
+      <option name="project" value="LOCAL" />
+      <updated>1766748608954</updated>
+    </task>
+    <option name="localTasksCounter" value="101" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -723,12 +716,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/.." />
     </ignored-roots>
-    <MESSAGE value="feat(HttpClient.java): написать метод createSubTask. &#10;&#10;refactor(HttpClient.java); методы getFullUrlTasks и getFullUrlTaskById сократить, сделать более читаемым код." />
-    <MESSAGE value="feat(HttpClient.java): написать метод getHistory." />
-    <MESSAGE value="feat(HistoryHandler.java): добавить обработку метода &quot;DELETE&quot;&#10;&#10;feat(HistoryManager.java, InMemoryHistoryManager.java): добавить метод removeHistory" />
-    <MESSAGE value="fix(HttpClient.java): переписать метод updateTask, теперь он принимает лишь обновлённую задачу и идентификатор" />
-    <MESSAGE value="feat(HttpClient.java): добавить метод removeHistory" />
-    <MESSAGE value="fix(EpicHandler.java, SubTaskHandler.java, TaskHandler.java): поправить логику обработки метода &quot;PUT&quot;" />
     <MESSAGE value="test(MyTest.java): провести тесты" />
     <MESSAGE value="refactor(InMemoryTaskManager.java): внести пометку в метод add()" />
     <MESSAGE value="feat(HttpClient.java): В в методах createSubTask и createTask убрать повторяющийся код, вынести в отдельный метод&#10;&#10;refactor(HttpClient.java): перенести переменные из поля класса в методы, сделать их локальными." />
@@ -748,7 +735,13 @@
     <MESSAGE value="feat: переписать метод add, updateTask&#10;&#10;fix: метод updateEpicTime должен принимать id" />
     <MESSAGE value="feat: переписать методы createTask и createSubTask" />
     <MESSAGE value="feat: внести время создания задачи и продолжительность" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: внести время создания задачи и продолжительность" />
+    <MESSAGE value="fix: добавлено спецслово final полям класса" />
+    <MESSAGE value="feat: добавить в конструктор новые поля. Добавить в toString новые поля" />
+    <MESSAGE value="feat: внедрить в систему загрузки\сохранения новые поля" />
+    <MESSAGE value="feat: дополнить метод проверки пересечения времени задач" />
+    <MESSAGE value="feat: добавить новые поля в конструктор и в метод toString" />
+    <MESSAGE value="feat: добавить новые поля" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: добавить новые поля" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
