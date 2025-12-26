@@ -4,9 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3b2d2408-c7aa-4b02-a823-dac3b3c98272" name="Changes" comment="feat: создать исключение">
+    <list default="true" id="3b2d2408-c7aa-4b02-a823-dac3b3c98272" name="Changes" comment="feat: внести время создания задачи и продолжительность">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/MyTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MyTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/HttpClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/HttpClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dataBacked/FileBacked.CSV" beforeDir="false" afterPath="$PROJECT_DIR$/src/dataBacked/FileBacked.CSV" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Epic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Epic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/SubTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/SubTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Task.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Task.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/BaseHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/BaseHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/Config.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/Config.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/SubTaskHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/SubTaskHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/TaskHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/TaskHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/service/FileBackedTasksManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/FileBackedTasksManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/service/InMemoryTaskManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/InMemoryTaskManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -86,7 +96,7 @@
       <recent name="C:\Users\DrozzzD35\IdeaProjects\TaskManager\src\documents" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Application">
+  <component name="RunManager" selected="Application.MyTest">
     <configuration name="Application" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="server.Application" />
       <module name="TaskManager" />
@@ -132,8 +142,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Application" />
         <item itemvalue="Application.MyTest" />
+        <item itemvalue="Application.Application" />
         <item itemvalue="Application.HttpTaskServer" />
         <item itemvalue="HTTP Request.scratch | GET request to example server" />
         <item itemvalue="Application.Main" />
@@ -296,31 +306,9 @@
       <workItem from="1765633608844" duration="1698000" />
       <workItem from="1766023975539" duration="12433000" />
       <workItem from="1766382733751" duration="7629000" />
-      <workItem from="1766483985320" duration="12119000" />
-    </task>
-    <task id="LOCAL-00041" summary="- Создать обработчики Epic, Subtask, GeneralTask, History.&#10;- Добавить их в HttpTaskServer.java&#10;- Написать EpicHandler">
-      <option name="closed" value="true" />
-      <created>1763530718135</created>
-      <option name="number" value="00041" />
-      <option name="presentableId" value="LOCAL-00041" />
-      <option name="project" value="LOCAL" />
-      <updated>1763530718135</updated>
-    </task>
-    <task id="LOCAL-00042" summary="gson-2.13.1.jar добавлен">
-      <option name="closed" value="true" />
-      <created>1763530841690</created>
-      <option name="number" value="00042" />
-      <option name="presentableId" value="LOCAL-00042" />
-      <option name="project" value="LOCAL" />
-      <updated>1763530841690</updated>
-    </task>
-    <task id="LOCAL-00043" summary="- EpicHandler.java реализована обработка метода POST и DELETE">
-      <option name="closed" value="true" />
-      <created>1763631136785</created>
-      <option name="number" value="00043" />
-      <option name="presentableId" value="LOCAL-00043" />
-      <option name="project" value="LOCAL" />
-      <updated>1763631136785</updated>
+      <workItem from="1766483985320" duration="17295000" />
+      <workItem from="1766529679945" duration="15228000" />
+      <workItem from="1766747700286" duration="379000" />
     </task>
     <task id="LOCAL-00044" summary="- EpicHandler.java реализована обработка метода POST и DELETE">
       <option name="closed" value="true" />
@@ -690,7 +678,31 @@
       <option name="project" value="LOCAL" />
       <updated>1766497479542</updated>
     </task>
-    <option name="localTasksCounter" value="90" />
+    <task id="LOCAL-00090" summary="feat: переписать метод add, updateTask&#10;&#10;fix: метод updateEpicTime должен принимать id">
+      <option name="closed" value="true" />
+      <created>1766510343750</created>
+      <option name="number" value="00090" />
+      <option name="presentableId" value="LOCAL-00090" />
+      <option name="project" value="LOCAL" />
+      <updated>1766510343750</updated>
+    </task>
+    <task id="LOCAL-00091" summary="feat: переписать методы createTask и createSubTask">
+      <option name="closed" value="true" />
+      <created>1766510397007</created>
+      <option name="number" value="00091" />
+      <option name="presentableId" value="LOCAL-00091" />
+      <option name="project" value="LOCAL" />
+      <updated>1766510397007</updated>
+    </task>
+    <task id="LOCAL-00092" summary="feat: внести время создания задачи и продолжительность">
+      <option name="closed" value="true" />
+      <created>1766510579735</created>
+      <option name="number" value="00092" />
+      <option name="presentableId" value="LOCAL-00092" />
+      <option name="project" value="LOCAL" />
+      <updated>1766510579735</updated>
+    </task>
+    <option name="localTasksCounter" value="93" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -711,9 +723,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/.." />
     </ignored-roots>
-    <MESSAGE value="test(HttpClient.java, FileBacked.CSV): провести тест. Удалить не нужный код" />
-    <MESSAGE value="fix(InMemoryTaskManager.java): при создании СабТаска можно указать идентификатор несуществующего Эпика. Исправить" />
-    <MESSAGE value="test(MyTest.java): проверить запись истории. Внести пометку для дальнейшего изучения" />
     <MESSAGE value="feat(HttpClient.java): написать метод createSubTask. &#10;&#10;refactor(HttpClient.java); методы getFullUrlTasks и getFullUrlTaskById сократить, сделать более читаемым код." />
     <MESSAGE value="feat(HttpClient.java): написать метод getHistory." />
     <MESSAGE value="feat(HistoryHandler.java): добавить обработку метода &quot;DELETE&quot;&#10;&#10;feat(HistoryManager.java, InMemoryHistoryManager.java): добавить метод removeHistory" />
@@ -736,7 +745,10 @@
     <MESSAGE value="feat: написать список отсортированных задач&#10;&#10;refactor: сделать код более читаемым в методе removeTasks" />
     <MESSAGE value="feat: внести переменные duration и startTime" />
     <MESSAGE value="feat: создать исключение" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: создать исключение" />
+    <MESSAGE value="feat: переписать метод add, updateTask&#10;&#10;fix: метод updateEpicTime должен принимать id" />
+    <MESSAGE value="feat: переписать методы createTask и createSubTask" />
+    <MESSAGE value="feat: внести время создания задачи и продолжительность" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: внести время создания задачи и продолжительность" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>

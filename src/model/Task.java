@@ -5,6 +5,7 @@ import utils.Identity;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 public class Task {
@@ -16,7 +17,8 @@ public class Task {
     protected Duration duration;
     protected LocalDateTime startTime;
 
-    public Task(String name, String description, Duration duration, LocalDateTime startTime) {
+
+    public Task(String name, String description, LocalDateTime startTime, Duration duration) {
         this.id = Identity.INSTANCE.generateId();
         this.name = name;
         this.description = description;
@@ -26,19 +28,24 @@ public class Task {
         this.type = Type.TASK;
     }
 
-    public Task(Integer id, Type type, String name, TaskStatus taskStatus, String description) {
-        //TODO внедрить поля duration и startTime
+    public Task(Integer id, Type type, String name, TaskStatus taskStatus, String description, LocalDateTime startTime, Duration duration) {
         this.id = id;
         this.name = name;
         this.description = description;
+        this.startTime = startTime;
+        this.duration = duration;
         this.taskStatus = taskStatus;
         this.type = type;
     }
 
     public Task(String name, String description) {
-        this.name=name;
-        this.description=description;
+        this.id = Identity.INSTANCE.generateId();
+        this.name = name;
+        this.description = description;
+        this.startTime = null;
+        this.duration = Duration.ZERO;
     }
+
 
     public void setDescription(String description) {
         this.description = description;
@@ -99,11 +106,12 @@ public class Task {
 
     @Override
     public String toString() {
-        return '\n' + "Task{" + "id=" + id + '\n'
+        return '\n' + "id=" + id + '\n'
                 + "name=" + name + '\n' + "description=" + description + '\n'
                 + "status=" + taskStatus + '\n' + "type=" + type + '\n'
-                + "duration=" + duration + '\n'
-                + "startTime=" + startTime + '}' + '\n';
+                + "duration=" + duration.toMinutes() + '\n'
+                + "startTime=" + startTime.format(DateTimeFormatter.ISO_DATE_TIME)
+                + '\n';
     }
 
     @Override

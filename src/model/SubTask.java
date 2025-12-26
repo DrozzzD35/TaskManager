@@ -7,8 +7,11 @@ import java.util.Objects;
 public class SubTask extends Task {
     private final int parentId;
 
-    public SubTask(String name, String description, int parentId, Duration duration, LocalDateTime startTime) {
-        super(name, description, duration, startTime);
+    public SubTask(String name, String description
+            , LocalDateTime startTime
+            , Duration duration, int parentId) {
+
+        super(name, description, startTime, duration);
 
         this.taskStatus = TaskStatus.NEW;
         this.type = Type.SUBTASK;
@@ -17,8 +20,10 @@ public class SubTask extends Task {
     }
 
     public SubTask(Integer id, Type type, String name
-            , TaskStatus taskStatus, String description, int parentId) {
-        super(id, type, name, taskStatus, description);
+            , TaskStatus taskStatus, String description
+            , LocalDateTime startTime, Duration duration, int parentId) {
+
+        super(id, type, name, taskStatus, description, startTime, duration);
         this.parentId = parentId;
     }
 
@@ -28,15 +33,7 @@ public class SubTask extends Task {
 
     @Override
     public String toString() {
-        return '\n' + "SubTask{" +
-                "parentId=" + parentId + '\n'
-                + "id=" + id + '\n'
-                + "name='" + name + '\'' + '\n'
-                + "description='" + description + '\'' + '\n'
-                + "taskStatus=" + taskStatus + '\n'
-                + "type=" + type + '\n'
-                + "duration=" + duration + '\n'
-                + "startTime=" + startTime + '}' + '\n';
+        return super.toString() + "parentId=" + parentId + "\n";
     }
 
     @Override
