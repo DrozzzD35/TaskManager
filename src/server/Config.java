@@ -5,13 +5,13 @@ import java.io.InputStream;
 import java.util.Properties;
 
 public class Config {
-    private int port;
-    private String url;
-    private String tasks;
-    private String task;
-    private String epic;
-    private String history;
-    private String subTask;
+    private final int port;
+    private final String url;
+    private final String tasks;
+    private final String task;
+    private final String epic;
+    private final String history;
+    private final String subTask;
 
     public Config() {
         Properties properties = new Properties();
