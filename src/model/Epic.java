@@ -1,5 +1,6 @@
 package model;
 
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,14 +13,25 @@ public class Epic extends Task {
     public Epic(String name, String description) {
         super(name, description);
 
+        this.taskStatus = TaskStatus.NEW;
         this.type = Type.EPIC;
         this.subTasksIds = new ArrayList<>();
     }
 
-    public Epic(Integer id, Type type, String name, TaskStatus taskStatus, String description) {
-        super(id, type, name, taskStatus, description);
-        this.subTasksIds = new ArrayList<>();
+    public Epic(Integer id
+            , Type type, String name
+            , TaskStatus taskStatus, String description
+            , LocalDateTime startTime, Duration duration) {
 
+        super(name, description);
+
+        this.id = id;
+        this.taskStatus = taskStatus;
+        this.type = type;
+        this.startTime = startTime;
+        this.duration = duration;
+
+        this.subTasksIds = new ArrayList<>();
     }
 
     public void removeChildren() {
@@ -45,14 +57,9 @@ public class Epic extends Task {
 
     @Override
     public String toString() {
-        return '\n' + "Epic{" +
-                "subTasksIds=" + subTasksIds + '\n'
-                + "id=" + id + '\n'
-                + "name='" + name + '\'' + '\n'
-                + "description='" + description + '\'' + '\n'
-                + "taskStatus=" + taskStatus + '\n'
-                + "type=" + type
-                + '}' + '\n';
+        return super.toString()
+                + "endTime=" + endTime + '\n'
+                + "subTasksIds=" + subTasksIds + '\n';
     }
 
     @Override
