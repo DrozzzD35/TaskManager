@@ -59,7 +59,8 @@ public class SubTaskHandler<T extends Task> extends BaseHandler<T> {
                     InputStream is = exchange.getRequestBody();
                     String subTaskString = new String(is.readAllBytes(), StandardCharsets.UTF_8);
                     SubTask json = gson.fromJson(subTaskString, SubTask.class);
-                    SubTask subTask = new SubTask(json.getName(), json.getDescription(), json.getParentId());
+                    SubTask subTask = new SubTask(json.getName(), json.getDescription()
+                            ,json.getStartTime(), json.getDuration(), json.getParentId());
                     taskManager.add((T) subTask);
 
                     response = gson.toJson(subTask);

@@ -2,8 +2,6 @@ package server;
 
 import com.google.gson.JsonSyntaxException;
 import com.sun.net.httpserver.HttpExchange;
-import model.Epic;
-import model.SubTask;
 import model.Task;
 import model.Type;
 import service.TaskManager;
@@ -48,17 +46,19 @@ public class TaskHandler<T extends Task> extends BaseHandler<T> {
                     T oldTask = taskManager.getTaskById(id, false);
                     validateTaskType(oldTask);
                     taskManager.updateTask((T) json, id);
-                    T updatedTask = taskManager.getTaskById(id,false);
+                    T updatedTask = taskManager.getTaskById(id, false);
 
                     response = gson.toJson(updatedTask);
                     statusCode = 200;
 
                 }
                 case "POST" -> {
+                    //TODO возможно json не правильно десериализует LocalDateTime and Duration
                     InputStream is = exchange.getRequestBody();
-                    String taskString = new String(is.readAllBytes(), StandardCharsets.UTF_8);
-                    Task json = gson.fromJson(taskString, Task.class);
-                    Task task = new Task(json.getName(), json.getDescription());
+                    String body = new String(is.readAllBytes(), StandardCharsets.UTF_8);
+                    Task json = gson.fromJson(body, Task.class);
+                    Task task = new Task(json.getName(), json.getDescription()
+                            , json.getStartTime(), json.getDuration());
                     taskManager.add((T) task);
 
                     response = gson.toJson(task);
