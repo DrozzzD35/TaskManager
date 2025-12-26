@@ -8,13 +8,20 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.time.Duration;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
+import java.util.Formatter;
 import java.util.List;
 
 public class FileBackedTasksManager<T extends Task> extends InMemoryTaskManager<T> {
-
     private final Path filePath;
-    private static final String csvHeaderText = "id, type, name, status, description, epic_id\n";
+    private static final String csvHeaderText
+            = "id, type, name, status, description, startTime, duration, epic_id\n";
+    private static final DateTimeFormatter startTime
+            = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm");
+
 
     public FileBackedTasksManager(Path filePath) {
         this.filePath = filePath;
@@ -25,6 +32,10 @@ public class FileBackedTasksManager<T extends Task> extends InMemoryTaskManager<
         super.add(task);
         save();
         System.out.println("CSV файл успешно создан " + filePath + "\n");
+    }
+
+    public void addWithoutSave(T task) {
+        super.add(task);
     }
 
     @Override
@@ -88,18 +99,33 @@ public class FileBackedTasksManager<T extends Task> extends InMemoryTaskManager<
         return String.join(",", ids);
     }
 
-
     public static Task fromString(String line) {
         String[] values = line.split(", ");
+        LocalDateTime start = values[5].equals("null")
+                ? null : LocalDateTime.parse(values[5], startTime);
+
         switch (Type.valueOf(values[1])) {
             case TASK -> {
-                return new Task(Integer.valueOf(values[0]), Type.valueOf(values[1]), values[2], TaskStatus.valueOf(values[3]), values[4]);
+                return new Task(Integer.valueOf(values[0])
+                        , Type.valueOf(values[1])
+                        , values[2], TaskStatus.valueOf(values[3])
+                        , values[4], start
+                        , Duration.ofMinutes(Long.parseLong(values[6])));
             }
             case EPIC -> {
-                return new Epic(Integer.valueOf(values[0]), Type.valueOf(values[1]), values[2], TaskStatus.valueOf(values[3]), values[4]);
+                return new Epic(Integer.valueOf(values[0])
+                        , Type.valueOf(values[1]), values[2]
+                        , TaskStatus.valueOf(values[3])
+                        , values[4], start
+                        , Duration.ofMinutes(Long.parseLong(values[6])));
             }
             case SUBTASK -> {
-                return new SubTask(Integer.valueOf(values[0]), Type.valueOf(values[1]), values[2], TaskStatus.valueOf(values[3]), values[4], Integer.parseInt(values[5]));
+                return new SubTask(Integer.valueOf(values[0])
+                        , Type.valueOf(values[1]), values[2]
+                        , TaskStatus.valueOf(values[3]), values[4]
+                        , start
+                        , Duration.ofMinutes(Long.parseLong(values[6]))
+                        , Integer.parseInt(values[7]));
             }
             default -> {
                 return null;
@@ -108,28 +134,33 @@ public class FileBackedTasksManager<T extends Task> extends InMemoryTaskManager<
 
     }
 
-
     public static TaskManager<Task> loadFromFile(Path path) {
-        TaskManager<Task> manager = new FileBackedTasksManager<>(path);
+        FileBackedTasksManager<Task> manager = new FileBackedTasksManager<>(path);
         try {
             String fileContent = Files.readString(path);
             String[] lines = fileContent.split("\n");
             for (int i = 1; i < lines.length; i++) {
                 if (lines[i].isBlank()) {
-                    String historyLine = lines[i + 1];
+                    if (i + 1 < lines.length) {
+                        String historyLine = lines[i + 1];
 
-                    Integer[] ids = Arrays.stream(historyLine.split(","))
-                            .map(Integer::valueOf)
-                            .toArray(Integer[]::new);
+                        Integer[] ids = Arrays.stream(historyLine.split(","))
+                                .map(Integer::valueOf)
+                                .toArray(Integer[]::new);
 
-                    manager.addTaskByIdsToHistory(ids);
+                        manager.addTaskByIdsToHistory(ids);
+                    }
                     break;
                 } else {
                     Task task = fromString(lines[i]);
                     if (task != null) {
-                        manager.add(task);
+                        manager.addWithoutSave(task);
                     }
                 }
+            }
+            for (Task epic : manager.getTasks(Type.EPIC)) {
+                manager.updateEpicStatus(epic.getId());
+                manager.updateEpicTime(epic.getId());
             }
         } catch (IOException e) {
             throw new FileSaveException(e.getMessage());
@@ -139,11 +170,21 @@ public class FileBackedTasksManager<T extends Task> extends InMemoryTaskManager<
     }
 
     private String toString(Task task) {
+        String timeString = (task.getStartTime() != null)
+                ? task.getStartTime().format(startTime) : "null";
+
+        long durationString = (task.getDuration() != null)
+                ? task.getDuration().toMinutes() : 0;
+
         StringBuilder resultBuilder = new StringBuilder();
-        resultBuilder.append(task.getId()).append(", ").append(task.getType().name())
+        resultBuilder.append(task.getId()).append(", ")
+                .append(task.getType().name())
                 .append(", ").append(task.getName())
                 .append(", ").append(task.getStatus().name())
-                .append(", ").append(task.getDescription());
+                .append(", ").append(task.getDescription())
+                .append(", ").append(timeString)
+                .append(", ").append(durationString);
+
 
         if (task instanceof SubTask subTask) {
             try {
