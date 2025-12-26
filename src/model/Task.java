@@ -17,7 +17,6 @@ public class Task {
     protected Duration duration;
     protected LocalDateTime startTime;
 
-
     public Task(String name, String description, LocalDateTime startTime, Duration duration) {
         this.id = Identity.INSTANCE.generateId();
         this.name = name;
@@ -106,11 +105,11 @@ public class Task {
 
     @Override
     public String toString() {
-        return '\n' + "id=" + id + '\n'
-                + "name=" + name + '\n' + "description=" + description + '\n'
-                + "status=" + taskStatus + '\n' + "type=" + type + '\n'
-                + "duration=" + duration.toMinutes() + '\n'
-                + "startTime=" + startTime.format(DateTimeFormatter.ISO_DATE_TIME)
+        return "\n" + type + ": id = " + id + '\n'
+                + "name = " + name + '\n' + "description = " + description + '\n'
+                + "status = " + taskStatus + '\n' + "type = " + type + '\n'
+                + "duration = " + duration.toMinutes() + '\n'
+                + "startTime = " + startTime.format(DateTimeFormatter.ISO_DATE_TIME)
                 + '\n';
     }
 

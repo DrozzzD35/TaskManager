@@ -33,7 +33,7 @@ public class SubTask extends Task {
 
     @Override
     public String toString() {
-        return super.toString() + "parentId=" + parentId + "\n";
+        return super.toString() + "parentId = " + parentId + "\n";
     }
 
     @Override
