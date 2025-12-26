@@ -12,7 +12,7 @@ import java.util.*;
 import static model.TaskStatus.*;
 
 public class InMemoryTaskManager<T extends Task> implements TaskManager<T> {
-    private final Map<Integer, T> taskMap;
+    protected final Map<Integer, T> taskMap;
     protected HistoryManager<T> history;
     //TODO внедрил TreeSet
     private final Set<T> priorityzedTasks = new TreeSet<>
@@ -26,6 +26,10 @@ public class InMemoryTaskManager<T extends Task> implements TaskManager<T> {
         this.taskMap = new HashMap<>();
     }
 
+    public HistoryManager<T> getHistory() {
+        return history;
+    }
+
     @Override
     public void add(T task) {
         chekOverlap(task);
@@ -34,7 +38,7 @@ public class InMemoryTaskManager<T extends Task> implements TaskManager<T> {
             Epic epic = (Epic) getTaskById(subTask.getParentId(), false);
 
             if (epic == null) {
-                System.out.println(("Невозможно создать SubTask, Epic с ID:" + subTask.getParentId() + " не существует"));
+                System.out.println(("Невозможно создать SubTask, Epic с ID:" + subTask.getParentId() + " не существует\n"));
                 return;
             }
             taskMap.put(task.getId(), task);
@@ -47,10 +51,6 @@ public class InMemoryTaskManager<T extends Task> implements TaskManager<T> {
             priorityzedTasks.add(task);
         }
         System.out.println(task.getType() + " " + task.getName() + ", id = " + task.getId() + " добавлена.");
-    }
-
-    public HistoryManager<T> getHistory() {
-        return history;
     }
 
     @Override
@@ -110,7 +110,7 @@ public class InMemoryTaskManager<T extends Task> implements TaskManager<T> {
             }
         }
 
-        System.out.println("Задача обновлена\n");
+        System.out.println("Задача обновлена: " + oldTask);
     }
 
     @Override
@@ -279,11 +279,11 @@ public class InMemoryTaskManager<T extends Task> implements TaskManager<T> {
                 .stream().filter(t -> t.getStartTime() != null
                         && !t.getId().equals
                         (task.getId())).anyMatch(existTask -> {
-            return task.getStartTime()
-                    .isBefore(existTask.getEndTime())
-                    && existTask.getStartTime().isBefore
-                    (task.getEndTime());
-        });
+                    return task.getStartTime()
+                            .isBefore(existTask.getEndTime())
+                            && existTask.getStartTime().isBefore
+                            (task.getEndTime());
+                });
 
         if (overlap) {
             throw new ValidationException("Ошибка! Несколько задач не могут быть запущены одновременно");
