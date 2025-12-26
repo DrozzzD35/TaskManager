@@ -273,12 +273,16 @@ public class InMemoryTaskManager<T extends Task> implements TaskManager<T> {
     }
 
     public void chekOverlap(T task) {
-        if (task.getStartTime() == null) return;
+        if (task.getStartTime() == null
+                || task.getEndTime() == null
+                || task instanceof Epic) return;
 
         boolean overlap = getPriorityzedTasks()
                 .stream().filter(t -> t.getStartTime() != null
-                        && !t.getId().equals
-                        (task.getId())).anyMatch(existTask -> {
+                        && !t.getId().equals(task.getId())
+                        && t.getEndTime() != null
+                        && !(t instanceof Epic))
+                .anyMatch(existTask -> {
                     return task.getStartTime()
                             .isBefore(existTask.getEndTime())
                             && existTask.getStartTime().isBefore

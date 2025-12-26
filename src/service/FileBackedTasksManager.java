@@ -12,7 +12,6 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
-import java.util.Formatter;
 import java.util.List;
 
 public class FileBackedTasksManager<T extends Task> extends InMemoryTaskManager<T> {
@@ -136,9 +135,11 @@ public class FileBackedTasksManager<T extends Task> extends InMemoryTaskManager<
 
     public static TaskManager<Task> loadFromFile(Path path) {
         FileBackedTasksManager<Task> manager = new FileBackedTasksManager<>(path);
+
         try {
             String fileContent = Files.readString(path);
             String[] lines = fileContent.split("\n");
+
             for (int i = 1; i < lines.length; i++) {
                 if (lines[i].isBlank()) {
                     if (i + 1 < lines.length) {
@@ -158,6 +159,7 @@ public class FileBackedTasksManager<T extends Task> extends InMemoryTaskManager<
                     }
                 }
             }
+
             for (Task epic : manager.getTasks(Type.EPIC)) {
                 manager.updateEpicStatus(epic.getId());
                 manager.updateEpicTime(epic.getId());
