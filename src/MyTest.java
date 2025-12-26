@@ -22,22 +22,23 @@ public class MyTest {
         // Создание задачи
         Task task1 = createTask("name1", "description1", 40, "01.10.2020 00:00");
         Epic task2 = createEpic("epic2", "epic2");
-        SubTask task3 = createSubTask("subTask3", "subTask3", 2, 40, "01.10.2020 01:00");
+        SubTask task3 = createSubTask("subTask3", "subTask3", "01.10.2020 01:00", 35, 2);
         createEpic("epic4", "epic4");
-        createSubTask("subTask5", "subTask5", 4, 40, "01.10.2020 02:00");
+        createSubTask("subTask5", "subTask5", "01.10.2020 02:00", 20, 4);
         createEpic("epic6", "epic6");
-        createSubTask("subTask7", "subTask7", 6, 40, "01.10.2020 03:00");
+        createSubTask("subTask7", "subTask7", "01.10.2020 03:00", 100, 6);
+        createTask("name8", "description8", 50, "02.10.2020 00:00");
 
 
         // Обновление задачи
         System.out.println("===========  Обновление задачи   ===============");
-        updateTaskStatus(task1.getId());
-        System.out.println("==========================\n\n");
+        updateTask(task1.getId());
+        System.out.println("\n\n");
 
         // Вывод всех задач в консоль
         System.out.println("===========  Таски в памяти   ===============");
         System.out.println(saveManager.getAllTasks());
-        System.out.println("==========================\n\n");
+        System.out.println("\n\n");
 
         // Добавление задачи в историю
         System.out.println("==================== Добавление задачи в историю ==================== ");
@@ -68,7 +69,7 @@ public class MyTest {
         saveManager.getTaskById(task.getId(), true);
     }
 
-    private static void updateTaskStatus(int currentTaskId) {
+    private static void updateTask(int currentTaskId) {
         Task updateTask = new Task("updateTask", "updateTask");
         updateTask.setStatus(TaskStatus.IN_PROGRESS);
         saveManager.updateTask(updateTask, currentTaskId);
@@ -78,22 +79,23 @@ public class MyTest {
         DateTimeFormatter startTime = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm");
 
         Task task = new Task(name, description
-                , Duration.ofMinutes(minutes)
-                , LocalDateTime.parse(date, startTime));
+                , LocalDateTime.parse(date, startTime)
+                , Duration.ofMinutes(minutes));
         saveManager.add(task);
         return task;
     }
 
-    private static SubTask createSubTask(String name, String description, int epicId, int minutes, String date) {
+    private static SubTask createSubTask(String name, String description, String date, int minutes, int epicId) {
         if (!(saveManager.getTaskById(epicId, false) instanceof Epic)) {
             System.out.println(("Невозможно создать SubTask, Epic с ID:" + epicId + " не существует"));
             return null;
         }
         DateTimeFormatter startTime = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm");
 
-        SubTask subTask = new SubTask(name, description, epicId
+        SubTask subTask = new SubTask(name, description
+                , LocalDateTime.parse(date, startTime)
                 , Duration.ofMinutes(minutes)
-                , LocalDateTime.parse(date, startTime));
+                , epicId);
         saveManager.add(subTask);
         return subTask;
     }
@@ -103,11 +105,4 @@ public class MyTest {
         saveManager.add(epic);
         return epic;
     }
-
-    private static void addHistoryCycle(int quantity) {
-        for (int i = 1; i <= quantity; i++) {
-            saveManager.getTaskById(i, true);
-        }
-    }
-
 }
