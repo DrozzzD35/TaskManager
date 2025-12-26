@@ -10,6 +10,8 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -78,13 +80,30 @@ public class HttpClient<T extends Task> {
         return client.send(request, HttpResponse.BodyHandlers.ofString());
     }
 
-    public HttpResponse<String> createTask(Type type, String name, String description) throws IOException, InterruptedException {
+    public HttpResponse<String> createTask(Type type
+            , String name, String description
+            , LocalDateTime startTime, Duration duration) throws IOException, InterruptedException {
+
+        Map<String, String> task = new HashMap<>();
+        task.put("startTime", String.valueOf(startTime));
+        task.put("duration", String.valueOf(duration));
+        return getResponse(type, name, description,  task);
+    }
+
+    public HttpResponse<String> createEpic(Type type
+            , String name, String description) throws IOException, InterruptedException {
+
         Map<String, String> task = new HashMap<>();
         return getResponse(type, name, description, task);
     }
 
-    public HttpResponse<String> createSubTask(Type type, String name, String description, int parentId) throws IOException, InterruptedException {
+    public HttpResponse<String> createSubTask(Type type, String name
+            , String description, LocalDateTime startTime
+            , Duration duration, int parentId) throws IOException, InterruptedException {
+
         Map<String, String> task = new HashMap<>();
+        task.put("startTime", String.valueOf(startTime));
+        task.put("duration", String.valueOf(duration));
         task.put("parentId", String.valueOf(parentId));
         return getResponse(type, name, description, task);
     }
@@ -126,7 +145,11 @@ public class HttpClient<T extends Task> {
         return client.send(request, HttpResponse.BodyHandlers.ofString());
     }
 
-    private HttpResponse<String> getResponse(Type type, String name, String description, Map<String, String> task) throws IOException, InterruptedException {
+
+    private HttpResponse<String> getResponse(Type type
+            , String name, String description
+            , Map<String, String> task) throws IOException, InterruptedException {
+
         String json = getJson(task, name, description);
         String fullUrl = getUrlTasks(type);
 
