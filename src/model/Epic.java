@@ -1,5 +1,7 @@
 package model;
 
+import utils.GsonFactory;
+
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -58,7 +60,7 @@ public class Epic extends Task {
     @Override
     public String toString() {
         return super.toString()
-                + "endTime = " + endTime + '\n'
+                + "endTime = " + endTime.format(GsonFactory.DATE_TIME_FORMATTER) + '\n'
                 + "subTasksIds = " + subTasksIds + '\n';
     }
 
