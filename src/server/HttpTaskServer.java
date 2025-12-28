@@ -2,13 +2,10 @@ package server;
 
 import com.sun.net.httpserver.HttpServer;
 import model.Task;
-import service.FileBackedTasksManager;
-import service.Managers;
 import service.TaskManager;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
-import java.nio.file.Path;
 
 public class HttpTaskServer {
     private final HttpServer server;

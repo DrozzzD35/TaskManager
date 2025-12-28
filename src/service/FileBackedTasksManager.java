@@ -3,6 +3,7 @@ package service;
 import dataBacked.FileSaveException;
 import dataBacked.ManagerSaveException;
 import model.*;
+import utils.GsonFactory;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -18,9 +19,6 @@ public class FileBackedTasksManager<T extends Task> extends InMemoryTaskManager<
     private final Path filePath;
     private static final String csvHeaderText
             = "id, type, name, status, description, startTime, duration, epic_id\n";
-    private static final DateTimeFormatter startTime
-            = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm");
-
 
     public FileBackedTasksManager(Path filePath) {
         this.filePath = filePath;
@@ -101,7 +99,7 @@ public class FileBackedTasksManager<T extends Task> extends InMemoryTaskManager<
     public static Task fromString(String line) {
         String[] values = line.split(", ");
         LocalDateTime start = values[5].equals("null")
-                ? null : LocalDateTime.parse(values[5], startTime);
+                ? null : LocalDateTime.parse(values[5], GsonFactory.DATE_TIME_FORMATTER);
 
         switch (Type.valueOf(values[1])) {
             case TASK -> {
@@ -173,7 +171,7 @@ public class FileBackedTasksManager<T extends Task> extends InMemoryTaskManager<
 
     private String toString(Task task) {
         String timeString = (task.getStartTime() != null)
-                ? task.getStartTime().format(startTime) : "null";
+                ? task.getStartTime().format(GsonFactory.DATE_TIME_FORMATTER) : "null";
 
         long durationString = (task.getDuration() != null)
                 ? task.getDuration().toMinutes() : 0;

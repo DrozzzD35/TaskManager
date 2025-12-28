@@ -1,27 +1,19 @@
 package server;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import model.Task;
-import server.gsonAdapter.DurationAdapter;
-import server.gsonAdapter.LocalDateTimeAdapter;
 import service.TaskManager;
+import utils.GsonFactory;
 
 import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.charset.StandardCharsets;
-import java.time.Duration;
-import java.time.LocalDateTime;
 
 public abstract class BaseHandler<T extends Task> implements HttpHandler {
     protected final TaskManager<T> taskManager;
-    protected final Gson gson = new GsonBuilder()
-            .registerTypeAdapter(LocalDateTime.class, new LocalDateTimeAdapter())
-            .registerTypeAdapter(Duration.class, new DurationAdapter())
-            .create();
-    
+    protected final Gson gson = GsonFactory.createGson();
 
     public BaseHandler(TaskManager<T> taskManager) {
         this.taskManager = taskManager;

@@ -4,14 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3b2d2408-c7aa-4b02-a823-dac3b3c98272" name="Changes" comment="docs: переместить документ в соответствующий пакет">
-      <change afterPath="$PROJECT_DIR$/src/server/gsonAdapter/DurationAdapter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/server/gsonAdapter/LocalDateTimeAdapter.java" afterDir="false" />
+    <list default="true" id="3b2d2408-c7aa-4b02-a823-dac3b3c98272" name="Changes" comment="feat: написать адаптеры для LocalDateTime and Duration классов">
+      <change afterPath="$PROJECT_DIR$/src/utils/GsonFactory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MyTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MyTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/client/HttpClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/HttpClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/BaseHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/BaseHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/service/InMemoryTaskManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/InMemoryTaskManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -306,22 +301,7 @@
       <workItem from="1766842517525" duration="129000" />
       <workItem from="1766842656296" duration="3629000" />
       <workItem from="1766926433434" duration="5832000" />
-    </task>
-    <task id="LOCAL-00057" summary="- Application.java написать класс&#10;- BaseHandler.java написать абстрактный класс вынести из классов обработчиков часто повторяющиеся методы&#10;- EpicHandler.java, SubTaskHandler.java, TaskHandler.java перенести методы в BaseHandler.java. Переписать конструктор&#10;- FileBackedTasksManager.java убрать метод historyFromString, его логику написать в методе loadFromFile()&#10;- HistoryHandler.java переписать конструктор&#10;- HttpTaskServer.java вынести метод main в Application.java&#10;- InMemoryTaskManager.java поправить метод updateEpicStatus (если epic.getAllChildrenIds().isEmpty()). Метод removeTasks(Type type) переписать, вместо if внедрить switch&#10;- Managers.java переписать&#10;- Task.java убрать лишний конструктор&#10;- TaskManager.java в методе addTaskByIdsToHistory изменить тип передаваемого параметра на Integer[]">
-      <option name="closed" value="true" />
-      <created>1764791007304</created>
-      <option name="number" value="00057" />
-      <option name="presentableId" value="LOCAL-00057" />
-      <option name="project" value="LOCAL" />
-      <updated>1764791007304</updated>
-    </task>
-    <task id="LOCAL-00058" summary="feat(EpicHandler, SubTaskHandler, TaskHandler):&#10;Добавление логики PUT на сервер&#10;&#10;refactor(EpicHandler, SubTaskHandler, TaskHandler):&#10;Переименование переменных">
-      <option name="closed" value="true" />
-      <created>1764855107882</created>
-      <option name="number" value="00058" />
-      <option name="presentableId" value="LOCAL-00058" />
-      <option name="project" value="LOCAL" />
-      <updated>1764855107882</updated>
+      <workItem from="1766939697530" duration="3623000" />
     </task>
     <task id="LOCAL-00059" summary="refactor(HttpTaskServer):&#10;Удаление слэша в URL">
       <option name="closed" value="true" />
@@ -699,7 +679,23 @@
       <option name="project" value="LOCAL" />
       <updated>1766926618354</updated>
     </task>
-    <option name="localTasksCounter" value="106" />
+    <task id="LOCAL-00106" summary="refactor: переименовать переменную">
+      <option name="closed" value="true" />
+      <created>1766942520929</created>
+      <option name="number" value="00106" />
+      <option name="presentableId" value="LOCAL-00106" />
+      <option name="project" value="LOCAL" />
+      <updated>1766942520929</updated>
+    </task>
+    <task id="LOCAL-00107" summary="feat: написать адаптеры для LocalDateTime and Duration классов">
+      <option name="closed" value="true" />
+      <created>1766942604059</created>
+      <option name="number" value="00107" />
+      <option name="presentableId" value="LOCAL-00107" />
+      <option name="project" value="LOCAL" />
+      <updated>1766942604059</updated>
+    </task>
+    <option name="localTasksCounter" value="108" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -720,8 +716,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/.." />
     </ignored-roots>
-    <MESSAGE value="fix: если Epic не найден при создании SubTask, создание прерывается" />
-    <MESSAGE value="feat: создать application.properties" />
     <MESSAGE value="feat: создать Config.java" />
     <MESSAGE value="feat: внедрить Config.java" />
     <MESSAGE value="refactor: поправить отступы строк" />
@@ -745,7 +739,9 @@
     <MESSAGE value="test: добавить подзадачу для тестов" />
     <MESSAGE value="test: протестировать функцию удаления задачи" />
     <MESSAGE value="docs: переместить документ в соответствующий пакет" />
-    <option name="LAST_COMMIT_MESSAGE" value="docs: переместить документ в соответствующий пакет" />
+    <MESSAGE value="refactor: переименовать переменную" />
+    <MESSAGE value="feat: написать адаптеры для LocalDateTime and Duration классов" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: написать адаптеры для LocalDateTime and Duration классов" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>

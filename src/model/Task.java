@@ -1,11 +1,11 @@
 package model;
 
 
+import utils.GsonFactory;
 import utils.Identity;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 public class Task {
@@ -109,7 +109,7 @@ public class Task {
                 + "name = " + name + '\n' + "description = " + description + '\n'
                 + "status = " + taskStatus + '\n' + "type = " + type + '\n'
                 + "duration = " + duration.toMinutes() + '\n'
-                + "startTime = " + startTime.format(DateTimeFormatter.ISO_DATE_TIME)
+                + "startTime = " + startTime.format(GsonFactory.DATE_TIME_FORMATTER)
                 + '\n';
     }
 

@@ -1,13 +1,11 @@
 package client;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import model.Task;
 import model.Type;
 import server.Config;
 import server.InCorrectClassException;
-import server.gsonAdapter.DurationAdapter;
-import server.gsonAdapter.LocalDateTimeAdapter;
+import utils.GsonFactory;
 
 import java.io.IOException;
 import java.net.URI;
@@ -25,10 +23,7 @@ public class HttpClient<T extends Task> {
     private final String urlEpic = config.getUrl() + config.getTasks() + config.getEpic();
     private final String urlSubTask = config.getUrl() + config.getTasks() + config.getSubTask();
     private final String urlHistory = config.getUrl() + config.getTasks() + config.getHistory();
-    private final Gson gson = new GsonBuilder()
-            .registerTypeAdapter(LocalDateTime.class, new LocalDateTimeAdapter())
-            .registerTypeAdapter(Duration.class, new DurationAdapter())
-            .create();
+    private final Gson gson = GsonFactory.createGson();
 
     public HttpClient(java.net.http.HttpClient client) {
         this.client = client;
