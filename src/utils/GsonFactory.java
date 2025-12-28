@@ -10,8 +10,8 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public final class GsonFactory {
-       public static DateTimeFormatter DATE_TIME_FORMATTER
-               = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm");
+    public static DateTimeFormatter DATE_TIME_FORMATTER
+            = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm");
 
     private GsonFactory() {
         throw new UnsupportedOperationException("Утилитарный класс");
