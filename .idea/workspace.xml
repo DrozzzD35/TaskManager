@@ -4,13 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3b2d2408-c7aa-4b02-a823-dac3b3c98272" name="Changes" comment="feat: добавить новые поля">
+    <list default="true" id="3b2d2408-c7aa-4b02-a823-dac3b3c98272" name="Changes" comment="test: добавить подзадачу для тестов">
+      <change afterPath="$PROJECT_DIR$/src/server/gsonAdapter/LocalDateTimeAdapter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/MyTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MyTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/dataBacked/FileBacked.CSV" beforeDir="false" afterPath="$PROJECT_DIR$/src/dataBacked/FileBacked.CSV" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Task.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Task.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/service/FileBackedTasksManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/FileBackedTasksManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/service/InMemoryTaskManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/InMemoryTaskManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/study.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/documents/study.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,8 +21,8 @@
       <list>
         <option value="Enum" />
         <option value="Interface" />
-        <option value="Class" />
         <option value="Exception" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -74,7 +73,7 @@
     &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -136,10 +135,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.MyTest" />
-        <item itemvalue="Application.Application" />
-        <item itemvalue="Application.HttpTaskServer" />
         <item itemvalue="HTTP Request.scratch | GET request to example server" />
         <item itemvalue="Application.Main" />
+        <item itemvalue="Application.HttpTaskServer" />
+        <item itemvalue="Application.Application" />
       </list>
     </recent_temporary>
   </component>
@@ -301,31 +300,9 @@
       <workItem from="1766382733751" duration="7629000" />
       <workItem from="1766483985320" duration="17295000" />
       <workItem from="1766529679945" duration="15228000" />
-      <workItem from="1766747700286" duration="3041000" />
-    </task>
-    <task id="LOCAL-00052" summary="- EpicHandler.java и SubTaskHandler.java добавить catch для InCorrectClassException и NotFoundException.&#10;Убрать лишний statusCode, вынести во внешнюю строку, удалить излишки кода">
-      <option name="closed" value="true" />
-      <created>1763992170782</created>
-      <option name="number" value="00052" />
-      <option name="presentableId" value="LOCAL-00052" />
-      <option name="project" value="LOCAL" />
-      <updated>1763992170782</updated>
-    </task>
-    <task id="LOCAL-00053" summary="- EpicHandler.java и SubTaskHandler.java добавить описание для NotFoundException&#10;- Сделать NotFoundException.java более универсальным, убрать текст, текст будет внесён в параметр конструктора&#10;- TaskHandler.java вынести try catch, избавиться от повторяемости кода.&#10;Создать методы getListOfTasks, getTask, parseIdFromQuery, validateTaskType и реализовать их">
-      <option name="closed" value="true" />
-      <created>1764000524197</created>
-      <option name="number" value="00053" />
-      <option name="presentableId" value="LOCAL-00053" />
-      <option name="project" value="LOCAL" />
-      <updated>1764000524197</updated>
-    </task>
-    <task id="LOCAL-00054" summary="- EpicHandler.java, SubTaskHandler.java и TaskHandler.java переписать метод getTasks, переименовать его в chekListOfTasks&#10;- FileBackedTasksManager.java переписать метод historyFromString, применить Stream API&#10;- HistoryHandler.java написать класс&#10;- InMemoryTaskManager.java. В методе removeTasks, внести проверку типа задачи вместо отсеивания епиков с сабтасками.&#10;Написать метод getTasks. Переписать методы getEpics/SubTasks с применением Stream&#10;- TaskManager.java в интерфейс добавить метод getTasks">
-      <option name="closed" value="true" />
-      <created>1764151104584</created>
-      <option name="number" value="00054" />
-      <option name="presentableId" value="LOCAL-00054" />
-      <option name="project" value="LOCAL" />
-      <updated>1764151104585</updated>
+      <workItem from="1766747700286" duration="6182000" />
+      <workItem from="1766842517525" duration="129000" />
+      <workItem from="1766842656296" duration="3629000" />
     </task>
     <task id="LOCAL-00055" summary="- GeneralTaskHandler.java написать класс&#10;- HttpClient.java начать создавать класс&#10;- InMemoryTaskManager.java изменить метод updateEpicStatus. Так же сделать методы removeTasks и getTasks универсальными, соответственно удалить метод GetEpic/SubTask и removeEpic/SubTask&#10;- Во всех обработчиках заменить методы на removeTasks/getTasks">
       <option name="closed" value="true" />
@@ -695,7 +672,31 @@
       <option name="project" value="LOCAL" />
       <updated>1766748608954</updated>
     </task>
-    <option name="localTasksCounter" value="101" />
+    <task id="LOCAL-00101" summary="refactor: поправить toString">
+      <option name="closed" value="true" />
+      <created>1766750927203</created>
+      <option name="number" value="00101" />
+      <option name="presentableId" value="LOCAL-00101" />
+      <option name="project" value="LOCAL" />
+      <updated>1766750927203</updated>
+    </task>
+    <task id="LOCAL-00102" summary="fix: исправить методы проверки пересечения времени задач">
+      <option name="closed" value="true" />
+      <created>1766750993946</created>
+      <option name="number" value="00102" />
+      <option name="presentableId" value="LOCAL-00102" />
+      <option name="project" value="LOCAL" />
+      <updated>1766750993946</updated>
+    </task>
+    <task id="LOCAL-00103" summary="test: добавить подзадачу для тестов">
+      <option name="closed" value="true" />
+      <created>1766751032525</created>
+      <option name="number" value="00103" />
+      <option name="presentableId" value="LOCAL-00103" />
+      <option name="project" value="LOCAL" />
+      <updated>1766751032525</updated>
+    </task>
+    <option name="localTasksCounter" value="104" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -716,9 +717,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/.." />
     </ignored-roots>
-    <MESSAGE value="test(MyTest.java): провести тесты" />
-    <MESSAGE value="refactor(InMemoryTaskManager.java): внести пометку в метод add()" />
-    <MESSAGE value="feat(HttpClient.java): В в методах createSubTask и createTask убрать повторяющийся код, вынести в отдельный метод&#10;&#10;refactor(HttpClient.java): перенести переменные из поля класса в методы, сделать их локальными." />
     <MESSAGE value="refactor: удалить лишний код" />
     <MESSAGE value="refactor: запись о сохранение файла вносится только при создании задачи" />
     <MESSAGE value="fix: если Epic не найден при создании SubTask, создание прерывается" />
@@ -741,7 +739,10 @@
     <MESSAGE value="feat: дополнить метод проверки пересечения времени задач" />
     <MESSAGE value="feat: добавить новые поля в конструктор и в метод toString" />
     <MESSAGE value="feat: добавить новые поля" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: добавить новые поля" />
+    <MESSAGE value="refactor: поправить toString" />
+    <MESSAGE value="fix: исправить методы проверки пересечения времени задач" />
+    <MESSAGE value="test: добавить подзадачу для тестов" />
+    <option name="LAST_COMMIT_MESSAGE" value="test: добавить подзадачу для тестов" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>

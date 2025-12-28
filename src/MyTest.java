@@ -41,6 +41,16 @@ public class MyTest {
         System.out.println(saveManager.getAllTasks());
         System.out.println("\n\n");
 
+        //удаление задачи
+        System.out.println("===========  Удаление задачи   ===============");
+        saveManager.removeTaskById(2);
+        System.out.println();
+
+        // Вывод всех задач в консоль
+        System.out.println("===========  Таски после удаления   ===============");
+        System.out.println(saveManager.getAllTasks());
+        System.out.println("\n\n");
+
         // Добавление задачи в историю
         System.out.println("==================== Добавление задачи в историю ==================== ");
         addHistory(task1);
@@ -59,7 +69,13 @@ public class MyTest {
         TaskManager<Task> restored = FileBackedTasksManager.loadFromFile(path);
 
         // Проверка на идентичность истории в памяти и в файле
-        System.out.println("history ok? " + restored.getHistory().equals(saveManager.getHistory()));
+        System.out.println("history ok? " + restored.getHistory().equals(saveManager.getHistory()) + '\n');
+
+        //Задачи в отсортированном списке
+        System.out.println("===========  Задачи в отсортированном списке   ===============");
+        System.out.println(((FileBackedTasksManager<Task>) saveManager).getPriorityzedTasks());
+        System.out.println("=========================\n");
+
 
     }
 
