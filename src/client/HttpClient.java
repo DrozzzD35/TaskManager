@@ -1,10 +1,13 @@
 package client;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import model.Task;
 import model.Type;
 import server.Config;
 import server.InCorrectClassException;
+import server.gsonAdapter.DurationAdapter;
+import server.gsonAdapter.LocalDateTimeAdapter;
 
 import java.io.IOException;
 import java.net.URI;
@@ -17,12 +20,15 @@ import java.util.Map;
 
 public class HttpClient<T extends Task> {
     private final java.net.http.HttpClient client;
-    private final Gson gson = new Gson();
-    Config config = new Config();
+    private final Config config = new Config();
     private final String urlTask = config.getUrl() + config.getTasks() + config.getTask();
     private final String urlEpic = config.getUrl() + config.getTasks() + config.getEpic();
     private final String urlSubTask = config.getUrl() + config.getTasks() + config.getSubTask();
     private final String urlHistory = config.getUrl() + config.getTasks() + config.getHistory();
+    private final Gson gson = new GsonBuilder()
+            .registerTypeAdapter(LocalDateTime.class, new LocalDateTimeAdapter())
+            .registerTypeAdapter(Duration.class, new DurationAdapter())
+            .create();
 
     public HttpClient(java.net.http.HttpClient client) {
         this.client = client;
@@ -87,7 +93,7 @@ public class HttpClient<T extends Task> {
         Map<String, String> task = new HashMap<>();
         task.put("startTime", String.valueOf(startTime));
         task.put("duration", String.valueOf(duration));
-        return getResponse(type, name, description,  task);
+        return getResponse(type, name, description, task);
     }
 
     public HttpResponse<String> createEpic(Type type
