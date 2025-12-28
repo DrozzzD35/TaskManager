@@ -36,8 +36,8 @@ public class FileBackedTasksManager<T extends Task> extends InMemoryTaskManager<
     }
 
     @Override
-    public void updateTask(T updateTask, int id) {
-        super.updateTask(updateTask, id);
+    public void updateTask(T newTask, int id) {
+        super.updateTask(newTask, id);
         save();
     }
 

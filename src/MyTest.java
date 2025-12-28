@@ -24,39 +24,38 @@ public class MyTest {
         Epic task2 = createEpic("epic2", "epic2");
         SubTask task3 = createSubTask("subTask3", "subTask3", "01.10.2020 01:00", 35, 2);
         createEpic("epic4", "epic4");
-        createSubTask("subTask5", "subTask5", "01.10.2020 02:00", 20, 4);
+        createSubTask("subTask5", "subTask5", "01.10.2010 02:00", 20, 4);
         createEpic("epic6", "epic6");
         createSubTask("subTask7", "subTask7", "01.10.2020 03:00", 100, 6);
         createTask("name8", "description8", 50, "02.10.2020 00:00");
         createSubTask("subTask9", "subTask9", "02.10.2020 01:00", 100, 2);
 
-
         // Обновление задачи
         System.out.println("===========  Обновление задачи   ===============");
         updateTask(task1.getId());
-        System.out.println("\n\n");
+        System.out.println("=========================\n");
 
         // Вывод всех задач в консоль
         System.out.println("===========  Таски в памяти   ===============");
         System.out.println(saveManager.getAllTasks());
-        System.out.println("\n\n");
+        System.out.println("=========================\n");
 
         //удаление задачи
         System.out.println("===========  Удаление задачи   ===============");
         saveManager.removeTaskById(2);
-        System.out.println();
+        System.out.println("=========================\n");
 
         // Вывод всех задач в консоль
         System.out.println("===========  Таски после удаления   ===============");
         System.out.println(saveManager.getAllTasks());
-        System.out.println("\n\n");
+        System.out.println("=========================\n");
 
         // Добавление задачи в историю
         System.out.println("==================== Добавление задачи в историю ==================== ");
         addHistory(task1);
         addHistory(task2);
         addHistory(task3);
-
+        System.out.println("=========================\n");
 
         // Просмотр истории
         System.out.println("===========  История   ===============");
@@ -67,6 +66,7 @@ public class MyTest {
         ((FileBackedTasksManager<?>) saveManager).save();
         System.out.println("===========  Загрузка из файла   ===============");
         TaskManager<Task> restored = FileBackedTasksManager.loadFromFile(path);
+        System.out.println("=========================\n");
 
         // Проверка на идентичность истории в памяти и в файле
         System.out.println("history ok? " + restored.getHistory().equals(saveManager.getHistory()) + '\n');

@@ -4,9 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3b2d2408-c7aa-4b02-a823-dac3b3c98272" name="Changes" comment="feat: написать адаптеры для LocalDateTime and Duration классов">
-      <change afterPath="$PROJECT_DIR$/src/utils/GsonFactory.java" afterDir="false" />
+    <list default="true" id="3b2d2408-c7aa-4b02-a823-dac3b3c98272" name="Changes" comment="feat: создать фабричный класс Gson">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MyTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MyTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dataBacked/FileBacked.CSV" beforeDir="false" afterPath="$PROJECT_DIR$/src/dataBacked/FileBacked.CSV" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Epic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Epic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/service/FileBackedTasksManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/FileBackedTasksManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/service/InMemoryTaskManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/InMemoryTaskManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -301,23 +305,7 @@
       <workItem from="1766842517525" duration="129000" />
       <workItem from="1766842656296" duration="3629000" />
       <workItem from="1766926433434" duration="5832000" />
-      <workItem from="1766939697530" duration="3623000" />
-    </task>
-    <task id="LOCAL-00059" summary="refactor(HttpTaskServer):&#10;Удаление слэша в URL">
-      <option name="closed" value="true" />
-      <created>1764855144524</created>
-      <option name="number" value="00059" />
-      <option name="presentableId" value="LOCAL-00059" />
-      <option name="project" value="LOCAL" />
-      <updated>1764855144525</updated>
-    </task>
-    <task id="LOCAL-00060" summary="feat(HttpClient.java): добавление методов">
-      <option name="closed" value="true" />
-      <created>1764855179394</created>
-      <option name="number" value="00060" />
-      <option name="presentableId" value="LOCAL-00060" />
-      <option name="project" value="LOCAL" />
-      <updated>1764855179394</updated>
+      <workItem from="1766939697530" duration="9164000" />
     </task>
     <task id="LOCAL-00061" summary="refactor(EpicHandler.java): удалить не используемый оператор импорта">
       <option name="closed" value="true" />
@@ -695,7 +683,23 @@
       <option name="project" value="LOCAL" />
       <updated>1766942604059</updated>
     </task>
-    <option name="localTasksCounter" value="108" />
+    <task id="LOCAL-00108" summary="feat: создать фабричный класс Gson">
+      <option name="closed" value="true" />
+      <created>1766945792964</created>
+      <option name="number" value="00108" />
+      <option name="presentableId" value="LOCAL-00108" />
+      <option name="project" value="LOCAL" />
+      <updated>1766945792964</updated>
+    </task>
+    <task id="LOCAL-00109" summary="feat: создать фабричный класс Gson">
+      <option name="closed" value="true" />
+      <created>1766945896931</created>
+      <option name="number" value="00109" />
+      <option name="presentableId" value="LOCAL-00109" />
+      <option name="project" value="LOCAL" />
+      <updated>1766945896931</updated>
+    </task>
+    <option name="localTasksCounter" value="110" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -716,7 +720,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/.." />
     </ignored-roots>
-    <MESSAGE value="feat: создать Config.java" />
     <MESSAGE value="feat: внедрить Config.java" />
     <MESSAGE value="refactor: поправить отступы строк" />
     <MESSAGE value="feat: внедрить Config, исправить url" />
@@ -741,7 +744,8 @@
     <MESSAGE value="docs: переместить документ в соответствующий пакет" />
     <MESSAGE value="refactor: переименовать переменную" />
     <MESSAGE value="feat: написать адаптеры для LocalDateTime and Duration классов" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: написать адаптеры для LocalDateTime and Duration классов" />
+    <MESSAGE value="feat: создать фабричный класс Gson" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: создать фабричный класс Gson" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
