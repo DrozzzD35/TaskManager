@@ -4,12 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3b2d2408-c7aa-4b02-a823-dac3b3c98272" name="Changes" comment="test: добавить подзадачу для тестов">
+    <list default="true" id="3b2d2408-c7aa-4b02-a823-dac3b3c98272" name="Changes" comment="docs: переместить документ в соответствующий пакет">
+      <change afterPath="$PROJECT_DIR$/src/server/gsonAdapter/DurationAdapter.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/server/gsonAdapter/LocalDateTimeAdapter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/MyTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MyTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dataBacked/FileBacked.CSV" beforeDir="false" afterPath="$PROJECT_DIR$/src/dataBacked/FileBacked.CSV" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/study.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/documents/study.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/HttpClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/HttpClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/BaseHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/BaseHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/service/InMemoryTaskManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/InMemoryTaskManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,7 +75,7 @@
     &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.android.studio.ml.bot.mainConfigurable&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -303,22 +305,7 @@
       <workItem from="1766747700286" duration="6182000" />
       <workItem from="1766842517525" duration="129000" />
       <workItem from="1766842656296" duration="3629000" />
-    </task>
-    <task id="LOCAL-00055" summary="- GeneralTaskHandler.java написать класс&#10;- HttpClient.java начать создавать класс&#10;- InMemoryTaskManager.java изменить метод updateEpicStatus. Так же сделать методы removeTasks и getTasks универсальными, соответственно удалить метод GetEpic/SubTask и removeEpic/SubTask&#10;- Во всех обработчиках заменить методы на removeTasks/getTasks">
-      <option name="closed" value="true" />
-      <created>1764601615117</created>
-      <option name="number" value="00055" />
-      <option name="presentableId" value="LOCAL-00055" />
-      <option name="project" value="LOCAL" />
-      <updated>1764601615117</updated>
-    </task>
-    <task id="LOCAL-00056" summary="- GeneralTaskHandler.java написать класс&#10;- HttpClient.java начать создавать класс&#10;- InMemoryTaskManager.java изменить метод updateEpicStatus. Так же сделать методы removeTasks и getTasks универсальными, соответственно удалить метод GetEpic/SubTask и removeEpic/SubTask&#10;- Во всех обработчиках заменить методы на removeTasks/getTasks">
-      <option name="closed" value="true" />
-      <created>1764781946402</created>
-      <option name="number" value="00056" />
-      <option name="presentableId" value="LOCAL-00056" />
-      <option name="project" value="LOCAL" />
-      <updated>1764781946402</updated>
+      <workItem from="1766926433434" duration="5832000" />
     </task>
     <task id="LOCAL-00057" summary="- Application.java написать класс&#10;- BaseHandler.java написать абстрактный класс вынести из классов обработчиков часто повторяющиеся методы&#10;- EpicHandler.java, SubTaskHandler.java, TaskHandler.java перенести методы в BaseHandler.java. Переписать конструктор&#10;- FileBackedTasksManager.java убрать метод historyFromString, его логику написать в методе loadFromFile()&#10;- HistoryHandler.java переписать конструктор&#10;- HttpTaskServer.java вынести метод main в Application.java&#10;- InMemoryTaskManager.java поправить метод updateEpicStatus (если epic.getAllChildrenIds().isEmpty()). Метод removeTasks(Type type) переписать, вместо if внедрить switch&#10;- Managers.java переписать&#10;- Task.java убрать лишний конструктор&#10;- TaskManager.java в методе addTaskByIdsToHistory изменить тип передаваемого параметра на Integer[]">
       <option name="closed" value="true" />
@@ -696,7 +683,23 @@
       <option name="project" value="LOCAL" />
       <updated>1766751032525</updated>
     </task>
-    <option name="localTasksCounter" value="104" />
+    <task id="LOCAL-00104" summary="test: протестировать функцию удаления задачи">
+      <option name="closed" value="true" />
+      <created>1766926570064</created>
+      <option name="number" value="00104" />
+      <option name="presentableId" value="LOCAL-00104" />
+      <option name="project" value="LOCAL" />
+      <updated>1766926570065</updated>
+    </task>
+    <task id="LOCAL-00105" summary="docs: переместить документ в соответствующий пакет">
+      <option name="closed" value="true" />
+      <created>1766926618354</created>
+      <option name="number" value="00105" />
+      <option name="presentableId" value="LOCAL-00105" />
+      <option name="project" value="LOCAL" />
+      <updated>1766926618354</updated>
+    </task>
+    <option name="localTasksCounter" value="106" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -717,8 +720,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/.." />
     </ignored-roots>
-    <MESSAGE value="refactor: удалить лишний код" />
-    <MESSAGE value="refactor: запись о сохранение файла вносится только при создании задачи" />
     <MESSAGE value="fix: если Epic не найден при создании SubTask, создание прерывается" />
     <MESSAGE value="feat: создать application.properties" />
     <MESSAGE value="feat: создать Config.java" />
@@ -742,7 +743,9 @@
     <MESSAGE value="refactor: поправить toString" />
     <MESSAGE value="fix: исправить методы проверки пересечения времени задач" />
     <MESSAGE value="test: добавить подзадачу для тестов" />
-    <option name="LAST_COMMIT_MESSAGE" value="test: добавить подзадачу для тестов" />
+    <MESSAGE value="test: протестировать функцию удаления задачи" />
+    <MESSAGE value="docs: переместить документ в соответствующий пакет" />
+    <option name="LAST_COMMIT_MESSAGE" value="docs: переместить документ в соответствующий пакет" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>

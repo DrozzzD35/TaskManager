@@ -15,7 +15,7 @@ public class InMemoryTaskManager<T extends Task> implements TaskManager<T> {
     protected final Map<Integer, T> taskMap;
     protected HistoryManager<T> history;
     //TODO внедрил TreeSet
-    private final Set<T> priorityzedTasks = new TreeSet<>
+    private final Set<T> prioritizedTasks = new TreeSet<>
             (Comparator.comparing(Task::getStartTime
                             , Comparator.nullsLast(Comparator.naturalOrder()))
                     .thenComparing(Task::getId));
@@ -42,13 +42,13 @@ public class InMemoryTaskManager<T extends Task> implements TaskManager<T> {
                 return;
             }
             taskMap.put(task.getId(), task);
-            priorityzedTasks.add(task);
+            prioritizedTasks.add(task);
             epic.addChild(task.getId());
             updateEpicTime(epic.getId());
             updateEpicStatus(epic.getId());
         } else {
             taskMap.put(task.getId(), task);
-            priorityzedTasks.add(task);
+            prioritizedTasks.add(task);
         }
         System.out.println(task.getType() + " " + task.getName() + ", id = " + task.getId() + " добавлена.");
     }
@@ -75,12 +75,12 @@ public class InMemoryTaskManager<T extends Task> implements TaskManager<T> {
         if (oldTask == null) {
             return;
         }
-        priorityzedTasks.remove(oldTask);
+        prioritizedTasks.remove(oldTask);
 
         try {
             chekOverlap(updateTask);
         } catch (ValidationException e) {
-            priorityzedTasks.add(oldTask);
+            prioritizedTasks.add(oldTask);
             System.out.println("Ошибка обновления: " + e.getMessage());
             return;
         }
@@ -100,7 +100,7 @@ public class InMemoryTaskManager<T extends Task> implements TaskManager<T> {
         if (updateTask.getStartTime() != null) {
             oldTask.setStartTime(updateTask.getStartTime());
         }
-        priorityzedTasks.add(oldTask);
+        prioritizedTasks.add(oldTask);
 
         if (oldTask instanceof SubTask subTask) {
             Epic epic = (Epic) getTaskById(subTask.getParentId(), false);
@@ -163,7 +163,7 @@ public class InMemoryTaskManager<T extends Task> implements TaskManager<T> {
             }
 
         }
-        priorityzedTasks.remove(taskMap.get(id));
+        prioritizedTasks.remove(taskMap.get(id));
         taskMap.remove(id);
         System.out.println("Задача удалена");
         System.out.println();
@@ -172,7 +172,7 @@ public class InMemoryTaskManager<T extends Task> implements TaskManager<T> {
 
     @Override
     public void removeAllTasks() {
-        priorityzedTasks.clear();
+        prioritizedTasks.clear();
         taskMap.clear();
         System.out.println("Все задачи удалены");
     }
@@ -188,15 +188,15 @@ public class InMemoryTaskManager<T extends Task> implements TaskManager<T> {
                         updateEpicTime(epic.getId());
                     }
                 }
-                priorityzedTasks.removeIf(task -> task instanceof SubTask);
+                prioritizedTasks.removeIf(task -> task instanceof SubTask);
                 taskMap.values().removeIf(task -> task instanceof SubTask);
             }
             case EPIC -> {
-                priorityzedTasks.removeIf(task -> task instanceof Epic || task instanceof SubTask);
+                prioritizedTasks.removeIf(task -> task instanceof Epic || task instanceof SubTask);
                 taskMap.values().removeIf(task -> task instanceof Epic || task instanceof SubTask);
             }
             case TASK -> {
-                priorityzedTasks.removeIf(task -> task.getType() == Type.TASK);
+                prioritizedTasks.removeIf(task -> task.getType() == Type.TASK);
                 taskMap.values().removeIf(task -> task.getType() == Type.TASK);
             }
             default -> System.out.println("неизвестный тип");
@@ -230,8 +230,8 @@ public class InMemoryTaskManager<T extends Task> implements TaskManager<T> {
         return taskMap.values().stream().filter(t -> t.getType() == type).toList();
     }
 
-    public Set<T> getPriorityzedTasks() {
-        return priorityzedTasks;
+    public Set<T> getPrioritizedTasks() {
+        return prioritizedTasks;
     }
 
     public void updateEpicTime(int id) {
@@ -277,7 +277,7 @@ public class InMemoryTaskManager<T extends Task> implements TaskManager<T> {
                 || task.getEndTime() == null
                 || task instanceof Epic) return;
 
-        boolean overlap = getPriorityzedTasks()
+        boolean overlap = getPrioritizedTasks()
                 .stream().filter(t -> t.getStartTime() != null
                         && !t.getId().equals(task.getId())
                         && t.getEndTime() != null

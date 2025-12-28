@@ -73,7 +73,7 @@ public class MyTest {
 
         //Задачи в отсортированном списке
         System.out.println("===========  Задачи в отсортированном списке   ===============");
-        System.out.println(((FileBackedTasksManager<Task>) saveManager).getPriorityzedTasks());
+        System.out.println(((FileBackedTasksManager<Task>) saveManager).getPrioritizedTasks());
         System.out.println("=========================\n");
 
 
