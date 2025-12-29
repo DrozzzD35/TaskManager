@@ -24,14 +24,8 @@ public class HistoryHandler<T extends Task> extends BaseHandler<T> {
         try {
             if (method.equals("GET")) {
                 List<T> historyList = historyManager.getHistory();
-
-                if (historyList.isEmpty()) {
-                    response = gson.toJson("Списка истории пуст");
-                    statusCode = 404;
-                } else {
-                    response = gson.toJson(historyList);
-                    statusCode = 200;
-                }
+                response = gson.toJson(historyList);
+                statusCode = 200;
 
             } else if (method.equals("DELETE")) {
                 historyManager.removeHistory();
