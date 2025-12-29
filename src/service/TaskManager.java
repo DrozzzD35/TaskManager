@@ -5,6 +5,7 @@ import model.Task;
 import model.Type;
 
 import java.util.List;
+import java.util.Set;
 
 public interface TaskManager<T extends Task> {
 
@@ -32,4 +33,5 @@ public interface TaskManager<T extends Task> {
 
     List<T> getTasks(Type type);
 
+    Set<T> getPrioritizedTasks();
 }
