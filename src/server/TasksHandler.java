@@ -23,7 +23,7 @@ public class TasksHandler<T extends Task> extends BaseHandler<T> {
         try {
 
             if (method.equals("GET")) {
-                response = gson.toJson(taskManager.getAllTasks());
+                response = gson.toJson(taskManager.getPrioritizedTasks());
                 statusCode = 200;
             } else if (method.equals("DELETE")) {
                 taskManager.removeAllTasks();
@@ -33,7 +33,7 @@ public class TasksHandler<T extends Task> extends BaseHandler<T> {
                 response = gson.toJson("Неизвестная команда");
                 statusCode = 501;
             }
-        } catch (Exception e){
+        } catch (Exception e) {
             response = gson.toJson("Неизвестная ошибка");
             statusCode = 500;
         }
