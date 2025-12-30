@@ -1,4 +1,4 @@
-package KVServer;
+package server.KVServer;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
 
