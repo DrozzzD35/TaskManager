@@ -11,7 +11,9 @@ import service.FileBackedTasksManager;
 import utils.GsonFactory;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.List;
+//TODO id обнуляется и новые задачи возможно начнут перезаписывать старые
 
 public class HttpTaskManager<T extends Task> extends FileBackedTasksManager<T> {
     private final KVTaskClient kvTaskClient;
@@ -26,10 +28,16 @@ public class HttpTaskManager<T extends Task> extends FileBackedTasksManager<T> {
 
     @Override
     public void save() {
+        List<Integer> idsHistory = new ArrayList<>();
+
+        for (T task : history.getHistory()){
+            idsHistory.add(task.getId());
+        }
+
         String jsonTasks = gson.toJson(getTasks(Type.TASK));
         String jsonEpics = gson.toJson(getTasks(Type.EPIC));
         String jsonSubTasks = gson.toJson(getTasks(Type.SUBTASK));
-        String jsonHistory = gson.toJson(getHistory());
+        String jsonHistory = gson.toJson(idsHistory);
 
         kvTaskClient.put("Tasks", jsonTasks);
         kvTaskClient.put("Epics", jsonEpics);
@@ -44,11 +52,12 @@ public class HttpTaskManager<T extends Task> extends FileBackedTasksManager<T> {
 
         String json = kvTaskClient.load("History");
         if (json == null || json.isEmpty() || json.equals("[]")) return;
-        List<T> tasks = gson.fromJson(json, new TypeToken<List<T>>() {
+        List<Integer> idsHistory = gson.fromJson(json, new TypeToken<List<Integer>>() {
         }.getType());
 
-        for (T task : tasks) {
-            history.add(getTaskById(task.getId(), false));
+        for (Integer id : idsHistory) {
+            T task = getTaskById(id,false);
+            history.add(task);
         }
 
         for (Task epic : getTasks(Type.EPIC)) {
