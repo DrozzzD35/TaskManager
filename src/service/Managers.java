@@ -7,21 +7,16 @@ import java.nio.file.Path;
 
 public final class Managers {
 
-    private static TaskManager inMemoryTaskManager;
     private static TaskManager fileBackedTasksManager;
     private static HistoryManager inMemoryHistoryManager;
-    private static HttpTaskManager httpTaskManager;
 
     private Managers() {
         throw new UnsupportedOperationException("Утилитарный класс");
     }
 
-//    public static <T extends Task> TaskManager<T> getDefault() {
-//        if (httpTaskManager == null) {
-//            httpTaskManager = new HttpTaskManager();
-//        }
-//        return httpTaskManager;
-//    }
+    public static <T extends Task> TaskManager<T> getDefault() {
+        return new HttpTaskManager<>("http://localhost:8078");
+    }
 
     public static <T extends Task> TaskManager<T> getDefaultFile(Path filePath) {
         if (fileBackedTasksManager == null) {
