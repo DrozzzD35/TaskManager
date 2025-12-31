@@ -133,6 +133,10 @@ public class InMemoryTaskManager<T extends Task> implements TaskManager<T> {
         }
 
         for (SubTask subTask : subTasks) {
+            if (subTask == null) {
+                continue;
+            }
+
             switch (subTask.getStatus()) {
                 case NEW -> {
                     isNew = true;
@@ -160,6 +164,13 @@ public class InMemoryTaskManager<T extends Task> implements TaskManager<T> {
         if (task == null) {
             return;
         }
+
+        if (task instanceof SubTask subTask) {
+            int epicId = subTask.getParentId();
+            Epic epic = (Epic) getTaskById(epicId, false);
+            epic.removeChild(id);
+        }
+
         if (task instanceof Epic) {
             List<Integer> subTasksIds = ((Epic) task).getChildrenIds();
             for (Integer subTaskId : subTasksIds) {
