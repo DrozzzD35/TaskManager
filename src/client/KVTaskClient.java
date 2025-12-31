@@ -63,7 +63,9 @@ public class KVTaskClient {
 
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
-            if (response.statusCode() != 200) {
+            if (response.statusCode() == 404) {
+                System.out.println("Задач нет. StatusCode: " + response.statusCode());
+            } else if (response.statusCode() != 200) {
                 throw new RuntimeException("Ошибка при загрузке данных. StatusCode = " + response.statusCode());
             }
             return response.body();
