@@ -1,9 +1,10 @@
-package server;
+package server.handlers;
 
 import com.google.gson.Gson;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import model.Task;
+import server.exception.NotFoundException;
 import service.TaskManager;
 import utils.GsonFactory;
 

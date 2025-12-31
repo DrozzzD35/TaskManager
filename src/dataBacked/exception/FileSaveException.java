@@ -1,4 +1,4 @@
-package dataBacked;
+package dataBacked.exception;
 
 public class FileSaveException extends RuntimeException {
     public FileSaveException(String message) {

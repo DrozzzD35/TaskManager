@@ -1,9 +1,11 @@
-package server;
+package server.handlers;
 
 import com.google.gson.JsonSyntaxException;
 import com.sun.net.httpserver.HttpExchange;
 import model.Task;
 import model.Type;
+import server.exception.InCorrectClassException;
+import server.exception.NotFoundException;
 import service.TaskManager;
 
 import java.io.IOException;
@@ -53,7 +55,6 @@ public class TaskHandler<T extends Task> extends BaseHandler<T> {
 
                 }
                 case "POST" -> {
-                    //TODO возможно json не правильно десериализует LocalDateTime and Duration
                     InputStream is = exchange.getRequestBody();
                     String body = new String(is.readAllBytes(), StandardCharsets.UTF_8);
                     Task json = gson.fromJson(body, Task.class);

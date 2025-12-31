@@ -4,7 +4,7 @@ import com.google.gson.Gson;
 import model.Task;
 import model.Type;
 import server.Config;
-import server.InCorrectClassException;
+import server.exception.InCorrectClassException;
 import utils.GsonFactory;
 
 import java.io.IOException;

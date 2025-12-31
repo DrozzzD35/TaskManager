@@ -1,10 +1,12 @@
-package server;
+package server.handlers;
 
 import com.google.gson.JsonSyntaxException;
 import com.sun.net.httpserver.HttpExchange;
 import model.Epic;
 import model.Task;
 import model.Type;
+import server.exception.InCorrectClassException;
+import server.exception.NotFoundException;
 import service.TaskManager;
 
 import java.io.IOException;

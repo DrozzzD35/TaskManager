@@ -4,10 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3b2d2408-c7aa-4b02-a823-dac3b3c98272" name="Changes" comment="feat: написать HttpTaskManager.java">
+    <list default="true" id="3b2d2408-c7aa-4b02-a823-dac3b3c98272" name="Changes" comment="feat: дописать конструктор, добавить TaskManager">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/HttpTaskManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/HttpTaskManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/service/Managers.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/Managers.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/HttpClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/HttpClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dataBacked/FileSaveException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dataBacked/exception/FileSaveException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dataBacked/ManagerSaveException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dataBacked/exception/ManagerSaveException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/BaseHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/handlers/BaseHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/Config.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/Config.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/EpicHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/handlers/EpicHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/HistoryHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/handlers/HistoryHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/InCorrectClassException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/exception/InCorrectClassException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/NotFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/exception/NotFoundException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/SubTaskHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/handlers/SubTaskHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/TaskHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/handlers/TaskHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/TasksHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/handlers/TasksHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/service/FileBackedTasksManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/FileBackedTasksManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,7 +107,7 @@
       <module name="TaskManager" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="server.*" />
+          <option name="PATTERN" value="server.exception.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -105,11 +116,11 @@
       </method>
     </configuration>
     <configuration name="HttpTaskServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="server.HttpTaskServer" />
+      <option name="MAIN_CLASS_NAME" value="service.HttpTaskServer" />
       <module name="TaskManager" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="server.*" />
+          <option name="PATTERN" value="server.exception.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -315,47 +326,7 @@
       <workItem from="1767089746111" duration="11064000" />
       <workItem from="1767109198798" duration="2215000" />
       <workItem from="1767115918980" duration="297000" />
-      <workItem from="1767116225733" duration="1887000" />
-    </task>
-    <task id="LOCAL-00070" summary="feat(HistoryHandler.java): добавить обработку метода &quot;DELETE&quot;&#10;&#10;feat(HistoryManager.java, InMemoryHistoryManager.java): добавить метод removeHistory">
-      <option name="closed" value="true" />
-      <created>1765300138393</created>
-      <option name="number" value="00070" />
-      <option name="presentableId" value="LOCAL-00070" />
-      <option name="project" value="LOCAL" />
-      <updated>1765300138393</updated>
-    </task>
-    <task id="LOCAL-00071" summary="fix(HttpClient.java): переписать метод updateTask, теперь он принимает лишь обновлённую задачу и идентификатор">
-      <option name="closed" value="true" />
-      <created>1765300203283</created>
-      <option name="number" value="00071" />
-      <option name="presentableId" value="LOCAL-00071" />
-      <option name="project" value="LOCAL" />
-      <updated>1765300203283</updated>
-    </task>
-    <task id="LOCAL-00072" summary="feat(HttpClient.java): добавить метод removeHistory">
-      <option name="closed" value="true" />
-      <created>1765300500896</created>
-      <option name="number" value="00072" />
-      <option name="presentableId" value="LOCAL-00072" />
-      <option name="project" value="LOCAL" />
-      <updated>1765300500896</updated>
-    </task>
-    <task id="LOCAL-00073" summary="fix(EpicHandler.java, SubTaskHandler.java, TaskHandler.java): поправить логику обработки метода &quot;PUT&quot;">
-      <option name="closed" value="true" />
-      <created>1765302705032</created>
-      <option name="number" value="00073" />
-      <option name="presentableId" value="LOCAL-00073" />
-      <option name="project" value="LOCAL" />
-      <updated>1765302705032</updated>
-    </task>
-    <task id="LOCAL-00074" summary="test(MyTest.java): провести тесты">
-      <option name="closed" value="true" />
-      <created>1765302781332</created>
-      <option name="number" value="00074" />
-      <option name="presentableId" value="LOCAL-00074" />
-      <option name="project" value="LOCAL" />
-      <updated>1765302781332</updated>
+      <workItem from="1767116225733" duration="5786000" />
     </task>
     <task id="LOCAL-00075" summary="refactor(InMemoryTaskManager.java): внести пометку в метод add()">
       <option name="closed" value="true" />
@@ -709,7 +680,47 @@
       <option name="project" value="LOCAL" />
       <updated>1767109164870</updated>
     </task>
-    <option name="localTasksCounter" value="119" />
+    <task id="LOCAL-00119" summary="fix: исправить метод save, из истории сохраняем только id">
+      <option name="closed" value="true" />
+      <created>1767118552439</created>
+      <option name="number" value="00119" />
+      <option name="presentableId" value="LOCAL-00119" />
+      <option name="project" value="LOCAL" />
+      <updated>1767118552440</updated>
+    </task>
+    <task id="LOCAL-00120" summary="feat: добавить HttpTaskManager">
+      <option name="closed" value="true" />
+      <created>1767118589475</created>
+      <option name="number" value="00120" />
+      <option name="presentableId" value="LOCAL-00120" />
+      <option name="project" value="LOCAL" />
+      <updated>1767118589475</updated>
+    </task>
+    <task id="LOCAL-00121" summary="feat: добавить HttpTaskManager">
+      <option name="closed" value="true" />
+      <created>1767118596232</created>
+      <option name="number" value="00121" />
+      <option name="presentableId" value="LOCAL-00121" />
+      <option name="project" value="LOCAL" />
+      <updated>1767118596232</updated>
+    </task>
+    <task id="LOCAL-00122" summary="feat: изменить конструктор, теперь он работает с сервером, а не с файлом">
+      <option name="closed" value="true" />
+      <created>1767151983598</created>
+      <option name="number" value="00122" />
+      <option name="presentableId" value="LOCAL-00122" />
+      <option name="project" value="LOCAL" />
+      <updated>1767151983598</updated>
+    </task>
+    <task id="LOCAL-00123" summary="feat: дописать конструктор, добавить TaskManager">
+      <option name="closed" value="true" />
+      <created>1767152042550</created>
+      <option name="number" value="00123" />
+      <option name="presentableId" value="LOCAL-00123" />
+      <option name="project" value="LOCAL" />
+      <updated>1767152042550</updated>
+    </task>
+    <option name="localTasksCounter" value="124" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -730,10 +741,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/.." />
     </ignored-roots>
-    <MESSAGE value="feat: переписать методы createTask и createSubTask" />
-    <MESSAGE value="feat: внести время создания задачи и продолжительность" />
-    <MESSAGE value="fix: добавлено спецслово final полям класса" />
-    <MESSAGE value="feat: добавить в конструктор новые поля. Добавить в toString новые поля" />
     <MESSAGE value="feat: внедрить в систему загрузки\сохранения новые поля" />
     <MESSAGE value="feat: дополнить метод проверки пересечения времени задач" />
     <MESSAGE value="feat: добавить новые поля в конструктор и в метод toString" />
@@ -755,7 +762,11 @@
     <MESSAGE value="feat: написать метод load" />
     <MESSAGE value="feat: написать KVTaskClient" />
     <MESSAGE value="feat: написать HttpTaskManager.java" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: написать HttpTaskManager.java" />
+    <MESSAGE value="fix: исправить метод save, из истории сохраняем только id" />
+    <MESSAGE value="feat: добавить HttpTaskManager" />
+    <MESSAGE value="feat: изменить конструктор, теперь он работает с сервером, а не с файлом" />
+    <MESSAGE value="feat: дописать конструктор, добавить TaskManager" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: дописать конструктор, добавить TaskManager" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
