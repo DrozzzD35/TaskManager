@@ -10,9 +10,14 @@ import java.net.InetSocketAddress;
 
 public class HttpTaskServer {
     private final HttpServer server;
+    TaskManager<Task> taskManager;
 
     public HttpTaskServer() throws IOException {
-        TaskManager<Task> taskManager = Managers.getDefault();
+        this(Managers.getDefault());
+    }
+
+    public HttpTaskServer(TaskManager<Task> taskManager) throws IOException {
+        this.taskManager = taskManager;
         Config config = new Config();
         this.server = HttpServer.create(new InetSocketAddress(config.getPort()), 0);
 
@@ -29,4 +34,9 @@ public class HttpTaskServer {
     }
 
 
+    public void stop() {
+        server.stop(0);
+        System.out.println("TaskServer остановлен");
+    }
 }
+
