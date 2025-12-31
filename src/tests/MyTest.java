@@ -1,3 +1,5 @@
+package tests;
+
 import model.Epic;
 import model.SubTask;
 import model.Task;
@@ -6,6 +8,7 @@ import service.FileBackedTasksManager;
 import service.Managers;
 import service.TaskManager;
 
+import java.io.IOException;
 import java.nio.file.Path;
 import java.time.Duration;
 import java.time.LocalDateTime;
@@ -15,9 +18,14 @@ public class MyTest {
 
     private static TaskManager<Task> saveManager;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
+//        KVServer kvServer = new KVServer();
+//        kvServer.start();
+
         Path path = Path.of("src/dataBacked/FileBacked.CSV");
-        saveManager = Managers.getDefaultFile(path);
+//        saveManager = Managers.getDefaultFile(path);
+
+        saveManager = Managers.getDefault();
 
         // Создание задачи
         Task task1 = createTask("name1", "description1", 40, "01.10.2020 00:00");
@@ -29,6 +37,8 @@ public class MyTest {
         createSubTask("subTask7", "subTask7", "01.10.2020 03:00", 100, 6);
         createTask("name8", "description8", 50, "02.10.2020 00:00");
         createSubTask("subTask9", "subTask9", "02.10.2020 01:00", 100, 2);
+        createSubTask("subTask10", "subTask10", "03.10.2020 01:00", 100, 2);
+
 
         // Обновление задачи
         System.out.println("===========  Обновление задачи   ===============");
@@ -42,7 +52,7 @@ public class MyTest {
 
         //удаление задачи
         System.out.println("===========  Удаление задачи   ===============");
-        saveManager.removeTaskById(2);
+        saveManager.removeTaskById(9);
         System.out.println("=========================\n");
 
         // Вывод всех задач в консоль
@@ -73,10 +83,10 @@ public class MyTest {
 
         //Задачи в отсортированном списке
         System.out.println("===========  Задачи в отсортированном списке   ===============");
-        System.out.println(((FileBackedTasksManager<Task>) saveManager).getPrioritizedTasks());
+        System.out.println((saveManager).getPrioritizedTasks());
         System.out.println("=========================\n");
 
-
+//        kvServer.stop();
     }
 
     private static void addHistory(Task task) {
