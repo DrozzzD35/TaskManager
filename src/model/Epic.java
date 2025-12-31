@@ -57,6 +57,10 @@ public class Epic extends Task {
         subTasksIds.add(subTaskId);
     }
 
+    public void removeChild(Integer subTaskId) {
+        subTasksIds.removeIf(id -> id.equals(subTaskId));
+    }
+
     @Override
     public String toString() {
         return super.toString()
