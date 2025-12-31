@@ -4,21 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3b2d2408-c7aa-4b02-a823-dac3b3c98272" name="Changes" comment="feat: дописать конструктор, добавить TaskManager">
+    <list default="true" id="3b2d2408-c7aa-4b02-a823-dac3b3c98272" name="Changes" comment="refactor: распределить классы по пакетам">
+      <change afterPath="$PROJECT_DIR$/src/server/KVServer/KVServerLauncher.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/tests/HttpServerTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/client/HttpClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/HttpClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dataBacked/FileSaveException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dataBacked/exception/FileSaveException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dataBacked/ManagerSaveException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dataBacked/exception/ManagerSaveException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/BaseHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/handlers/BaseHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/Config.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/Config.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/EpicHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/handlers/EpicHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/HistoryHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/handlers/HistoryHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/InCorrectClassException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/exception/InCorrectClassException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/NotFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/exception/NotFoundException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/SubTaskHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/handlers/SubTaskHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/TaskHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/handlers/TaskHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/TasksHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/handlers/TasksHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TaskManager.iml" beforeDir="false" afterPath="$PROJECT_DIR$/TaskManager.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MyTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/MyTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/KVTaskClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/KVTaskClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dataBacked/FileBacked.CSV" beforeDir="false" afterPath="$PROJECT_DIR$/src/dataBacked/FileBacked.CSV" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Epic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Epic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/Application.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/HttpTaskManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/HttpTaskManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/KVServer/KVServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/KVServer/KVServer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/service/FileBackedTasksManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/FileBackedTasksManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/service/HttpTaskServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/HttpTaskServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/service/InMemoryTaskManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/InMemoryTaskManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/Identity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/Identity.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,31 +66,36 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Application.executor&quot;: &quot;Run&quot;,
-    &quot;Application.HttpTaskServer.executor&quot;: &quot;Debug&quot;,
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;Application.MyTest.executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;extract.method.default.visibility&quot;: &quot;private&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/DrozzzD35/IdeaProjects/TaskManager/src/documents&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Application.executor": "Run",
+    "Application.HttpTaskServer.executor": "Debug",
+    "Application.KVServerLauncher.executor": "Run",
+    "Application.Main.executor": "Run",
+    "Application.MyTest.executor": "Run",
+    "Downloaded.Files.Path.Enabled": "false",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "extract.method.default.visibility": "private",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/DrozzzD35/IdeaProjects/TaskManager/src/documents",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="GeneralTaskHandler" />
@@ -115,12 +121,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="HttpTaskServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="service.HttpTaskServer" />
+    <configuration name="KVServerLauncher" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="server.KVServer.KVServerLauncher" />
       <module name="TaskManager" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="server.exception.*" />
+          <option name="PATTERN" value="server.KVServer.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -136,7 +142,7 @@
       </method>
     </configuration>
     <configuration name="MyTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="MyTest" />
+      <option name="MAIN_CLASS_NAME" value="tests.MyTest" />
       <module name="TaskManager" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -148,10 +154,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.MyTest" />
+        <item itemvalue="Application.Application" />
+        <item itemvalue="Application.KVServerLauncher" />
         <item itemvalue="HTTP Request.scratch | GET request to example server" />
         <item itemvalue="Application.Main" />
-        <item itemvalue="Application.HttpTaskServer" />
-        <item itemvalue="Application.Application" />
       </list>
     </recent_temporary>
   </component>
@@ -326,15 +332,7 @@
       <workItem from="1767089746111" duration="11064000" />
       <workItem from="1767109198798" duration="2215000" />
       <workItem from="1767115918980" duration="297000" />
-      <workItem from="1767116225733" duration="5786000" />
-    </task>
-    <task id="LOCAL-00075" summary="refactor(InMemoryTaskManager.java): внести пометку в метод add()">
-      <option name="closed" value="true" />
-      <created>1765302827560</created>
-      <option name="number" value="00075" />
-      <option name="presentableId" value="LOCAL-00075" />
-      <option name="project" value="LOCAL" />
-      <updated>1765302827560</updated>
+      <workItem from="1767116225733" duration="18135000" />
     </task>
     <task id="LOCAL-00076" summary="feat(HttpClient.java): В в методах createSubTask и createTask убрать повторяющийся код, вынести в отдельный метод&#10;&#10;refactor(HttpClient.java): перенести переменные из поля класса в методы, сделать их локальными.">
       <option name="closed" value="true" />
@@ -720,7 +718,15 @@
       <option name="project" value="LOCAL" />
       <updated>1767152042550</updated>
     </task>
-    <option name="localTasksCounter" value="124" />
+    <task id="LOCAL-00124" summary="refactor: распределить классы по пакетам">
+      <option name="closed" value="true" />
+      <created>1767152124310</created>
+      <option name="number" value="00124" />
+      <option name="presentableId" value="LOCAL-00124" />
+      <option name="project" value="LOCAL" />
+      <updated>1767152124310</updated>
+    </task>
+    <option name="localTasksCounter" value="125" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -741,7 +747,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/.." />
     </ignored-roots>
-    <MESSAGE value="feat: внедрить в систему загрузки\сохранения новые поля" />
     <MESSAGE value="feat: дополнить метод проверки пересечения времени задач" />
     <MESSAGE value="feat: добавить новые поля в конструктор и в метод toString" />
     <MESSAGE value="feat: добавить новые поля" />
@@ -766,7 +771,8 @@
     <MESSAGE value="feat: добавить HttpTaskManager" />
     <MESSAGE value="feat: изменить конструктор, теперь он работает с сервером, а не с файлом" />
     <MESSAGE value="feat: дописать конструктор, добавить TaskManager" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: дописать конструктор, добавить TaskManager" />
+    <MESSAGE value="refactor: распределить классы по пакетам" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor: распределить классы по пакетам" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
