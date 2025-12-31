@@ -27,7 +27,7 @@ public class FileBackedTasksManager<T extends Task> extends InMemoryTaskManager<
     public void add(T task) {
         super.add(task);
         save();
-        System.out.println("CSV файл успешно создан " + filePath + "\n");
+//        System.out.println("CSV файл успешно создан " + filePath + "\n");
     }
 
     public void addWithoutSave(T task) {
