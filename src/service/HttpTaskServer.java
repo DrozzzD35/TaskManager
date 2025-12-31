@@ -1,21 +1,20 @@
-package server;
+package service;
 
 import com.sun.net.httpserver.HttpServer;
 import model.Task;
-import service.Managers;
-import service.TaskManager;
+import server.Config;
+import server.handlers.*;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
 
 public class HttpTaskServer {
     private final HttpServer server;
-    private final TaskManager<Task> taskManager;
 
-    public HttpTaskServer(TaskManager<Task> taskManager) throws IOException {
+    public HttpTaskServer() throws IOException {
+        TaskManager<Task> taskManager = Managers.getDefault();
         Config config = new Config();
         this.server = HttpServer.create(new InetSocketAddress(config.getPort()), 0);
-        this.taskManager = Managers.getDefault();
 
         server.createContext(config.getTasks() + config.getTask(), new TaskHandler<>(taskManager));
         server.createContext(config.getTasks() + config.getEpic(), new EpicHandler<>(taskManager));
