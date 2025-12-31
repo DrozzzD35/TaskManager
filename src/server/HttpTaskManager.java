@@ -9,11 +9,11 @@ import model.Task;
 import model.Type;
 import service.FileBackedTasksManager;
 import utils.GsonFactory;
+import utils.Identity;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
-//TODO id обнуляется и новые задачи возможно начнут перезаписывать старые
 
 public class HttpTaskManager<T extends Task> extends FileBackedTasksManager<T> {
     private final KVTaskClient kvTaskClient;
@@ -30,7 +30,7 @@ public class HttpTaskManager<T extends Task> extends FileBackedTasksManager<T> {
     public void save() {
         List<Integer> idsHistory = new ArrayList<>();
 
-        for (T task : history.getHistory()){
+        for (T task : history.getHistory()) {
             idsHistory.add(task.getId());
         }
 
@@ -46,9 +46,17 @@ public class HttpTaskManager<T extends Task> extends FileBackedTasksManager<T> {
     }
 
     public void loadFromServer() {
+        int maxId = 0;
+
         loadTasks("Tasks");
         loadTasks("Epics");
         loadTasks("SubTasks");
+
+        for (T task : taskMap.values()) {
+            if (task.getId() > maxId) {
+                maxId = task.getId();
+            }
+        }
 
         String json = kvTaskClient.load("History");
         if (json == null || json.isEmpty() || json.equals("[]")) return;
@@ -56,7 +64,7 @@ public class HttpTaskManager<T extends Task> extends FileBackedTasksManager<T> {
         }.getType());
 
         for (Integer id : idsHistory) {
-            T task = getTaskById(id,false);
+            T task = getTaskById(id, false);
             history.add(task);
         }
 
@@ -65,9 +73,9 @@ public class HttpTaskManager<T extends Task> extends FileBackedTasksManager<T> {
             updateEpicTime(epic.getId());
         }
 
+        Identity.INSTANCE.setIdentifier(maxId);
     }
 
-    //TODO прибегнул к нехорошему фокусу
     @SuppressWarnings("unchecked")
     private void loadTasks(String key) {
         String json = kvTaskClient.load(key);
