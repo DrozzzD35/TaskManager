@@ -19,6 +19,7 @@ public class EpicHandler<T extends Task> extends BaseHandler<T> {
         super(taskManager);
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public void handle(HttpExchange exchange) throws IOException {
         String method = exchange.getRequestMethod();

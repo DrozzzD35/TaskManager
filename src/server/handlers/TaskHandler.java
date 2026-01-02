@@ -18,6 +18,7 @@ public class TaskHandler<T extends Task> extends BaseHandler<T> {
         super(tasksManager);
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public void handle(HttpExchange exchange) throws IOException {
         String method = exchange.getRequestMethod().toUpperCase();
