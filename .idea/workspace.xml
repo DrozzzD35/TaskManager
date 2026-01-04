@@ -4,22 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3b2d2408-c7aa-4b02-a823-dac3b3c98272" name="Changes" comment="refactor: распределить классы по пакетам">
-      <change afterPath="$PROJECT_DIR$/src/server/KVServer/KVServerLauncher.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/tests/HttpServerTest.java" afterDir="false" />
+    <list default="true" id="3b2d2408-c7aa-4b02-a823-dac3b3c98272" name="Changes" comment="feat: написать новый фабричный класс для тестов. Переписать тестовый класс с применением фабричного класса">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TaskManager.iml" beforeDir="false" afterPath="$PROJECT_DIR$/TaskManager.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MyTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/MyTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/HttpClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/HttpTaskClient.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/client/KVTaskClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/KVTaskClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dataBacked/FileBacked.CSV" beforeDir="false" afterPath="$PROJECT_DIR$/src/dataBacked/FileBacked.CSV" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Epic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Epic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/Application.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/server/HttpTaskManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/HttpTaskManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/KVServer/KVServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/KVServer/KVServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/service/FileBackedTasksManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/FileBackedTasksManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/service/HttpTaskServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/HttpTaskServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/service/InMemoryTaskManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/InMemoryTaskManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/Identity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/Identity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/gsonAdapter/DurationAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/gsonAdapter/DurationAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/gsonAdapter/LocalDateTimeAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/gsonAdapter/LocalDateTimeAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/handlers/TaskHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/handlers/TaskHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tests/HttpServerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/HttpServerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tests/MyTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/MyTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,6 +69,8 @@
     "Application.Main.executor": "Run",
     "Application.MyTest.executor": "Run",
     "Downloaded.Files.Path.Enabled": "false",
+    "JUnit.HttpServerTest.addTask.executor": "Run",
+    "JUnit.HttpServerTest.executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "Repository.Attach.Annotations": "false",
     "Repository.Attach.JavaDocs": "false",
@@ -107,7 +104,7 @@
       <recent name="C:\Users\DrozzzD35\IdeaProjects\TaskManager\src\documents" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.MyTest">
+  <component name="RunManager" selected="JUnit.HttpServerTest.addTask">
     <configuration name="Application" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="server.Application" />
       <module name="TaskManager" />
@@ -134,13 +131,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Main" />
-      <module name="TaskManager" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="MyTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="tests.MyTest" />
       <module name="TaskManager" />
@@ -148,16 +138,44 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="scratch | GET request to example server" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/scratch.http" executionIdentifier="GET request to example server" runType="Run single request">
-      <method v="2" />
+    <configuration name="HttpServerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="TaskManager" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="tests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="tests" />
+      <option name="MAIN_CLASS_NAME" value="tests.HttpServerTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="HttpServerTest.addTask" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="TaskManager" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="tests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="tests" />
+      <option name="MAIN_CLASS_NAME" value="tests.HttpServerTest" />
+      <option name="METHOD_NAME" value="addTask" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.MyTest" />
+        <item itemvalue="JUnit.HttpServerTest.addTask" />
+        <item itemvalue="JUnit.HttpServerTest" />
         <item itemvalue="Application.Application" />
         <item itemvalue="Application.KVServerLauncher" />
-        <item itemvalue="HTTP Request.scratch | GET request to example server" />
-        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.MyTest" />
       </list>
     </recent_temporary>
   </component>
@@ -332,127 +350,8 @@
       <workItem from="1767089746111" duration="11064000" />
       <workItem from="1767109198798" duration="2215000" />
       <workItem from="1767115918980" duration="297000" />
-      <workItem from="1767116225733" duration="18135000" />
-    </task>
-    <task id="LOCAL-00076" summary="feat(HttpClient.java): В в методах createSubTask и createTask убрать повторяющийся код, вынести в отдельный метод&#10;&#10;refactor(HttpClient.java): перенести переменные из поля класса в методы, сделать их локальными.">
-      <option name="closed" value="true" />
-      <created>1765303857531</created>
-      <option name="number" value="00076" />
-      <option name="presentableId" value="LOCAL-00076" />
-      <option name="project" value="LOCAL" />
-      <updated>1765303857531</updated>
-    </task>
-    <task id="LOCAL-00077" summary="refactor: удалить лишний код">
-      <option name="closed" value="true" />
-      <created>1765388091755</created>
-      <option name="number" value="00077" />
-      <option name="presentableId" value="LOCAL-00077" />
-      <option name="project" value="LOCAL" />
-      <updated>1765388091756</updated>
-    </task>
-    <task id="LOCAL-00078" summary="refactor: запись о сохранение файла вносится только при создании задачи">
-      <option name="closed" value="true" />
-      <created>1766231992640</created>
-      <option name="number" value="00078" />
-      <option name="presentableId" value="LOCAL-00078" />
-      <option name="project" value="LOCAL" />
-      <updated>1766231992641</updated>
-    </task>
-    <task id="LOCAL-00079" summary="fix: если Epic не найден при создании SubTask, создание прерывается">
-      <option name="closed" value="true" />
-      <created>1766232134707</created>
-      <option name="number" value="00079" />
-      <option name="presentableId" value="LOCAL-00079" />
-      <option name="project" value="LOCAL" />
-      <updated>1766232134707</updated>
-    </task>
-    <task id="LOCAL-00080" summary="feat: создать application.properties">
-      <option name="closed" value="true" />
-      <created>1766235773783</created>
-      <option name="number" value="00080" />
-      <option name="presentableId" value="LOCAL-00080" />
-      <option name="project" value="LOCAL" />
-      <updated>1766235773783</updated>
-    </task>
-    <task id="LOCAL-00081" summary="feat: создать Config.java">
-      <option name="closed" value="true" />
-      <created>1766235787275</created>
-      <option name="number" value="00081" />
-      <option name="presentableId" value="LOCAL-00081" />
-      <option name="project" value="LOCAL" />
-      <updated>1766235787275</updated>
-    </task>
-    <task id="LOCAL-00082" summary="feat: внедрить Config.java">
-      <option name="closed" value="true" />
-      <created>1766235811123</created>
-      <option name="number" value="00082" />
-      <option name="presentableId" value="LOCAL-00082" />
-      <option name="project" value="LOCAL" />
-      <updated>1766235811123</updated>
-    </task>
-    <task id="LOCAL-00083" summary="refactor: поправить отступы строк">
-      <option name="closed" value="true" />
-      <created>1766235844894</created>
-      <option name="number" value="00083" />
-      <option name="presentableId" value="LOCAL-00083" />
-      <option name="project" value="LOCAL" />
-      <updated>1766235844894</updated>
-    </task>
-    <task id="LOCAL-00084" summary="feat: внедрить Config, исправить url">
-      <option name="closed" value="true" />
-      <created>1766236463670</created>
-      <option name="number" value="00084" />
-      <option name="presentableId" value="LOCAL-00084" />
-      <option name="project" value="LOCAL" />
-      <updated>1766236463670</updated>
-    </task>
-    <task id="LOCAL-00085" summary="fix: исправить исключение">
-      <option name="closed" value="true" />
-      <created>1766497184918</created>
-      <option name="number" value="00085" />
-      <option name="presentableId" value="LOCAL-00085" />
-      <option name="project" value="LOCAL" />
-      <updated>1766497184918</updated>
-    </task>
-    <task id="LOCAL-00086" summary="feat: переопределить методы getEndTime и setEndTime">
-      <option name="closed" value="true" />
-      <created>1766497226369</created>
-      <option name="number" value="00086" />
-      <option name="presentableId" value="LOCAL-00086" />
-      <option name="project" value="LOCAL" />
-      <updated>1766497226369</updated>
-    </task>
-    <task id="LOCAL-00087" summary="feat: написать список отсортированных задач&#10;&#10;refactor: сделать код более читаемым в методе removeTasks">
-      <option name="closed" value="true" />
-      <created>1766497395478</created>
-      <option name="number" value="00087" />
-      <option name="presentableId" value="LOCAL-00087" />
-      <option name="project" value="LOCAL" />
-      <updated>1766497395479</updated>
-    </task>
-    <task id="LOCAL-00088" summary="feat: внести переменные duration и startTime">
-      <option name="closed" value="true" />
-      <created>1766497455727</created>
-      <option name="number" value="00088" />
-      <option name="presentableId" value="LOCAL-00088" />
-      <option name="project" value="LOCAL" />
-      <updated>1766497455727</updated>
-    </task>
-    <task id="LOCAL-00089" summary="feat: создать исключение">
-      <option name="closed" value="true" />
-      <created>1766497479542</created>
-      <option name="number" value="00089" />
-      <option name="presentableId" value="LOCAL-00089" />
-      <option name="project" value="LOCAL" />
-      <updated>1766497479542</updated>
-    </task>
-    <task id="LOCAL-00090" summary="feat: переписать метод add, updateTask&#10;&#10;fix: метод updateEpicTime должен принимать id">
-      <option name="closed" value="true" />
-      <created>1766510343750</created>
-      <option name="number" value="00090" />
-      <option name="presentableId" value="LOCAL-00090" />
-      <option name="project" value="LOCAL" />
-      <updated>1766510343750</updated>
+      <workItem from="1767116225733" duration="23545000" />
+      <workItem from="1767371616966" duration="21178000" />
     </task>
     <task id="LOCAL-00091" summary="feat: переписать методы createTask и createSubTask">
       <option name="closed" value="true" />
@@ -726,7 +625,127 @@
       <option name="project" value="LOCAL" />
       <updated>1767152124310</updated>
     </task>
-    <option name="localTasksCounter" value="125" />
+    <task id="LOCAL-00125" summary="refactor: удалить лишний код">
+      <option name="closed" value="true" />
+      <created>1767204787366</created>
+      <option name="number" value="00125" />
+      <option name="presentableId" value="LOCAL-00125" />
+      <option name="project" value="LOCAL" />
+      <updated>1767204787366</updated>
+    </task>
+    <task id="LOCAL-00126" summary="feat: написать метод удаления SubTask из списка subTasksIds">
+      <option name="closed" value="true" />
+      <created>1767204838805</created>
+      <option name="number" value="00126" />
+      <option name="presentableId" value="LOCAL-00126" />
+      <option name="project" value="LOCAL" />
+      <updated>1767204838805</updated>
+    </task>
+    <task id="LOCAL-00127" summary="test: проведение тестов с сервером">
+      <option name="closed" value="true" />
+      <created>1767204874277</created>
+      <option name="number" value="00127" />
+      <option name="presentableId" value="LOCAL-00127" />
+      <option name="project" value="LOCAL" />
+      <updated>1767204874277</updated>
+    </task>
+    <task id="LOCAL-00128" summary="refactor: убрать лишнюю надпись">
+      <option name="closed" value="true" />
+      <created>1767204911499</created>
+      <option name="number" value="00128" />
+      <option name="presentableId" value="LOCAL-00128" />
+      <option name="project" value="LOCAL" />
+      <updated>1767204911499</updated>
+    </task>
+    <task id="LOCAL-00129" summary="feat: написать HttpServerTest.java">
+      <option name="closed" value="true" />
+      <created>1767204943944</created>
+      <option name="number" value="00129" />
+      <option name="presentableId" value="LOCAL-00129" />
+      <option name="project" value="LOCAL" />
+      <updated>1767204943944</updated>
+    </task>
+    <task id="LOCAL-00130" summary="fix: убрать баг с обнулением идентификаторов">
+      <option name="closed" value="true" />
+      <created>1767204992748</created>
+      <option name="number" value="00130" />
+      <option name="presentableId" value="LOCAL-00130" />
+      <option name="project" value="LOCAL" />
+      <updated>1767204992748</updated>
+    </task>
+    <task id="LOCAL-00131" summary="feat: написать второй конструктор для удобства. Написать метод stop">
+      <option name="closed" value="true" />
+      <created>1767205037900</created>
+      <option name="number" value="00131" />
+      <option name="presentableId" value="LOCAL-00131" />
+      <option name="project" value="LOCAL" />
+      <updated>1767205037900</updated>
+    </task>
+    <task id="LOCAL-00132" summary="fix: добавлен сеттер">
+      <option name="closed" value="true" />
+      <created>1767205072038</created>
+      <option name="number" value="00132" />
+      <option name="presentableId" value="LOCAL-00132" />
+      <option name="project" value="LOCAL" />
+      <updated>1767205072038</updated>
+    </task>
+    <task id="LOCAL-00133" summary="fix: при удалении SubTask обновить список эпика">
+      <option name="closed" value="true" />
+      <created>1767205137645</created>
+      <option name="number" value="00133" />
+      <option name="presentableId" value="LOCAL-00133" />
+      <option name="project" value="LOCAL" />
+      <updated>1767205137645</updated>
+    </task>
+    <task id="LOCAL-00134" summary="feat: добавить метод stop">
+      <option name="closed" value="true" />
+      <created>1767205192828</created>
+      <option name="number" value="00134" />
+      <option name="presentableId" value="LOCAL-00134" />
+      <option name="project" value="LOCAL" />
+      <updated>1767205192828</updated>
+    </task>
+    <task id="LOCAL-00135" summary="fix: внести проверку на отсутствие задач">
+      <option name="closed" value="true" />
+      <created>1767205226274</created>
+      <option name="number" value="00135" />
+      <option name="presentableId" value="LOCAL-00135" />
+      <option name="project" value="LOCAL" />
+      <updated>1767205226274</updated>
+    </task>
+    <task id="LOCAL-00136" summary="feat: написать KVServerLauncher">
+      <option name="closed" value="true" />
+      <created>1767205250444</created>
+      <option name="number" value="00136" />
+      <option name="presentableId" value="LOCAL-00136" />
+      <option name="project" value="LOCAL" />
+      <updated>1767205250444</updated>
+    </task>
+    <task id="LOCAL-00137" summary="refactor: добавить аннотацию что бы убрать подсвечивание дженерика">
+      <option name="closed" value="true" />
+      <created>1767372660463</created>
+      <option name="number" value="00137" />
+      <option name="presentableId" value="LOCAL-00137" />
+      <option name="project" value="LOCAL" />
+      <updated>1767372660463</updated>
+    </task>
+    <task id="LOCAL-00138" summary="feat: добавить метод addTask">
+      <option name="closed" value="true" />
+      <created>1767372700612</created>
+      <option name="number" value="00138" />
+      <option name="presentableId" value="LOCAL-00138" />
+      <option name="project" value="LOCAL" />
+      <updated>1767372700612</updated>
+    </task>
+    <task id="LOCAL-00139" summary="feat: написать новый фабричный класс для тестов. Переписать тестовый класс с применением фабричного класса">
+      <option name="closed" value="true" />
+      <created>1767372802648</created>
+      <option name="number" value="00139" />
+      <option name="presentableId" value="LOCAL-00139" />
+      <option name="project" value="LOCAL" />
+      <updated>1767372802648</updated>
+    </task>
+    <option name="localTasksCounter" value="140" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -747,21 +766,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/.." />
     </ignored-roots>
-    <MESSAGE value="feat: дополнить метод проверки пересечения времени задач" />
-    <MESSAGE value="feat: добавить новые поля в конструктор и в метод toString" />
-    <MESSAGE value="feat: добавить новые поля" />
-    <MESSAGE value="refactor: поправить toString" />
-    <MESSAGE value="fix: исправить методы проверки пересечения времени задач" />
-    <MESSAGE value="test: добавить подзадачу для тестов" />
-    <MESSAGE value="test: протестировать функцию удаления задачи" />
-    <MESSAGE value="docs: переместить документ в соответствующий пакет" />
-    <MESSAGE value="refactor: переименовать переменную" />
-    <MESSAGE value="feat: написать адаптеры для LocalDateTime and Duration классов" />
-    <MESSAGE value="feat: создать фабричный класс Gson" />
-    <MESSAGE value="fix: переписать формат endTime" />
-    <MESSAGE value="fix: переписать метод update, сохраняется 2 одинаковые задачи после обновления в отсортированном списке" />
-    <MESSAGE value="feat: добавлен KVServer" />
-    <MESSAGE value="refactor: убрать лишний код" />
     <MESSAGE value="feat: добавить метод в интерфейс" />
     <MESSAGE value="fix: заменить метод" />
     <MESSAGE value="feat: написать метод load" />
@@ -772,9 +776,32 @@
     <MESSAGE value="feat: изменить конструктор, теперь он работает с сервером, а не с файлом" />
     <MESSAGE value="feat: дописать конструктор, добавить TaskManager" />
     <MESSAGE value="refactor: распределить классы по пакетам" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor: распределить классы по пакетам" />
+    <MESSAGE value="refactor: удалить лишний код" />
+    <MESSAGE value="feat: написать метод удаления SubTask из списка subTasksIds" />
+    <MESSAGE value="test: проведение тестов с сервером" />
+    <MESSAGE value="refactor: убрать лишнюю надпись" />
+    <MESSAGE value="feat: написать HttpServerTest.java" />
+    <MESSAGE value="fix: убрать баг с обнулением идентификаторов" />
+    <MESSAGE value="feat: написать второй конструктор для удобства. Написать метод stop" />
+    <MESSAGE value="fix: добавлен сеттер" />
+    <MESSAGE value="fix: при удалении SubTask обновить список эпика" />
+    <MESSAGE value="feat: добавить метод stop" />
+    <MESSAGE value="fix: внести проверку на отсутствие задач" />
+    <MESSAGE value="feat: написать KVServerLauncher" />
+    <MESSAGE value="refactor: добавить аннотацию что бы убрать подсвечивание дженерика" />
+    <MESSAGE value="feat: добавить метод addTask" />
+    <MESSAGE value="feat: написать новый фабричный класс для тестов. Переписать тестовый класс с применением фабричного класса" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: написать новый фабричный класс для тестов. Переписать тестовый класс с применением фабричного класса" />
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.net.ConnectException" package="java.net" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
         <watch expression="restored.getHistory()" />
