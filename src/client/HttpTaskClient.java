@@ -9,6 +9,7 @@ import utils.GsonFactory;
 
 import java.io.IOException;
 import java.net.URI;
+import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.time.Duration;
@@ -16,16 +17,16 @@ import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
-public class HttpClient<T extends Task> {
-    private final java.net.http.HttpClient client;
+public class HttpTaskClient<T extends Task> {
+    private final HttpClient client;
     private final Config config = new Config();
-    private final String urlTask = config.getUrl() + config.getTasks() + config.getTask();
-    private final String urlEpic = config.getUrl() + config.getTasks() + config.getEpic();
-    private final String urlSubTask = config.getUrl() + config.getTasks() + config.getSubTask();
-    private final String urlHistory = config.getUrl() + config.getTasks() + config.getHistory();
+    private final String urlTask = config.getUrl() + config.getPort() + config.getTasks() + config.getTask();
+    private final String urlEpic = config.getUrl() + config.getPort() + config.getTasks() + config.getEpic();
+    private final String urlSubTask = config.getUrl() + config.getPort() + config.getTasks() + config.getSubTask();
+    private final String urlHistory = config.getUrl() + config.getPort() + config.getTasks() + config.getHistory();
     private final Gson gson = GsonFactory.createGson();
 
-    public HttpClient(java.net.http.HttpClient client) {
+    public HttpTaskClient(HttpClient client) {
         this.client = client;
     }
 
@@ -66,10 +67,10 @@ public class HttpClient<T extends Task> {
         return client.send(request, HttpResponse.BodyHandlers.ofString());
     }
 
-    public HttpResponse<String> updateTask(int id, T updatedTask) throws IOException, InterruptedException {
-        Type type = updatedTask.getType();
+    public HttpResponse<String> updateTask(int id, T newTask) throws IOException, InterruptedException {
+        Type type = newTask.getType();
         String fullUrl = getUrlTaskById(type, id);
-        String json = gson.toJson(updatedTask);
+        String json = gson.toJson(newTask);
 
         HttpRequest request = HttpRequest.newBuilder()
                 .PUT(HttpRequest.BodyPublishers.ofString(json))
@@ -85,28 +86,40 @@ public class HttpClient<T extends Task> {
             , String name, String description
             , LocalDateTime startTime, Duration duration) throws IOException, InterruptedException {
 
-        Map<String, String> task = new HashMap<>();
-        task.put("startTime", String.valueOf(startTime));
-        task.put("duration", String.valueOf(duration));
-        return getResponse(type, name, description, task);
+        Map<String, String> task = createTaskMap(type, name, description, startTime, duration);
+        return getResponse(type, task);
     }
 
     public HttpResponse<String> createEpic(Type type
             , String name, String description) throws IOException, InterruptedException {
 
         Map<String, String> task = new HashMap<>();
-        return getResponse(type, name, description, task);
+        task.put("type", String.valueOf(type));
+        task.put("name", name);
+        task.put("description", description);
+        return getResponse(type, task);
     }
 
     public HttpResponse<String> createSubTask(Type type, String name
             , String description, LocalDateTime startTime
             , Duration duration, int parentId) throws IOException, InterruptedException {
 
+        Map<String, String> task = createTaskMap(type, name, description, startTime, duration);
+        task.put("parentId", String.valueOf(parentId));
+        return getResponse(type, task);
+    }
+
+    private static Map<String, String> createTaskMap(Type type, String name
+            , String description, LocalDateTime startTime
+            , Duration duration) {
+
         Map<String, String> task = new HashMap<>();
+        task.put("name", name);
+        task.put("description", description);
         task.put("startTime", String.valueOf(startTime));
         task.put("duration", String.valueOf(duration));
-        task.put("parentId", String.valueOf(parentId));
-        return getResponse(type, name, description, task);
+        task.put("type", String.valueOf(type));
+        return task;
     }
 
     public HttpResponse<String> removeTask(int id, Type type) throws IOException, InterruptedException {
@@ -146,12 +159,10 @@ public class HttpClient<T extends Task> {
         return client.send(request, HttpResponse.BodyHandlers.ofString());
     }
 
-
     private HttpResponse<String> getResponse(Type type
-            , String name, String description
             , Map<String, String> task) throws IOException, InterruptedException {
 
-        String json = getJson(task, name, description);
+        String json = gson.toJson(task);
         String fullUrl = getUrlTasks(type);
 
         HttpRequest request = HttpRequest.newBuilder()
@@ -162,12 +173,6 @@ public class HttpClient<T extends Task> {
                 .build();
 
         return client.send(request, HttpResponse.BodyHandlers.ofString());
-    }
-
-    private String getJson(Map<String, String> task, String name, String description) {
-        task.put("name", name);
-        task.put("description", description);
-        return gson.toJson(task);
     }
 
     private String getUrlTaskById(Type type, int id) {
