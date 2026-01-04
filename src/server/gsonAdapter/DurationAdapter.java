@@ -28,8 +28,14 @@ public class DurationAdapter extends TypeAdapter<Duration> {
             return null;
         }
 
-        long minutes = jsonReader.nextLong();
-        return Duration.ofMinutes(minutes);
+        JsonToken token = jsonReader.peek();
 
+        if (token == JsonToken.STRING){
+            return Duration.parse(jsonReader.nextString());
+        }
+        if (token == JsonToken.NUMBER) {
+            return Duration.ofMinutes(jsonReader.nextLong());
+        }
+        return null;
     }
 }
