@@ -75,8 +75,6 @@ public class MyTest {
         System.out.println("===========  Задачи в отсортированном списке   ===============");
         System.out.println((saveManager).getPrioritizedTasks());
         System.out.println("=========================\n");
-
-//        kvServer.stop();
     }
 
 }

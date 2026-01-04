@@ -23,7 +23,6 @@ public class TaskHandler<T extends Task> extends BaseHandler<T> {
     public void handle(HttpExchange exchange) throws IOException {
         String method = exchange.getRequestMethod().toUpperCase();
         String queryString = exchange.getRequestURI().getQuery();
-
         int statusCode;
         String response;
 
@@ -42,8 +41,8 @@ public class TaskHandler<T extends Task> extends BaseHandler<T> {
                 }
                 case "PUT" -> {
                     InputStream is = exchange.getRequestBody();
-                    String taskString = new String(is.readAllBytes(), StandardCharsets.UTF_8);
-                    Task json = gson.fromJson(taskString, Task.class);
+                    String body = new String(is.readAllBytes(), StandardCharsets.UTF_8);
+                    Task json = gson.fromJson(body, Task.class);
 
                     int id = parseIdFromQuery(queryString);
                     T oldTask = taskManager.getTaskById(id, false);
@@ -87,27 +86,32 @@ public class TaskHandler<T extends Task> extends BaseHandler<T> {
                     statusCode = 501;
                 }
             }
+        } catch (Exception e) {
+            System.out.println("Ошибка " + e.getClass().getName() + " "
+                    + e.getMessage());
+            e.printStackTrace();
 
-        } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
-            response = gson.toJson("Не удалось распознать идентификатор " + e.getMessage());
-            statusCode = 400;
-
-        } catch (IllegalArgumentException | JsonSyntaxException e) {
-            response = gson.toJson("Неверно указаны данные " + e.getMessage());
-            statusCode = 400;
-
-        } catch (NotFoundException e) {
-            response = gson.toJson(e.getMessage());
-            statusCode = 404;
-
-        } catch (InCorrectClassException e) {
-            response = gson.toJson(e.getMessage());
-            statusCode = 400;
-
+            response = " ";
+            statusCode = 1;
         }
-
+//        } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
+//            response = gson.toJson("Не удалось распознать идентификатор " + e.getMessage());
+//            statusCode = 407;
+//
+//        } catch (IllegalArgumentException | JsonSyntaxException e) {
+//            response = gson.toJson("Неверно указаны данные " + e.getMessage());
+//            statusCode = 400;
+//
+//        } catch (NotFoundException e) {
+//            response = gson.toJson(e.getMessage());
+//            statusCode = 404;
+//
+//        } catch (InCorrectClassException e) {
+//            response = gson.toJson(e.getMessage());
+//            statusCode = 400;
+//
+//        }
         sendResponse(exchange, statusCode, response);
-
     }
 
     public void chekListOfTasks() {
@@ -115,7 +119,6 @@ public class TaskHandler<T extends Task> extends BaseHandler<T> {
             throw new NotFoundException("Списка Tasks пуст");
         }
     }
-
 
     private void validateTaskType(T task) {
         if (task.getType() != Type.TASK) {
