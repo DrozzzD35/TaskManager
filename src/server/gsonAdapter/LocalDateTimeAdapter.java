@@ -24,13 +24,15 @@ public class LocalDateTimeAdapter extends TypeAdapter<LocalDateTime> {
 
     @Override
     public LocalDateTime read(JsonReader jsonReader) throws IOException {
+        JsonToken token = jsonReader.peek();
+
         if (jsonReader.peek() == JsonToken.NULL){
             jsonReader.nextNull();
             return null;
         }
-
-        String stringDate = jsonReader.nextString();
-
-        return LocalDateTime.parse(stringDate, GsonFactory.DATE_TIME_FORMATTER);
+        if (token == JsonToken.STRING){
+            return LocalDateTime.parse(jsonReader.nextString(), GsonFactory.DATE_TIME_FORMATTER);
+        }
+        return null;
     }
 }
