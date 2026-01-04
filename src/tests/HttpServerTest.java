@@ -58,14 +58,14 @@ public class HttpServerTest<T extends Task> {
         Assertions.assertEquals(1, tasks.size(), "Список задач должен содержать 1 элемент");
     }
 
-//    @Test
-//    void getTask() throws IOException, InterruptedException {
-//        TestUtils.createTask(taskManager, "task1", "task1"
-//                , "01.11.2020 00:00", 15);
-//
-//        HttpResponse<String> response = myClient.getTaskById(1, Type.TASK);
-//        Assertions.assertEquals(200, response.statusCode());
-//    }
+    @Test
+    void getTask() throws IOException, InterruptedException {
+        TestUtils.createTask(taskManager, "task1", "task1"
+                , "01.11.2020 00:00", 15);
+
+        HttpResponse<String> response = myClient.getTaskById(1, Type.TASK);
+        Assertions.assertEquals(200, response.statusCode());
+    }
 
 
 }

@@ -116,7 +116,7 @@ public class HttpTaskClient<T extends Task> {
         Map<String, String> task = new HashMap<>();
         task.put("name", name);
         task.put("description", description);
-        task.put("startTime", String.valueOf(startTime));
+        task.put("startTime", startTime.format(GsonFactory.DATE_TIME_FORMATTER));
         task.put("duration", String.valueOf(duration));
         task.put("type", String.valueOf(type));
         return task;

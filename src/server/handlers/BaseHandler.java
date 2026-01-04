@@ -41,7 +41,7 @@ public abstract class BaseHandler<T extends Task> implements HttpHandler {
     protected T getTask(int id) {
         T task = taskManager.getTaskById(id, false);
         if (task == null) {
-            throw new NotFoundException("Задача не существует");
+            System.out.println("Задачи не существует");
         }
         return task;
     }

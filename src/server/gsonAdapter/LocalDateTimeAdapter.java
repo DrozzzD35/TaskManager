@@ -18,15 +18,14 @@ public class LocalDateTimeAdapter extends TypeAdapter<LocalDateTime> {
             return;
         }
 
-        String formattedDateTime = localDateTime.format(GsonFactory.DATE_TIME_FORMATTER);
-        jsonWriter.value(formattedDateTime);
+        jsonWriter.value(localDateTime.format(GsonFactory.DATE_TIME_FORMATTER));
     }
 
     @Override
     public LocalDateTime read(JsonReader jsonReader) throws IOException {
         JsonToken token = jsonReader.peek();
 
-        if (jsonReader.peek() == JsonToken.NULL){
+        if (token == JsonToken.NULL){
             jsonReader.nextNull();
             return null;
         }
