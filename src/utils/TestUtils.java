@@ -62,10 +62,15 @@ public class TestUtils {
         return epic;
     }
 
-    public static <T extends Task> SubTask getSubTask(TaskManager<T> taskManager, String dateTime, Integer parentId) {
+    public static <T extends Task> SubTask createSubTask(TaskManager<T> taskManager, String dateTime, Integer parentId) {
         return TestUtils.createSubTask(taskManager, "task2", "task2"
                 , dateTime
                 , 20
                 , parentId);
+    }
+
+    public static <T extends Task> Task createTask(TaskManager<T> taskManager, String date) {
+        return TestUtils.createTask(taskManager, "name1", "description1"
+                , date, 50);
     }
 }
