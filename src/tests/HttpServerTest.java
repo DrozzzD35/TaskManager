@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import server.KVServer.KVServer;
+import service.HistoryManager;
 import service.HttpTaskServer;
 import service.Managers;
 import service.TaskManager;
@@ -24,7 +25,7 @@ public class HttpServerTest<T extends Task> {
     private KVServer kvServer;
     private TaskManager<T> taskManager;
     private HttpTaskServer<T> taskServer;
-    private HttpTaskClient<T> myClient;
+    private HttpTaskClient<T> taskClient;
 
     @BeforeEach
     void SetUp() throws IOException {
@@ -36,7 +37,7 @@ public class HttpServerTest<T extends Task> {
         taskServer.start();
 
         HttpClient client = HttpClient.newHttpClient();
-        this.myClient = new HttpTaskClient<>(client);
+        this.taskClient = new HttpTaskClient<>(client);
     }
 
     @AfterEach
@@ -47,8 +48,9 @@ public class HttpServerTest<T extends Task> {
 
     @Test
     void addTask() throws IOException, InterruptedException {
-        HttpResponse<String> response = myClient.createTask(Type.TASK, "task1", "task1"
-                , LocalDateTime.parse("01.10.2020 00:00", GsonFactory.DATE_TIME_FORMATTER), Duration.ofMinutes(15));
+        HttpResponse<String> response = taskClient.createTask(Type.TASK, "task1", "task1"
+                , LocalDateTime.parse("01.10.2020 00:00"
+                        , GsonFactory.DATE_TIME_FORMATTER), Duration.ofMinutes(15));
         Assertions.assertEquals(201, response.statusCode());
 
         List<T> tasks = taskManager.getAllTasks();
@@ -57,7 +59,7 @@ public class HttpServerTest<T extends Task> {
 
     @Test
     void addEpic() throws IOException, InterruptedException {
-        HttpResponse<String> response = myClient.createEpic(Type.EPIC, "task1", "task1");
+        HttpResponse<String> response = taskClient.createEpic(Type.EPIC, "task1", "task1");
         Assertions.assertEquals(201, response.statusCode());
 
         List<T> tasks = taskManager.getAllTasks();
@@ -68,7 +70,7 @@ public class HttpServerTest<T extends Task> {
     void addSubTask() throws IOException, InterruptedException {
         Epic epic = TestUtils.createEpic(taskManager, "name", "name");
         SubTask subTask = TestUtils.createSubTask(taskManager, "02.10.2020 00:00", 1);
-        HttpResponse<String> response = myClient.createSubTask(Type.SUBTASK
+        HttpResponse<String> response = taskClient.createSubTask(Type.SUBTASK
                 , "task2", "task2"
                 , LocalDateTime.parse("01.10.2020 00:00", GsonFactory.DATE_TIME_FORMATTER)
                 , Duration.ofMinutes(15)
@@ -87,28 +89,28 @@ public class HttpServerTest<T extends Task> {
     void getTask() throws IOException, InterruptedException {
         addEpic();
 
-        HttpResponse<String> response = myClient.getTaskById(1, Type.TASK);
+        HttpResponse<String> response = taskClient.getTaskById(1, Type.TASK);
         Assertions.assertEquals(200, response.statusCode());
     }
 
     @Test
     void removeTask() throws IOException, InterruptedException {
         addTask();
-        HttpResponse<String> response = myClient.removeTask(1, Type.TASK);
+        HttpResponse<String> response = taskClient.removeTask(1, Type.TASK);
         Assertions.assertEquals(200, response.statusCode());
     }
 
     @Test
     void removeEpic() throws IOException, InterruptedException {
         addEpic();
-        HttpResponse<String> response = myClient.removeTask(1, Type.EPIC);
+        HttpResponse<String> response = taskClient.removeTask(1, Type.EPIC);
         Assertions.assertEquals(200, response.statusCode());
     }
 
     @Test
     void removeSubTask() throws IOException, InterruptedException {
         addSubTask();
-        HttpResponse<String> response = myClient.removeTask(2, Type.SUBTASK);
+        HttpResponse<String> response = taskClient.removeTask(2, Type.SUBTASK);
         Assertions.assertEquals(200, response.statusCode());
     }
 
@@ -121,7 +123,7 @@ public class HttpServerTest<T extends Task> {
         TestUtils.createTask(taskManager, "task1", "task1"
                 , "03.12.2020 00:00", 15);
 
-        HttpResponse<String> response = myClient.removeTasks(Type.TASK);
+        HttpResponse<String> response = taskClient.removeTasks(Type.TASK);
         Assertions.assertEquals(200, response.statusCode());
 
         List<T> tasks = taskManager.getAllTasks();
@@ -144,7 +146,7 @@ public class HttpServerTest<T extends Task> {
         List<T> subTask = taskManager.getTasks(Type.SUBTASK);
         Assertions.assertEquals(3, subTask.size(), "Эпиков должно быть 4");
 
-        HttpResponse<String> response = myClient.removeTasks(Type.EPIC);
+        HttpResponse<String> response = taskClient.removeTasks(Type.EPIC);
         Assertions.assertEquals(200, response.statusCode());
 
         List<T> tasks = taskManager.getAllTasks();
@@ -164,7 +166,7 @@ public class HttpServerTest<T extends Task> {
         taskManager.updateEpicStatus(1);
         Assertions.assertEquals(TaskStatus.IN_PROGRESS, epic1.getStatus());
 
-        HttpResponse<String> response = myClient.removeTasks(Type.SUBTASK);
+        HttpResponse<String> response = taskClient.removeTasks(Type.SUBTASK);
         Assertions.assertEquals(200, response.statusCode());
 
         List<T> tasks = taskManager.getAllTasks();
@@ -177,12 +179,12 @@ public class HttpServerTest<T extends Task> {
     @SuppressWarnings("unchecked")
     @Test
     void updateTask() throws IOException, InterruptedException {
-        T task = (T) TestUtils.createTask(taskManager, "02.10.2020 00:00");
-        T newTask = (T) new Task("updateName", "updateDescription"
+        Task task = TestUtils.createTask(taskManager, "02.10.2020 00:00");
+        Task newTask = new Task("updateName", "updateDescription"
                 , LocalDateTime.parse("03.10.2020 00:00", GsonFactory.DATE_TIME_FORMATTER)
                 , Duration.ofMinutes(15));
 
-        HttpResponse<String> response = myClient.updateTask(task.getId(), newTask);
+        HttpResponse<String> response = taskClient.updateTask(task.getId(), (T) newTask);
         Assertions.assertEquals(200, response.statusCode());
         Assertions.assertEquals("updateName", task.getName());
         Assertions.assertEquals("updateDescription", task.getDescription());
@@ -190,5 +192,23 @@ public class HttpServerTest<T extends Task> {
         Assertions.assertEquals("03.10.2020 00:00", task.getStartTime().format(GsonFactory.DATE_TIME_FORMATTER));
     }
 
+    @Test
+    void getHistory() throws IOException, InterruptedException {
+        Task task = TestUtils.createTask(taskManager, "03.10.2020 00:00");
+        HttpResponse<String> response = taskClient.getHistory();
+        Assertions.assertEquals(200, response.statusCode());
+
+        taskManager.getTaskById(task.getId(), true);
+        List<T> history = taskManager.getHistory().getHistory();
+        Assertions.assertEquals(1, history.size());
+    }
+//
+//    @Test
+//    void removeHistory() throws IOException, InterruptedException {
+//        getHistory();
+//        List<T> history = taskManager.getHistory().getHistory();
+//        history.remove
+//
+//    }
 
 }
