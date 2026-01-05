@@ -1,9 +1,6 @@
 package utils;
 
-import model.Epic;
-import model.SubTask;
-import model.Task;
-import model.TaskStatus;
+import model.*;
 import service.TaskManager;
 
 import java.time.Duration;
@@ -15,29 +12,36 @@ public class TestUtils {
         System.out.println("Утилитарный класс");
     }
 
-    public static void addHistory(TaskManager<Task> taskManager, Task task) {
+    public static <T extends Task> void addHistory(TaskManager<T> taskManager, Task task) {
         if (task == null) {
             return;
         }
         taskManager.getTaskById(task.getId(), true);
-        System.out.println("Задача добавлена в историю, id = " + task.getId() );
+        System.out.println("Задача добавлена в историю, id = " + task.getId());
     }
 
-    public static void updateTask(TaskManager<Task> taskManager, int currentTaskId) {
+    @SuppressWarnings("unchecked")
+    public static <T extends Task> void updateTask(TaskManager<T> taskManager, int currentTaskId) {
         Task updateTask = new Task("updateTask", "updateTask");
         updateTask.setStatus(TaskStatus.IN_PROGRESS);
-        taskManager.updateTask(updateTask, currentTaskId);
+        taskManager.updateTask((T) updateTask, currentTaskId);
     }
 
-    public static Task createTask(TaskManager<Task> taskManager, String name, String description, String date, int minutes) {
+    @SuppressWarnings("unchecked")
+    public static <T extends Task> Task createTask(TaskManager<T> taskManager
+            , String name, String description, String date, int minutes) {
+
         Task task = new Task(name, description
                 , LocalDateTime.parse(date, GsonFactory.DATE_TIME_FORMATTER)
                 , Duration.ofMinutes(minutes));
-        taskManager.add(task);
+        taskManager.add((T) task);
         return task;
     }
 
-    public static SubTask createSubTask(TaskManager<Task> taskManager, String name, String description, String date, int minutes, int epicId) {
+    @SuppressWarnings("unchecked")
+    public static <T extends Task> SubTask createSubTask(TaskManager<T> taskManager
+            , String name, String description, String date, int minutes, int epicId) {
+
         if (!(taskManager.getTaskById(epicId, false) instanceof Epic)) {
             System.out.println(("Невозможно создать SubTask, Epic с ID:" + epicId + " не существует"));
             return null;
@@ -47,13 +51,21 @@ public class TestUtils {
                 , LocalDateTime.parse(date, GsonFactory.DATE_TIME_FORMATTER)
                 , Duration.ofMinutes(minutes)
                 , epicId);
-        taskManager.add(subTask);
+        taskManager.add((T) subTask);
         return subTask;
     }
 
-    public static Epic createEpic(TaskManager<Task> taskManager, String name, String description) {
+    @SuppressWarnings("unchecked")
+    public static <T extends Task> Epic createEpic(TaskManager<T> taskManager, String name, String description) {
         Epic epic = new Epic(name, description);
-        taskManager.add(epic);
+        taskManager.add((T) epic);
         return epic;
+    }
+
+    public static <T extends Task> SubTask getSubTask(TaskManager<T> taskManager, String dateTime, Integer parentId) {
+        return TestUtils.createSubTask(taskManager, "task2", "task2"
+                , dateTime
+                , 20
+                , parentId);
     }
 }

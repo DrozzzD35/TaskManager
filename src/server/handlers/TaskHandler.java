@@ -71,9 +71,9 @@ public class TaskHandler<T extends Task> extends BaseHandler<T> {
                         int id = parseIdFromQuery(queryString);
                         T task = getTask(id);
                         validateTaskType(task);
-
                         taskManager.removeTaskById(id);
-                        response = gson.toJson("Задача с идентификатором " + id + " удалена.");
+                        response = gson.toJson("Задача с идентификатором "
+                                + id + " удалена.");
 
                     } else {
                         taskManager.removeTasks(Type.TASK);
@@ -86,31 +86,23 @@ public class TaskHandler<T extends Task> extends BaseHandler<T> {
                     statusCode = 501;
                 }
             }
-        } catch (Exception e) {
-            System.out.println("Ошибка " + e.getClass().getName() + " "
-                    + e.getMessage());
-            e.printStackTrace();
+        } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
+            response = gson.toJson("Не удалось распознать идентификатор " + e.getMessage());
+            statusCode = 407;
 
-            response = " ";
-            statusCode = 1;
+        } catch (IllegalArgumentException | JsonSyntaxException e) {
+            response = gson.toJson("Неверно указаны данные " + e.getMessage());
+            statusCode = 400;
+
+        } catch (NotFoundException e) {
+            response = gson.toJson(e.getMessage());
+            statusCode = 404;
+
+        } catch (InCorrectClassException e) {
+            response = gson.toJson(e.getMessage());
+            statusCode = 400;
+
         }
-//        } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
-//            response = gson.toJson("Не удалось распознать идентификатор " + e.getMessage());
-//            statusCode = 407;
-//
-//        } catch (IllegalArgumentException | JsonSyntaxException e) {
-//            response = gson.toJson("Неверно указаны данные " + e.getMessage());
-//            statusCode = 400;
-//
-//        } catch (NotFoundException e) {
-//            response = gson.toJson(e.getMessage());
-//            statusCode = 404;
-//
-//        } catch (InCorrectClassException e) {
-//            response = gson.toJson(e.getMessage());
-//            statusCode = 400;
-//
-//        }
         sendResponse(exchange, statusCode, response);
     }
 

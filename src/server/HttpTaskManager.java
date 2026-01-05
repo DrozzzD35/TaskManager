@@ -28,10 +28,6 @@ public class HttpTaskManager<T extends Task> extends FileBackedTasksManager<T> {
 
     @Override
     public void save() {
-        if (taskMap.isEmpty()) {
-            return;
-        }
-
         List<Integer> idsHistory = new ArrayList<>();
 
         for (T task : history.getHistory()) {

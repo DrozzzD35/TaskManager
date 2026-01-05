@@ -63,7 +63,7 @@ public class SubTaskHandler<T extends Task> extends BaseHandler<T> {
                     String subTaskString = new String(is.readAllBytes(), StandardCharsets.UTF_8);
                     SubTask json = gson.fromJson(subTaskString, SubTask.class);
                     SubTask subTask = new SubTask(json.getName(), json.getDescription()
-                            ,json.getStartTime(), json.getDuration(), json.getParentId());
+                            , json.getStartTime(), json.getDuration(), json.getParentId());
                     taskManager.add((T) subTask);
 
                     response = gson.toJson(subTask);
@@ -90,7 +90,6 @@ public class SubTaskHandler<T extends Task> extends BaseHandler<T> {
                     statusCode = 501;
                 }
             }
-
         } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
             response = gson.toJson("Ошибка чтения URL");
             statusCode = 404;

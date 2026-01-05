@@ -8,16 +8,14 @@ import server.handlers.*;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 
-public class HttpTaskServer {
+public class HttpTaskServer<T extends Task> {
     private final HttpServer server;
-    TaskManager<Task> taskManager;
 
     public HttpTaskServer() throws IOException {
         this(Managers.getDefault());
     }
 
-    public HttpTaskServer(TaskManager<Task> taskManager) throws IOException {
-        this.taskManager = taskManager;
+    public HttpTaskServer(TaskManager<T> taskManager) throws IOException {
         Config config = new Config();
         this.server = HttpServer.create(new InetSocketAddress(config.getPort()), 0);
 
