@@ -4,7 +4,6 @@ import com.google.gson.Gson;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import model.Task;
-import server.exception.NotFoundException;
 import service.TaskManager;
 import utils.GsonFactory;
 
@@ -39,7 +38,7 @@ public abstract class BaseHandler<T extends Task> implements HttpHandler {
     }
 
     protected T getTask(int id) {
-        T task = taskManager.getTaskById(id, false);
+        T task = taskManager.getTaskById(id, true);
         if (task == null) {
             System.out.println("Задачи не существует");
         }

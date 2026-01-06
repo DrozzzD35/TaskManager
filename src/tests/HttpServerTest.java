@@ -1,13 +1,14 @@
 package tests;
 
 import client.HttpTaskClient;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import model.*;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import server.KVServer.KVServer;
-import service.HistoryManager;
 import service.HttpTaskServer;
 import service.Managers;
 import service.TaskManager;
@@ -26,6 +27,7 @@ public class HttpServerTest<T extends Task> {
     private TaskManager<T> taskManager;
     private HttpTaskServer<T> taskServer;
     private HttpTaskClient<T> taskClient;
+    private Gson gson = GsonFactory.createGson();
 
     @BeforeEach
     void SetUp() throws IOException {
@@ -185,30 +187,44 @@ public class HttpServerTest<T extends Task> {
                 , Duration.ofMinutes(15));
 
         HttpResponse<String> response = taskClient.updateTask(task.getId(), (T) newTask);
+        Task updatedTask = taskManager.getTaskById(task.getId(), false);
         Assertions.assertEquals(200, response.statusCode());
-        Assertions.assertEquals("updateName", task.getName());
-        Assertions.assertEquals("updateDescription", task.getDescription());
-        Assertions.assertEquals(15, task.getDuration().toMinutes());
-        Assertions.assertEquals("03.10.2020 00:00", task.getStartTime().format(GsonFactory.DATE_TIME_FORMATTER));
+        Assertions.assertEquals("updateName", updatedTask.getName());
+        Assertions.assertEquals("updateDescription", updatedTask.getDescription());
+        Assertions.assertEquals(15, updatedTask.getDuration().toMinutes());
+        Assertions.assertEquals("03.10.2020 00:00", updatedTask.getStartTime().format(GsonFactory.DATE_TIME_FORMATTER));
     }
 
     @Test
     void getHistory() throws IOException, InterruptedException {
         Task task = TestUtils.createTask(taskManager, "03.10.2020 00:00");
+        taskClient.getTaskById(task.getId(), Type.TASK);
         HttpResponse<String> response = taskClient.getHistory();
         Assertions.assertEquals(200, response.statusCode());
 
-        taskManager.getTaskById(task.getId(), true);
-        List<T> history = taskManager.getHistory().getHistory();
-        Assertions.assertEquals(1, history.size());
+        List<T> historyFromServer = gson.fromJson(response.body(), new TypeToken<List<Task>>(){}.getType());
+        Assertions.assertEquals(1, historyFromServer.size(), "Список должен содержать 1 задачу");
+        Assertions.assertEquals(task.getName(), historyFromServer.getFirst().getName() );
+        Assertions.assertEquals(task.getId(), historyFromServer.getFirst().getId() );
     }
-//
-//    @Test
-//    void removeHistory() throws IOException, InterruptedException {
-//        getHistory();
-//        List<T> history = taskManager.getHistory().getHistory();
-//        history.remove
-//
-//    }
+
+    @SuppressWarnings("unchecked")
+    @Test
+    void removeHistory() throws IOException, InterruptedException {
+        getHistory();
+        HttpResponse<String> response = taskClient.removeHistory();
+        Assertions.assertEquals(200, response.statusCode());
+
+        List<T> history = taskManager.getHistory().getHistory();
+        Assertions.assertEquals(0, history.size(), "Список истории должен быть пуст");
+
+        Task task = TestUtils.createTask(taskManager, "05.10.2020 00:00");
+        Task task2 = TestUtils.createTask(taskManager, "04.10.2020 00:00");
+        taskManager.getTaskById(task.getId(), true);
+        taskManager.getTaskById(task2.getId(), true);
+        taskManager.getHistory().removeTask((T) task2);
+        List<T> history2 = taskManager.getHistory().getHistory();
+        Assertions.assertEquals(1, history2.size(), "История должна содержать 1 задачу");
+    }
 
 }
