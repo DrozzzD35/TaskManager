@@ -31,16 +31,21 @@ public class SubTaskHandler<T extends Task> extends BaseHandler<T> {
             switch (method) {
                 case "GET" -> {
                     if (stringQuery != null) {
-                        int id = parseIdFromQuery(stringQuery);
-                        T task = getTask(id);
-                        validateSubTaskType(task);
-                        response = gson.toJson(task);
+                        T task = getTaskFromQuery(stringQuery);
 
+                        if (task == null) {
+                            response = gson.toJson("Задачи не существует");
+                            statusCode = 404;
+                        } else {
+                            validateSubTaskType(task);
+                            response = gson.toJson(task);
+                            statusCode = 200;
+                        }
                     } else {
                         chekListOfSubTasks();
                         response = gson.toJson(taskManager.getTasks(Type.SUBTASK));
+                        statusCode = 200;
                     }
-                    statusCode = 200;
 
                 }
                 case "PUT" -> {
@@ -48,11 +53,11 @@ public class SubTaskHandler<T extends Task> extends BaseHandler<T> {
                     String taskString = new String(is.readAllBytes(), StandardCharsets.UTF_8);
                     SubTask json = gson.fromJson(taskString, SubTask.class);
 
-                    int id = parseIdFromQuery(stringQuery);
-                    T oldSubTask = taskManager.getTaskById(id, false);
+                    T taskInMap = getTaskFromQuery(stringQuery);
+                    T oldSubTask = taskManager.getTaskById(taskInMap.getId(), false);
                     validateSubTaskType(oldSubTask);
-                    taskManager.updateTask((T) json, id);
-                    T updatedTask = taskManager.getTaskById(id, false);
+                    taskManager.updateTask((T) json, taskInMap.getId());
+                    T updatedTask = taskManager.getTaskById(taskInMap.getId(), false);
 
                     response = gson.toJson(updatedTask);
                     statusCode = 200;
@@ -72,12 +77,11 @@ public class SubTaskHandler<T extends Task> extends BaseHandler<T> {
                 }
                 case "DELETE" -> {
                     if (stringQuery != null) {
-                        int id = parseIdFromQuery(stringQuery);
-                        T task = getTask(id);
+                        T task = getTaskFromQuery(stringQuery);
                         validateSubTaskType(task);
-                        taskManager.removeTaskById(id);
+                        taskManager.removeTaskById(task.getId());
                         response = gson.toJson("Задача с идентификатором "
-                                + id + " удалена.");
+                                + task.getId() + " удалена.");
                     } else {
                         taskManager.removeTasks(Type.SUBTASK);
                         response = gson.toJson("Все SubTasks удалены");

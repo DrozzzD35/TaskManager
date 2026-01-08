@@ -30,25 +30,31 @@ public class TaskHandler<T extends Task> extends BaseHandler<T> {
             switch (method) {
                 case "GET" -> {
                     if (queryString != null) {
-                        int id = parseIdFromQuery(queryString);
-                        Task task = getTask(id);
-                        response = gson.toJson(task);
+                        T task = getTaskFromQuery(queryString);
+                        if (task == null) {
+                            response = gson.toJson("Задачи не существует");
+                            statusCode = 404;
+                        } else {
+                            validateTaskType(task);
+                            response = gson.toJson(task);
+                            statusCode = 200;
+                        }
                     } else {
                         chekListOfTasks();
                         response = gson.toJson(taskManager.getTasks(Type.TASK));
+                        statusCode = 200;
                     }
-                    statusCode = 200;
                 }
                 case "PUT" -> {
                     InputStream is = exchange.getRequestBody();
                     String body = new String(is.readAllBytes(), StandardCharsets.UTF_8);
                     Task json = gson.fromJson(body, Task.class);
 
-                    int id = parseIdFromQuery(queryString);
-                    T oldTask = taskManager.getTaskById(id, false);
+                    T taskInMap = getTaskFromQuery(queryString);
+                    T oldTask = taskManager.getTaskById(taskInMap.getId(), false);
                     validateTaskType(oldTask);
-                    taskManager.updateTask((T) json, id);
-                    T updatedTask = taskManager.getTaskById(id, false);
+                    taskManager.updateTask((T) json, taskInMap.getId());
+                    T updatedTask = taskManager.getTaskById(taskInMap.getId(), false);
 
                     response = gson.toJson(updatedTask);
                     statusCode = 200;
@@ -58,8 +64,7 @@ public class TaskHandler<T extends Task> extends BaseHandler<T> {
                     InputStream is = exchange.getRequestBody();
                     String body = new String(is.readAllBytes(), StandardCharsets.UTF_8);
                     Task json = gson.fromJson(body, Task.class);
-                    Task task = new Task(json.getName(), json.getDescription()
-                            , json.getStartTime(), json.getDuration());
+                    Task task = new Task(json.getName(), json.getDescription(), json.getStartTime(), json.getDuration());
                     taskManager.add((T) task);
 
                     response = gson.toJson(task);
@@ -68,12 +73,10 @@ public class TaskHandler<T extends Task> extends BaseHandler<T> {
                 }
                 case "DELETE" -> {
                     if (queryString != null) {
-                        int id = parseIdFromQuery(queryString);
-                        T task = getTask(id);
+                        T task = getTaskFromQuery(queryString);
                         validateTaskType(task);
-                        taskManager.removeTaskById(id);
-                        response = gson.toJson("Задача с идентификатором "
-                                + id + " удалена.");
+                        taskManager.removeTaskById(task.getId());
+                        response = gson.toJson("Задача с идентификатором " + task.getId() + " удалена.");
 
                     } else {
                         taskManager.removeTasks(Type.TASK);
@@ -88,7 +91,7 @@ public class TaskHandler<T extends Task> extends BaseHandler<T> {
             }
         } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
             response = gson.toJson("Не удалось распознать идентификатор " + e.getMessage());
-            statusCode = 407;
+            statusCode = 400;
 
         } catch (IllegalArgumentException | JsonSyntaxException e) {
             response = gson.toJson("Неверно указаны данные " + e.getMessage());

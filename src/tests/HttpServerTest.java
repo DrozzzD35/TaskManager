@@ -93,8 +93,15 @@ public class HttpServerTest<T extends Task> {
     void getTask() throws IOException, InterruptedException {
         addEpic();
 
-        HttpResponse<String> response = taskClient.getTaskById(1, Type.TASK);
-        Assertions.assertEquals(200, response.statusCode());
+        HttpResponse<String> response1 = taskClient.getTaskById(1, Type.EPIC);
+        Assertions.assertEquals(200, response1.statusCode());
+
+        HttpResponse<String> response2 = taskClient.getTaskById(1, Type.TASK);
+        Assertions.assertEquals(400, response2.statusCode());
+
+        HttpResponse<String> response3 = taskClient.getTaskById(20, Type.TASK);
+        Assertions.assertEquals(404,response3.statusCode());
+
     }
 
     @Test
@@ -204,10 +211,11 @@ public class HttpServerTest<T extends Task> {
         HttpResponse<String> response = taskClient.getHistory();
         Assertions.assertEquals(200, response.statusCode());
 
-        List<T> historyFromServer = gson.fromJson(response.body(), new TypeToken<List<Task>>(){}.getType());
+        List<T> historyFromServer = gson.fromJson(response.body(), new TypeToken<List<Task>>() {
+        }.getType());
         Assertions.assertEquals(1, historyFromServer.size(), "Список должен содержать 1 задачу");
-        Assertions.assertEquals(task.getName(), historyFromServer.getFirst().getName() );
-        Assertions.assertEquals(task.getId(), historyFromServer.getFirst().getId() );
+        Assertions.assertEquals(task.getName(), historyFromServer.getFirst().getName());
+        Assertions.assertEquals(task.getId(), historyFromServer.getFirst().getId());
     }
 
     @SuppressWarnings("unchecked")
@@ -232,14 +240,13 @@ public class HttpServerTest<T extends Task> {
     @SuppressWarnings("unchecked")
     @Test
     void updateEpicStatus() throws IOException, InterruptedException {
-        Epic epic = TestUtils.createEpic(taskManager,"Epic", "Description");
+        Epic epic = TestUtils.createEpic(taskManager, "Epic", "Description");
         SubTask subTask = TestUtils.createSubTask(taskManager, "04.10.2020 00:00", 1);
         subTask.setStatus(TaskStatus.IN_PROGRESS);
 
         HttpResponse<String> response = taskClient.updateTask(subTask.getId(), (T) subTask);
         Assertions.assertEquals(200, response.statusCode());
         TaskStatus status = epic.getStatus();
-        Assertions.assertEquals(TaskStatus.IN_PROGRESS , status, "Статус Эпика должен быть IN_PROGRESS");
+        Assertions.assertEquals(TaskStatus.IN_PROGRESS, status, "Статус Эпика должен быть IN_PROGRESS");
     }
-
 }

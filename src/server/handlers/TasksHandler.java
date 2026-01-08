@@ -19,7 +19,6 @@ public class TasksHandler<T extends Task> extends BaseHandler<T> {
         int statusCode;
 
         try {
-
             if (method.equals("GET")) {
                 response = gson.toJson(taskManager.getPrioritizedTasks());
                 statusCode = 200;

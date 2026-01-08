@@ -32,18 +32,12 @@ public abstract class BaseHandler<T extends Task> implements HttpHandler {
         }
     }
 
-    protected static int parseIdFromQuery(String queryString) {
+    protected T getTaskFromQuery(String queryString) {
         String[] string = queryString.split("=");
-        return Integer.parseInt(string[1]);
+        return taskManager.getTaskById(Integer.parseInt(string[1]), false);
     }
 
     protected T getTask(int id) {
-        T task = taskManager.getTaskById(id, true);
-        if (task == null) {
-            System.out.println("Задачи не существует");
-        }
-        return task;
+        return taskManager.getTaskById(id, true);
     }
-
-
 }

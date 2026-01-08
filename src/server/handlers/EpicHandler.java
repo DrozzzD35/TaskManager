@@ -31,23 +31,29 @@ public class EpicHandler<T extends Task> extends BaseHandler<T> {
             switch (method) {
                 case "GET" -> {
                     if (stringQuery != null) {
-                        int id = parseIdFromQuery(stringQuery);
-                        T epic = getTask(id);
-                        validateEpicType(epic);
-                        response = gson.toJson(epic);
+                        T epic = getTaskFromQuery(stringQuery);
+
+                        if (epic == null) {
+                            response = gson.toJson("Задачи не существует");
+                            statusCode = 404;
+                        } else {
+                            validateEpicType(epic);
+                            response = gson.toJson(epic);
+                            statusCode = 200;
+                        }
                     } else {
                         chekListOfEpics();
                         response = gson.toJson(taskManager.getTasks(Type.EPIC));
+                        statusCode = 200;
                     }
-                    statusCode = 200;
                 }
                 case "PUT" -> {
                     InputStream is = exchange.getRequestBody();
                     String taskString = new String(is.readAllBytes(), StandardCharsets.UTF_8);
                     Epic json = gson.fromJson(taskString, Epic.class);
-                    int id = parseIdFromQuery(stringQuery);
-                    taskManager.updateTask((T) json,id);
-                    T updatedTask = taskManager.getTaskById(id,false);
+                    T task = getTaskFromQuery(stringQuery);
+                    taskManager.updateTask((T) json, task.getId());
+                    T updatedTask = taskManager.getTaskById(task.getId(), false);
 
                     response = gson.toJson(updatedTask);
                     statusCode = 200;
@@ -66,11 +72,10 @@ public class EpicHandler<T extends Task> extends BaseHandler<T> {
                 }
                 case "DELETE" -> {
                     if (stringQuery != null) {
-                        int id = parseIdFromQuery(stringQuery);
-                        T task = getTask(id);
+                        T task = getTaskFromQuery(stringQuery);
                         validateEpicType(task);
-                        taskManager.removeTaskById(id);
-                        response = gson.toJson("Задача с идентификатором " + id + " удалена.");
+                        taskManager.removeTaskById(task.getId());
+                        response = gson.toJson("Задача с идентификатором " + task.getId() + " удалена.");
                     } else {
                         taskManager.removeTasks(Type.EPIC);
                         response = gson.toJson("Все задачи типа Epic были удалены");
