@@ -4,6 +4,7 @@ import client.HttpTaskClient;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import model.*;
+import org.apiguardian.api.API;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -13,6 +14,7 @@ import service.HttpTaskServer;
 import service.Managers;
 import service.TaskManager;
 import utils.GsonFactory;
+import utils.Identity;
 import utils.TestUtils;
 
 import java.io.IOException;
@@ -225,6 +227,19 @@ public class HttpServerTest<T extends Task> {
         taskManager.getHistory().removeTask((T) task2);
         List<T> history2 = taskManager.getHistory().getHistory();
         Assertions.assertEquals(1, history2.size(), "История должна содержать 1 задачу");
+    }
+
+    @SuppressWarnings("unchecked")
+    @Test
+    void updateEpicStatus() throws IOException, InterruptedException {
+        Epic epic = TestUtils.createEpic(taskManager,"Epic", "Description");
+        SubTask subTask = TestUtils.createSubTask(taskManager, "04.10.2020 00:00", 1);
+        subTask.setStatus(TaskStatus.IN_PROGRESS);
+
+        HttpResponse<String> response = taskClient.updateTask(subTask.getId(), (T) subTask);
+        Assertions.assertEquals(200, response.statusCode());
+        TaskStatus status = epic.getStatus();
+        Assertions.assertEquals(TaskStatus.IN_PROGRESS , status, "Статус Эпика должен быть IN_PROGRESS");
     }
 
 }
