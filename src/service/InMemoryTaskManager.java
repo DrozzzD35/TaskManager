@@ -179,6 +179,7 @@ public class InMemoryTaskManager<T extends Task> implements TaskManager<T> {
 
         }
         prioritizedTasks.remove(taskMap.get(id));
+        history.removeTask((T) task);
         taskMap.remove(id);
         System.out.println("Задача удалена, id:" + id + '\n');
     }
@@ -315,34 +316,6 @@ public class InMemoryTaskManager<T extends Task> implements TaskManager<T> {
         }
     }
 
-    public void printAllTasks() {
-        if (taskMap.isEmpty()) {
-            System.out.println("В настоящий момент задач нет");
-            System.out.println();
-        } else {
-            System.out.println("Список всех задач");
-            for (Map.Entry<Integer, T> entry : taskMap.entrySet()) {
-                System.out.println("Задача: " + entry.getValue().getName());
-                System.out.println("Идентификатор: " + entry.getValue().getId());
-                System.out.println("Описание: " + entry.getValue().getDescription());
-                System.out.println("Статус: " + entry.getValue().getStatus());
-                System.out.println("Тип: " + entry.getValue().getType());
-                System.out.println();
-            }
-        }
-    }
-
-    public void printTaskById(int id) {
-        Task task = getTaskById(id, false);
-        if (!(task == null)) {
-            System.out.println("Задача: " + task.getName());
-            System.out.println("Идентификатор: " + task.getId());
-            System.out.println("Описание: " + task.getDescription());
-            System.out.println("Статус: " + task.getStatus());
-            System.out.println("Тип: " + task.getType());
-            System.out.println();
-        }
-    }
 }
 
 
