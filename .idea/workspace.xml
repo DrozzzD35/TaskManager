@@ -4,13 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3b2d2408-c7aa-4b02-a823-dac3b3c98272" name="Changes" comment="feat: написать методы для тестов">
+    <list default="true" id="3b2d2408-c7aa-4b02-a823-dac3b3c98272" name="Changes" comment="feat: написать тесты для негативных сценариев">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/server/handlers/BaseHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/handlers/BaseHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/server/handlers/EpicHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/handlers/EpicHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/server/handlers/SubTaskHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/handlers/SubTaskHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/server/handlers/TaskHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/handlers/TaskHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/handlers/TasksHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/handlers/TasksHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/tests/HttpServerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/HttpServerTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -58,51 +57,51 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Application.executor": "Run",
-    "Application.HttpTaskServer.executor": "Debug",
-    "Application.KVServerLauncher.executor": "Run",
-    "Application.Main.executor": "Run",
-    "Application.MyTest.executor": "Run",
-    "Downloaded.Files.Path.Enabled": "false",
-    "JUnit.HttpServerTest.addEpic.executor": "Run",
-    "JUnit.HttpServerTest.addSubTask.executor": "Run",
-    "JUnit.HttpServerTest.addTask.executor": "Run",
-    "JUnit.HttpServerTest.executor": "Run",
-    "JUnit.HttpServerTest.getHistory.executor": "Run",
-    "JUnit.HttpServerTest.getTask.executor": "Run",
-    "JUnit.HttpServerTest.removeEpic.executor": "Run",
-    "JUnit.HttpServerTest.removeEpics.executor": "Run",
-    "JUnit.HttpServerTest.removeHistory.executor": "Run",
-    "JUnit.HttpServerTest.removeSubTask.executor": "Run",
-    "JUnit.HttpServerTest.removeSubTasks.executor": "Run",
-    "JUnit.HttpServerTest.removeTask.executor": "Run",
-    "JUnit.HttpServerTest.removeTasks.executor": "Run",
-    "JUnit.HttpServerTest.updateEpicStatus.executor": "Run",
-    "JUnit.HttpServerTest.updateTask.executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "Repository.Attach.Annotations": "false",
-    "Repository.Attach.JavaDocs": "false",
-    "Repository.Attach.Sources": "false",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "extract.method.default.visibility": "private",
-    "git-widget-placeholder": "master",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/DrozzzD35/IdeaProjects/TaskManager/src/documents",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Application.executor&quot;: &quot;Run&quot;,
+    &quot;Application.HttpTaskServer.executor&quot;: &quot;Debug&quot;,
+    &quot;Application.KVServerLauncher.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Application.MyTest.executor&quot;: &quot;Run&quot;,
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;JUnit.HttpServerTest.addEpic.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.HttpServerTest.addSubTask.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.HttpServerTest.addTask.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.HttpServerTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.HttpServerTest.getHistory.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.HttpServerTest.getTask.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.HttpServerTest.removeEpic.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.HttpServerTest.removeEpics.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.HttpServerTest.removeHistory.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.HttpServerTest.removeSubTask.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.HttpServerTest.removeSubTasks.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.HttpServerTest.removeTask.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.HttpServerTest.removeTasks.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.HttpServerTest.updateEpicStatus.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.HttpServerTest.updateTask.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;extract.method.default.visibility&quot;: &quot;private&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/DrozzzD35/IdeaProjects/TaskManager/src/documents&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="GeneralTaskHandler" />
@@ -114,8 +113,8 @@
       <recent name="C:\Users\DrozzzD35\IdeaProjects\TaskManager\src\documents" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.HttpServerTest.getTask">
-    <configuration name="HttpServerTest.addEpic" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.HttpServerTest">
+    <configuration name="HttpServerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="TaskManager" />
       <extension name="coverage">
         <pattern>
@@ -125,8 +124,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="tests" />
       <option name="MAIN_CLASS_NAME" value="tests.HttpServerTest" />
-      <option name="METHOD_NAME" value="addEpic" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -147,7 +145,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="HttpServerTest.addTask" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="HttpServerTest.getHistory" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="TaskManager" />
       <extension name="coverage">
         <pattern>
@@ -157,13 +155,13 @@
       </extension>
       <option name="PACKAGE_NAME" value="tests" />
       <option name="MAIN_CLASS_NAME" value="tests.HttpServerTest" />
-      <option name="METHOD_NAME" value="addTask" />
+      <option name="METHOD_NAME" value="getHistory" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="HttpServerTest.getTask" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="HttpServerTest.removeHistory" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="TaskManager" />
       <extension name="coverage">
         <pattern>
@@ -173,13 +171,13 @@
       </extension>
       <option name="PACKAGE_NAME" value="tests" />
       <option name="MAIN_CLASS_NAME" value="tests.HttpServerTest" />
-      <option name="METHOD_NAME" value="getTask" />
+      <option name="METHOD_NAME" value="removeHistory" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="HttpServerTest.updateEpicStatus" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="HttpServerTest.removeSubTask" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="TaskManager" />
       <extension name="coverage">
         <pattern>
@@ -189,7 +187,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="tests" />
       <option name="MAIN_CLASS_NAME" value="tests.HttpServerTest" />
-      <option name="METHOD_NAME" value="updateEpicStatus" />
+      <option name="METHOD_NAME" value="removeSubTask" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -197,11 +195,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.HttpServerTest.getTask" />
+        <item itemvalue="JUnit.HttpServerTest" />
+        <item itemvalue="JUnit.HttpServerTest.removeHistory" />
+        <item itemvalue="JUnit.HttpServerTest.getHistory" />
+        <item itemvalue="JUnit.HttpServerTest.removeSubTask" />
         <item itemvalue="JUnit.HttpServerTest.addSubTask" />
-        <item itemvalue="JUnit.HttpServerTest.addEpic" />
-        <item itemvalue="JUnit.HttpServerTest.addTask" />
-        <item itemvalue="JUnit.HttpServerTest.updateEpicStatus" />
       </list>
     </recent_temporary>
   </component>
@@ -381,23 +379,10 @@
       <workItem from="1767489137961" duration="269000" />
       <workItem from="1767568954097" duration="20906000" />
       <workItem from="1767666957688" duration="4914000" />
-      <workItem from="1767880944199" duration="4573000" />
-    </task>
-    <task id="LOCAL-00105" summary="docs: переместить документ в соответствующий пакет">
-      <option name="closed" value="true" />
-      <created>1766926618354</created>
-      <option name="number" value="00105" />
-      <option name="presentableId" value="LOCAL-00105" />
-      <option name="project" value="LOCAL" />
-      <updated>1766926618354</updated>
-    </task>
-    <task id="LOCAL-00106" summary="refactor: переименовать переменную">
-      <option name="closed" value="true" />
-      <created>1766942520929</created>
-      <option name="number" value="00106" />
-      <option name="presentableId" value="LOCAL-00106" />
-      <option name="project" value="LOCAL" />
-      <updated>1766942520929</updated>
+      <workItem from="1767880944199" duration="5565000" />
+      <workItem from="1768147463069" duration="1635000" />
+      <workItem from="1768246109325" duration="1553000" />
+      <workItem from="1768290873049" duration="3237000" />
     </task>
     <task id="LOCAL-00107" summary="feat: написать адаптеры для LocalDateTime and Duration классов">
       <option name="closed" value="true" />
@@ -775,7 +760,23 @@
       <option name="project" value="LOCAL" />
       <updated>1767882396189</updated>
     </task>
-    <option name="localTasksCounter" value="154" />
+    <task id="LOCAL-00154" summary="feat: написать тесты для негативных сценариев">
+      <option name="closed" value="true" />
+      <created>1767885653809</created>
+      <option name="number" value="00154" />
+      <option name="presentableId" value="LOCAL-00154" />
+      <option name="project" value="LOCAL" />
+      <updated>1767885653809</updated>
+    </task>
+    <task id="LOCAL-00155" summary="feat: написать тесты для негативных сценариев">
+      <option name="closed" value="true" />
+      <created>1767886541339</created>
+      <option name="number" value="00155" />
+      <option name="presentableId" value="LOCAL-00155" />
+      <option name="project" value="LOCAL" />
+      <updated>1767886541339</updated>
+    </task>
+    <option name="localTasksCounter" value="156" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -796,7 +797,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/.." />
     </ignored-roots>
-    <MESSAGE value="refactor: распределить классы по пакетам" />
     <MESSAGE value="refactor: удалить лишний код" />
     <MESSAGE value="feat: написать метод удаления SubTask из списка subTasksIds" />
     <MESSAGE value="test: проведение тестов с сервером" />
@@ -821,7 +821,8 @@
     <MESSAGE value="test: провести тесты, исправить ошибки" />
     <MESSAGE value="fix: прописать дженерики там где они должны быть&#10;&#10;test: написать тесты&#10;&#10;refactor: убрать лишний код" />
     <MESSAGE value="feat: написать методы для тестов" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: написать методы для тестов" />
+    <MESSAGE value="feat: написать тесты для негативных сценариев" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: написать тесты для негативных сценариев" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

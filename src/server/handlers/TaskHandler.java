@@ -30,7 +30,7 @@ public class TaskHandler<T extends Task> extends BaseHandler<T> {
             switch (method) {
                 case "GET" -> {
                     if (queryString != null) {
-                        T task = getTaskFromQuery(queryString);
+                        T task = getTaskFromQuery(queryString, true);
                         if (task == null) {
                             response = gson.toJson("Задачи не существует");
                             statusCode = 404;
@@ -50,7 +50,7 @@ public class TaskHandler<T extends Task> extends BaseHandler<T> {
                     String body = new String(is.readAllBytes(), StandardCharsets.UTF_8);
                     Task json = gson.fromJson(body, Task.class);
 
-                    T taskInMap = getTaskFromQuery(queryString);
+                    T taskInMap = getTaskFromQuery(queryString, false);
                     T oldTask = taskManager.getTaskById(taskInMap.getId(), false);
                     validateTaskType(oldTask);
                     taskManager.updateTask((T) json, taskInMap.getId());
@@ -73,7 +73,7 @@ public class TaskHandler<T extends Task> extends BaseHandler<T> {
                 }
                 case "DELETE" -> {
                     if (queryString != null) {
-                        T task = getTaskFromQuery(queryString);
+                        T task = getTaskFromQuery(queryString, false);
                         validateTaskType(task);
                         taskManager.removeTaskById(task.getId());
                         response = gson.toJson("Задача с идентификатором " + task.getId() + " удалена.");

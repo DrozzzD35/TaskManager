@@ -31,7 +31,7 @@ public class SubTaskHandler<T extends Task> extends BaseHandler<T> {
             switch (method) {
                 case "GET" -> {
                     if (stringQuery != null) {
-                        T task = getTaskFromQuery(stringQuery);
+                        T task = getTaskFromQuery(stringQuery, true);
 
                         if (task == null) {
                             response = gson.toJson("Задачи не существует");
@@ -53,7 +53,7 @@ public class SubTaskHandler<T extends Task> extends BaseHandler<T> {
                     String taskString = new String(is.readAllBytes(), StandardCharsets.UTF_8);
                     SubTask json = gson.fromJson(taskString, SubTask.class);
 
-                    T taskInMap = getTaskFromQuery(stringQuery);
+                    T taskInMap = getTaskFromQuery(stringQuery, false);
                     T oldSubTask = taskManager.getTaskById(taskInMap.getId(), false);
                     validateSubTaskType(oldSubTask);
                     taskManager.updateTask((T) json, taskInMap.getId());
@@ -77,7 +77,7 @@ public class SubTaskHandler<T extends Task> extends BaseHandler<T> {
                 }
                 case "DELETE" -> {
                     if (stringQuery != null) {
-                        T task = getTaskFromQuery(stringQuery);
+                        T task = getTaskFromQuery(stringQuery, false);
                         validateSubTaskType(task);
                         taskManager.removeTaskById(task.getId());
                         response = gson.toJson("Задача с идентификатором "

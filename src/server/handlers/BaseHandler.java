@@ -32,12 +32,8 @@ public abstract class BaseHandler<T extends Task> implements HttpHandler {
         }
     }
 
-    protected T getTaskFromQuery(String queryString) {
+    protected T getTaskFromQuery(String queryString, boolean withHistory) {
         String[] string = queryString.split("=");
-        return taskManager.getTaskById(Integer.parseInt(string[1]), false);
-    }
-
-    protected T getTask(int id) {
-        return taskManager.getTaskById(id, true);
+        return taskManager.getTaskById(Integer.parseInt(string[1]), withHistory);
     }
 }

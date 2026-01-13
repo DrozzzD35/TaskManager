@@ -31,7 +31,7 @@ public class EpicHandler<T extends Task> extends BaseHandler<T> {
             switch (method) {
                 case "GET" -> {
                     if (stringQuery != null) {
-                        T epic = getTaskFromQuery(stringQuery);
+                        T epic = getTaskFromQuery(stringQuery, true);
 
                         if (epic == null) {
                             response = gson.toJson("Задачи не существует");
@@ -51,7 +51,7 @@ public class EpicHandler<T extends Task> extends BaseHandler<T> {
                     InputStream is = exchange.getRequestBody();
                     String taskString = new String(is.readAllBytes(), StandardCharsets.UTF_8);
                     Epic json = gson.fromJson(taskString, Epic.class);
-                    T task = getTaskFromQuery(stringQuery);
+                    T task = getTaskFromQuery(stringQuery, false);
                     taskManager.updateTask((T) json, task.getId());
                     T updatedTask = taskManager.getTaskById(task.getId(), false);
 
@@ -72,7 +72,7 @@ public class EpicHandler<T extends Task> extends BaseHandler<T> {
                 }
                 case "DELETE" -> {
                     if (stringQuery != null) {
-                        T task = getTaskFromQuery(stringQuery);
+                        T task = getTaskFromQuery(stringQuery, false);
                         validateEpicType(task);
                         taskManager.removeTaskById(task.getId());
                         response = gson.toJson("Задача с идентификатором " + task.getId() + " удалена.");
