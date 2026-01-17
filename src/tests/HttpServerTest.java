@@ -30,7 +30,7 @@ public class HttpServerTest<T extends Task> {
     private TaskManager<T> taskManager;
     private HttpTaskServer<T> taskServer;
     private HttpTaskClient<T> taskClient;
-    private Gson gson = GsonFactory.createGson();
+    private final Gson gson = GsonFactory.createGson();
     private HistoryManager<T> historyManager;
 
     @BeforeEach
