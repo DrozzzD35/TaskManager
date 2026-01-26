@@ -379,15 +379,13 @@
       <workItem from="1768246109325" duration="1553000" />
       <workItem from="1768290873049" duration="4901000" />
       <workItem from="1768386740810" duration="63000" />
-      <workItem from="1768628411295" duration="3834000" />
-    </task>
-    <task id="LOCAL-00108" summary="feat: создать фабричный класс Gson">
-      <option name="closed" value="true" />
-      <created>1766945792964</created>
-      <option name="number" value="00108" />
-      <option name="presentableId" value="LOCAL-00108" />
-      <option name="project" value="LOCAL" />
-      <updated>1766945792964</updated>
+      <workItem from="1768628411295" duration="5102000" />
+      <workItem from="1768665833797" duration="312000" />
+      <workItem from="1768666320870" duration="598000" />
+      <workItem from="1768833375774" duration="153000" />
+      <workItem from="1768895328550" duration="1222000" />
+      <workItem from="1769176057673" duration="11000" />
+      <workItem from="1769347647680" duration="203000" />
     </task>
     <task id="LOCAL-00109" summary="feat: создать фабричный класс Gson">
       <option name="closed" value="true" />
@@ -773,7 +771,15 @@
       <option name="project" value="LOCAL" />
       <updated>1768294313322</updated>
     </task>
-    <option name="localTasksCounter" value="157" />
+    <task id="LOCAL-00157" summary="feat: завершить тесты">
+      <option name="closed" value="true" />
+      <created>1768656858078</created>
+      <option name="number" value="00157" />
+      <option name="presentableId" value="LOCAL-00157" />
+      <option name="project" value="LOCAL" />
+      <updated>1768656858079</updated>
+    </task>
+    <option name="localTasksCounter" value="158" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

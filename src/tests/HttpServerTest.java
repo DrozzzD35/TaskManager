@@ -2,9 +2,7 @@ package tests;
 
 import client.HttpTaskClient;
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import model.*;
-import org.apiguardian.api.API;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -15,7 +13,6 @@ import service.HttpTaskServer;
 import service.Managers;
 import service.TaskManager;
 import utils.GsonFactory;
-import utils.Identity;
 import utils.TestUtils;
 
 import java.io.IOException;
@@ -34,7 +31,7 @@ public class HttpServerTest<T extends Task> {
     private HistoryManager<T> historyManager;
 
     @BeforeEach
-    void SetUp() throws IOException {
+    void setUp() throws IOException {
         kvServer = new KVServer();
         kvServer.start();
 
