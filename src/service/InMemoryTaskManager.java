@@ -31,7 +31,7 @@ public class InMemoryTaskManager<T extends Task> implements TaskManager<T> {
 
     @Override
     public void add(T task) {
-        chekOverlap(task);
+        checkOverlap(task);
 
         if (task instanceof SubTask subTask) {
             Epic epic = (Epic) getTaskById(subTask.getParentId(), false);
@@ -79,7 +79,7 @@ public class InMemoryTaskManager<T extends Task> implements TaskManager<T> {
         prioritizedTasks.remove(taskInMap);
 
         try {
-            chekOverlap(newTask);
+            checkOverlap(newTask);
 
             if (newTask.getName() != null) {
                 taskInMap.setName(newTask.getName());
@@ -287,7 +287,7 @@ public class InMemoryTaskManager<T extends Task> implements TaskManager<T> {
         epic.setEndTime(end);
     }
 
-    public void chekOverlap(T task) {
+    public void checkOverlap(T task) {
         if (task.getStartTime() == null
                 || task.getEndTime() == null
                 || task instanceof Epic) return;

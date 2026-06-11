@@ -6,6 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="3b2d2408-c7aa-4b02-a823-dac3b3c98272" name="Changes" comment="feat: завершить тесты">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dataBacked/exception/ManagerSaveException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dataBacked/exception/ManagerSaveException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/exception/NotFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/exception/NotFoundException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/service/InMemoryTaskManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/InMemoryTaskManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,8 +41,14 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="jar://$USER_HOME$/.jdks/openjdk-24.0.1/lib/src.zip!/java.base/java/io/Writer.java" root0="SKIP_INSPECTION" />
     <setting file="jar://$USER_HOME$/.jdks/openjdk-24.0.1/lib/src.zip!/java.base/java/lang/String.java" root0="SKIP_INSPECTION" />
+    <setting file="jar://$USER_HOME$/.jdks/openjdk-24.0.1/lib/src.zip!/java.base/java/util/Comparator.java" root0="SKIP_INSPECTION" />
+    <setting file="jar://$USER_HOME$/.jdks/openjdk-24.0.1/lib/src.zip!/java.base/java/util/List.java" root0="SKIP_INSPECTION" />
+    <setting file="jar://$USER_HOME$/.jdks/openjdk-24.0.1/lib/src.zip!/java.base/java/util/Map.java" root0="SKIP_INSPECTION" />
+    <setting file="jar://$USER_HOME$/.jdks/openjdk-24.0.1/lib/src.zip!/java.base/java/util/Set.java" root0="SKIP_INSPECTION" />
     <setting file="jar://$USER_HOME$/.jdks/openjdk-24.0.1/lib/src.zip!/jdk.httpserver/com/sun/net/httpserver/HttpExchange.java" root0="SKIP_INSPECTION" />
+    <setting file="jar://$PROJECT_DIR$/src/lib/gson-2.13.1.jar!/com/google/gson/reflect/TypeToken.class" root0="SKIP_INSPECTION" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 3
@@ -81,9 +90,11 @@
     &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
     &quot;extract.method.default.visibility&quot;: &quot;private&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/DrozzzD35/IdeaProjects/TaskManager/src/documents&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -93,7 +104,7 @@
     &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.project.grazie&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -108,8 +119,9 @@
       <recent name="C:\Users\DrozzzD35\IdeaProjects\TaskManager\src\documents" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.HttpServerTest">
-    <configuration name="HttpServerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Application.MyTest">
+    <configuration name="MyTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="tests.MyTest" />
       <module name="TaskManager" />
       <extension name="coverage">
         <pattern>
@@ -117,9 +129,6 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="tests" />
-      <option name="MAIN_CLASS_NAME" value="tests.HttpServerTest" />
-      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -190,10 +199,10 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.HttpServerTest" />
+        <item itemvalue="Application.MyTest" />
+        <item itemvalue="JUnit.HttpServerTest.removeSubTask" />
         <item itemvalue="JUnit.HttpServerTest.removeHistory" />
         <item itemvalue="JUnit.HttpServerTest.getHistory" />
-        <item itemvalue="JUnit.HttpServerTest.removeSubTask" />
         <item itemvalue="JUnit.HttpServerTest.addSubTask" />
       </list>
     </recent_temporary>
@@ -201,8 +210,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-fbdcb00ec9e3-intellij.indexing.shared.core-IU-251.23774.435" />
-        <option value="bundled-js-predefined-d6986cc7102b-f27c65a3e318-JavaScript-IU-251.23774.435" />
+        <option value="bundled-jdk-30f59d01ecdd-26cb7f24e5b0-intellij.indexing.shared.core-IU-253.29346.240" />
+        <option value="bundled-js-predefined-d6986cc7102b-9b0f141eb926-JavaScript-IU-253.29346.240" />
       </set>
     </attachedChunks>
   </component>
@@ -386,14 +395,22 @@
       <workItem from="1768895328550" duration="1222000" />
       <workItem from="1769176057673" duration="11000" />
       <workItem from="1769347647680" duration="203000" />
-    </task>
-    <task id="LOCAL-00109" summary="feat: создать фабричный класс Gson">
-      <option name="closed" value="true" />
-      <created>1766945896931</created>
-      <option name="number" value="00109" />
-      <option name="presentableId" value="LOCAL-00109" />
-      <option name="project" value="LOCAL" />
-      <updated>1766945896931</updated>
+      <workItem from="1769425848470" duration="24000" />
+      <workItem from="1770124388245" duration="120000" />
+      <workItem from="1770124518244" duration="161000" />
+      <workItem from="1770124691562" duration="119000" />
+      <workItem from="1770124823716" duration="696000" />
+      <workItem from="1770125537288" duration="137000" />
+      <workItem from="1770125686655" duration="516000" />
+      <workItem from="1770126677380" duration="519000" />
+      <workItem from="1770127357710" duration="149000" />
+      <workItem from="1770127522520" duration="1075000" />
+      <workItem from="1770272962304" duration="1856000" />
+      <workItem from="1770279545359" duration="595000" />
+      <workItem from="1770986314008" duration="2494000" />
+      <workItem from="1780216435747" duration="676000" />
+      <workItem from="1780378936087" duration="668000" />
+      <workItem from="1781066711438" duration="2528000" />
     </task>
     <task id="LOCAL-00110" summary="fix: переписать формат endTime">
       <option name="closed" value="true" />
@@ -779,7 +796,15 @@
       <option name="project" value="LOCAL" />
       <updated>1768656858079</updated>
     </task>
-    <option name="localTasksCounter" value="158" />
+    <task id="LOCAL-00158" summary="feat: завершить тесты">
+      <option name="closed" value="true" />
+      <created>1769425869554</created>
+      <option name="number" value="00158" />
+      <option name="presentableId" value="LOCAL-00158" />
+      <option name="project" value="LOCAL" />
+      <updated>1769425869554</updated>
+    </task>
+    <option name="localTasksCounter" value="159" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
