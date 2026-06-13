@@ -5,7 +5,7 @@ public enum Type {
     EPIC("Epic"),
     SUBTASK("Subtask");
 
-    private String type;
+    private final String type;
 
     Type(String type) {
         this.type = type;

@@ -4,11 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3b2d2408-c7aa-4b02-a823-dac3b3c98272" name="Changes" comment="feat: завершить тесты">
+    <list default="true" id="3b2d2408-c7aa-4b02-a823-dac3b3c98272" name="Changes" comment="feat: rename">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dataBacked/exception/ManagerSaveException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dataBacked/exception/ManagerSaveException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/exception/NotFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/exception/NotFoundException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/service/InMemoryTaskManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/InMemoryTaskManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -411,14 +408,7 @@
       <workItem from="1780216435747" duration="676000" />
       <workItem from="1780378936087" duration="668000" />
       <workItem from="1781066711438" duration="2528000" />
-    </task>
-    <task id="LOCAL-00110" summary="fix: переписать формат endTime">
-      <option name="closed" value="true" />
-      <created>1766954135612</created>
-      <option name="number" value="00110" />
-      <option name="presentableId" value="LOCAL-00110" />
-      <option name="project" value="LOCAL" />
-      <updated>1766954135612</updated>
+      <workItem from="1781173303860" duration="823000" />
     </task>
     <task id="LOCAL-00111" summary="fix: переписать метод update, сохраняется 2 одинаковые задачи после обновления в отсортированном списке">
       <option name="closed" value="true" />
@@ -804,7 +794,15 @@
       <option name="project" value="LOCAL" />
       <updated>1769425869554</updated>
     </task>
-    <option name="localTasksCounter" value="159" />
+    <task id="LOCAL-00159" summary="feat: rename">
+      <option name="closed" value="true" />
+      <created>1781173501670</created>
+      <option name="number" value="00159" />
+      <option name="presentableId" value="LOCAL-00159" />
+      <option name="project" value="LOCAL" />
+      <updated>1781173501671</updated>
+    </task>
+    <option name="localTasksCounter" value="160" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -825,7 +823,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/.." />
     </ignored-roots>
-    <MESSAGE value="feat: написать метод удаления SubTask из списка subTasksIds" />
     <MESSAGE value="test: проведение тестов с сервером" />
     <MESSAGE value="refactor: убрать лишнюю надпись" />
     <MESSAGE value="feat: написать HttpServerTest.java" />
@@ -850,7 +847,8 @@
     <MESSAGE value="feat: написать методы для тестов" />
     <MESSAGE value="feat: написать тесты для негативных сценариев" />
     <MESSAGE value="feat: завершить тесты" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: завершить тесты" />
+    <MESSAGE value="feat: rename" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: rename" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
